@@ -9,6 +9,7 @@
 # you can delete this whole section/until Configuration.
 /wp-admin/
 /wp-content/index.php
+/wp-content/ai1wm-backups/
 /wp-content/languages
 /wp-content/plugins/index.php
 /wp-content/themes/index.php
