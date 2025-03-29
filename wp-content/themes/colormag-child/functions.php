@@ -20,3 +20,29 @@ if (file_exists($inc_path . 'acf-options.php')) {
 if (file_exists($inc_path . 'gutenberg-blocks.php')) {
     require_once $inc_path . 'gutenberg-blocks.php';
 }
+
+function filter_rankmath_meta_description($content) {
+    if (is_single() || is_page()) {
+        global $post;
+        
+        // Parse the content blocks
+        $blocks = parse_blocks($post->post_content);
+        $album_name = '';
+        $artist_name = '';
+
+        foreach ($blocks as $block) {
+            if ($block['blockName'] === 'acf/album_review') {
+                $album_name = isset($block['attrs']['data']['album_name']) ? esc_html($block['attrs']['data']['album_name']) : '';
+                $artist_name = isset($block['attrs']['data']['artist_name']) ? esc_html($block['attrs']['data']['artist_name']) : '';
+                break;
+            }
+        }
+
+        if (!empty($album_name) && !empty($artist_name)) {
+            return "Review of '{$album_name}' by {$artist_name}. Read our detailed analysis.";
+        }
+    }
+
+    return $content;
+}
+add_filter('rank_math/frontend/description', 'filter_rankmath_meta_description');
