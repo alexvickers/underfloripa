@@ -23,6 +23,7 @@
 
 # Configuration
 wp-config.php
+ads.txt
 
 # Example themes
 /wp-content/themes/twenty*/
