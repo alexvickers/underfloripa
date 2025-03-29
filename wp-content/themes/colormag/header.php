@@ -27,12 +27,7 @@ do_action( 'colormag_action_doctype' );
 	do_action( 'colormag_action_head' );
 	?>
 
-	<?php wp_head();
-
-	$adsense = get_field( 'adsense' );
-
-	if( !empty( $adsense ) )
-    	echo $adsense; ?>
+	<?php wp_head(); ?>
 
 </head>
 
