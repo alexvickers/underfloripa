@@ -3,6 +3,12 @@ Theme Name: ColorMag Child for Underfloripa
 Template: colormag
 */
 
+.archive .cm-featured-image img,
+.category .cm-featured-image img {
+  max-height: 210px;
+  object-fit: cover;
+}
+
 .album-review-block {
   display: flex;
   margin-top: 22px;
