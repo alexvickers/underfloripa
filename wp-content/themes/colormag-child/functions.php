@@ -29,8 +29,8 @@ function filter_rankmath_meta_description($content) {
 
         foreach ($blocks as $block) {
             if ($block['blockName'] === 'acf/album_review') {
-                $album_name = isset($block['attrs']['data']['album_name']) ? esc_html($block['attrs']['data']['album_name']) : '';
                 $artist_name = isset($block['attrs']['data']['artist_name']) ? esc_html($block['attrs']['data']['artist_name']) : '';
+                $album_name = isset($block['attrs']['data']['album_name']) ? esc_html($block['attrs']['data']['album_name']) : '';
                 $label_name = isset($block['attrs']['data']['label_name']) ? esc_html($block['attrs']['data']['label_name']) : '';
                 break;
             }
