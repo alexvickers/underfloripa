@@ -39,6 +39,8 @@ get_header();
                 get_template_part('template-parts/content', 'single');
             endwhile;
 
+            get_template_part('template-parts/author-bio');
+
             /**
              * Hook: colormag_after_single_post_page_loop.
              */
