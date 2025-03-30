@@ -151,11 +151,13 @@ Template: colormag
 .author-info h3 {
   margin: 0 0 5px;
   font-size: 16px;
+  font-weight: 600;
 }
 
 .author-info p {
   margin: 0 0 10px;
   font-size: 14px;
+  line-height: 18px;
 }
 
 .author-link {
