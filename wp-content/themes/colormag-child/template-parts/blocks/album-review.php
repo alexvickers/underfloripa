@@ -10,7 +10,7 @@ if (!$album_name || !$artist_name) {
     return;
 }
 
-$formatted_mark = ($mark == 10) ? '10' : number_format((float) $mark, 1);
+$formatted_mark = ($mark == 10 || $mark == 0) ? (string) intval($mark) : number_format((float) $mark, 1);
 ?>
 
 <div class="album-review-block">
