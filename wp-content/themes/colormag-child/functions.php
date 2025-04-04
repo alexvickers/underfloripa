@@ -111,7 +111,7 @@ function get_related_posts_block($post) {
                 <li>
                     <a href="<?php echo get_permalink($post_item->ID); ?>">
                         <?php
-                        $thumb = get_the_post_thumbnail($post_item->ID, 'thumbnail');
+                        $thumb = get_the_post_thumbnail($post_item->ID, [300, 300]);
                         if ($thumb) {
                             echo '<div class="related-post-thumb">' . $thumb . '</div>';
                         }
@@ -125,7 +125,6 @@ function get_related_posts_block($post) {
     <?php
     $html = ob_get_clean();
 
-    // Store in transient for 6 hours
     set_transient($cache_key, $html, 6 * HOUR_IN_SECONDS);
 
     return $html;
