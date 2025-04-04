@@ -28,6 +28,7 @@ if (file_exists($inc_path . 'gutenberg-blocks.php')) {
     require_once $inc_path . 'gutenberg-blocks.php';
 }
 
+// Album Review Meta Descriptions
 function filter_rankmath_meta_description($content) {
     if (is_single() || is_page()) {
         global $post;
@@ -56,3 +57,77 @@ function filter_rankmath_meta_description($content) {
     return $content;
 }
 add_filter('rank_math/frontend/description', 'filter_rankmath_meta_description');
+
+// Related Posts
+function get_related_posts_block($post) {
+    if (empty($post)) return '';
+
+    $cache_key = 'related_posts_block_' . $post->ID;
+    $cached_html = get_transient($cache_key);
+    if ($cached_html !== false) {
+        return $cached_html;
+    }
+
+    $categories = get_the_category($post->ID);
+    if (empty($categories)) return '';
+
+    $category_ids = wp_list_pluck($categories, 'term_id');
+    $category_slugs = wp_list_pluck($categories, 'slug');
+    $is_resenhas = in_array('resenhas', $category_slugs);
+
+    $base_args = [
+        'category__in' => $category_ids,
+        'posts_per_page' => 6,
+        'orderby' => 'rand',
+        'no_found_rows' => true,
+    ];
+
+    if ($is_resenhas) {
+        $base_args['author'] = $post->post_author;
+        $related_posts = get_posts($base_args);
+
+        if (count($related_posts) < 3) {
+            unset($base_args['author']);
+            $related_posts = get_posts($base_args);
+        }
+    } else {
+        $related_posts = get_posts($base_args);
+    }
+
+    $filtered_posts = array_filter($related_posts, fn($item) => $item->ID !== $post->ID);
+    $filtered_posts = array_slice($filtered_posts, 0, 3);
+
+    if (empty($filtered_posts)) return '';
+
+    ob_start();
+    ?>
+    <div class="related-posts">
+        <h3><span>Outras matérias</span></h3>
+        <ul>
+            <?php foreach ($filtered_posts as $post_item): ?>
+                <li>
+                    <a href="<?php echo get_permalink($post_item->ID); ?>">
+                        <?php
+                        $thumb = get_the_post_thumbnail($post_item->ID, 'thumbnail');
+                        if ($thumb) {
+                            echo '<div class="related-post-thumb">' . $thumb . '</div>';
+                        }
+                        ?>
+                        <span class="related-post-title"><?php echo get_the_title($post_item->ID); ?></span>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php
+    $html = ob_get_clean();
+
+    // Store in transient for 6 hours
+    set_transient($cache_key, $html, 6 * HOUR_IN_SECONDS);
+
+    return $html;
+}
+
+add_action('save_post', function($post_id) {
+    delete_transient('related_posts_block_' . $post_id);
+});

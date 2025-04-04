@@ -49,50 +49,7 @@ get_header(); ?>
         <?php if (is_single()) {
             global $post;
 
-            $categories = get_the_category($post->ID);
-            if (!empty($categories)) {
-                $category_ids = wp_list_pluck($categories, 'term_id');
-
-                $count_args = [
-                    'category__in' => $category_ids,
-                    'post__not_in' => [$post->ID],
-                    'posts_per_page' => -1,
-                    'fields' => 'ids',
-                    'no_found_rows' => true,
-                ];
-                $all_posts = get_posts($count_args);
-
-                if (count($all_posts) > 3) {
-                    $args = [
-                        'category__in' => $category_ids,
-                        'posts_per_page' => 3,
-                        'orderby' => 'rand',
-                        'post__not_in' => [$post->ID],
-                        'no_found_rows' => true,
-                    ];
-
-                    $related_posts = get_posts($args);
-
-                    if (!empty($related_posts)) {
-                        echo '<div class="related-posts">';
-                        echo '<h3><span>Outras matérias</span></h3><ul>';
-
-                        foreach ($related_posts as $post_item) {
-                            $thumbnail = get_the_post_thumbnail($post_item->ID, 'thumbnail');
-                            echo '<li>';
-                            echo '<a href="' . get_permalink($post_item->ID) . '">';
-                            if ($thumbnail) {
-                                echo '<div class="related-post-thumb">' . $thumbnail . '</div>';
-                            }
-                            echo '<span class="related-post-title">' . get_the_title($post_item->ID) . '</span>';
-                            echo '</a>';
-                            echo '</li>';
-                        }
-
-                    echo '</ul></div>';
-                    }
-                }
-            }
+            echo get_related_posts_block(get_post());
         }
 
         /**
