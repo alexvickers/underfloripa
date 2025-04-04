@@ -14,6 +14,16 @@ if (file_exists($inc_path . 'acf-options.php')) {
     require_once $inc_path . 'acf-options.php';
 }
 
+function my_custom_footer_scripts() {
+    if (function_exists('get_field')) {
+        $scripts = get_field('site_footer_scripts', 'option');
+        if ($scripts) {
+            echo $scripts;
+        }
+    }
+}
+add_action('wp_footer', 'my_custom_footer_scripts', 100);
+
 if (file_exists($inc_path . 'gutenberg-blocks.php')) {
     require_once $inc_path . 'gutenberg-blocks.php';
 }
