@@ -73,7 +73,7 @@ function get_related_posts_block($post) {
 
     $category_ids = wp_list_pluck($categories, 'term_id');
     $category_slugs = wp_list_pluck($categories, 'slug');
-    $is_musica = in_array('musica', $category_slugs);
+    $is_resenhas = in_array('resenhas', $category_slugs);
     $is_voce_precisa_conhecer = in_array('voce-precisa-conhecer', $category_slugs);
 
     $base_args = [
@@ -100,7 +100,6 @@ function get_related_posts_block($post) {
 
     if (empty($filtered_posts)) return '';
 
-    // Determine the heading text
     $heading_text = $is_voce_precisa_conhecer ? "Você também precisa conhecer" : "Outras matérias";
 
     ob_start();
