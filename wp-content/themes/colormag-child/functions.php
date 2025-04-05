@@ -100,7 +100,14 @@ function get_related_posts_block($post) {
 
     if (empty($filtered_posts)) return '';
 
-    $heading_text = $is_voce_precisa_conhecer ? "Você também precisa conhecer" : "Outras matérias";
+    // Determine the heading text
+    if ($is_voce_precisa_conhecer) {
+        $heading_text = "Você também precisa conhecer";
+    } elseif ($is_resenhas) {
+        $heading_text = "Últimas Resenhas";
+    } else {
+        $heading_text = "Outras matérias";
+    }
 
     ob_start();
     ?>
