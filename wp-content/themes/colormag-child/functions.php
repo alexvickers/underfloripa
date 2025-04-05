@@ -140,3 +140,84 @@ function get_related_posts_block($post) {
 add_action('save_post', function($post_id) {
     delete_transient('related_posts_block_' . $post_id);
 });
+
+// Autoload archive posts
+function my_ajax_load_more_posts() {
+    if (!isset($_GET['nonce']) || !wp_verify_nonce($_GET['nonce'], 'load_more_nonce')) {
+        wp_send_json_error('Invalid nonce');
+        wp_die();
+    }
+
+    $paged         = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $category_id   = isset($_GET['category_id']) ? intval($_GET['category_id']) : 0;
+    $search_query  = isset($_GET['search_query']) ? sanitize_text_field($_GET['search_query']) : '';
+    $author_id     = isset($_GET['author_id']) ? intval($_GET['author_id']) : 0;
+
+    $args = [
+        'post_type'   => 'post',
+        'post_status' => 'publish', // ← THIS!
+        'paged'       => $paged,
+    ];
+
+    if ($category_id) {
+        $args['cat'] = $category_id;
+    }
+
+    if (!empty($search_query)) {
+        $args['s'] = $search_query;
+    }
+
+    if ($author_id) {
+        $args['author'] = $author_id;
+    }
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) :
+        while ($query->have_posts()) : $query->the_post();
+            get_template_part('template-parts/content', 'ajax');
+        endwhile;
+    endif;
+
+    wp_die();
+}
+add_action('wp_ajax_load_more_posts', 'my_ajax_load_more_posts');
+add_action('wp_ajax_nopriv_load_more_posts', 'my_ajax_load_more_posts');
+
+function colormag_child_enqueue_scripts()
+{
+    $category_id   = 0;
+    $search_query  = '';
+    $author_id     = 0;
+
+    if (is_category()) {
+        $cat = get_queried_object();
+        $category_id = $cat->term_id;
+    }
+
+    if (is_search()) {
+        $search_query = get_search_query();
+    }
+
+    if (is_author()) {
+        $author = get_queried_object();
+        $author_id = $author->ID;
+    }
+
+    wp_enqueue_script(
+        'load-more',
+        get_stylesheet_directory_uri() . '/assets/js/load-more.js',
+        [],
+        false,
+        true
+    );
+
+    wp_localize_script('load-more', 'my_ajax_obj', [
+        'ajax_url'     => admin_url('admin-ajax.php'),
+        'nonce'        => wp_create_nonce('load_more_nonce'),
+        'category_id'  => $category_id,
+        'search_query' => $search_query,
+        'author_id'    => $author_id,
+    ]);
+}
+add_action('wp_enqueue_scripts', 'colormag_child_enqueue_scripts');
