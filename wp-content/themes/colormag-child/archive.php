@@ -80,8 +80,11 @@ get_header();
 				?>
 			</div><!-- .cm-posts -->
 
-            <div id="load-more-spinner" style="display:none;">Loading...</div>
-        </div><!-- #cm-primary -->
+			<div id="load-more-spinner" style="display:none; text-align:center; padding:1em;">
+				<span class="spinner"></span>
+			</div>
+
+		</div><!-- #cm-primary -->
 
 	<?php
 

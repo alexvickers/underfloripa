@@ -177,6 +177,8 @@ function my_ajax_load_more_posts() {
         while ($query->have_posts()) : $query->the_post();
             get_template_part('template-parts/content', 'ajax');
         endwhile;
+    else :
+        echo 'no-more-posts';
     endif;
 
     wp_die();

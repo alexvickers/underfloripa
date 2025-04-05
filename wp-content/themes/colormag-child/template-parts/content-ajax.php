@@ -22,11 +22,8 @@
 
         <div class="cm-entry-summary">
             <p><?php echo wp_trim_words( get_the_content(), 30, '...' ); ?></p>
-        </div>
-
-        <div class="cm-read-more">
-            <a href="<?php the_permalink(); ?>" class="cm-btn cm-btn-primary">
-                <?php esc_html_e('Leia Mais', 'colormag'); ?>
+            <a href="<?php the_permalink(); ?>" class="cm-entry-button">
+                <span><?php esc_html_e('Leia Mais', 'colormag'); ?></span>
             </a>
         </div>
 
