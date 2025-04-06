@@ -75,6 +75,7 @@ function get_related_posts_block($post) {
     $category_slugs = wp_list_pluck($categories, 'slug');
     $is_resenhas = in_array('resenhas', $category_slugs);
     $is_voce_precisa_conhecer = in_array('voce-precisa-conhecer', $category_slugs);
+    $is_cultural = array_intersect(['musica', 'cinema', 'literatura'], $category_slugs);
 
     $base_args = [
         'category__in' => $category_ids,
@@ -82,6 +83,23 @@ function get_related_posts_block($post) {
         'orderby' => 'rand',
         'no_found_rows' => true,
     ];
+
+    if (!empty($is_cultural)) {
+        $cultural_terms = get_terms([
+            'taxonomy' => 'category',
+            'slug' => ['musica', 'cinema', 'literatura'],
+            'fields' => 'ids',
+            'hide_empty' => false,
+        ]);
+        $category_ids = $cultural_terms;
+
+        $base_args['date_query'] = [
+            [
+                'after' => '2 months ago',
+                'inclusive' => true,
+            ],
+        ];
+    }
 
     if ($is_resenhas) {
         $base_args['author'] = $post->post_author;
