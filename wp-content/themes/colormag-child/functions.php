@@ -28,6 +28,17 @@ if (file_exists($inc_path . 'gutenberg-blocks.php')) {
     require_once $inc_path . 'gutenberg-blocks.php';
 }
 
+// Album Review Dynamic Fields
+add_action('acf/input/admin_enqueue_scripts', function () {
+    wp_enqueue_script(
+        'acf-dynamic-labels',
+        get_stylesheet_directory_uri() . '/assets/js/acf-dynamic-labels.js',
+        ['acf'],
+        '1.0',
+        true
+    );
+});
+
 // Album Review Meta Descriptions
 function filter_rankmath_meta_description($content) {
     if (is_single() || is_page()) {
