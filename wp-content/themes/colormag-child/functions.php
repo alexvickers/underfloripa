@@ -128,26 +128,7 @@ function get_related_posts_block($post) {
     }
 
     ob_start();
-    ?>
-    <div class="related-posts">
-        <h3><span><?php echo $heading_text; ?></span></h3>
-        <ul>
-            <?php foreach ($filtered_posts as $post_item): ?>
-                <li>
-                    <a href="<?php echo get_permalink($post_item->ID); ?>">
-                        <?php
-                        $thumb = get_the_post_thumbnail($post_item->ID, [300, 300]);
-                        if ($thumb) {
-                            echo '<div class="related-post-thumb">' . $thumb . '</div>';
-                        }
-                        ?>
-                        <span class="related-post-title"><?php echo get_the_title($post_item->ID); ?></span>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-    <?php
+    include get_stylesheet_directory() . '/template-parts/related-posts-block.php';
     $html = ob_get_clean();
 
     set_transient($cache_key, $html, 6 * HOUR_IN_SECONDS);
