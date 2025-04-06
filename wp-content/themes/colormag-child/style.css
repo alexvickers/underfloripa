@@ -131,6 +131,15 @@ Template: colormag
   line-height: 18px;
 }
 
+.related-post-date {
+  font-size: 12px;
+  color: #414141;
+}
+
+.related-post-date svg{
+  fill: #414141;
+}
+
 .author-bio {
   display: flex;
   align-items: center;
