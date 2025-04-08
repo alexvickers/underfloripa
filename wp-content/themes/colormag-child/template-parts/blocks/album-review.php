@@ -32,7 +32,7 @@ $label_title = match ($media_type) {
 $formatted_mark = ($mark == 10 || $mark == 0) ? (string) intval($mark) : number_format((float) $mark, 1);
 ?>
 
-<div class="review-block <?= esc_attr(strtolower($media_type)) ?>">
+<div class="album-review-block <?= esc_attr(strtolower($media_type)) ?>">
     <div class="mark"><span><?php echo $formatted_mark; ?></span></div>
     <div>
         <h3><?php echo esc_html($album_name) . ' - ' . esc_html($artist_name); ?></h3>
