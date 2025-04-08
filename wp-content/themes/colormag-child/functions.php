@@ -29,15 +29,16 @@ if (file_exists($inc_path . 'gutenberg-blocks.php')) {
 }
 
 // Album Review Dynamic Fields
-add_action('acf/input/admin_enqueue_scripts', function () {
+function enqueue_admin_review_labels_script() {
     wp_enqueue_script(
-        'acf-dynamic-labels',
-        get_stylesheet_directory_uri() . '/assets/js/acf-dynamic-labels.js',
-        ['acf'],
-        '1.0',
-        true
+    'custom-review-labels',
+    get_stylesheet_directory_uri() . '/assets/js/admin-review-labels.js',
+    ['acf-input'],
+    null,
+    true
     );
-});
+}
+add_action('acf/input/admin_enqueue_scripts', 'enqueue_admin_review_labels_script');
 
 // Album Review Meta Descriptions
 function filter_rankmath_meta_description($content) {
@@ -165,7 +166,7 @@ function my_ajax_load_more_posts() {
 
     $args = [
         'post_type'   => 'post',
-        'post_status' => 'publish', // ← THIS!
+        'post_status' => 'publish',
         'paged'       => $paged,
     ];
 

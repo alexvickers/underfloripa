@@ -1,7 +1,5 @@
 (function ($) {
-  function updateLabels() {
-    const mediaVal = $('[data-key="field_XXXXXX"] select').val(); // media_type
-
+  function updateLabels(mediaVal) {
     const labels = {
       Album: {
         album_name: "Álbum",
@@ -21,21 +19,25 @@
     };
 
     const selected = labels[mediaVal];
-    if (selected) {
-      $('[data-key="album_name"] .acf-label label').text(selected.album_name);
-      $('[data-key="artist_name"] .acf-label label').text(
-        selected.artist_name
-      );
-      $('[data-key="record_label"] .acf-label label').text(
-        selected.record_label
-      );
-    }
+    if (!selected) return;
+
+    const albumField = acf.getField('field_67ddda75cb96c');
+    const artistField = acf.getField('field_67ddda99cb96d');
+    const labelField = acf.getField('field_67dddaa8cb970');
+
+    if (albumField) albumField.$el.find('.acf-label label').text(selected.album_name);
+    if (artistField) artistField.$el.find('.acf-label label').text(selected.artist_name);
+    if (labelField) labelField.$el.find('.acf-label label').text(selected.record_label);
   }
 
-  acf.addAction("ready", updateLabels);
-  acf.addAction("change", function (el) {
-    if ($(el).attr("name") === "acf[media_type]") {
-      updateLabels();
+  acf.addAction('ready', function () {
+    const field = acf.getField('field_67f2e62b647ba');
+    if (field) {
+      updateLabels(field.val());
     }
+  });
+
+  acf.addAction('change_value/key=field_67f2e62b647ba', function (value) {
+    updateLabels(value);
   });
 })(jQuery);
