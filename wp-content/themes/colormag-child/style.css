@@ -3,6 +3,240 @@ Theme Name: ColorMag Child for Underfloripa
 Template: colormag
 */
 
+.hero-carousel {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.carousel-slide {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 1rem;
+  max-width: 90%;
+}
+
+/* Main content and sidebar */
+.content-with-sidebar {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  flex-wrap: wrap;
+}
+
+.content-area {
+  flex: 1 1 70%;
+}
+
+.sidebar-area {
+  flex: 1 1 25%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-with-sidebar {
+    flex-direction: column;
+  }
+
+  .carousel-caption {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+}
+
+.carousel-caption .meta {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: #ddd;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.carousel-caption .meta span {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  text-transform: lowercase;
+  font-weight: 500;
+}
+
+.carousel-caption h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #fff;
+}
+
+.post-card {
+  margin-bottom: 2rem;
+}
+
+.view-all-posts {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.view-all-posts .button {
+  display: inline-block;
+  background: #111;
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border-radius: 2rem;
+  text-decoration: none;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.post-card .thumb img {
+  width: 150px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.post-card .content {
+  flex: 1;
+}
+
+.post-card h3 {
+  margin: 0 0 0.5rem;
+}
+
+.post-card .meta {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.post-card .meta .date::after {
+  content: " • ";
+}
+
+@media (max-width: 600px) {
+  .post-card {
+    flex-direction: column;
+  }
+
+  .post-card .thumb img {
+    width: 100%;
+  }
+}
+
+.category-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #fff;
+  background: #333;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.meta .dashicons {
+  vertical-align: middle;
+  margin-right: 4px;
+  font-size: 1rem;
+  color: #666;
+}
+
+.colunas-wrapper {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.coluna-card {
+  flex: 1 1 50%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.coluna-thumb {
+  position: relative;
+}
+
+.coluna-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.coluna-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: white;
+}
+
+.coluna-overlay h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.coluna-overlay .meta {
+  font-size: 0.85rem;
+  color: #eee;
+}
+
+.coluna-thumb {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.coluna-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 80%);
+  color: white;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.coluna-card:hover .coluna-overlay {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .coluna-overlay {
+    opacity: 0;
+  }
+
+  .coluna-card:hover .coluna-overlay {
+    opacity: 1;
+  }
+}
+
 .archive .cm-featured-image img,
 .category .cm-featured-image img {
   max-height: 210px;
@@ -136,7 +370,7 @@ Template: colormag
   color: #414141;
 }
 
-.related-post-date svg{
+.related-post-date svg {
   fill: #414141;
 }
 
@@ -146,7 +380,8 @@ Template: colormag
   padding: 20px;
   margin-top: 40px;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.24);
-  border-radius: 4px;}
+  border-radius: 4px;
+}
 
 .author-avatar img {
   border-radius: 50%;

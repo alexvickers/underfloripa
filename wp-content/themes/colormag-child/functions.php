@@ -28,6 +28,17 @@ if (file_exists($inc_path . 'gutenberg-blocks.php')) {
     require_once $inc_path . 'gutenberg-blocks.php';
 }
 
+// Custom Homepage Blocks
+function enqueue_custom_home_assets() {
+    if (is_front_page()) {
+        wp_enqueue_style('slick-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
+        wp_enqueue_style('slick-theme-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css');
+        wp_enqueue_script('slick-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', ['jquery'], null, true);
+        wp_enqueue_script('custom-home-js', get_stylesheet_directory_uri() . '/assets/js/custom-home.js', ['slick-js'], null, true);
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_home_assets');
+
 // Album Review Dynamic Fields
 function enqueue_admin_review_labels_script() {
     wp_enqueue_script(
