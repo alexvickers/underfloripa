@@ -1,0 +1,22 @@
+.uf-event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.uf-event-list li {
+  margin-bottom: 1.5em;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1em;
+}
+
+.uf-widget-events {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.uf-widget-events li {
+  margin-bottom: 0.8em;
+  font-size: 0.95em;
+}
