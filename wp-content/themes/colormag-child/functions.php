@@ -28,6 +28,11 @@ if (file_exists($inc_path . 'gutenberg-blocks.php')) {
     require_once $inc_path . 'gutenberg-blocks.php';
 }
 
+// Recommended Plugins Notice
+if (is_admin()) {
+    require get_stylesheet_directory() . '/inc/admin-notices.php';
+}
+
 // Custom Homepage Blocks
 function enqueue_custom_home_assets() {
     if (is_front_page()) {
