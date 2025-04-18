@@ -13,8 +13,8 @@
             echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
         }
 
-        $now = current_time('timestamp');
-        $five_weeks_later = strtotime('+5 weeks', $now);
+        $today = current_time('Y-m-d');
+        $five_weeks_later = date('Y-m-d', strtotime('+5 weeks', current_time('timestamp')));
 
         $query = new WP_Query([
             'post_type' => 'event',
@@ -25,12 +25,9 @@
             'meta_query' => [
                 [
                     'key' => '_uf_event_date',
-                    'value' => [
-                        date('Y-m-d\TH:i', $now),
-                        date('Y-m-d\TH:i', $five_weeks_later)
-                    ],
+                    'value' => [$today, $five_weeks_later],
                     'compare' => 'BETWEEN',
-                    'type' => 'DATETIME'
+                    'type' => 'DATE'
                 ]
             ]
         ]);
@@ -40,11 +37,23 @@
             while ($query->have_posts()) {
                 $query->the_post();
                 $date = get_post_meta(get_the_ID(), '_uf_event_date', true);
-                $formatted_date = date_i18n('M j, H:i', strtotime($date));
+                $doors_time = get_post_meta(get_the_ID(), '_uf_event_doors_time', true);
+                $venue = get_post_meta(get_the_ID(), '_uf_event_venue', true);
+                $city = get_post_meta(get_the_ID(), '_uf_event_city', true);
+
+                $display_datetime = date_i18n('M j', strtotime($date));
+                if (!empty($doors_time)) {
+                    $display_datetime .= ', ' . date_i18n('H:i', strtotime($doors_time));
+                }
 
                 echo '<li>';
                 echo '<strong>' . esc_html(get_the_title()) . '</strong><br>';
-                echo '<small>' . esc_html($formatted_date) . '</small>';
+                echo '<small>' . esc_html($display_datetime) . '</small>';
+                if (!empty($venue) || !empty($city)) {
+                    echo '<br><small>' . esc_html($venue);
+                    if (!empty($venue) && !empty($city)) echo ', ';
+                    echo esc_html($city) . '</small>';
+                }
                 echo '</li>';
             }
             echo '</ul>';
@@ -59,7 +68,7 @@
 
     public function form($instance) {
         $title = !empty($instance['title']) ? $instance['title'] : 'Upcoming Events';
-?>
+        ?>
         <p>
             <label for="<?php echo esc_attr($this->get_field_id('title')); ?>">Title:</label>
             <input class="widefat"
@@ -68,7 +77,7 @@
                 type="text"
                 value="<?php echo esc_attr($title); ?>">
         </p>
-<?php
+        <?php
     }
 
     public function update($new_instance, $old_instance) {

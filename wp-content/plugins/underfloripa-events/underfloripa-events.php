@@ -53,5 +53,4 @@ function uf_enqueue_event_styles() {
 add_action('wp_enqueue_scripts', 'uf_enqueue_event_styles');
 
 require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes.php';
-require_once plugin_dir_path(__FILE__) . 'includes/shortcodes.php';
 require_once plugin_dir_path(__FILE__) . 'includes/widget.php';

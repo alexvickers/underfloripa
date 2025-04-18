@@ -1,4 +1,5 @@
-<?php function uf_add_event_meta_boxes() {
+<?php
+function uf_add_event_meta_boxes() {
     add_meta_box(
         'uf_event_details',
         'Event Details',
@@ -14,17 +15,26 @@ function uf_render_event_meta_box($post) {
     wp_nonce_field('uf_save_event_meta', 'uf_event_meta_nonce');
 
     $date = get_post_meta($post->ID, '_uf_event_date', true);
-    $location = get_post_meta($post->ID, '_uf_event_location', true);
+    $doors_time = get_post_meta($post->ID, '_uf_event_doors_time', true);
+    $venue = get_post_meta($post->ID, '_uf_event_venue', true);
+    $city = get_post_meta($post->ID, '_uf_event_city', true);
     $link = get_post_meta($post->ID, '_uf_event_link', true);
-
     ?>
     <p>
-        <label for="uf_event_date">Date & Time:</label><br>
-        <input type="datetime-local" id="uf_event_date" name="uf_event_date" value="<?php echo esc_attr($date); ?>" style="width:100%;">
+        <label for="uf_event_date">Event Date:</label><br>
+        <input type="date" id="uf_event_date" name="uf_event_date" value="<?php echo esc_attr($date); ?>" style="width:100%;">
     </p>
     <p>
-        <label for="uf_event_location">Location:</label><br>
-        <input type="text" id="uf_event_location" name="uf_event_location" value="<?php echo esc_attr($location); ?>" style="width:100%;">
+        <label for="uf_event_doors_time">Doors Open (Time):</label><br>
+        <input type="time" id="uf_event_doors_time" name="uf_event_doors_time" value="<?php echo esc_attr($doors_time); ?>" style="width:100%;">
+    </p>
+    <p>
+        <label for="uf_event_venue">Venue:</label><br>
+        <input type="text" id="uf_event_venue" name="uf_event_venue" value="<?php echo esc_attr($venue); ?>" style="width:100%;">
+    </p>
+    <p>
+        <label for="uf_event_city">City:</label><br>
+        <input type="text" id="uf_event_city" name="uf_event_city" value="<?php echo esc_attr($city); ?>" style="width:100%;">
     </p>
     <p>
         <label for="uf_event_link">Optional Link (e.g. ticket URL):</label><br>
@@ -42,16 +52,20 @@ function uf_save_event_meta($post_id) {
 
     if (!current_user_can('edit_post', $post_id)) return;
 
-    if (isset($_POST['uf_event_date'])) {
-        update_post_meta($post_id, '_uf_event_date', sanitize_text_field($_POST['uf_event_date']));
-    }
+    // Save the new fields
+    $fields = [
+        'uf_event_date' => '_uf_event_date',
+        'uf_event_doors_time' => '_uf_event_doors_time',
+        'uf_event_venue' => '_uf_event_venue',
+        'uf_event_city' => '_uf_event_city',
+        'uf_event_link' => '_uf_event_link'
+    ];
 
-    if (isset($_POST['uf_event_location'])) {
-        update_post_meta($post_id, '_uf_event_location', sanitize_text_field($_POST['uf_event_location']));
-    }
-
-    if (isset($_POST['uf_event_link'])) {
-        update_post_meta($post_id, '_uf_event_link', esc_url_raw($_POST['uf_event_link']));
+    foreach ($fields as $field => $meta_key) {
+        if (isset($_POST[$field])) {
+            $value = ($field === 'uf_event_link') ? esc_url_raw($_POST[$field]) : sanitize_text_field($_POST[$field]);
+            update_post_meta($post_id, $meta_key, $value);
+        }
     }
 }
 add_action('save_post_event', 'uf_save_event_meta');
