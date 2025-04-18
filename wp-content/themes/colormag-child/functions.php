@@ -118,7 +118,7 @@ function get_related_posts_block($post) {
 
         $base_args['date_query'] = [
             [
-                'after' => '2 months ago',
+                'after' => '2 weeks ago',
                 'inclusive' => true,
             ],
         ];
@@ -145,7 +145,7 @@ function get_related_posts_block($post) {
     if ($is_voce_precisa_conhecer) {
         $heading_text = "Você também precisa conhecer";
     } elseif ($is_resenhas) {
-        $heading_text = "Últimas Resenhas";
+        $heading_text = "Outras Resenhas";
     } else {
         $heading_text = "Outras matérias";
     }
