@@ -1,11 +1,8 @@
 <?php function uf_render_event_list($atts) {
-    // Get current time
     $now = current_time('timestamp');
 
-    // Calculate 5 weeks from now
     $five_weeks_later = strtotime('+5 weeks', $now);
 
-    // Query events
     $query = new WP_Query([
         'post_type' => 'event',
         'posts_per_page' => -1,

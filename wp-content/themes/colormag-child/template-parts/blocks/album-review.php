@@ -11,14 +11,12 @@ if (!$album_name || !$artist_name) {
     return;
 }
 
-// Media type icon
 $media_icon = match ($media_type) {
     'Movie' => '🎬',
     'Book' => '📖',
     default => '🎵',
 };
 
-// Admin label preview
 if (is_admin()) {
     echo '<p><strong>' . esc_html($media_icon . ' ' . $media_type . ' Review') . '</strong></p>';
 }

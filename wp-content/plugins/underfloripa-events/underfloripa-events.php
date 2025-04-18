@@ -10,9 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Register custom post type and taxonomy
 function uf_register_event_post_type() {
-    // Event CPT
     register_post_type('event', [
         'labels' => [
             'name' => 'Events',
@@ -29,7 +27,6 @@ function uf_register_event_post_type() {
         'has_archive' => false,
     ]);
 
-    // Event Type taxonomy
     register_taxonomy('event_type', 'event', [
         'labels' => [
             'name' => 'Event Types',

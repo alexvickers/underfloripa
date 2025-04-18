@@ -9,7 +9,6 @@ if (function_exists('acf_add_options_page')) {
     ));
 }
 
-// Add script to <head>
 function add_custom_head_script() {
     $custom_script = get_field('custom_head_script', 'option');
 

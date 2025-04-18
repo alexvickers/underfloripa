@@ -11,10 +11,8 @@
 add_action('add_meta_boxes', 'uf_add_event_meta_boxes');
 
 function uf_render_event_meta_box($post) {
-    // Nonce field for security
     wp_nonce_field('uf_save_event_meta', 'uf_event_meta_nonce');
 
-    // Retrieve existing values
     $date = get_post_meta($post->ID, '_uf_event_date', true);
     $location = get_post_meta($post->ID, '_uf_event_location', true);
     $link = get_post_meta($post->ID, '_uf_event_link', true);
@@ -36,18 +34,14 @@ function uf_render_event_meta_box($post) {
 }
 
 function uf_save_event_meta($post_id) {
-    // Check nonce
     if (!isset($_POST['uf_event_meta_nonce']) || !wp_verify_nonce($_POST['uf_event_meta_nonce'], 'uf_save_event_meta')) {
         return;
     }
 
-    // Check autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 
-    // Check permissions
     if (!current_user_can('edit_post', $post_id)) return;
 
-    // Save fields
     if (isset($_POST['uf_event_date'])) {
         update_post_meta($post_id, '_uf_event_date', sanitize_text_field($_POST['uf_event_date']));
     }
