@@ -3,62 +3,95 @@
         parent::__construct(
             'uf_upcoming_events_widget',
             'Underfloripa: Upcoming Events',
-            ['description' => 'Shows a list of upcoming events for the next 5 weeks.']
+            ['description' => 'Shows a list of upcoming events for the next 2 weeks or fills up to 5 if needed.']
         );
     }
 
     public function widget($args, $instance) {
         echo $args['before_widget'];
+
         if (!empty($instance['title'])) {
             echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
         }
 
         $today = current_time('Y-m-d');
-        $five_weeks_later = date('Y-m-d', strtotime('+5 weeks', current_time('timestamp')));
+        $two_weeks_later = date('Y-m-d', strtotime('+14 days', current_time('timestamp')));
 
-        $query = new WP_Query([
+        $primary_query = new WP_Query([
             'post_type' => 'event',
             'posts_per_page' => 5,
-            'meta_key' => '_uf_event_date',
+            'meta_key' => 'event_date',
             'orderby' => 'meta_value',
             'order' => 'ASC',
             'meta_query' => [
                 [
-                    'key' => '_uf_event_date',
-                    'value' => [$today, $five_weeks_later],
+                    'key' => 'event_date',
+                    'value' => [$today, $two_weeks_later],
                     'compare' => 'BETWEEN',
                     'type' => 'DATE'
                 ]
             ]
         ]);
 
-        if ($query->have_posts()) {
-            echo '<ul class="uf-widget-events">';
-            while ($query->have_posts()) {
-                $query->the_post();
-                $date = get_post_meta(get_the_ID(), '_uf_event_date', true);
-                $doors_time = get_post_meta(get_the_ID(), '_uf_event_doors_time', true);
-                $venue = get_post_meta(get_the_ID(), '_uf_event_venue', true);
-                $city = get_post_meta(get_the_ID(), '_uf_event_city', true);
+        $events = $primary_query->posts;
 
-                $display_datetime = date_i18n('M j', strtotime($date));
+        // Query 2: fill remaining with future events (if needed)
+        if (count($events) < 5) {
+            $remaining = 5 - count($events);
+
+            $secondary_query = new WP_Query([
+                'post_type' => 'event',
+                'posts_per_page' => $remaining,
+                'post__not_in' => wp_list_pluck($events, 'ID'),
+                'meta_key' => 'event_date',
+                'orderby' => 'meta_value',
+                'order' => 'ASC',
+                'meta_query' => [
+                    [
+                        'key' => 'event_date',
+                        'value' => $today,
+                        'compare' => '>=',
+                        'type' => 'DATE'
+                    ]
+                ]
+            ]);
+
+            $events = array_merge($events, $secondary_query->posts);
+        }
+
+        if (!empty($events)) {
+            echo '<ul class="uf-widget-events">';
+            foreach ($events as $event) {
+                $event_id = $event->ID;
+                $title = get_the_title($event_id);
+                $event_date = get_field('event_date', $event_id);
+                $doors_time = get_field('doors_time', $event_id);
+                $venue = get_field('venue', $event_id);
+                $city = get_field('city', $event_id);
+                $link = get_field('link', $event_id);
+
+                $formatted_date = date_i18n('d/m', strtotime($event_date));
                 if (!empty($doors_time)) {
-                    $display_datetime .= ', ' . date_i18n('H:i', strtotime($doors_time));
+                    $formatted_date .= ' - ' . date_i18n('H:i', strtotime($doors_time));
                 }
 
-                echo '<li>';
-                echo '<strong>' . esc_html(get_the_title()) . '</strong><br>';
-                echo '<small>' . esc_html($display_datetime) . '</small>';
+                echo '<li class="event">';
+                if (!empty($link)) {
+                    echo '<a href="' . esc_url($link) . '" target="_blank">';
+                }
+                echo '<h4>' . esc_html($title) . '</h4>';
+                if (!empty($link)) {
+                    echo '</a>';
+                }
+                echo '<small>' . esc_html($formatted_date) . '</small></br>';
                 if (!empty($venue) || !empty($city)) {
-                    echo '<br><small>' . esc_html($venue);
+                    echo '<small>' . esc_html($venue);
                     if (!empty($venue) && !empty($city)) echo ', ';
                     echo esc_html($city) . '</small>';
                 }
                 echo '</li>';
             }
             echo '</ul>';
-        } else {
-            echo '<p>No events coming up.</p>';
         }
 
         wp_reset_postdata();
@@ -67,10 +100,10 @@
     }
 
     public function form($instance) {
-        $title = !empty($instance['title']) ? $instance['title'] : 'Upcoming Events';
+        $title = !empty($instance['title']) ? $instance['title'] : 'Próximos Eventos';
         ?>
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>">Title:</label>
+            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>">Título:</label>
             <input class="widefat"
                 id="<?php echo esc_attr($this->get_field_id('title')); ?>"
                 name="<?php echo esc_attr($this->get_field_name('title')); ?>"

@@ -1,22 +1,16 @@
-.uf-event-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.uf-event-list li {
-  margin-bottom: 1.5em;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 1em;
-}
-
 .uf-widget-events {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.uf-widget-events li {
+.uf-widget-events li.event {
+  border-left: 3px solid #207daf;
   margin-bottom: 0.8em;
-  font-size: 0.95em;
+  padding: 0 0 0 12px !important;
+}
+
+.uf-widget-events h4 {
+  margin-bottom: 0;
+  text-transform: uppercase;
 }

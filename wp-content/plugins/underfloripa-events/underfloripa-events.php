@@ -23,18 +23,9 @@ function uf_register_event_post_type() {
         'show_in_menu' => true,
         'menu_position' => 5,
         'menu_icon' => 'dashicons-calendar-alt',
-        'supports' => ['title', 'editor'],
-        'has_archive' => false,
-    ]);
-
-    register_taxonomy('event_type', 'event', [
-        'labels' => [
-            'name' => 'Event Types',
-            'singular_name' => 'Event Type',
-        ],
-        'public' => false,
-        'show_ui' => true,
-        'hierarchical' => true,
+        'supports' => ['title', 'editor', 'custom-fields'],
+        'has_archive' => true,
+        'show_in_rest' => true,
     ]);
 }
 
@@ -52,5 +43,9 @@ function uf_enqueue_event_styles() {
 }
 add_action('wp_enqueue_scripts', 'uf_enqueue_event_styles');
 
-require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes.php';
+function uf_remove_editor_from_event_cpt() {
+    remove_post_type_support('event', 'editor');
+}
+add_action('init', 'uf_remove_editor_from_event_cpt');
+
 require_once plugin_dir_path(__FILE__) . 'includes/widget.php';
