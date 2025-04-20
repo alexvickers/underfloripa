@@ -10,7 +10,11 @@
   padding: 0 0 0 12px !important;
 }
 
+.uf-widget-events a {
+  color: #000000;
+  text-decoration: none !important;
+}
+
 .uf-widget-events h4 {
-  margin-bottom: 0;
   text-transform: uppercase;
 }
