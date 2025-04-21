@@ -1,0 +1,211 @@
+[
+    {
+        "key": "group_68047af7cd7be",
+        "title": "Underfloripa Events",
+        "fields": [
+            {
+                "key": "field_68047af8c9d04",
+                "label": "Data do Evento",
+                "name": "event_date",
+                "aria-label": "",
+                "type": "date_picker",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 1,
+                "display_format": "Y-m-d",
+                "return_format": "Y-m-d",
+                "first_day": 0,
+                "allow_in_bindings": 0
+            },
+            {
+                "key": "field_68047b2fc9d05",
+                "label": "Abertura das Portas",
+                "name": "doors_time",
+                "aria-label": "",
+                "type": "time_picker",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 0,
+                "display_format": "g:i a",
+                "return_format": "g:i a",
+                "allow_in_bindings": 0
+            },
+            {
+                "key": "field_68056cc28580a",
+                "label": "Endereço",
+                "name": "address",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 1,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_68047b49c9d06",
+                "label": "Local",
+                "name": "venue",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 0,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_68047b6ac9d07",
+                "label": "Cidade\/Estado",
+                "name": "city",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 0,
+                "default_value": "Florianópolis\/SC",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_68056bbc85808",
+                "label": "Censura",
+                "name": "min_age",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 0,
+                "default_value": "18 Anos",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_68047b7dc9d08",
+                "label": "Link",
+                "name": "link",
+                "aria-label": "",
+                "type": "page_link",
+                "instructions": "Link do post sobre o Evento",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 1,
+                "post_type": [
+                    "post"
+                ],
+                "post_status": [
+                    "publish"
+                ],
+                "taxonomy": [
+                    "category:musica"
+                ],
+                "allow_archives": 0,
+                "multiple": 0,
+                "allow_null": 0,
+                "allow_in_bindings": 1
+            },
+            {
+                "key": "field_68056c2385809",
+                "label": "Ingressos",
+                "name": "ticket_link",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "Link do site de venda de Ingressos",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 0,
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "event"
+                }
+            ],
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf\/event-details"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": ["the_content"],
+        "modified": 1234567890,
+        "local": "json",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    }
+]
+
