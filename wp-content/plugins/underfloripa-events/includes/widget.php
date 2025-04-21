@@ -35,7 +35,6 @@
 
         $events = $primary_query->posts;
 
-        // Query 2: fill remaining with future events (if needed)
         if (count($events) < 5) {
             $remaining = 5 - count($events);
 
