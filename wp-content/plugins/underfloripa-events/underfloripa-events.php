@@ -10,11 +10,14 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// ACF JSON
 add_filter('acf/settings/load_json', 'uf_acf_json_load_point');
 function uf_acf_json_load_point($paths) {
     $paths[] = plugin_dir_path(__FILE__) . 'acf-json';
     return $paths;
 }
+
+add_filter('acf/settings/remove_wp_meta_box', '__return_true');
 
 function uf_register_event_post_type() {
     register_post_type('event', [
@@ -41,6 +44,23 @@ function uf_remove_editor_from_event_cpt() {
 }
 add_action('init', 'uf_remove_editor_from_event_cpt');
 
+function uf_register_venue_post_type() {
+    register_post_type('venue', [
+        'labels' => [
+            'name' => 'Venues',
+            'singular_name' => 'Venue',
+            'add_new_item' => 'Add New Venue',
+            'edit_item' => 'Edit Venue',
+        ],
+        'public' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_icon' => 'dashicons-location-alt',
+        'supports' => ['title'],
+        'show_in_rest' => true,
+    ]);
+}
+add_action('init', 'uf_register_venue_post_type');
 
 add_action('acf/init', 'uf_register_event_details_block');
 function uf_register_event_details_block() {
