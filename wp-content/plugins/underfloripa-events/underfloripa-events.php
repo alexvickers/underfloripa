@@ -44,6 +44,90 @@ function uf_remove_editor_from_event_cpt() {
 }
 add_action('init', 'uf_remove_editor_from_event_cpt');
 
+function uf_register_past_event_status() {
+    register_post_status('past_event', array(
+        'label'                     => 'Past Event',
+        'public'                    => false,
+        'internal'                  => false,
+        'exclude_from_search'       => true,
+        'show_in_admin_all_list'    => true,
+        'show_in_admin_status_list' => true,
+        'label_count'               => _n_noop('Past Event <span class="count">(%s)</span>', 'Past Events <span class="count">(%s)</span>')
+    ));
+}
+add_action('init', 'uf_register_past_event_status');
+
+function uf_add_custom_status_to_dropdown() {
+    global $post;
+
+    if ($post->post_type !== 'event') return;
+
+    $selected = $post->post_status === 'past_event' ? 'selected="selected"' : '';
+?>
+    <script>
+        jQuery(document).ready(function($) {
+            $('select#post_status').append('<option value="past_event" <?php echo $selected; ?>>Past Event</option>');
+        });
+    </script>
+<?php }
+add_action('admin_footer-post.php', 'uf_add_custom_status_to_dropdown');
+
+function uf_style_past_events_in_admin() {
+    echo '
+    <style>
+        .status-past_event {
+            opacity: 0.5;
+        }
+    </style>
+    ';
+}
+add_action('admin_head', 'uf_style_past_events_in_admin');
+
+function uf_add_past_event_label_to_title($title, $post_id) {
+    $post = get_post($post_id);
+    if ($post->post_type === 'event' && $post->post_status === 'past_event') {
+        $title .= ' <span style="color: #888; font-style: italic;">(Past)</span>';
+    }
+    return $title;
+}
+add_filter('the_title', 'uf_add_past_event_label_to_title', 10, 2);
+
+add_action('wp', 'uf_schedule_event_archiver');
+
+function uf_schedule_event_archiver() {
+    if (!wp_next_scheduled('uf_archive_past_events_daily')) {
+        wp_schedule_event(time(), 'daily', 'uf_archive_past_events_daily');
+    }
+}
+add_action('uf_archive_past_events_daily', 'uf_archive_past_events');
+
+function uf_archive_past_events() {
+    $today = date('Y-m-d');
+
+    $args = array(
+        'post_type' => 'event',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+        'meta_query' => array(
+            array(
+                'key' => 'event_date',
+                'value' => $today,
+                'compare' => '<',
+                'type' => 'DATE'
+            )
+        )
+    );
+
+    $past_events = get_posts($args);
+
+    foreach ($past_events as $event) {
+        wp_update_post(array(
+            'ID' => $event->ID,
+            'post_status' => 'past_event'
+        ));
+    }
+}
+
 function uf_register_venue_post_type() {
     register_post_type('venue', [
         'labels' => [
@@ -63,6 +147,7 @@ function uf_register_venue_post_type() {
 add_action('init', 'uf_register_venue_post_type');
 
 add_action('acf/init', 'uf_register_event_details_block');
+
 function uf_register_event_details_block() {
     if (function_exists('acf_register_block_type')) {
         acf_register_block_type(array(
