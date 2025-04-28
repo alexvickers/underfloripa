@@ -93,12 +93,6 @@
                 if (!empty($link)) {
                     echo '</a>';
                 }
-                echo '<small>' . esc_html($formatted_date) . '</small></br>';
-                if (!empty($$venue_name) || !empty($venue_city)) {
-                    echo '<small>' . esc_html($venue_name);
-                    if (!empty($venue_name) && !empty($venue_city)) echo ', ';
-                    echo esc_html($venue_city) . '</small>';
-                }
                 echo '</li>';
             }
             echo '</ul>';
