@@ -66,6 +66,7 @@
                 $event_date = get_field('event_date', $event_id);
                 $doors_time = get_field('doors_time', $event_id);
                 $link = get_field('link', $event_id);
+                $ticket_link = get_field('ticket_link', $event_id);
                 $venue = get_field('venue_post', $event_id);
 
                 if ($venue) {
@@ -78,20 +79,17 @@
                     $formatted_date .= ' - ' . date_i18n('H:i', strtotime($doors_time));
                 }
 
-                echo '<li class="event">';
-                if (!empty($link)) {
-                    echo '<a href="' . esc_url($link) . '" target="_blank">';
-                }
-                    echo '<h4>' . esc_html($title) . '</h4>';
-                    echo '<small>' . esc_html($formatted_date) . '</small></br>';
+                $link_to_use = !empty($link) ? $link : $ticket_link;
 
-                    if (!empty($venue) || !empty($venue_city)) {
-                        echo '<small>' . esc_html($venue);
-                        if (!empty($venue) && !empty($venue_city)) echo ', ';
-                        echo esc_html($venue_city) . '</small>';
-                    }
-                if (!empty($link)) {
-                    echo '</a>';
+                echo '<li class="event">';
+                echo '<a href="' . esc_url($link_to_use) . '" target="_blank">';
+                echo '<h4>' . esc_html($title) . '</h4>';
+                echo '</a>';
+                echo '<small>' . esc_html($formatted_date) . '</small></br>';
+                if (!empty($$venue_name) || !empty($venue_city)) {
+                    echo '<small>' . esc_html($venue_name);
+                    if (!empty($venue_name) && !empty($venue_city)) echo ', ';
+                    echo esc_html($venue_city) . '</small>';
                 }
                 echo '</li>';
             }
