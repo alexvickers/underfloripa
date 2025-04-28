@@ -47,11 +47,11 @@ add_action('wp_enqueue_scripts', 'enqueue_custom_home_assets');
 // Album Review Dynamic Fields
 function enqueue_admin_review_labels_script() {
     wp_enqueue_script(
-    'custom-review-labels',
-    get_stylesheet_directory_uri() . '/assets/js/admin-review-labels.js',
-    ['acf-input'],
-    null,
-    true
+        'custom-review-labels',
+        get_stylesheet_directory_uri() . '/assets/js/admin-review-labels.js',
+        ['acf-input'],
+        filemtime(get_stylesheet_directory() . '/assets/js/admin-review-labels.js'),
+        true
     );
 }
 add_action('acf/input/admin_enqueue_scripts', 'enqueue_admin_review_labels_script');
@@ -164,7 +164,7 @@ function get_related_posts_block($post) {
     return $html;
 }
 
-add_action('save_post', function($post_id) {
+add_action('save_post', function ($post_id) {
     delete_transient('related_posts_block_' . $post_id);
 });
 
@@ -213,8 +213,7 @@ function my_ajax_load_more_posts() {
 add_action('wp_ajax_load_more_posts', 'my_ajax_load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'my_ajax_load_more_posts');
 
-function colormag_child_enqueue_scripts()
-{
+function colormag_child_enqueue_scripts() {
     $category_id   = 0;
     $search_query  = '';
     $author_id     = 0;

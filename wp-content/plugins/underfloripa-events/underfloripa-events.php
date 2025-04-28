@@ -52,7 +52,7 @@ function uf_register_past_event_status() {
         'exclude_from_search'       => true,
         'show_in_admin_all_list'    => true,
         'show_in_admin_status_list' => true,
-        'label_count'               => _n_noop('Past Event <span class="count">(%s)</span>', 'Past Events <span class="count">(%s)</span>')
+        'label_count'               => _n_noop('Past Event', 'Past Events')
     ));
 }
 add_action('init', 'uf_register_past_event_status');
@@ -86,7 +86,7 @@ add_action('admin_head', 'uf_style_past_events_in_admin');
 function uf_add_past_event_label_to_title($title, $post_id) {
     $post = get_post($post_id);
     if ($post->post_type === 'event' && $post->post_status === 'past_event') {
-        $title .= ' <span style="color: #888; font-style: italic;">(Past)</span>';
+        $title .= ' (Expirado)';
     }
     return $title;
 }
