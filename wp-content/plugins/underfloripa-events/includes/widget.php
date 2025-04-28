@@ -86,7 +86,7 @@
                 echo '<h4>' . esc_html($title) . '</h4>';
                 echo '</a>';
                 echo '<small>' . esc_html($formatted_date) . '</small></br>';
-                if (!empty($$venue_name) || !empty($venue_city)) {
+                if (!empty($venue_name) || !empty($venue_city)) {
                     echo '<small>' . esc_html($venue_name);
                     if (!empty($venue_name) && !empty($venue_city)) echo ', ';
                     echo esc_html($venue_city) . '</small>';
@@ -126,3 +126,13 @@ function uf_register_events_widget() {
     register_widget('UF_Upcoming_Events_Widget');
 }
 add_action('widgets_init', 'uf_register_events_widget');
+
+function uf_order_events_in_admin($query) {
+    if (is_admin() && $query->is_main_query() && $query->get('post_type') === 'event') {
+        $query->set('meta_key', 'event_date');
+        $query->set('orderby', 'meta_value');
+        $query->set('order', 'ASC');
+        $query->set('meta_type', 'DATE');
+    }
+}
+add_action('pre_get_posts', 'uf_order_events_in_admin');
