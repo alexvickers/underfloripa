@@ -41,6 +41,7 @@ ads.txt
 
 # Uploads
 /wp-content/uploads/
+*.zip
 
 # Log files
 *.log
