@@ -82,7 +82,14 @@
                 if (!empty($link)) {
                     echo '<a href="' . esc_url($link) . '" target="_blank">';
                 }
-                echo '<h4>' . esc_html($title) . '</h4>';
+                    echo '<h4>' . esc_html($title) . '</h4>';
+                    echo '<small>' . esc_html($formatted_date) . '</small></br>';
+
+                    if (!empty($venue) || !empty($venue_city)) {
+                        echo '<small>' . esc_html($venue);
+                        if (!empty($venue) && !empty($venue_city)) echo ', ';
+                        echo esc_html($venue_city) . '</small>';
+                    }
                 if (!empty($link)) {
                     echo '</a>';
                 }
