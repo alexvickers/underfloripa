@@ -10,11 +10,29 @@
   padding: 0 0 0 12px !important;
 }
 
-.uf-widget-events a {
-  color: #000000;
-  text-decoration: none !important;
+.uf-widget-events h4 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
 }
 
-.uf-widget-events h4 {
-  text-transform: uppercase;
+.event-details h3 {
+  margin-bottom: 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.event-details__item {
+  margin-bottom: 1rem;
+}
+
+.event-details__item ul {
+  list-style: none;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.event-details__item ul li {
+  font-size: 1.5rem;
 }

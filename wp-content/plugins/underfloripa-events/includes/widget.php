@@ -35,7 +35,6 @@
 
         $events = $primary_query->posts;
 
-        // Query 2: fill remaining with future events (if needed)
         if (count($events) < 5) {
             $remaining = 5 - count($events);
 
@@ -66,9 +65,13 @@
                 $title = get_the_title($event_id);
                 $event_date = get_field('event_date', $event_id);
                 $doors_time = get_field('doors_time', $event_id);
-                $venue = get_field('venue', $event_id);
-                $city = get_field('city', $event_id);
                 $link = get_field('link', $event_id);
+                $venue = get_field('venue_post', $event_id);
+
+                if ($venue) {
+                    $venue_name = get_the_title($venue->ID);
+                    $venue_city = get_field('venue_city', $venue->ID);
+                }
 
                 $formatted_date = date_i18n('d/m', strtotime($event_date));
                 if (!empty($doors_time)) {
@@ -82,13 +85,19 @@
                     echo '<h4>' . esc_html($title) . '</h4>';
                     echo '<small>' . esc_html($formatted_date) . '</small></br>';
 
-                    if (!empty($venue) || !empty($city)) {
+                    if (!empty($venue) || !empty($venue_city)) {
                         echo '<small>' . esc_html($venue);
-                        if (!empty($venue) && !empty($city)) echo ', ';
-                        echo esc_html($city) . '</small>';
+                        if (!empty($venue) && !empty($venue_city)) echo ', ';
+                        echo esc_html($venue_city) . '</small>';
                     }
                 if (!empty($link)) {
                     echo '</a>';
+                }
+                echo '<small>' . esc_html($formatted_date) . '</small></br>';
+                if (!empty($$venue_name) || !empty($venue_city)) {
+                    echo '<small>' . esc_html($venue_name);
+                    if (!empty($venue_name) && !empty($venue_city)) echo ', ';
+                    echo esc_html($venue_city) . '</small>';
                 }
                 echo '</li>';
             }
