@@ -5,14 +5,6 @@
             <?php foreach ($filtered_posts as $post_item): ?>
                 <li>
                     <a href="<?php echo get_permalink($post_item->ID); ?>">
-                        <?php
-                        $thumb = get_the_post_thumbnail($post_item->ID, [300, 300]);
-                        if ($thumb) {
-                            echo '<div class="related-post-thumb">' . $thumb . '</div>';
-                        }
-                        ?>
-                        <span class="related-post-title"><?php echo get_the_title($post_item->ID); ?></span>
-
                         <?php if (!empty($is_cultural)) : ?>
                             <span class="related-post-date">
                                 <svg class="mzb-icon mzb-icon--calender" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
@@ -20,10 +12,15 @@
                                 </svg>
                                 <?php echo get_the_date('d M Y', $post_item->ID); ?>
                             </span>
-                        <?php endif; ?>
+                        <?php endif;
+                        $thumb = get_the_post_thumbnail($post_item->ID, [300, 300]);
+                        if ($thumb) {
+                            echo '<div class="related-post-thumb">' . $thumb . '</div>';
+                        } ?>
+                        <span class="related-post-title"><?php echo get_the_title($post_item->ID); ?></span>
                     </a>
                 </li>
             <?php endforeach; ?>
         </ul>
     </div>
-<?php endif; ?>
+<?php endif;

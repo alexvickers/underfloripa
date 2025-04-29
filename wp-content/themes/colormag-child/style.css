@@ -11,6 +11,10 @@ body {
   font-variation-settings: "wdth" 100;
 }
 
+.cm-container {
+  max-width: 1320px !important;
+}
+
 .hero-carousel {
   width: 100%;
   margin-bottom: 2rem;
