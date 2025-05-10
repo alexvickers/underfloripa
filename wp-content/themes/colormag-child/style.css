@@ -448,3 +448,36 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.event-thumbnail {
+  float: left;
+  margin-right: 20px;
+  max-width: 30%;
+}
+
+.event-details {
+  overflow: hidden;
+}
+
+article.event {
+  margin-bottom: 30px;
+  clear: both;
+}
+
+.event-buttons {
+  margin-top: 10px;
+}
+
+.event-buttons .more-link {
+  margin-right: 10px;
+}
+
+.event-buttons .ticket-link {
+  background-color: #d94f4f;
+  border-color: #d94f4f;
+}
+
+.event-buttons .ticket-link:hover {
+  background-color: #b43f3f;
+  border-color: #b43f3f;
+}

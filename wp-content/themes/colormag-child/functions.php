@@ -124,7 +124,6 @@ function my_ajax_load_more_posts() {
 add_action( 'wp_ajax_load_more_posts', 'my_ajax_load_more_posts' );
 add_action( 'wp_ajax_nopriv_load_more_posts', 'my_ajax_load_more_posts' );
 
-
 // AJAX Script Localizer
 function colormag_child_enqueue_scripts() {
 	$category_id  = is_category() ? get_queried_object_id() : 0;
