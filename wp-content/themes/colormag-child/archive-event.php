@@ -24,7 +24,7 @@
 					'post_type'      => 'event',
 					'post_status'    => 'publish',
 					'paged'          => $paged,
-					'posts_per_page' => 10,
+					'posts_per_page' => 11,
 					'meta_key'       => 'event_date',
 					'orderby'        => 'meta_value',
 					'order'          => 'ASC',
@@ -85,13 +85,13 @@
 								</div>
 								<div class="event-buttons">
 									<?php if ($event_link): ?>
-										<a class="cm-entry-button" title="<?php the_title_attribute(); ?>" href="<?php echo esc_url($read_more_link); ?>">
+										<a class="cm-entry-button" title="<?php the_title_attribute(); ?>" href="<?php echo esc_url($event_link); ?>">
 											<span><?php echo esc_html__('Leia Mais', 'colormag'); ?></span>
 										</a>
 									<?php endif; ?>
 
 									<?php if ($ticket_link): ?>
-										<a class="cm-entry-button" title="<?php the_title_attribute(); ?>" href="<?php echo esc_url($read_more_link); ?>">
+										<a class="cm-entry-button" title="<?php the_title_attribute(); ?>" href="<?php echo esc_url($ticket_link); ?>">
 											<span><?php esc_html_e('Ingressos', 'colormag'); ?></span>
 										</a>
 									<?php endif; ?>
