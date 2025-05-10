@@ -90,11 +90,19 @@ function my_ajax_load_more_posts() {
 	$search_query = isset( $_GET['search_query'] ) ? sanitize_text_field( $_GET['search_query'] ) : '';
 	$author_id    = isset( $_GET['author_id'] ) ? intval( $_GET['author_id'] ) : 0;
 
+	$post_type = isset($_GET['post_type']) ? sanitize_key($_GET['post_type']) : 'post';
+
 	$args = [
-		'post_type'   => 'post',
+		'post_type'   => $post_type,
 		'post_status' => 'publish',
 		'paged'       => $paged,
 	];
+
+	if ($post_type === 'event') {
+		$args['meta_key'] = 'event_date';
+		$args['orderby']  = 'meta_value';
+		$args['order']    = 'ASC';
+	}
 
 	if ( $category_id ) {
 		$args['cat'] = $category_id;
@@ -110,10 +118,15 @@ function my_ajax_load_more_posts() {
 
 	$query = new WP_Query( $args );
 
-	if ( $query->have_posts() ) {
-		while ( $query->have_posts() ) {
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
 			$query->the_post();
-			get_template_part( 'template-parts/content', 'ajax' );
+
+			if (get_post_type() === 'event') {
+				get_template_part('template-parts/content', 'event');
+			} else {
+				get_template_part('template-parts/content', 'ajax');
+			}
 		}
 	} else {
 		echo 'no-more-posts';
@@ -138,12 +151,13 @@ function colormag_child_enqueue_scripts() {
 		true
 	);
 
-	wp_localize_script( 'load-more', 'my_ajax_obj', [
-		'ajax_url'     => admin_url( 'admin-ajax.php' ),
-		'nonce'        => wp_create_nonce( 'load_more_nonce' ),
+	wp_localize_script('load-more', 'my_ajax_obj', [
+		'ajax_url'     => admin_url('admin-ajax.php'),
+		'nonce'        => wp_create_nonce('load_more_nonce'),
 		'category_id'  => $category_id,
 		'search_query' => $search_query,
 		'author_id'    => $author_id,
-	] );
+		'post_type'    => get_post_type() ?: 'post',
+	]);
 }
 add_action( 'wp_enqueue_scripts', 'colormag_child_enqueue_scripts' );

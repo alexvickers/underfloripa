@@ -466,18 +466,6 @@ article.event {
 
 .event-buttons {
   margin-top: 10px;
-}
-
-.event-buttons .more-link {
-  margin-right: 10px;
-}
-
-.event-buttons .ticket-link {
-  background-color: #d94f4f;
-  border-color: #d94f4f;
-}
-
-.event-buttons .ticket-link:hover {
-  background-color: #b43f3f;
-  border-color: #b43f3f;
+  display: flex;
+  gap: 16px;
 }

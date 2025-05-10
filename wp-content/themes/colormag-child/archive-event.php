@@ -22,7 +22,9 @@
 				$today = date('Ymd');
 				$args = array(
 					'post_type'      => 'event',
-					'posts_per_page' => -1,
+					'post_status'    => 'publish',
+					'paged'          => $paged,
+					'posts_per_page' => 10,
 					'meta_key'       => 'event_date',
 					'orderby'        => 'meta_value',
 					'order'          => 'ASC',
@@ -52,12 +54,9 @@
 						}
 
 						$formatted_date = date_i18n('d/m', strtotime($event_date));
-						if (!empty($doors_time)) {
-							$formatted_date .= ' - ' . date_i18n('H:i', strtotime($doors_time));
-						}
 				?>
 
-						<article id="post-<?php the_ID(); ?>" class=" post type-post status-publish format-standard has-post-thumbnail">
+						<article id="post-<?php the_ID(); ?>" <?php post_class('cm-post'); ?>>
 							<?php if (has_post_thumbnail()): ?>
 								<div class="event-thumbnail" style="float: left; margin-right: 20px;">
 									<a href="<?php echo esc_url($event_link); ?>">
@@ -68,20 +67,20 @@
 
 							<div class="event-details cm-post-content">
 								<header class="entry-header">
-									<h2 class="entry-title" style="margin-top: 0;">
+									<h3 class="cm-entry-title">
 										<a href="<?php echo esc_url($event_link); ?>">
 											<?php the_title(); ?>
 										</a>
-									</h2>
+									</h3>
 								</header>
 
 								<div class="entry-meta">
 									<?php if ($event_date): ?>
 										<span class="posted-on"><strong>Data:</strong> <?php echo esc_html($formatted_date); ?></span><br>
+										<span class="posted-on"><strong>Abertura das Portas:</strong> <?php echo esc_html($doors_time); ?></span><br>
 									<?php endif; ?>
 									<?php if (!empty($venue_name) || !empty($venue_city)) : ?>
-										<span class="event-venue"><strong>Local:</strong> <?php echo esc_html($venue_name); ?> - <?php echo esc_html($venue_address); ?><br/>
-										<?php echo esc_html($venue_city); ?></span>
+										<span class="event-venue"><strong>Local:</strong> <?php echo esc_html($venue_name); ?> - <?php echo esc_html($venue_address); ?> - <?php echo esc_html($venue_city); ?></span>
 									<?php endif; ?>
 								</div>
 								<div class="event-buttons">
@@ -112,6 +111,11 @@
 			<?php endif; ?>
 
 		</div><!-- #content -->
+
+		<div id="load-more-spinner" style="display:none; text-align:center; padding:1em;">
+			<span class="spinner"></span>
+		</div>
+
 	</div><!-- #primary -->
 
 	<?php get_sidebar(); ?>

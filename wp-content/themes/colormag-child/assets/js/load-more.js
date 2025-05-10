@@ -14,6 +14,7 @@ const loadMorePosts = () => {
     category_id: my_ajax_obj.category_id,
     search_query: my_ajax_obj.search_query,
     author_id: my_ajax_obj.author_id,
+    post_type: my_ajax_obj.post_type,
   });
 
   fetch(`${my_ajax_obj.ajax_url}?${params.toString()}`)
@@ -21,7 +22,6 @@ const loadMorePosts = () => {
     .then((data) => {
       if (data.includes("no-more-posts")) {
         allPostsLoaded = true;
-        document.getElementById("load-more-spinner").style.display = "none";
         return;
       }
 
@@ -29,6 +29,11 @@ const loadMorePosts = () => {
         .getElementById("posts-container")
         .insertAdjacentHTML("beforeend", data);
       page++;
+    })
+    .catch((error) => {
+      console.error("Error loading more posts:", error);
+    })
+    .finally(() => {
       loading = false;
       document.getElementById("load-more-spinner").style.display = "none";
     });
