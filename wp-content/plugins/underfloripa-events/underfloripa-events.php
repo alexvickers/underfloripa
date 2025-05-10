@@ -140,8 +140,7 @@ function uf_register_venue_post_type() {
         ],
         'public' => false,
         'show_ui' => true,
-        'show_in_menu' => true,
-        'menu_icon' => 'dashicons-location-alt',
+        'show_in_menu' => 'edit.php?post_type=event',
         'supports' => ['title'],
         'show_in_rest' => true,
     ]);
