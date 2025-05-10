@@ -96,6 +96,10 @@
             echo '</ul>';
         }
 
+        $agenda_link = get_site_url() . '/agenda';
+        echo '<a href="' . esc_url($agenda_link) . '" class="cm-entry-button view-more-events"><span>Ver mais eventos</span</a>';
+
+
         wp_reset_postdata();
 
         echo $args['after_widget'];
