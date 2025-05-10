@@ -32,16 +32,6 @@ get_header();
 			$style = 'cm-layout-2-style-1';
 
 			$col = 'col-2';
-
-			/**
-			 * Functions hooked into colormag_action_archive_header action.
-			 *
-			 * @hooked colormag_archive_header - 10
-			 */
-			do_action( 'colormag_action_archive_header' );
-
-			$pagination_enable = get_theme_mod( 'colormag_enable_pagination', 1 );
-			$pagination_type   = get_theme_mod( 'colormag_pagination_type', 'default' );
 			?>
 
 			<div id="posts-container" class="cm-posts <?php echo esc_attr( 'cm-' . $grid_layout . ' ' . $style . ' ' . $col ); ?>" >

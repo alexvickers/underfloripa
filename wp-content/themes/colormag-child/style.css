@@ -11,6 +11,10 @@ body {
   font-variation-settings: "wdth" 100;
 }
 
+.cm-container {
+  max-width: 1320px !important;
+}
+
 .hero-carousel {
   width: 100%;
   margin-bottom: 2rem;
@@ -443,4 +447,25 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+.event-thumbnail {
+  float: left;
+  margin-right: 20px;
+  max-width: 30%;
+}
+
+.event-details {
+  overflow: hidden;
+}
+
+article.event {
+  margin-bottom: 30px;
+  clear: both;
+}
+
+.event-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 16px;
 }

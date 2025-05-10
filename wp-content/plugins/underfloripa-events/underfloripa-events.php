@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Underfloripa Events
  * Description: Custom plugin to manage and display upcoming concerts and events on Underfloripa.
@@ -27,13 +28,14 @@ function uf_register_event_post_type() {
             'add_new_item' => 'Add New Event',
             'edit_item' => 'Edit Event',
         ],
-        'public' => false,
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => array('slug' => 'agenda'),
         'show_ui' => true,
         'show_in_menu' => true,
         'menu_position' => 5,
         'menu_icon' => 'dashicons-calendar-alt',
-        'supports' => ['title', 'editor', 'custom-fields'],
-        'has_archive' => true,
+        'supports' => ['title', 'custom-fields', 'thumbnail'],
         'show_in_rest' => true,
     ]);
 }
@@ -59,7 +61,6 @@ add_action('init', 'uf_register_past_event_status');
 
 function uf_add_custom_status_to_dropdown() {
     global $post;
-
     if ($post->post_type !== 'event') return;
 
     $selected = $post->post_status === 'past_event' ? 'selected="selected"' : '';
@@ -94,7 +95,8 @@ add_filter('the_title', 'uf_add_past_event_label_to_title', 10, 2);
 
 add_action('wp', 'uf_schedule_event_archiver');
 
-function uf_schedule_event_archiver() {
+function uf_schedule_event_archiver()
+{
     if (!wp_next_scheduled('uf_archive_past_events_daily')) {
         wp_schedule_event(time(), 'daily', 'uf_archive_past_events_daily');
     }
