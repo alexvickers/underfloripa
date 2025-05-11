@@ -17,7 +17,7 @@ $formatted_date = date_i18n('d/m', strtotime($event_date));
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('cm-post'); ?>>
     <?php if (has_post_thumbnail()): ?>
-        <div class="event-thumbnail" style="float: left; margin-right: 20px;">
+        <div class="event-thumbnail">
             <a href="<?php echo esc_url($event_link); ?>">
                 <?php the_post_thumbnail('medium'); ?>
             </a>
