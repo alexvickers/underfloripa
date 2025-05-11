@@ -17,7 +17,7 @@ $is_multiple = count($events) > 1;
 ?>
 
 <div class="event-details">
-    <h3><?php echo $is_multiple ? 'Serviços' : 'Serviço'; ?></h3>
+    <h2><?php echo $is_multiple ? 'Serviços' : 'Serviço'; ?></h2>
 
     <?php foreach ($events as $event_id): ?>
         <?php
@@ -69,10 +69,17 @@ $is_multiple = count($events) > 1;
             $venue_address = get_field('venue_address', $venue->ID);
             $venue_city = get_field('venue_city', $venue->ID);
         }
+
+        $tour = get_post_meta($event_id, 'tour', true);
         ?>
         <div class="event-details__item">
             <ul>
-                <li><strong><?php echo esc_html($event_name); ?></strong></li>
+                <li><h3>
+                    <?php echo esc_html($event_name); ?>
+                    <?php if(!$tour) { ?>
+                        - <?php echo esc_html($tour); ?>
+                    <?php } ?>
+                </h3></li>
                 <li><strong>Data:</strong> <?php echo esc_html($event_date); ?></li>
                 <li><strong>Local:</strong> <?php echo esc_html($venue_name); ?></li>
                 <li><strong>Endereço:</strong> <?php echo esc_html($venue_address); ?>, <?php echo esc_html($venue_city); ?></li>

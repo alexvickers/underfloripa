@@ -46,6 +46,7 @@
 						$ticket_link = get_field('ticket_link');
 						$event_date = get_field('event_date', $event_id);
 						$doors_time = get_field('doors_time', $event_id);
+						$tour = get_field('tour', $event_id);
 
 						if ($venue) {
 							$venue_name = get_the_title($venue->ID);
@@ -70,6 +71,9 @@
 									<h3 class="cm-entry-title">
 										<a href="<?php echo esc_url($event_link); ?>">
 											<?php the_title(); ?>
+											<?php if(!$tour) { ?>
+												- <?php echo esc_html($tour); ?>
+											<?php } ?>
 										</a>
 									</h3>
 								</header>
