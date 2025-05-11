@@ -71,6 +71,7 @@ $is_multiple = count($events) > 1;
         }
 
         $tour = get_post_meta($event_id, 'tour', true);
+        $opening_acts = get_post_meta($event_id, 'opening_acts', true);
         ?>
         <div class="event-details__item">
             <ul>
@@ -80,6 +81,10 @@ $is_multiple = count($events) > 1;
                         - <?php echo esc_html($tour); ?>
                     <?php } ?>
                 </h3></li>
+                <?php if(!empty($opening_acts)) { ?>
+                <li><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></li>
+                <? } ?>
+                <br />
                 <li><strong>Data:</strong> <?php echo esc_html($event_date); ?></li>
                 <li><strong>Local:</strong> <?php echo esc_html($venue_name); ?></li>
                 <li><strong>Endereço:</strong> <?php echo esc_html($venue_address); ?>, <?php echo esc_html($venue_city); ?></li>
