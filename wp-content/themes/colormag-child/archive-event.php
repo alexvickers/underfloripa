@@ -58,20 +58,22 @@
 				?>
 
 						<article id="post-<?php the_ID(); ?>" <?php post_class('cm-post'); ?>>
-							<?php if (has_post_thumbnail()): ?>
-								<div class="event-thumbnail" style="float: left; margin-right: 20px;">
-									<a href="<?php echo esc_url($event_link); ?>">
+							<div class="event-thumbnail">
+								<a href="<?php echo esc_url($event_link); ?>">
+									<?php if (has_post_thumbnail()): ?>
 										<?php the_post_thumbnail('medium'); ?>
-									</a>
-								</div>
-							<?php endif; ?>
+									<?php else: ?>
+										<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/placeholder-poster.png" alt="Concert Poster Placeholder">
+									<?php endif; ?>
+								</a>
+							</div>
 
 							<div class="event-details cm-post-content">
 								<header class="entry-header">
 									<h3 class="cm-entry-title">
 										<a href="<?php echo esc_url($event_link); ?>">
 											<?php the_title(); ?>
-											<?php if(!empty($tour)) { ?>
+											<?php if (!empty($tour)) { ?>
 												- <?php echo esc_html($tour); ?>
 											<?php } ?>
 										</a>
