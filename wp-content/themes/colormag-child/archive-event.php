@@ -71,7 +71,7 @@
 									<h3 class="cm-entry-title">
 										<a href="<?php echo esc_url($event_link); ?>">
 											<?php the_title(); ?>
-											<?php if(!$tour) { ?>
+											<?php if(!empty($tour)) { ?>
 												- <?php echo esc_html($tour); ?>
 											<?php } ?>
 										</a>

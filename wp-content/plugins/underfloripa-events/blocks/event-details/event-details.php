@@ -76,7 +76,7 @@ $is_multiple = count($events) > 1;
             <ul>
                 <li><h3>
                     <?php echo esc_html($event_name); ?>
-                    <?php if(!$tour) { ?>
+                    <?php if(!empty($tour)) { ?>
                         - <?php echo esc_html($tour); ?>
                     <?php } ?>
                 </h3></li>
