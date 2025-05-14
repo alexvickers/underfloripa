@@ -69,6 +69,7 @@
                 $ticket_link = get_field('ticket_link', $event_id);
                 $venue = get_field('venue_post', $event_id);
 
+                $venue_name = $venue_city = '';
                 if ($venue) {
                     $venue_name = get_the_title($venue->ID);
                     $venue_city = get_field('venue_city', $venue->ID);
@@ -97,8 +98,7 @@
         }
 
         $agenda_link = get_site_url() . '/agenda';
-        echo '<a href="' . esc_url($agenda_link) . '" class="cm-entry-button view-more-events"><span>Ver mais eventos</span</a>';
-
+        echo '<a href="' . esc_url($agenda_link) . '" class="cm-entry-button view-more-events"><span>Ver mais eventos</span></a>';
 
         wp_reset_postdata();
 
@@ -107,7 +107,7 @@
 
     public function form($instance) {
         $title = !empty($instance['title']) ? $instance['title'] : 'Próximos Eventos';
-        ?>
+?>
         <p>
             <label for="<?php echo esc_attr($this->get_field_id('title')); ?>">Título:</label>
             <input class="widefat"
@@ -116,7 +116,7 @@
                 type="text"
                 value="<?php echo esc_attr($title); ?>">
         </p>
-        <?php
+<?php
     }
 
     public function update($new_instance, $old_instance) {

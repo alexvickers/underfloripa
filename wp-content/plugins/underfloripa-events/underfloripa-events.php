@@ -170,21 +170,27 @@ function uf_archive_past_events() {
 }
 
 // Event Details Gutenberg Block
+add_action('init', function() {
+    if (function_exists('load_plugin_textdomain')) {
+        load_plugin_textdomain('your-plugin-domain', false, plugin_dir_path(__FILE__) . 'languages');
+    }
+});
+
 add_action('acf/init', 'uf_register_event_details_block');
 function uf_register_event_details_block() {
-	if (function_exists('acf_register_block_type')) {
-		acf_register_block_type([
-			'name'              => 'event-details',
-			'title'             => __('Event Details'),
-			'description'       => __('Display selected event details'),
-			'render_template'   => plugin_dir_path(__FILE__) . 'blocks/event-details/event-details.php',
-			'category'          => 'widgets',
-			'icon'              => 'calendar-alt',
-			'keywords'          => ['event', 'concert', 'show'],
-			'mode'              => 'edit',
-			'supports'          => ['align' => true],
-		]);
-	}
+    if (function_exists('acf_register_block_type')) {
+        acf_register_block_type([
+            'name'              => 'event-details',
+            'title'             => __('Event Details'),
+            'description'       => __('Display selected event details'),
+            'render_template'   => plugin_dir_path(__FILE__) . 'blocks/event-details/event-details.php',
+            'category'          => 'widgets',
+            'icon'              => 'calendar-alt',
+            'keywords'          => ['event', 'concert', 'show'],
+            'mode'              => 'edit',
+            'supports'          => ['align' => true],
+        ]);
+    }
 }
 
 // Enqueue Styles
