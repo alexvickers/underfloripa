@@ -17,7 +17,7 @@ $is_multiple = count($events) > 1;
 ?>
 
 <div class="event-details">
-    <h2><?php echo $is_multiple ? 'Serviços' : 'Serviço'; ?></h2>
+    <h3 style="font-weight: 500; text-decoration: underline;"><?php echo $is_multiple ? 'Serviços' : 'Serviço'; ?>:</h3>
 
     <?php foreach ($events as $event_id) { ?>
         <?php
@@ -76,7 +76,7 @@ $is_multiple = count($events) > 1;
         <div class="event-details__item">
             <ul>
                 <li>
-                    <h3>
+                    <h3 style="font-weight: 700;">
                         <?php echo esc_html($event_name); ?>
                         <?php if (!empty($tour)) { ?>
                             - <?php echo esc_html($tour); ?>
@@ -86,7 +86,7 @@ $is_multiple = count($events) > 1;
                 <?php if (!empty($opening_acts)) { ?>
                     <li><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></li>
                 <?php } ?>
-                <br />
+                <h6><?php echo esc_html($venue_city); ?></h6>
                 <li><strong>Data:</strong> <?php echo esc_html($event_date); ?></li>
                 <li><strong>Local:</strong> <?php echo esc_html($venue_name); ?></li>
                 <li><strong>Endereço:</strong> <?php echo esc_html($venue_address); ?>, <?php echo esc_html($venue_city); ?></li>

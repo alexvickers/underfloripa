@@ -84,7 +84,7 @@
 
                 echo '<li class="event">';
                 echo '<a href="' . esc_url($link_to_use) . '" target="_blank">';
-                echo '<h4>' . esc_html($title) . '</h4>';
+                echo '<h4>' . esc_html($title) . ' - ' . esc_html($venue_city) . '</h4>';
                 echo '</a>';
                 echo '<small>' . esc_html($formatted_date) . '</small></br>';
                 if (!empty($venue_name) || !empty($venue_city)) {

@@ -38,6 +38,7 @@ $formatted_date = date_i18n('d/m', strtotime($event_date));
 
                 </a>
             </h3>
+            <h4><?php echo esc_html($venue_city); ?></h4>
         </header>
 
         <div class="entry-meta">
