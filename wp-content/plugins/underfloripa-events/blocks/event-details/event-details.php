@@ -57,6 +57,7 @@ $is_multiple = count($events) > 1;
         $doors_time = $doors_time_raw ? date('H\hi', strtotime($doors_time_raw)) : 'Horário desconhecido';
         $min_age = get_post_meta($event_id, 'min_age', true);
         $tickets_link = get_post_meta($event_id, 'ticket_link', true);
+        $opening_acts = get_post_meta($event_id, 'opening_acts', true);
 
         $venue = get_field('venue_post', $event_id);
 
@@ -82,11 +83,11 @@ $is_multiple = count($events) > 1;
                             - <?php echo esc_html($tour); ?>
                         <?php } ?>
                     </h3>
+                    <h6><?php echo esc_html($venue_city); ?></h6>
                 </li>
                 <?php if (!empty($opening_acts)) { ?>
                     <li><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></li>
                 <?php } ?>
-                <h6><?php echo esc_html($venue_city); ?></h6>
                 <li><strong>Data:</strong> <?php echo esc_html($event_date); ?></li>
                 <li><strong>Local:</strong> <?php echo esc_html($venue_name); ?></li>
                 <li><strong>Endereço:</strong> <?php echo esc_html($venue_address); ?>, <?php echo esc_html($venue_city); ?></li>
