@@ -48,7 +48,7 @@ $formatted_date = $event_date ? date_i18n('d/m', strtotime($event_date)) : '';
 
         <div class="entry-meta">
             <?php if (!empty($lineup)) { ?>
-                <span class="posted-on"><strong>Com:</strong> <?php echo esc_html($lineup); ?></span><br />';
+                <span class="posted-on"><strong>Com:</strong> <?php echo esc_html($lineup); ?></span><br />
             <?php } ?>
 
             <?php if (!empty($opening_acts)) { ?>
