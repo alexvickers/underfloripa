@@ -14,6 +14,17 @@ function colormag_child_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'colormag_child_enqueue_styles' );
 
+// Force loading SCSS generated styles
+function underfloripa_child_enqueue_styles() {
+	wp_enqueue_style(
+		'underfloripa-child-style',
+		get_stylesheet_directory_uri() . '/css/style.css',
+		array('colormag-style'),
+		wp_get_theme()->get('Version')
+	);
+}
+add_action('wp_enqueue_scripts', 'underfloripa_child_enqueue_styles');
+
 // Custom Footer Scripts (via ACF option)
 function my_custom_footer_scripts() {
 	if ( function_exists( 'get_field' ) ) {
