@@ -78,9 +78,8 @@
 									</a>
 								</h3>
 								<?php if (!empty($lineup)) {
-									echo '<span>Com: ' . esc_html($lineup) . '</span>';
+									echo '<small>Com ' . esc_html($lineup) . '</small>';
 								} ?>
-
 
 								<?php if (!empty($venue_city)) { ?>
 									<h4><?php echo esc_html($venue_city); ?></h4>
@@ -89,15 +88,15 @@
 
 							<div class="entry-meta">
 								<?php if (!empty($opening_acts)) { ?>
-									<p><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></p>
+									<span class="posted-on"><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></p><br />
 								<?php } ?>
 
 								<?php if ($formatted_date) { ?>
-									<span class="posted-on"><strong>Data:</strong> <?php echo esc_html($formatted_date); ?></span><br>
+									<span class="posted-on"><strong>Data:</strong> <?php echo esc_html($formatted_date); ?></span><br />
 								<?php } ?>
 
 								<?php if ($doors_time) { ?>
-									<span class="posted-on"><strong>Abertura das Portas:</strong> <?php echo esc_html($doors_time); ?></span><br>
+									<span class="posted-on"><strong>Abertura das Portas:</strong> <?php echo esc_html($doors_time); ?></span><br />
 								<?php } ?>
 
 								<?php if ($venue_name || $venue_address || $venue_city) { ?>

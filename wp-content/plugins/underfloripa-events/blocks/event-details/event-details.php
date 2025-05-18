@@ -79,7 +79,7 @@ $is_multiple = count($events) > 1;
                         } ?>
                     </h3>
                     <?php if (!empty($lineup)) {
-                        echo '<span>Com: ' . esc_html($lineup) . '</span>';
+                        echo '<small>Com ' . esc_html($lineup) . '</small>';
                     } ?>
                     <h6><?php echo esc_html($venue_city); ?></h6>
                 </li>
