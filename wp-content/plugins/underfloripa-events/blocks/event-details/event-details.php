@@ -17,9 +17,9 @@ $is_multiple = count($events) > 1;
 ?>
 
 <div class="event-details">
-    <h2><?php echo $is_multiple ? 'Serviços' : 'Serviço'; ?></h2>
+    <h3 style="font-weight: 500; text-decoration: underline;"><?php echo $is_multiple ? 'Serviços' : 'Serviço'; ?>:</h3>
 
-    <?php foreach ($events as $event_id): ?>
+    <?php foreach ($events as $event_id) { ?>
         <?php
         $event_name = get_the_title($event_id);
 
@@ -57,6 +57,7 @@ $is_multiple = count($events) > 1;
         $doors_time = $doors_time_raw ? date('H\hi', strtotime($doors_time_raw)) : 'Horário desconhecido';
         $min_age = get_post_meta($event_id, 'min_age', true);
         $tickets_link = get_post_meta($event_id, 'ticket_link', true);
+        $opening_acts = get_post_meta($event_id, 'opening_acts', true);
 
         $venue = get_field('venue_post', $event_id);
 
@@ -75,25 +76,27 @@ $is_multiple = count($events) > 1;
         ?>
         <div class="event-details__item">
             <ul>
-                <li><h3>
-                    <?php echo esc_html($event_name); ?>
-                    <?php if(!empty($tour)) { ?>
-                        - <?php echo esc_html($tour); ?>
-                    <?php } ?>
-                </h3></li>
-                <?php if(!empty($opening_acts)) { ?>
-                <li><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></li>
-                <? } ?>
-                <br />
+                <li>
+                    <h3 style="font-weight: 700;">
+                        <?php echo esc_html($event_name); ?>
+                        <?php if (!empty($tour)) { ?>
+                            - <?php echo esc_html($tour); ?>
+                        <?php } ?>
+                    </h3>
+                    <h6><?php echo esc_html($venue_city); ?></h6>
+                </li>
+                <?php if (!empty($opening_acts)) { ?>
+                    <li><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></li>
+                <?php } ?>
                 <li><strong>Data:</strong> <?php echo esc_html($event_date); ?></li>
                 <li><strong>Local:</strong> <?php echo esc_html($venue_name); ?></li>
                 <li><strong>Endereço:</strong> <?php echo esc_html($venue_address); ?>, <?php echo esc_html($venue_city); ?></li>
                 <li><strong>Abertura das Portas:</strong> <?php echo esc_html($doors_time); ?></li>
                 <li><strong>Censura:</strong> <?php echo esc_html($min_age); ?></li>
-                <?php if ($tickets_link): ?>
+                <?php if ($tickets_link) { ?>
                     <li><a href="<?php echo esc_url($tickets_link); ?>" target="_blank" rel="noopener">Garanta seu Ingresso</a></li>
-                <?php endif; ?>
+                <?php } ?>
             </ul>
         </div>
-    <?php endforeach; ?>
+    <?php } ?>
 </div>

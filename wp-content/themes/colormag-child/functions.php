@@ -36,6 +36,16 @@ function enqueue_custom_home_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_custom_home_assets' );
 
+function add_defer_to_specific_scripts($tag, $handle, $src) {
+	$defer_scripts = ['slick-js', 'custom-home-js'];
+
+	if (in_array($handle, $defer_scripts)) {
+		return '<script src="' . esc_url($src) . '" defer></script>' . "\n";
+	}
+	return $tag;
+}
+add_filter('script_loader_tag', 'add_defer_to_specific_scripts', 10, 3);
+
 // Admin: Enqueue ACF Script for Album Reviews
 function enqueue_admin_review_labels_script() {
 	wp_enqueue_script(
