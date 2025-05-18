@@ -442,6 +442,20 @@ body {
   margin-bottom: 0;
 }
 
+.entry-header {
+  font-weight: 700;
+}
+
+.entry-header h4 {
+  margin-bottom: 10px;
+  font-size: inherit;
+}
+
+.entry-meta span {
+	line-height: 20px;
+  display: inline-block;
+}
+
 .spinner {
   display: inline-block;
   width: 24px;
