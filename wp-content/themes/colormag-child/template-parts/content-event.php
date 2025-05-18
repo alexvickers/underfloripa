@@ -5,6 +5,8 @@ $doors_time   = get_field('doors_time', $event_id);
 $event_link   = get_field('link', $event_id);
 $ticket_link  = get_field('ticket_link', $event_id);
 $tour         = get_field('tour', $event_id);
+$lineup       = get_field('lineup', $event_id);
+$opening_acts = get_field('opening_acts', $event_id);
 $venue        = get_field('venue_post', $event_id);
 
 $venue_name = $venue_city = $venue_address = '';
@@ -39,6 +41,10 @@ $formatted_date = $event_date ? date_i18n('d/m', strtotime($event_date)) : '';
                     } ?>
                 </a>
             </h3>
+            <?php if (!empty($lineup)) {
+                echo '<span>Com: ' . esc_html($lineup) . '</span>';
+            } ?>
+
 
             <?php if (!empty($venue_city)) { ?>
                 <h4><?php echo esc_html($venue_city); ?></h4>
@@ -46,6 +52,10 @@ $formatted_date = $event_date ? date_i18n('d/m', strtotime($event_date)) : '';
         </header>
 
         <div class="entry-meta">
+            <?php if (!empty($opening_acts)) { ?>
+                <p><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></p>
+            <?php } ?>
+
             <?php if ($event_date) { ?>
                 <span class="posted-on"><strong>Data:</strong> <?php echo esc_html($formatted_date); ?></span><br>
             <?php } ?>

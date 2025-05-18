@@ -1,7 +1,7 @@
 <?php /**
  * Plugin Name: Underfloripa Events
  * Description: Manage and display upcoming concerts and events on Underfloripa.
- * Version: 1.1
+ * Version: 1.2
  * Author: Alexandre Aimbiré
  */
 
@@ -95,6 +95,20 @@ function uf_show_event_redirect_notice() {
 		}
 	}
 }
+
+add_action('pre_get_posts', 'uf_order_venues_alphabetically_admin');
+function uf_order_venues_alphabetically_admin($query) {
+	if (!is_admin() || !$query->is_main_query()) {
+		return;
+	}
+
+	$screen = get_current_screen();
+	if ($screen && $screen->post_type === 'venue') {
+		$query->set('orderby', 'title');
+		$query->set('order', 'ASC');
+	}
+}
+
 
 // Past Event Archives
 add_action('init', 'uf_register_past_event_status');

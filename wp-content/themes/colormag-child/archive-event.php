@@ -41,6 +41,7 @@
 					$event_link   = get_field('link', $event_id);
 					$ticket_link  = get_field('ticket_link', $event_id);
 					$tour         = get_field('tour', $event_id);
+					$lineup		  = get_field('lineup', $event_id);
 					$opening_acts = get_field('opening_acts', $event_id);
 					$venue        = get_field('venue_post', $event_id);
 
@@ -76,6 +77,10 @@
 										} ?>
 									</a>
 								</h3>
+								<?php if (!empty($lineup)) {
+									echo '<span>Com: ' . esc_html($lineup) . '</span>';
+								} ?>
+
 
 								<?php if (!empty($venue_city)) { ?>
 									<h4><?php echo esc_html($venue_city); ?></h4>
