@@ -78,11 +78,13 @@ $is_multiple = count($events) > 1;
                             echo ' - ' . esc_html($tour);
                         } ?>
                     </h3>
-                    <?php if (!empty($lineup)) {
-                        echo '<small>Com ' . esc_html($lineup) . '</small>';
-                    } ?>
                     <h6><?php echo esc_html($venue_city); ?></h6>
                 </li>
+
+                <?php if (!empty($lineup)) { ?>
+                    <span class="posted-on"><strong>Com:</strong> <?php echo esc_html($lineup); ?></span><br />';
+                <?php } ?>
+
 
                 <?php if (!empty($opening_acts)) { ?>
                     <li><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></li>

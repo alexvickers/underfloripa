@@ -77,18 +77,18 @@
 										} ?>
 									</a>
 								</h3>
-								<?php if (!empty($lineup)) {
-									echo '<small>Com ' . esc_html($lineup) . '</small>';
-								} ?>
-
 								<?php if (!empty($venue_city)) { ?>
 									<h4><?php echo esc_html($venue_city); ?></h4>
 								<?php } ?>
 							</header>
 
 							<div class="entry-meta">
+								<?php if (!empty($lineup)) { ?>
+									<span class="posted-on"><strong>Com:</strong> <?php echo esc_html($lineup); ?></span><br />';
+								<?php } ?>
+
 								<?php if (!empty($opening_acts)) { ?>
-									<span class="posted-on"><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></p><br />
+									<span class="posted-on"><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></span><br />
 								<?php } ?>
 
 								<?php if ($formatted_date) { ?>
