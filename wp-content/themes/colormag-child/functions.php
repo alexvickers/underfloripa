@@ -25,27 +25,6 @@ function my_custom_footer_scripts() {
 }
 add_action( 'wp_footer', 'my_custom_footer_scripts', 100 );
 
-// Front Page Scripts (Slick carousel + custom)
-function enqueue_custom_home_assets() {
-	if ( is_front_page() ) {
-		wp_enqueue_style( 'slick-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' );
-		wp_enqueue_style( 'slick-theme-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css' );
-		wp_enqueue_script( 'slick-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', [ 'jquery' ], null, true );
-		wp_enqueue_script( 'custom-home-js', get_stylesheet_directory_uri() . '/assets/js/custom-home.js', [ 'slick-js' ], null, true );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'enqueue_custom_home_assets' );
-
-function add_defer_to_specific_scripts($tag, $handle, $src) {
-	$defer_scripts = ['slick-js', 'custom-home-js'];
-
-	if (in_array($handle, $defer_scripts)) {
-		return '<script src="' . esc_url($src) . '" defer></script>' . "\n";
-	}
-	return $tag;
-}
-add_filter('script_loader_tag', 'add_defer_to_specific_scripts', 10, 3);
-
 // Admin: Enqueue ACF Script for Album Reviews
 function enqueue_admin_review_labels_script() {
 	wp_enqueue_script(

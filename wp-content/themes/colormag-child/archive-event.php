@@ -16,7 +16,7 @@
 				'post_type'      => 'event',
 				'post_status'    => 'publish',
 				'paged'          => $paged,
-				'posts_per_page' => 11,
+				'posts_per_page' => 10,
 				'meta_key'       => 'event_date',
 				'orderby'        => 'meta_value',
 				'order'          => 'ASC',

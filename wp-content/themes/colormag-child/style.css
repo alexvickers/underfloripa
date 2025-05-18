@@ -359,15 +359,17 @@ body {
 }
 
 .related-post-thumb img {
-  width: 90%;
+  width: 195px;
+  height: 195px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   margin: 0 auto 12px;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
 }
 
 @media screen and (max-width: 768px) {
   .related-post-thumb img {
-    width: 50%;
+    width: 60%;
   }
 }
 
@@ -375,6 +377,7 @@ body {
   display: block;
   font-size: 14px;
   line-height: 18px;
+  font-weight: 600;
 }
 
 .related-post-date {
@@ -397,7 +400,9 @@ body {
 
 .author-avatar img {
   border-radius: 50%;
+  border: 1px solid #207daf;
   margin-right: 15px;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
 }
 
 .author-info {
