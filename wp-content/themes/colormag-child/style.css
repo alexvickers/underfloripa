@@ -383,10 +383,15 @@ body {
 .related-post-date {
   font-size: 12px;
   color: #414141;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
 }
 
 .related-post-date svg {
   fill: #414141;
+  margin-right: 4px;
 }
 
 .author-bio {
