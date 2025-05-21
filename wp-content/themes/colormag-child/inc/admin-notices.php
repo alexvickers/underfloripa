@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 add_action('admin_notices', function () {
     if (!current_user_can('manage_options')) return;
 

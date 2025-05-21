@@ -1,4 +1,10 @@
-<?php class UF_Upcoming_Events_Widget extends WP_Widget {
+<?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
+
+class UF_Upcoming_Events_Widget extends WP_Widget {
     public function __construct() {
         parent::__construct(
             'uf_upcoming_events_widget',

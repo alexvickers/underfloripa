@@ -1,4 +1,10 @@
-<?php if (!empty($filtered_posts)) : ?>
+<?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
+
+if (!empty($filtered_posts)) : ?>
     <div class="related-posts">
         <h3><span><?php echo esc_html($heading_text); ?></span></h3>
         <ul>

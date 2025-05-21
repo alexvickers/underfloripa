@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 setlocale(LC_TIME, 'pt_BR.UTF-8');
 
 $events = get_field('selected_event');
@@ -82,7 +87,7 @@ $is_multiple = count($events) > 1;
                 </li>
 
                 <?php if (!empty($lineup)) { ?>
-                    <span class="posted-on"><strong>Com:</strong> <?php echo esc_html($lineup); ?></span><br />';
+                    <span class="posted-on"><strong>Com:</strong> <?php echo esc_html($lineup); ?></span><br />
                 <?php } ?>
 
 

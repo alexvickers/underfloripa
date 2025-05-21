@@ -1,3 +1,9 @@
+<?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+} ?>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class('cm-post'); ?>>
 
     <?php if (has_post_thumbnail()) : ?>

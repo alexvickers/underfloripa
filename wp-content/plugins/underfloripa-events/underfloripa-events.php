@@ -5,8 +5,8 @@
  * Author: Alexandre Aimbiré
  */
 
-if (!defined('ABSPATH')) {
-	exit;
+if (! defined('ABSPATH')) {
+    exit;
 }
 
 // ACF Config

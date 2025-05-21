@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 $event_id     = get_the_ID();
 $event_date   = get_field('event_date', $event_id);
 $doors_time   = get_field('doors_time', $event_id);

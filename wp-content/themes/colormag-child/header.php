@@ -11,7 +11,9 @@
  */
 
 // Exit if accessed directly.
-defined('ABSPATH') || exit;
+if (! defined('ABSPATH')) {
+    exit;
+}
 
 do_action('colormag_action_doctype');
 
