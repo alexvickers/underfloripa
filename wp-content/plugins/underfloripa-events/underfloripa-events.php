@@ -53,6 +53,17 @@ function uf_register_venue_post_type() {
 	]);
 }
 
+function register_city_taxonomy() {
+    register_taxonomy('venue_city', 'venue', [
+        'label' => 'Cities',
+        'public' => true,
+        'hierarchical' => false,
+        'show_admin_column' => true,
+        'show_in_rest' => true,
+    ]);
+}
+add_action('init', 'register_city_taxonomy');
+
 // 301 Event redirects
 add_action('template_redirect', 'uf_redirect_event_permalink');
 function uf_redirect_event_permalink() {
