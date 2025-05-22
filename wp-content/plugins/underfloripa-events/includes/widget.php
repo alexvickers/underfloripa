@@ -1,5 +1,7 @@
-<?php class UF_Upcoming_Events_Widget extends WP_Widget {
-    public function __construct() {
+<?php class UF_Upcoming_Events_Widget extends WP_Widget
+{
+    public function __construct()
+    {
         parent::__construct(
             'uf_upcoming_events_widget',
             'Underfloripa: Upcoming Events',
@@ -7,7 +9,8 @@
         );
     }
 
-    public function widget($args, $instance) {
+    public function widget($args, $instance)
+    {
         echo $args['before_widget'];
 
         if (!empty($instance['title'])) {
@@ -72,7 +75,21 @@
                 $venue_name = $venue_city = '';
                 if ($venue) {
                     $venue_name = get_the_title($venue->ID);
-                    $venue_city = get_field('venue_city', $venue->ID);
+                    $venue_city = '';
+                    $venue_city_value = get_field('venue_city', $venue->ID);
+
+                    if ($venue_city_value) {
+                        if (is_array($venue_city_value) && isset($venue_city_value['name'])) {
+                            $venue_city = $venue_city_value['name'];
+                        } elseif (is_object($venue_city_value) && isset($venue_city_value->name)) {
+                            $venue_city = $venue_city_value->name;
+                        } elseif (is_numeric($venue_city_value)) {
+                            $term = get_term($venue_city_value);
+                            if (!is_wp_error($term) && $term) {
+                                $venue_city = $term->name;
+                            }
+                        }
+                    }
                 }
 
                 $formatted_date = date_i18n('d/m', strtotime($event_date));
@@ -105,7 +122,8 @@
         echo $args['after_widget'];
     }
 
-    public function form($instance) {
+    public function form($instance)
+    {
         $title = !empty($instance['title']) ? $instance['title'] : 'Próximos Eventos';
 ?>
         <p>
@@ -119,19 +137,22 @@
 <?php
     }
 
-    public function update($new_instance, $old_instance) {
+    public function update($new_instance, $old_instance)
+    {
         $instance = [];
         $instance['title'] = sanitize_text_field($new_instance['title']);
         return $instance;
     }
 }
 
-function uf_register_events_widget() {
+function uf_register_events_widget()
+{
     register_widget('UF_Upcoming_Events_Widget');
 }
 add_action('widgets_init', 'uf_register_events_widget');
 
-function uf_order_events_in_admin($query) {
+function uf_order_events_in_admin($query)
+{
     if (is_admin() && $query->is_main_query() && $query->get('post_type') === 'event') {
         $query->set('meta_key', 'event_date');
         $query->set('orderby', 'meta_value');
