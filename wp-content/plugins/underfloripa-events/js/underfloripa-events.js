@@ -1,15 +1,15 @@
-document.addEventListener('DOMContentLoaded', function() {
-	const citySelect = document.getElementById('uf-event-city-filter');
+document.addEventListener("DOMContentLoaded", function () {
+  const citySelect = document.getElementById("uf-event-city-filter");
 
-	if (citySelect) {
-		citySelect.addEventListener('change', function () {
-			const city = citySelect.value;
+  if (citySelect) {
+    citySelect.addEventListener("change", function () {
+      const city = citySelect.value;
 
-			const data = new FormData();
-			data.append('action', 'uf_filter_events_by_city');
-			data.append('city', city);
+      const data = new FormData();
+      data.append("action", "uf_filter_events_by_city");
+      data.append("city", city);
 
-			fetch(ufEvents.ajaxUrl, {
+      fetch(ufEvents.ajaxUrl, {
         method: "POST",
         credentials: "same-origin",
         body: data,
@@ -19,6 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
           const eventsList = document.querySelector(".uf-widget-events");
           if (eventsList) eventsList.innerHTML = html;
         });
-		});
-	}
+    });
+  }
 });
