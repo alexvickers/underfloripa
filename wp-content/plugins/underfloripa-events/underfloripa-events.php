@@ -223,7 +223,7 @@ function uf_enqueue_event_assets() {
 	if (!is_admin()) {
 		wp_enqueue_style(
 			'underfloripa-events-css',
-			plugin_dir_url(__FILE__) . 'css/underfloripa-events.css',
+			plugin_dir_url(__FILE__) . 'css/underfloripa-events.min.css',
 			[],
 			'1.0'
 		);
