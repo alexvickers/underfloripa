@@ -1,4 +1,6 @@
-<?php /**
+<?php
+
+/**
  * Plugin Name: Underfloripa Events
  * Description: Manage and display upcoming concerts and events on Underfloripa.
  * Version: 1.2
@@ -227,16 +229,16 @@ function uf_enqueue_event_assets() {
 		);
 
 		wp_enqueue_script(
-			'underfloripa-events-js',
-			plugin_dir_url(__FILE__) . 'js/underfloripa-events.js',
+			'uf-events-script',
+			plugins_url('js/underfloripa-events.js', __FILE__),
 			['jquery'],
 			'1.0',
 			true
 		);
 
-		wp_localize_script('underfloripa-events-js', 'ufEventAjax', [
-			'ajax_url' => admin_url('admin-ajax.php'),
-			'nonce'    => wp_create_nonce('uf_events_filter_nonce')
+wp_localize_script('uf-events-script', 'ufEvents', [
+			'ajaxUrl' => admin_url('admin-ajax.php'),
+			'nonce'   => wp_create_nonce('uf_events_filter_nonce')
 		]);
 	}
 }

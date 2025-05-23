@@ -1,5 +1,4 @@
-<?php class UF_Upcoming_Events_Widget extends WP_Widget
-{
+<?php class UF_Upcoming_Events_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'uf_upcoming_events_widget',
@@ -39,7 +38,7 @@
 			'hide_empty' => false,
 		]);
 
-		echo '<select id="uf-event-city-filter" class="uf-event-city-filter">';
+		echo '<select id="uf-event-city-filter" class="uf-event-filter">';
 		echo '<option value="">Todas as cidades</option>';
 		foreach ($cities as $city) {
 			echo '<option value="' . esc_attr($city->slug) . '">' . esc_html($city->name) . '</option>';
