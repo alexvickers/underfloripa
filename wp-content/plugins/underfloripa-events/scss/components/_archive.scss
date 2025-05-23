@@ -1,0 +1,46 @@
+.event {
+  margin-bottom: 30px;
+  clear: both;
+
+  &-thumbnail {
+    float: left;
+    max-width: 30%;
+    width: 240px;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  &-details {
+    overflow: hidden;
+
+    h3 {
+      margin-bottom: 0;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    &__item {
+      margin-bottom: 1rem;
+
+      ul {
+        list-style: none;
+        padding: 0 !important;
+        margin: 0 !important;
+
+        li {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  &-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 16px;
+  }
+}

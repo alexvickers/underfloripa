@@ -71,7 +71,21 @@ $is_multiple = count($events) > 1;
         if ($venue) {
             $venue_name = get_the_title($venue->ID);
             $venue_address = get_field('venue_address', $venue->ID);
-            $venue_city = get_field('venue_city', $venue->ID);
+            $venue_city = '';
+            $venue_city_value = get_field('venue_city', $venue->ID);
+
+            if ($venue_city_value) {
+                if (is_array($venue_city_value) && isset($venue_city_value['name'])) {
+                    $venue_city = $venue_city_value['name'];
+                } elseif (is_object($venue_city_value) && isset($venue_city_value->name)) {
+                    $venue_city = $venue_city_value->name;
+                } elseif (is_numeric($venue_city_value)) {
+                    $term = get_term($venue_city_value);
+                    if (!is_wp_error($term) && $term) {
+                        $venue_city = $term->name;
+                    }
+                }
+            }
         }
     ?>
         <div class="event-details__item">
