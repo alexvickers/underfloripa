@@ -54,13 +54,13 @@ function uf_register_venue_post_type() {
 }
 
 function register_city_taxonomy() {
-    register_taxonomy('venue_city', 'venue', [
-        'label' => 'Cities',
-        'public' => true,
-        'hierarchical' => false,
-        'show_admin_column' => true,
-        'show_in_rest' => true,
-    ]);
+	register_taxonomy('venue_city', 'venue', [
+		'label' => 'Cities',
+		'public' => true,
+		'hierarchical' => false,
+		'show_admin_column' => true,
+		'show_in_rest' => true,
+	]);
 }
 add_action('init', 'register_city_taxonomy');
 
@@ -120,7 +120,6 @@ function uf_order_venues_alphabetically_admin($query) {
 	}
 }
 
-
 // Past Event Archives
 add_action('init', 'uf_register_past_event_status');
 function uf_register_past_event_status() {
@@ -163,8 +162,7 @@ function uf_add_past_event_label_to_title($title, $post_id) {
 
 // Archive Events Cron
 add_action('wp', 'uf_schedule_event_archiver');
-function uf_schedule_event_archiver()
-{
+function uf_schedule_event_archiver() {
 	if (!wp_next_scheduled('uf_archive_past_events_daily')) {
 		wp_schedule_event(time(), 'daily', 'uf_archive_past_events_daily');
 	}
@@ -195,32 +193,31 @@ function uf_archive_past_events() {
 }
 
 // Event Details Gutenberg Block
-add_action('init', function() {
-    if (function_exists('load_plugin_textdomain')) {
-        load_plugin_textdomain('your-plugin-domain', false, plugin_dir_path(__FILE__) . 'languages');
-    }
+add_action('init', function () {
+	if (function_exists('load_plugin_textdomain')) {
+		load_plugin_textdomain('your-plugin-domain', false, plugin_dir_path(__FILE__) . 'languages');
+	}
 });
 
 add_action('acf/init', 'uf_register_event_details_block');
 function uf_register_event_details_block() {
-    if (function_exists('acf_register_block_type')) {
-        acf_register_block_type([
-            'name'              => 'event-details',
-            'title'             => __('Event Details'),
-            'description'       => __('Display selected event details'),
-            'render_template'   => plugin_dir_path(__FILE__) . 'blocks/event-details/event-details.php',
-            'category'          => 'widgets',
-            'icon'              => 'calendar-alt',
-            'keywords'          => ['event', 'concert', 'show'],
-            'mode'              => 'edit',
-            'supports'          => ['align' => true],
-        ]);
-    }
+	if (function_exists('acf_register_block_type')) {
+		acf_register_block_type([
+			'name'              => 'event-details',
+			'title'             => __('Event Details'),
+			'description'       => __('Display selected event details'),
+			'render_template'   => plugin_dir_path(__FILE__) . 'blocks/event-details/event-details.php',
+			'category'          => 'widgets',
+			'icon'              => 'calendar-alt',
+			'keywords'          => ['event', 'concert', 'show'],
+			'mode'              => 'edit',
+			'supports'          => ['align' => true],
+		]);
+	}
 }
 
-// Enqueue Styles
-add_action('wp_enqueue_scripts', 'uf_enqueue_event_styles');
-function uf_enqueue_event_styles() {
+// Enqueue Styles and Scripts for Event Widget + City Filter
+function uf_enqueue_event_assets() {
 	if (!is_admin()) {
 		wp_enqueue_style(
 			'underfloripa-events-css',
@@ -228,8 +225,25 @@ function uf_enqueue_event_styles() {
 			[],
 			'1.0'
 		);
+
+		wp_enqueue_script(
+			'underfloripa-events-js',
+			plugin_dir_url(__FILE__) . 'js/underfloripa-events.js',
+			['jquery'],
+			'1.0',
+			true
+		);
+
+		wp_localize_script('underfloripa-events-js', 'ufEventAjax', [
+			'ajax_url' => admin_url('admin-ajax.php'),
+			'nonce'    => wp_create_nonce('uf_events_filter_nonce')
+		]);
 	}
 }
+add_action('wp_enqueue_scripts', 'uf_enqueue_event_assets');
 
 // Widget Include
 require_once plugin_dir_path(__FILE__) . 'includes/widget.php';
+
+// AJAX Handlers
+require_once plugin_dir_path(__FILE__) . 'includes/ajax-handlers.php';
