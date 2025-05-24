@@ -43,12 +43,59 @@ class UF_Upcoming_Events_Widget extends WP_Widget {
 			'hide_empty' => false,
 		]);
 
+		$today = current_time('Y-m-d');
+
+		$cities_with_upcoming_events = get_transient('uf_cities_with_upcoming_events');
+
+		if ($cities_with_upcoming_events === false) {
+			$today = current_time('Y-m-d');
+
+			$event_query = new WP_Query([
+				'post_type' => 'event',
+				'posts_per_page' => -1,
+				'meta_key' => 'event_date',
+				'orderby' => 'meta_value',
+				'order' => 'ASC',
+				'meta_query' => [
+					[
+						'key' => 'event_date',
+						'value' => $today,
+						'compare' => '>=',
+						'type' => 'DATE'
+					]
+				]
+			]);
+
+			$city_slugs = [];
+
+			if ($event_query->have_posts()) {
+				foreach ($event_query->posts as $event) {
+					$venue = get_field('venue_post', $event->ID);
+					if ($venue) {
+						$terms = wp_get_post_terms($venue->ID, 'venue_city');
+						if (!is_wp_error($terms) && !empty($terms)) {
+							foreach ($terms as $term) {
+								$city_slugs[$term->slug] = $term->name;
+							}
+						}
+					}
+				}
+			}
+
+			wp_reset_postdata();
+
+			$cities_with_upcoming_events = $city_slugs;
+			set_transient('uf_cities_with_upcoming_events', $cities_with_upcoming_events, 900); // 15 minutes
+		}
+
 		echo '<select id="uf-event-city-filter" class="uf-event-filter">';
 		echo '<option value="">Todas as cidades</option>';
-		foreach ($cities as $city) {
-			echo '<option value="' . esc_attr($city->slug) . '">' . esc_html($city->name) . '</option>';
+		foreach ($cities_with_upcoming_events as $slug => $name) {
+			echo '<option value="' . esc_attr($slug) . '">' . esc_html($name) . '</option>';
 		}
 		echo '</select>';
+
+		wp_reset_postdata();
 
 		$events = $primary_query->posts;
 
@@ -149,7 +196,8 @@ class UF_Upcoming_Events_Widget extends WP_Widget {
 		</p>
 <?php }
 
-	public function update($new_instance, $old_instance) {
+	public function update($new_instance, $old_instance)
+	{
 		$instance = [];
 		$instance['title'] = sanitize_text_field($new_instance['title']);
 		return $instance;
@@ -160,6 +208,14 @@ function uf_register_events_widget() {
 	register_widget('UF_Upcoming_Events_Widget');
 }
 add_action('widgets_init', 'uf_register_events_widget');
+
+function uf_clear_upcoming_event_cache($post_id) {
+	if (get_post_type($post_id) === 'event') {
+		delete_transient('uf_cities_with_upcoming_events');
+	}
+}
+add_action('save_post', 'uf_clear_upcoming_event_cache');
+add_action('deleted_post', 'uf_clear_upcoming_event_cache');
 
 function uf_order_events_in_admin($query) {
 	if (is_admin() && $query->is_main_query() && $query->get('post_type') === 'event') {
