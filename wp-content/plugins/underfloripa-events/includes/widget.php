@@ -4,7 +4,7 @@ if (! defined('ABSPATH')) {
 	exit;
 }
 
-class UF_Upcoming_Events_Widget extends WP_Widget{
+class UF_Upcoming_Events_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'uf_upcoming_events_widget',
@@ -21,22 +21,21 @@ class UF_Upcoming_Events_Widget extends WP_Widget{
 		}
 
 		$today = current_time('Y-m-d');
-		$two_weeks_later = date('Y-m-d', strtotime('+14 days', current_time('timestamp')));
 
 		$primary_query = new WP_Query([
-			'post_type' => 'event',
+			'post_type'      => 'event',
 			'posts_per_page' => 5,
-			'meta_key' => 'event_date',
-			'orderby' => 'meta_value',
-			'order' => 'ASC',
-			'meta_query' => [
+			'meta_key'       => 'event_date',
+			'orderby'        => 'meta_value',
+			'order'          => 'ASC',
+			'meta_query'     => [
 				[
-					'key' => 'event_date',
-					'value' => [$today, $two_weeks_later],
-					'compare' => 'BETWEEN',
-					'type' => 'DATE'
+					'key'     => 'event_date',
+					'value'   => $today,
+					'compare' => '>=',
+					'type'    => 'DATE',
 				]
-			]
+			],
 		]);
 
 		$cities = get_terms([
