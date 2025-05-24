@@ -1,17 +1,17 @@
 <?php
 // Exit if accessed directly.
 if (! defined('ABSPATH')) {
-    exit;
+	exit;
 }
 
-class UF_Upcoming_Events_Widget extends WP_Widget {
-    public function __construct() {
-        parent::__construct(
-            'uf_upcoming_events_widget',
-            'Underfloripa: Upcoming Events',
-            ['description' => 'Shows a list of upcoming events for the next 2 weeks or fills up to 5 if needed.']
-        );
-    }
+class UF_Upcoming_Events_Widget extends WP_Widget{
+	public function __construct() {
+		parent::__construct(
+			'uf_upcoming_events_widget',
+			'Underfloripa: Upcoming Events',
+			['description' => 'Shows a list of the next 5 upcoming events.']
+		);
+	}
 
 	public function widget($args, $instance) {
 		echo $args['before_widget'];

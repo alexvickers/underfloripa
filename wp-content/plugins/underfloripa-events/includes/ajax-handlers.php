@@ -23,8 +23,10 @@ function uf_filter_events_by_city() {
 	];
 
 	if (!empty($city)) {
-		$venues = get_posts([
+		$venue_ids = get_posts([
 			'post_type' => 'venue',
+			'fields' => 'ids',
+			'posts_per_page' => -1,
 			'tax_query' => [
 				[
 					'taxonomy' => 'venue_city',
@@ -32,17 +34,16 @@ function uf_filter_events_by_city() {
 					'terms' => $city,
 				]
 			],
-			'fields' => 'ids',
-			'posts_per_page' => -1,
 		]);
 
-		if ($venues) {
+		if (!empty($venue_ids)) {
 			$meta_query[] = [
 				'key' => 'venue_post',
-				'value' => $venues,
+				'value' => $venue_ids,
 				'compare' => 'IN',
 			];
 		} else {
+			// No venues found for the city, short-circuit here
 			echo '<li class="event">Nenhum evento encontrado.</li>';
 			wp_die();
 		}
@@ -71,12 +72,9 @@ function uf_filter_events_by_city() {
 			$venue_name = $venue_city = '';
 			if ($venue) {
 				$venue_name = get_the_title($venue->ID);
-				$venue_city = '';
-				if ($venue) {
-					$terms = wp_get_post_terms($venue->ID, 'venue_city');
-					if (!is_wp_error($terms) && !empty($terms)) {
-						$venue_city = $terms[0]->name;
-					}
+				$terms = wp_get_post_terms($venue->ID, 'venue_city');
+				if (!is_wp_error($terms) && !empty($terms)) {
+					$venue_city = $terms[0]->name;
 				}
 			}
 
