@@ -27,13 +27,10 @@ class UF_Event_Plugin
 		add_action('init', [__CLASS__, 'register_taxonomies']);
 		add_action('save_post', [__CLASS__, 'enforce_single_city'], 20);
 		add_action('admin_menu', [__CLASS__, 'remove_city_metabox']);
-		add_filter('manage_venue_posts_columns', [__CLASS__, 'add_city_column']);
-		add_action('manage_venue_posts_custom_column', [__CLASS__, 'fill_city_column'], 10, 2);
-		add_filter('manage_edit-venue_sortable_columns', [__CLASS__, 'make_city_column_sortable']);
-		add_action('pre_get_posts', [__CLASS__, 'sort_by_city']);
 	}
 
 	public static function register_post_types() {
+		// Event CPT
 		register_post_type('event', [
 			'labels' => [
 				'name' => 'Events',
@@ -49,6 +46,7 @@ class UF_Event_Plugin
 			'show_in_rest' => true,
 		]);
 
+		// Venue CPT
 		register_post_type('venue', [
 			'labels' => [
 				'name' => 'Venues',
@@ -65,6 +63,7 @@ class UF_Event_Plugin
 	}
 
 	public static function register_taxonomies() {
+		// City Taxonomy for Venue
 		register_taxonomy('venue_city', 'venue', [
 			'label' => 'Cities',
 			'public' => true,
@@ -87,44 +86,8 @@ class UF_Event_Plugin
 	public static function remove_city_metabox() {
 		remove_meta_box('tagsdiv-venue_city', 'venue', 'side');
 	}
-
-	// Add city column
-	public static function add_city_column($columns) {
-		$columns['venue_city'] = 'City';
-		return $columns;
-	}
-
-	// Fill city column
-	public static function fill_city_column($column, $post_id) {
-		if ($column === 'venue_city') {
-			$terms = wp_get_post_terms($post_id, 'venue_city');
-			if (!empty($terms) && !is_wp_error($terms)) {
-				echo esc_html($terms[0]->name);
-			}
-		}
-	}
-
-	// Make column sortable
-	public static function make_city_column_sortable($columns) {
-		$columns['venue_city'] = 'venue_city';
-		return $columns;
-	}
-
-	// Sort by city in admin list
-	public static function sort_by_city($query) {
-		if (!is_admin() || !$query->is_main_query()) return;
-
-		if ($query->get('post_type') === 'venue' && $query->get('orderby') === 'venue_city') {
-			$query->set('orderby', 'taxonomy');
-			$query->set('tax_query', [[
-				'taxonomy' => 'venue_city',
-				'field'    => 'slug',
-				'terms'    => get_terms(['taxonomy' => 'venue_city', 'fields' => 'slugs']),
-				'operator' => 'IN'
-			]]);
-		}
-	}
 }
+
 UF_Event_Plugin::init();
 
 // 301 Event redirects

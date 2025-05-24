@@ -10,17 +10,7 @@ add_action('wp_ajax_nopriv_uf_filter_events_by_city', 'uf_filter_events_by_city'
 function uf_filter_events_by_city() {
 	$city = sanitize_text_field($_POST['city'] ?? '');
 
-	$today = current_time('Y-m-d');
-	$two_weeks_later = date('Y-m-d', strtotime('+14 days', current_time('timestamp')));
-
-	$meta_query = [
-		[
-			'key' => 'event_date',
-			'value' => [$today, $two_weeks_later],
-			'compare' => 'BETWEEN',
-			'type' => 'DATE',
-		]
-	];
+	$meta_query = [];
 
 	if (!empty($city)) {
 		$venue_ids = get_posts([
@@ -43,7 +33,6 @@ function uf_filter_events_by_city() {
 				'compare' => 'IN',
 			];
 		} else {
-			// No venues found for the city, short-circuit here
 			echo '<li class="event">Nenhum evento encontrado.</li>';
 			wp_die();
 		}
@@ -55,8 +44,11 @@ function uf_filter_events_by_city() {
 		'meta_key' => 'event_date',
 		'orderby' => 'meta_value',
 		'order' => 'ASC',
-		'meta_query' => $meta_query,
 	];
+
+	if (!empty($meta_query)) {
+		$query_args['meta_query'] = $meta_query;
+	}
 
 	$query = new WP_Query($query_args);
 
@@ -78,7 +70,7 @@ function uf_filter_events_by_city() {
 				}
 			}
 
-			$formatted_date = date_i18n('d/m', strtotime($date));
+			$formatted_date = $date ? date_i18n('d/m', strtotime($date)) : '';
 			if ($doors_time) {
 				$formatted_date .= ' - ' . date_i18n('H:i', strtotime($doors_time));
 			}
