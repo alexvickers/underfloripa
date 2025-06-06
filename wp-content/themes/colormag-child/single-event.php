@@ -11,7 +11,7 @@ get_header();
                     <div class="cm-content-wrapper cm-row">
 
                         <!-- Featured image -->
-                        <div class="cm-col-4">
+                        <div class="cm-col-3">
                             <?php if (has_post_thumbnail()) : ?>
                                 <div class="cm-featured-image">
                                     <?php the_post_thumbnail('large'); ?>
@@ -20,7 +20,7 @@ get_header();
                         </div>
 
                         <!-- Details + Related Excerpt -->
-                        <div class="cm-col-8">
+                        <div class="cm-col-9">
                             <header class="entry-header">
                                 <h1 class="entry-title">
                                     <?php the_title(); ?>
