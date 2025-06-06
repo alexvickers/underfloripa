@@ -20,13 +20,15 @@ function uf_acf_json_load_point($paths) {
 add_filter('acf/settings/remove_wp_meta_box', '__return_true');
 
 // CPTs
-class UF_Event_Plugin
-{
-	public static function init() {
+class UF_Event_Plugin {
+	public static function init()
+	{
 		add_action('init', [__CLASS__, 'register_post_types']);
 		add_action('init', [__CLASS__, 'register_taxonomies']);
 		add_action('save_post', [__CLASS__, 'enforce_single_city'], 20);
 		add_action('admin_menu', [__CLASS__, 'remove_city_metabox']);
+		add_filter('get_the_archive_title', [__CLASS__, 'filter_archive_title']);
+		add_filter('get_the_archive_description', [__CLASS__, 'filter_archive_description']);
 	}
 
 	public static function register_post_types() {
@@ -68,6 +70,7 @@ class UF_Event_Plugin
 			'label' => 'Cities',
 			'public' => true,
 			'hierarchical' => false,
+			'show_ui' => true,
 			'show_admin_column' => true,
 			'show_in_rest' => true,
 		]);
@@ -85,6 +88,22 @@ class UF_Event_Plugin
 
 	public static function remove_city_metabox() {
 		remove_meta_box('tagsdiv-venue_city', 'venue', 'side');
+	}
+
+	public static function filter_archive_title($title) {
+		if (is_post_type_archive('event')) {
+			$title = esc_html__('Agenda de Shows e Eventos Culturais em Florianópolis e no Brasil', 'your-text-domain');
+		}
+		return $title;
+	}
+
+	public static function filter_archive_description($description) {
+		if (is_post_type_archive('event')) {
+			$description = wp_kses_post(
+				'<p>' . esc_html__('Confira os melhores shows, festas e eventos culturais em Florianópolis. Atualizamos nossa agenda semanalmente com as principais atrações da cena local, da música independente e os grandes shows Brasil afora.', 'your-text-domain') . '</p>'
+			);
+		}
+		return $description;
 	}
 }
 

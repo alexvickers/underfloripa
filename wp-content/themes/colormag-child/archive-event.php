@@ -7,7 +7,8 @@
 		<div id="posts-container" class="cm-posts <?php echo esc_attr('cm-' . $grid_layout . ' ' . $style . ' ' . $col); ?>">
 
 			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e('Agenda de Shows', 'colormag-child'); ?></h1>
+				<h1><?php the_archive_title(); ?></h1>
+				<div class="archive-description"><?php the_archive_description(); ?></div>
 			</header>
 
 			<?php
