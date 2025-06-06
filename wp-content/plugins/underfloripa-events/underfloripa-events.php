@@ -100,15 +100,8 @@ class UF_Event_Plugin {
 			'Cities',
 			'Cities',
 			'manage_categories',
-			'venue_city',
-			[__CLASS__, 'render_city_page']
+			'edit-tags.php?taxonomy=venue_city&post_type=venue'
 		);
-	}
-
-	// Redirect to the default taxonomy UI
-	public static function render_city_page() {
-		wp_redirect(admin_url('edit-tags.php?taxonomy=venue_city&post_type=venue'));
-		exit;
 	}
 
 	public static function filter_archive_title($title) {
