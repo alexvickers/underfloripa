@@ -40,7 +40,10 @@ get_header();
                                         <?php $content = get_the_content(null, false, $related_post);
                                         $h2 = 'Detalhes do Evento';
 
-                                        if (preg_match('/<h2[^>]*>(.*?)<\/h2>/is', $content, $matches)) {
+                                        $lines = preg_split('/\r\n|\r|\n/', $content);
+                                        $second_line = isset($lines[1]) ? trim($lines[1]) : '';
+
+                                        if (preg_match('/<h2[^>]*>(.*?)<\/h2>/is', $second_line, $matches)) {
                                             $h2 = wp_strip_all_tags($matches[1]);
                                         }
                                         ?>
