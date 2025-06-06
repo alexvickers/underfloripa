@@ -123,47 +123,10 @@ class UF_Event_Plugin {
 
 UF_Event_Plugin::init();
 
-// 301 Event redirects
-add_action('template_redirect', 'uf_redirect_event_permalink');
-function uf_redirect_event_permalink() {
-	if (is_singular('event')) {
-		$acf_link = get_field('link');
-		if ($acf_link) {
-			if (!str_starts_with($acf_link, 'http')) {
-				$acf_link = home_url($acf_link);
-			}
-			wp_redirect($acf_link, 301);
-			exit;
-		}
-	}
-}
-
 // Admin UI Edits
 add_action('init', 'uf_remove_editor_from_event_cpt');
 function uf_remove_editor_from_event_cpt() {
 	remove_post_type_support('event', 'editor');
-}
-
-add_action('admin_notices', 'uf_show_event_redirect_notice');
-function uf_show_event_redirect_notice() {
-	global $post;
-
-	if (
-		isset($post) &&
-		$post->post_type === 'event' &&
-		get_current_screen()->base === 'post'
-	) {
-		$acf_link = get_field('link', $post->ID);
-		if ($acf_link) {
-			if (!str_starts_with($acf_link, 'http')) {
-				$acf_link = home_url($acf_link);
-			}
-
-			echo '<div class="notice notice-info is-dismissible">';
-			echo '<p><strong>Heads up:</strong> This event will redirect visitors to <a href="' . esc_url($acf_link) . '" target="_blank">' . esc_html($acf_link) . '</a>.</p>';
-			echo '</div>';
-		}
-	}
 }
 
 add_action('pre_get_posts', 'uf_order_venues_alphabetically_admin');
@@ -306,3 +269,18 @@ require_once plugin_dir_path(__FILE__) . 'includes/widget.php';
 
 // AJAX Handlers
 require_once plugin_dir_path(__FILE__) . 'includes/ajax-handlers.php';
+
+// Event Details Single Page Block
+function underfloripa_render_event_details_block($event_ids = []) {
+	if (empty($event_ids)) {
+		echo '<!-- No event passed to render -->';
+		return;
+	}
+
+	// Just for debugging
+	echo '<!-- Rendering event details block -->';
+
+	set_query_var('selected_event_ids', $event_ids);
+
+	include plugin_dir_path(__FILE__) . 'blocks/event-details/event-details.php';
+}

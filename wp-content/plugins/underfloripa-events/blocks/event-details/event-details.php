@@ -6,7 +6,7 @@ if (! defined('ABSPATH')) {
 
 setlocale(LC_TIME, 'pt_BR.UTF-8');
 
-$events = get_field('selected_event');
+$events = get_query_var('selected_event_ids', []);
 
 if (empty($events)) {
     echo '<p>No event selected.</p>';

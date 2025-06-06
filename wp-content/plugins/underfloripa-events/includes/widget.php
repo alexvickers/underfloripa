@@ -129,7 +129,7 @@ class UF_Upcoming_Events_Widget extends WP_Widget {
 				$title = get_the_title($event_id);
 				$event_date = get_field('event_date', $event_id);
 				$doors_time = get_field('doors_time', $event_id);
-				$link = get_field('link', $event_id);
+				$link = get_permalink($event_id);
 				$ticket_link = get_field('ticket_link', $event_id);
 				$venue = get_field('venue_post', $event_id);
 

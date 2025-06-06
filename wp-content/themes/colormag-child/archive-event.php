@@ -39,7 +39,7 @@
 
 					$event_date   = get_field('event_date', $event_id);
 					$doors_time   = get_field('doors_time', $event_id);
-					$event_link   = get_field('link', $event_id);
+					$event_link	  = get_permalink($event_id);
 					$ticket_link  = get_field('ticket_link', $event_id);
 					$tour         = get_field('tour', $event_id);
 					$lineup		  = get_field('lineup', $event_id);

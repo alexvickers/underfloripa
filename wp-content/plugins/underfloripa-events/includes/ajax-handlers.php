@@ -58,8 +58,7 @@ function uf_filter_events_by_city() {
 			$title = get_the_title();
 			$date = get_field('event_date');
 			$doors_time = get_field('doors_time');
-			$link = get_field('link') ?: get_field('ticket_link');
-
+			$link = get_permalink() ?: get_field('ticket_link');
 			$venue = get_field('venue_post');
 			$venue_name = $venue_city = '';
 			if ($venue) {
