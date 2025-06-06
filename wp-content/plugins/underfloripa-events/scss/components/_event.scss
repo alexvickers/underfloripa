@@ -1,0 +1,25 @@
+.event-single {
+  .cm-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .cm-col-4 {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+  }
+
+  .cm-col-8 {
+    flex: 0 0 66.6667%;
+    max-width: 66.6667%;
+  }
+
+  @media (max-width: 768px) {
+    .cm-col-4,
+    .cm-col-8 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
