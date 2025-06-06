@@ -21,12 +21,12 @@ add_filter('acf/settings/remove_wp_meta_box', '__return_true');
 
 // CPTs
 class UF_Event_Plugin {
-	public static function init()
-	{
+	public static function init() {
 		add_action('init', [__CLASS__, 'register_post_types']);
 		add_action('init', [__CLASS__, 'register_taxonomies']);
 		add_action('save_post', [__CLASS__, 'enforce_single_city'], 20);
 		add_action('admin_menu', [__CLASS__, 'remove_city_metabox']);
+		add_action('admin_menu', [__CLASS__, 'add_taxonomy_submenu']);
 		add_filter('get_the_archive_title', [__CLASS__, 'filter_archive_title']);
 		add_filter('get_the_archive_description', [__CLASS__, 'filter_archive_description']);
 	}
@@ -67,12 +67,16 @@ class UF_Event_Plugin {
 	public static function register_taxonomies() {
 		// City Taxonomy for Venue
 		register_taxonomy('venue_city', 'venue', [
-			'label' => 'Cities',
+			'labels' => [
+				'name' => 'Cities',
+				'singular_name' => 'City',
+				'menu_name' => 'Cities',
+			],
 			'public' => true,
-			'hierarchical' => false,
 			'show_ui' => true,
 			'show_admin_column' => true,
 			'show_in_rest' => true,
+			'show_in_menu' => 'edit.php?post_type=event',
 		]);
 	}
 
@@ -88,6 +92,23 @@ class UF_Event_Plugin {
 
 	public static function remove_city_metabox() {
 		remove_meta_box('tagsdiv-venue_city', 'venue', 'side');
+	}
+
+	public static function add_taxonomy_submenu() {
+		add_submenu_page(
+			'edit.php?post_type=event',
+			'Cities',
+			'Cities',
+			'manage_categories',
+			'venue_city',
+			[__CLASS__, 'render_city_page']
+		);
+	}
+
+	// Redirect to the default taxonomy UI
+	public static function render_city_page() {
+		wp_redirect(admin_url('edit-tags.php?taxonomy=venue_city&post_type=venue'));
+		exit;
 	}
 
 	public static function filter_archive_title($title) {
