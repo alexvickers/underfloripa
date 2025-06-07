@@ -173,25 +173,25 @@ function uf_style_past_events_in_admin() {
 	echo '<style>.status-past_event { opacity: 0.5; }</style>';
 }
 
-add_filter('the_title', 'uf_add_past_event_label_to_title', 10, 2);
-function uf_add_past_event_label_to_title($title, $post_id) {
-	$post = get_post($post_id);
-	if ($post->post_type === 'event' && $post->post_status === 'past_event') {
-		$title .= ' (Expirado)';
-	}
-	return $title;
-}
+add_action('init', function () {
+	register_post_status('past_event', [
+		'label' => 'Past Event',
+		'public' => true,
+		'exclude_from_search' => false,
+		'show_in_admin_all_list' => true,
+		'show_in_admin_status_list' => true,
+		'label_count' => _n_noop('Past Event <span class="count">(%s)</span>', 'Past Events <span class="count">(%s)</span>'),
+	]);
+});
 
 // Archive Events Cron
-add_action('wp', 'uf_schedule_event_archiver');
-function uf_schedule_event_archiver() {
+add_action('wp', function () {
 	if (!wp_next_scheduled('uf_archive_past_events_daily')) {
 		wp_schedule_event(time(), 'daily', 'uf_archive_past_events_daily');
 	}
-}
+});
 
-add_action('uf_archive_past_events_daily', 'uf_archive_past_events');
-function uf_archive_past_events() {
+add_action('uf_archive_past_events_daily', function () {
 	$today = date('Y-m-d');
 
 	$past_events = get_posts([
@@ -212,7 +212,35 @@ function uf_archive_past_events() {
 			'post_status' => 'past_event'
 		]);
 	}
-}
+});
+
+add_action('pre_get_posts', function ($query) {
+	if (
+		$query->is_main_query() &&
+		$query->is_singular('event') &&
+		!is_admin()
+	) {
+		$query->set('post_status', ['publish', 'past_event']);
+	}
+});
+
+add_filter('the_title', function ($title, $post_id) {
+	$post = get_post($post_id);
+	if ($post && $post->post_type === 'event' && $post->post_status === 'past_event') {
+		$title .= ' (Expirado)';
+	}
+	return $title;
+}, 10, 2);
+
+add_action('pre_get_posts', function ($query) {
+	if (
+		$query->is_main_query() &&
+		!is_admin() &&
+		$query->is_post_type_archive('event')
+	) {
+		$query->set('post_status', ['publish']);
+	}
+});
 
 // Event Details Gutenberg Block
 add_action('init', function () {
@@ -277,10 +305,35 @@ function underfloripa_render_event_details_block($event_ids = []) {
 		return;
 	}
 
-	// Just for debugging
-	echo '<!-- Rendering event details block -->';
-
 	set_query_var('selected_event_ids', $event_ids);
 
 	include plugin_dir_path(__FILE__) . 'blocks/event-details/event-details.php';
 }
+
+// Event Single Custom Title
+add_filter('document_title_parts', function ($title) {
+	if (is_singular('event')) {
+		$event_title = get_the_title();
+
+		$venue = get_field('venue_post');
+		if ($venue instanceof WP_Post) {
+			$venue_title = get_the_title($venue->ID);
+
+			$venue_city_terms = get_the_terms($venue->ID, 'venue_city');
+			$venue_city = '';
+
+			if (!is_wp_error($venue_city_terms) && !empty($venue_city_terms)) {
+				$venue_city = $venue_city_terms[0]->name;
+			}
+
+			$custom_title = "$event_title - $venue_title";
+			if ($venue_city) {
+				$custom_title .= ", $venue_city";
+			}
+
+			$title['title'] = $custom_title;
+		}
+	}
+
+	return $title;
+});

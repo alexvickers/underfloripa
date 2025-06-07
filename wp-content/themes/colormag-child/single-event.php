@@ -10,7 +10,6 @@ get_header();
                 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                     <div class="cm-content-wrapper cm-row">
 
-                        <!-- Featured image -->
                         <div class="cm-col-4">
                             <?php if (has_post_thumbnail()) : ?>
                                 <div class="cm-featured-image">
@@ -19,7 +18,6 @@ get_header();
                             <?php endif; ?>
                         </div>
 
-                        <!-- Details + Related Excerpt -->
                         <div class="cm-col-8">
                             <header class="entry-header">
                                 <h1 class="entry-title">
@@ -29,6 +27,9 @@ get_header();
                                         echo ' - ' . esc_html(get_the_title($venue));
                                     } ?>
                                 </h1>
+                                <?php if (get_post_status() === 'past_event') : ?>
+                                    <div class="notice notice-warning">Este evento já aconteceu.</div>
+                                <?php endif; ?>
                             </header>
 
                             <div class="entry-content">
