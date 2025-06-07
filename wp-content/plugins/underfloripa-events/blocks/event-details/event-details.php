@@ -9,6 +9,10 @@ setlocale(LC_TIME, 'pt_BR.UTF-8');
 $events = get_query_var('selected_event_ids', []);
 
 if (empty($events)) {
+    $events = get_field('selected_event');
+}
+
+if (empty($events)) {
     echo '<p>No event selected.</p>';
     return;
 }

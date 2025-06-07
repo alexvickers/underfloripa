@@ -24,9 +24,10 @@ get_header();
                             <header class="entry-header">
                                 <h1 class="entry-title">
                                     <?php the_title(); ?>
-                                    <?php if (get_field('tour')) { ?>
-                                        - <?php esc_attr(the_field('tour'));
-                                        } ?>
+                                    <?php $venue = get_field('venue_post');
+                                    if ($venue) {
+                                        echo ' - ' . esc_html(get_the_title($venue));
+                                    } ?>
                                 </h1>
                             </header>
 
