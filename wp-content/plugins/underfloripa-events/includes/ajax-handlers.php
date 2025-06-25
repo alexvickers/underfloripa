@@ -9,27 +9,48 @@ add_action('wp_ajax_nopriv_uf_filter_events_by_city', 'uf_filter_events_by_city'
 
 function uf_filter_events_by_city() {
 	$city = sanitize_text_field($_POST['city'] ?? '');
+	$today = current_time('Y-m-d');
 
-	$meta_query = [];
+$meta_query = [
+	'relation' => 'AND',
+	[
+		'key'     => 'event_date',
+		'value'   => $today,
+		'compare' => '>=',
+		'type'    => 'DATE',
+	],
+	[
+		'relation' => 'OR',
+		[
+			'key'     => 'event_status',
+			'value'   => 'archived',
+			'compare' => '!='
+		],
+		[
+			'key'     => 'event_status',
+			'compare' => 'NOT EXISTS'
+		]
+	]
+];
 
 	if (!empty($city)) {
 		$venue_ids = get_posts([
-			'post_type' => 'venue',
-			'fields' => 'ids',
+			'post_type'      => 'venue',
+			'fields'         => 'ids',
 			'posts_per_page' => -1,
-			'tax_query' => [
+			'tax_query'      => [
 				[
 					'taxonomy' => 'venue_city',
-					'field' => 'slug',
-					'terms' => $city,
+					'field'    => 'slug',
+					'terms'    => $city,
 				]
 			],
 		]);
 
 		if (!empty($venue_ids)) {
 			$meta_query[] = [
-				'key' => 'venue_post',
-				'value' => $venue_ids,
+				'key'     => 'venue_post',
+				'value'   => $venue_ids,
 				'compare' => 'IN',
 			];
 		} else {
@@ -39,16 +60,13 @@ function uf_filter_events_by_city() {
 	}
 
 	$query_args = [
-		'post_type' => 'event',
+		'post_type'      => 'event',
 		'posts_per_page' => 5,
-		'meta_key' => 'event_date',
-		'orderby' => 'meta_value',
-		'order' => 'ASC',
+		'meta_key'       => 'event_date',
+		'orderby'        => 'meta_value',
+		'order'          => 'ASC',
+		'meta_query'     => $meta_query,
 	];
-
-	if (!empty($meta_query)) {
-		$query_args['meta_query'] = $meta_query;
-	}
 
 	$query = new WP_Query($query_args);
 
@@ -61,6 +79,7 @@ function uf_filter_events_by_city() {
 			$link = get_permalink() ?: get_field('ticket_link');
 			$venue = get_field('venue_post');
 			$venue_name = $venue_city = '';
+
 			if ($venue) {
 				$venue_name = get_the_title($venue->ID);
 				$terms = wp_get_post_terms($venue->ID, 'venue_city');

@@ -31,7 +31,7 @@ class UF_Upcoming_Events_Widget extends WP_Widget
 			'meta_key'       => 'event_date',
 			'orderby'        => 'meta_value',
 			'order'          => 'ASC',
-			'meta_query'     => [
+			'meta_query' => [
 				'relation' => 'AND',
 				[
 					'key'     => 'event_date',
@@ -40,25 +40,23 @@ class UF_Upcoming_Events_Widget extends WP_Widget
 					'type'    => 'DATE',
 				],
 				[
-					'key'     => 'event_status',
-					'value'   => 'archived',
-					'compare' => '!=',
+					'relation' => 'OR',
+					[
+						'key'     => 'event_status',
+						'compare' => 'NOT EXISTS',
+					],
+					[
+						'key'     => 'event_status',
+						'value'   => 'archived',
+						'compare' => '!=',
+					]
 				]
-			],
+			]
 		]);
-
-		$cities = get_terms([
-			'taxonomy' => 'venue_city',
-			'hide_empty' => false,
-		]);
-
-		$today = current_time('Y-m-d');
 
 		$cities_with_upcoming_events = get_transient('uf_cities_with_upcoming_events');
 
 		if ($cities_with_upcoming_events === false) {
-			$today = current_time('Y-m-d');
-
 			$event_query = new WP_Query([
 				'post_type' => 'event',
 				'posts_per_page' => -1,
@@ -68,15 +66,22 @@ class UF_Upcoming_Events_Widget extends WP_Widget
 				'meta_query' => [
 					'relation' => 'AND',
 					[
-						'key' => 'event_date',
-						'value' => $today,
+						'key'     => 'event_date',
+						'value'   => $today,
 						'compare' => '>=',
-						'type' => 'DATE'
+						'type'    => 'DATE',
 					],
 					[
-						'key' => 'event_status',
-						'value' => 'archived',
-						'compare' => '!='
+						'relation' => 'OR',
+						[
+							'key'     => 'event_status',
+							'compare' => 'NOT EXISTS',
+						],
+						[
+							'key'     => 'event_status',
+							'value'   => 'archived',
+							'compare' => '!=',
+						]
 					]
 				]
 			]);
@@ -98,9 +103,8 @@ class UF_Upcoming_Events_Widget extends WP_Widget
 			}
 
 			wp_reset_postdata();
-
 			$cities_with_upcoming_events = $city_slugs;
-			set_transient('uf_cities_with_upcoming_events', $cities_with_upcoming_events, 900); // 15 minutes
+			set_transient('uf_cities_with_upcoming_events', $cities_with_upcoming_events, 900);
 		}
 
 		echo '<select id="uf-event-city-filter" class="uf-event-filter">';
@@ -157,7 +161,6 @@ class UF_Upcoming_Events_Widget extends WP_Widget
 				$venue_name = $venue_city = '';
 				if ($venue) {
 					$venue_name = get_the_title($venue->ID);
-					$venue_city = '';
 					$venue_city_value = get_field('venue_city', $venue->ID);
 
 					if ($venue_city_value) {

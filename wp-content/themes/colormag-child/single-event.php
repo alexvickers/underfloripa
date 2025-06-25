@@ -20,6 +20,7 @@ get_header();
 
                         <div class="cm-col-8">
                             <header class="entry-header">
+                                <?php var_dump(get_field('event_date', $post_id)); ?>
                                 <h1 class="entry-title">
                                     <?php the_title(); ?>
                                     <?php $venue = get_field('venue_post');
