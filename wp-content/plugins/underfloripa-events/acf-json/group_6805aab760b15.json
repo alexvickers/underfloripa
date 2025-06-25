@@ -1,14 +1,14 @@
 [
     {
-        "key": "group_68059ad8988c9",
-        "title": "Venue",
+        "key": "group_6805aab760b15",
+        "title": "Event Block",
         "fields": [
             {
-                "key": "field_68059ad9177c8",
-                "label": "Endereço",
-                "name": "venue_address",
+                "key": "field_6805aab8381a2",
+                "label": "Eventos",
+                "name": "selected_event",
                 "aria-label": "",
-                "type": "text",
+                "type": "relationship",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -18,50 +18,31 @@
                     "id": ""
                 },
                 "relevanssi_exclude": 0,
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_68059af6177c9",
-                "label": "Cidade\/Estado",
-                "name": "venue_city",
-                "aria-label": "",
-                "type": "taxonomy",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "taxonomy": "venue_city",
-                "add_term": 1,
-                "save_terms": 1,
-                "load_terms": 1,
-                "return_format": "object",
-                "field_type": "select",
-                "allow_null": 0,
+                "post_type": [
+                    "event"
+                ],
+                "post_status": [
+                    "publish"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "post_type"
+                ],
+                "return_format": "id",
+                "min": "",
+                "max": "",
                 "allow_in_bindings": 1,
+                "elements": "",
                 "bidirectional": 0,
-                "show_in_graphql": 1,
-                "graphql_description": "",
-                "graphql_field_name": "venueCity",
-                "multiple": 0,
                 "bidirectional_target": []
             }
         ],
         "location": [
             [
                 {
-                    "param": "post_type",
+                    "param": "block",
                     "operator": "==",
-                    "value": "venue"
+                    "value": "acf\/event-details"
                 }
             ]
         ],
@@ -75,7 +56,7 @@
         "description": "",
         "show_in_rest": 0,
         "show_in_graphql": 1,
-        "graphql_field_name": "venue",
+        "graphql_field_name": "eventBlock",
         "map_graphql_types_from_location_rules": 1,
         "graphql_types": [
             "ContentNode",
