@@ -1,26 +1,15 @@
-// Theme Name: ColorMag Child for Underfloripa
-// Template: colormag
-
 // Base styles
 body {
   font-family: "Heebo", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
-  font-style: normal;}
+  font-style: normal;
+}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1 {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400 !important;
   font-style: normal;
-
-  span {
-    font-weight: 400 !important;
-  }
 }
 
 h2 {
@@ -57,408 +46,7 @@ h3 {
   flex: 1 1 25%;
 }
 
-// Hero carousel
-.hero-carousel {
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.carousel-slide {
-  position: relative;
-  width: 100%;
-}
-
-.carousel-img img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.carousel-caption {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  padding: 1rem;
-  max-width: 90%;
-
-  .meta {
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-    color: #ddd;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-
-    span {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      text-transform: lowercase;
-      font-weight: 500;
-    }
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    margin: 0;
-    color: #fff;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-    padding: 0.75rem;
-  }
-}
-
-// Post cards
-.post-card {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  margin-bottom: 2rem;
-
-  .thumb img {
-    width: 150px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  .content {
-    flex: 1;
-  }
-
-  h3 {
-    margin: 0 0 0.5rem;
-  }
-
-  .meta {
-    font-size: 0.85rem;
-    color: #666;
-    margin-bottom: 0.5rem;
-
-    .date::after {
-      content: " • ";
-    }
-  }
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-
-    .thumb img {
-      width: 100%;
-    }
-  }
-}
-
-// Buttons
-.view-all-posts {
-  text-align: center;
-  margin: 3rem 0;
-
-  .button {
-    display: inline-block;
-    background: #111;
-    color: #fff;
-    padding: 0.75rem 2rem;
-    border-radius: 2rem;
-    text-decoration: none;
-  }
-}
-
-// Categories and metadata
-.category-label {
-  display: inline-block;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: #fff;
-  background: #333;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  margin-bottom: 0.5rem;
-}
-
-.meta .dashicons {
-  vertical-align: middle;
-  margin-right: 4px;
-  font-size: 1rem;
-  color: #666;
-}
-
-// Colunas
-.colunas-wrapper {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.coluna-card {
-  flex: 1 1 50%;
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-
-  .coluna-thumb {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-
-    img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
-  }
-
-  .coluna-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 80%);
-    color: white;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-
-    h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.25rem;
-    }
-
-    .meta {
-      font-size: 0.85rem;
-      color: #eee;
-    }
-  }
-
-  &:hover .coluna-overlay {
-    opacity: 1;
-  }
-
-  @media (min-width: 768px) {
-    .coluna-overlay {
-      opacity: 0;
-    }
-  }
-}
-
-// Archive thumbnails
-.archive .cm-featured-image img,
-.category .cm-featured-image img {
-  max-height: 210px;
-  object-fit: cover;
-  height: 210px;
-}
-
-// Album reviews
-.album-review-block {
-  display: flex;
-  margin-top: 22px;
-  border-top: 1px solid rgba(0, 0, 0, 0.24);
-  padding-top: 18px;
-
-  .mark {
-    margin-right: 24px;
-
-    span {
-      display: inline-flex;
-      font-weight: bold;
-      font-size: 32px;
-      line-height: 32px;
-      border: 5px solid #000000;
-      border-radius: 50%;
-      padding: 10px;
-      width: 44px;
-      height: 44px;
-      align-items: center;
-      justify-content: center;
-      letter-spacing: -2px;
-    }
-
-    @media screen and (max-width: 768px) {
-      margin-bottom: 12px;
-    }
-  }
-
-  h3 {
-    margin-bottom: 6px;
-    font-size: 22px;
-    text-transform: uppercase;
-  }
-
-  p {
-    margin-bottom: 4px;
-  }
-
-  @media screen and (max-width: 768px) {
-    display: block;
-    text-align: center;
-  }
-}
-
-// Related posts
-.related-posts {
-  margin-top: 40px;
-  padding: 20px 0;
-
-  h3 {
-    border-bottom: 2px solid #207daf;
-    font-size: 22px;
-    margin-bottom: 10px;
-    font-weight: 600;
-    letter-spacing: -1px;
-    color: #fff;
-
-    span {
-      padding: 4px 12px 2px;
-      background-color: #207daf;
-      display: inline-block;
-    }
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 24px;
-    margin-top: 22px;
-
-    @media screen and (max-width: 768px) {
-      display: block;
-      width: 80%;
-      margin: auto;
-    }
-  }
-
-  li {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-
-    @media screen and (max-width: 768px) {
-      margin-bottom: 16px;
-    }
-  }
-
-  .related-post-thumb img {
-    width: 195px;
-    height: 195px;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    margin: 0 auto 12px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-
-    @media screen and (max-width: 768px) {
-      width: 60%;
-    }
-  }
-
-  .related-post-title {
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 600;
-  }
-
-  .related-post-date {
-    font-size: 12px;
-    color: #414141;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 5px;
-
-    svg {
-      fill: #414141;
-      margin-right: 4px;
-    }
-  }
-}
-
-// Author box
-.author-bio {
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  margin-top: 40px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.24);
-  border-radius: 4px;
-
-  .author-avatar img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid #207daf;
-    margin-right: 15px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-  }
-
-  .author-info {
-    flex: 1;
-
-    h3 {
-      margin: 0 0 5px;
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    p {
-      margin: 0 0 10px;
-      font-size: 14px;
-      line-height: 18px;
-    }
-  }
-
-  .author-link {
-    font-size: 14px;
-    color: #0073aa;
-    text-decoration: none;
-
-    &:hover {
-      color: #005177;
-    }
-  }
-}
-
-// Other utilities
-.event-details h6 {
-  margin-bottom: 0;
-}
-
-.entry-header {
-  h4 {
-    margin-bottom: 10px;
-    font-size: inherit;
-  }
-}
-
-.entry-meta span {
-  line-height: 20px;
-  display: inline-block;
-}
-
-.spinner {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  border: 3px solid #ccc;
-  border-top-color: #333;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-// Footer + Magazine Blocks (MZB)
+// Footer and Magazine Blocks
 .cm-footer-builder .cm-footer-nav ul {
   gap: 17px;
   justify-content: space-between;
@@ -500,6 +88,17 @@ h3 {
 
   .mzb-post-author img {
     display: none;
+  }
+}
+
+.mzb-post-list .mzb-posts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -576,4 +175,13 @@ h3 {
 
 .mzb-slider .swiper .swiper-slide .mzb-featured-image {
   max-height: 425px;
+}
+
+.widget .wp-block-heading,
+.cm-secondary .cm-widget-title span,
+#cm-tertiary .cm-widget-title span {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400 !important;
+  font-style: normal;
+  font-size: 20px;
 }

@@ -161,3 +161,19 @@ function colormag_child_enqueue_scripts() {
 	]);
 }
 add_action('wp_enqueue_scripts', 'colormag_child_enqueue_scripts');
+
+// Custom Title tag and meta description for event archive
+function underfloripa_custom_event_archive_title($title) {
+	if (is_post_type_archive('event')) {
+		return 'Agenda de Shows e Eventos em Florianópolis | Under Floripa';
+	}
+	return $title;
+}
+add_filter('pre_get_document_title', 'underfloripa_custom_event_archive_title');
+
+function underfloripa_event_archive_meta_description() {
+	if (is_post_type_archive('event')) {
+		echo '<meta name="description" content="Confira a agenda atualizada de shows e eventos culturais em Florianópolis. Saiba datas, locais, horários e como garantir seu ingresso.">';
+	}
+}
+add_action('wp_head', 'underfloripa_event_archive_meta_description');
