@@ -177,3 +177,25 @@ function underfloripa_event_archive_meta_description() {
 	}
 }
 add_action('wp_head', 'underfloripa_event_archive_meta_description');
+
+// Title Clean Up on Front Page
+function underfloripa_remove_resenha_prefix_script() {
+	if (is_front_page()) {
+		wp_add_inline_script(
+			'jquery-core',
+			"
+            document.addEventListener('DOMContentLoaded', function () {
+                const titles = document.querySelectorAll('.mzb-post-title a');
+                titles.forEach((titleEl) => {
+                    const original = titleEl.textContent;
+                    const cleaned = original.replace(/^Resenha:\\s*/i, '');
+                    if (original !== cleaned) {
+                        titleEl.textContent = cleaned;
+                    }
+                });
+            });
+            "
+		);
+	}
+}
+add_action('wp_enqueue_scripts', 'underfloripa_remove_resenha_prefix_script');
