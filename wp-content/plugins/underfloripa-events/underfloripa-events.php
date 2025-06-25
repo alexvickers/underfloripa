@@ -311,11 +311,15 @@ function underfloripa_render_event_details_block($event_ids = []) {
 }
 
 // Event Single Custom Title
-add_filter('document_title_parts', function ($title) {
+add_filter('rank_math/frontend/title', function ($title) {
 	if (is_singular('event')) {
 		$event_title = get_the_title();
 
 		$venue = get_field('venue_post');
+		if (is_numeric($venue)) {
+			$venue = get_post($venue);
+		}
+
 		if ($venue instanceof WP_Post) {
 			$venue_title = get_the_title($venue->ID);
 
@@ -326,14 +330,30 @@ add_filter('document_title_parts', function ($title) {
 				$venue_city = $venue_city_terms[0]->name;
 			}
 
-			$custom_title = "$event_title - $venue_title";
+			$custom_title = "$event_title - $venue_title | Under Floripa";
 			if ($venue_city) {
 				$custom_title .= ", $venue_city";
 			}
 
-			$title['title'] = $custom_title;
+			return $custom_title;
 		}
 	}
 
 	return $title;
 });
+
+// Custom Title tag and meta description for event archive
+function underfloripa_custom_event_archive_title($title) {
+    if (is_post_type_archive('event')) {
+        return 'Agenda de Shows e Eventos em Florianópolis | Under Floripa';
+    }
+    return $title;
+}
+add_filter('pre_get_document_title', 'underfloripa_custom_event_archive_title');
+
+function underfloripa_event_archive_meta_description() {
+    if (is_post_type_archive('event')) {
+        echo '<meta name="description" content="Confira a agenda atualizada de shows e eventos culturais em Florianópolis. Saiba datas, locais, horários e como garantir seu ingresso.">';
+    }
+}
+add_action('wp_head', 'underfloripa_event_archive_meta_description');
