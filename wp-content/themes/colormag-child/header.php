@@ -32,16 +32,8 @@ do_action('colormag_action_doctype');
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        as="style"
-        onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-            rel="stylesheet"
-            type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Heebo:wght@100..900&display=swap" rel="stylesheet"> <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Heebo:wght@100..900&display=swap" rel="stylesheet">
     </noscript>
 
     <?php wp_head(); ?>

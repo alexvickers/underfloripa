@@ -10,15 +10,23 @@ foreach (glob(get_stylesheet_directory() . '/inc/*.php') as $file) {
 }
 
 // Enqueue Parent and Child Styles
-function colormag_child_enqueue_styles()
-{
+function colormag_child_enqueue_styles() {
 	wp_enqueue_style('colormag-parent-style', get_template_directory_uri() . '/style.css');
 }
 add_action('wp_enqueue_scripts', 'colormag_child_enqueue_styles');
 
+function underfloripa_child_enqueue_styles() {
+	wp_enqueue_style(
+		'underfloripa-child-style',
+		get_stylesheet_directory_uri() . '/style-dist.css',
+		[],
+		filemtime(get_stylesheet_directory() . '/style-dist.css')
+	);
+}
+add_action('wp_enqueue_scripts', 'underfloripa_child_enqueue_styles');
+
 // Custom Footer Scripts (via ACF option)
-function my_custom_footer_scripts()
-{
+function my_custom_footer_scripts() {
 	if (function_exists('get_field')) {
 		$scripts = get_field('site_footer_scripts', 'option');
 		if ($scripts) {
@@ -29,8 +37,7 @@ function my_custom_footer_scripts()
 add_action('wp_footer', 'my_custom_footer_scripts', 100);
 
 // Admin: Enqueue ACF Script for Album Reviews
-function enqueue_admin_review_labels_script()
-{
+function enqueue_admin_review_labels_script() {
 	wp_enqueue_script(
 		'custom-review-labels',
 		get_stylesheet_directory_uri() . '/assets/js/admin-review-labels.js',
@@ -42,8 +49,7 @@ function enqueue_admin_review_labels_script()
 add_action('acf/input/admin_enqueue_scripts', 'enqueue_admin_review_labels_script');
 
 // SEO: Custom Meta Description for Album Review Posts (via Rank Math)
-function filter_rankmath_meta_description($content)
-{
+function filter_rankmath_meta_description($content) {
 	if (is_single() || is_page()) {
 		global $post;
 
@@ -73,8 +79,7 @@ function filter_rankmath_meta_description($content)
 add_filter('rank_math/frontend/description', 'filter_rankmath_meta_description');
 
 // AJAX: Load More Posts
-function my_ajax_load_more_posts()
-{
+function my_ajax_load_more_posts() {
 	if (! isset($_GET['nonce']) || ! wp_verify_nonce($_GET['nonce'], 'load_more_nonce')) {
 		wp_send_json_error('Invalid nonce');
 		wp_die();
@@ -133,8 +138,7 @@ add_action('wp_ajax_load_more_posts', 'my_ajax_load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'my_ajax_load_more_posts');
 
 // AJAX Script Localizer
-function colormag_child_enqueue_scripts()
-{
+function colormag_child_enqueue_scripts() {
 	$category_id  = is_category() ? get_queried_object_id() : 0;
 	$search_query = is_search() ? get_search_query() : '';
 	$author_id    = is_author() ? get_queried_object_id() : 0;

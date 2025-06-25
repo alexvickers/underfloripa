@@ -4,8 +4,10 @@ if (! defined('ABSPATH')) {
 	exit;
 }
 
-class UF_Upcoming_Events_Widget extends WP_Widget {
-	public function __construct() {
+class UF_Upcoming_Events_Widget extends WP_Widget
+{
+	public function __construct()
+	{
 		parent::__construct(
 			'uf_upcoming_events_widget',
 			'Underfloripa: Upcoming Events',
@@ -13,7 +15,8 @@ class UF_Upcoming_Events_Widget extends WP_Widget {
 		);
 	}
 
-	public function widget($args, $instance) {
+	public function widget($args, $instance)
+	{
 		echo $args['before_widget'];
 
 		if (!empty($instance['title'])) {
@@ -29,11 +32,17 @@ class UF_Upcoming_Events_Widget extends WP_Widget {
 			'orderby'        => 'meta_value',
 			'order'          => 'ASC',
 			'meta_query'     => [
+				'relation' => 'AND',
 				[
 					'key'     => 'event_date',
 					'value'   => $today,
 					'compare' => '>=',
 					'type'    => 'DATE',
+				],
+				[
+					'key'     => 'event_status',
+					'value'   => 'archived',
+					'compare' => '!=',
 				]
 			],
 		]);
@@ -57,11 +66,17 @@ class UF_Upcoming_Events_Widget extends WP_Widget {
 				'orderby' => 'meta_value',
 				'order' => 'ASC',
 				'meta_query' => [
+					'relation' => 'AND',
 					[
 						'key' => 'event_date',
 						'value' => $today,
 						'compare' => '>=',
 						'type' => 'DATE'
+					],
+					[
+						'key' => 'event_status',
+						'value' => 'archived',
+						'compare' => '!='
 					]
 				]
 			]);
@@ -109,14 +124,20 @@ class UF_Upcoming_Events_Widget extends WP_Widget {
 				'meta_key' => 'event_date',
 				'orderby' => 'meta_value',
 				'order' => 'ASC',
-				'meta_query' => [
+				'meta_query'     => [
+					'relation' => 'AND',
 					[
-						'key' => 'event_date',
-						'value' => $today,
+						'key'     => 'event_date',
+						'value'   => $today,
 						'compare' => '>=',
-						'type' => 'DATE'
+						'type'    => 'DATE',
+					],
+					[
+						'key'     => 'event_status',
+						'value'   => 'archived',
+						'compare' => '!=',
 					]
-				]
+				],
 			]);
 
 			$events = array_merge($events, $secondary_query->posts);
@@ -183,7 +204,8 @@ class UF_Upcoming_Events_Widget extends WP_Widget {
 		echo $args['after_widget'];
 	}
 
-	public function form($instance) {
+	public function form($instance)
+	{
 		$title = !empty($instance['title']) ? $instance['title'] : 'Próximos Eventos';
 ?>
 		<p>
@@ -204,12 +226,14 @@ class UF_Upcoming_Events_Widget extends WP_Widget {
 	}
 }
 
-function uf_register_events_widget() {
+function uf_register_events_widget()
+{
 	register_widget('UF_Upcoming_Events_Widget');
 }
 add_action('widgets_init', 'uf_register_events_widget');
 
-function uf_clear_upcoming_event_cache($post_id) {
+function uf_clear_upcoming_event_cache($post_id)
+{
 	if (get_post_type($post_id) === 'event') {
 		delete_transient('uf_cities_with_upcoming_events');
 	}
@@ -217,7 +241,8 @@ function uf_clear_upcoming_event_cache($post_id) {
 add_action('save_post', 'uf_clear_upcoming_event_cache');
 add_action('deleted_post', 'uf_clear_upcoming_event_cache');
 
-function uf_order_events_in_admin($query) {
+function uf_order_events_in_admin($query)
+{
 	if (is_admin() && $query->is_main_query() && $query->get('post_type') === 'event') {
 		$query->set('meta_key', 'event_date');
 		$query->set('orderby', 'meta_value');
