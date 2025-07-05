@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 // Add ACF options page the right way
 add_action('acf/init', function() {
     if (function_exists('acf_add_options_page')) {

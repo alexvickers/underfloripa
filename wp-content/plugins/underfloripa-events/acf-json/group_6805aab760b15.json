@@ -1,0 +1,86 @@
+[
+    {
+        "key": "group_6805aab760b15",
+        "title": "Event Block",
+        "fields": [
+            {
+                "key": "field_6805aab8381a2",
+                "label": "Eventos",
+                "name": "selected_event",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 0,
+                "post_type": [
+                    "event"
+                ],
+                "post_status": [
+                    "publish"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "post_type"
+                ],
+                "return_format": "id",
+                "min": "",
+                "max": "",
+                "allow_in_bindings": 1,
+                "elements": "",
+                "bidirectional": 0,
+                "bidirectional_target": []
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf\/event-details"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0,
+        "show_in_graphql": 1,
+        "graphql_field_name": "eventBlock",
+        "map_graphql_types_from_location_rules": 1,
+        "graphql_types": [
+            "ContentNode",
+            "ActionMonitorAction",
+            "GraphqlDocument",
+            "MediaItem",
+            "Page",
+            "Post",
+            "TermNode",
+            "Category",
+            "GraphqlDocumentGroup",
+            "PostFormat",
+            "Tag",
+            "ContentTemplate",
+            "ContactPageTemplate",
+            "DefaultTemplate",
+            "MagazineTemplate",
+            "Template_GutenbergBlockPageBuilderColorMag",
+            "AcfOptionsPage",
+            "SiteSettings",
+            "Comment",
+            "Menu",
+            "MenuItem",
+            "User"
+        ]
+    }
+]

@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 add_action('acf/init', function() {
     if (function_exists('acf_register_block_type')) {
         acf_register_block_type([

@@ -1,0 +1,16 @@
+{
+  "name": "underfloripa-events",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "sass scss/underfloripa-events.scss css/underfloripa-events.min.css --style=compressed --no-source-map",
+    "watch:css": "sass --watch scss:css --style=compressed --no-source-map"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "sass": "^1.89.0"
+  }
+}

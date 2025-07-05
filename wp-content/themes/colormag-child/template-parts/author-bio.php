@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 $author_id = get_the_author_meta('ID');
 $author_name = get_the_author();
 $author_bio = get_the_author_meta('description');

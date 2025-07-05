@@ -1,0 +1,50 @@
+.post-card {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  .thumb img {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  h3 {
+    margin: 0 0 0.5rem;
+  }
+
+  .meta {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+
+    .date::after {
+      content: " • ";
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+
+    .thumb img {
+      width: 100%;
+    }
+  }
+}
+
+.category-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #fff;
+  background: #333;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}

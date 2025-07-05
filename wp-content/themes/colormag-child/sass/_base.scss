@@ -1,0 +1,29 @@
+body {
+  font-family: "Heebo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400 !important;
+  font-style: normal;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+.widget .wp-block-heading,
+.cm-secondary .cm-widget-title span,
+#cm-tertiary .cm-widget-title span {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400 !important;
+  font-style: normal;
+  font-size: 20px;
+}

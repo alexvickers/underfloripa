@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 $media_type = get_field('media_type');
 $album_name = get_field('album_name');
 $artist_name = get_field('artist_name');

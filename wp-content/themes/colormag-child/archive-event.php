@@ -7,7 +7,8 @@
 		<div id="posts-container" class="cm-posts <?php echo esc_attr('cm-' . $grid_layout . ' ' . $style . ' ' . $col); ?>">
 
 			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e('Agenda de Shows', 'colormag-child'); ?></h1>
+				<h1><?php the_archive_title(); ?></h1>
+				<div class="archive-description"><?php the_archive_description(); ?></div>
 			</header>
 
 			<?php
@@ -16,7 +17,7 @@
 				'post_type'      => 'event',
 				'post_status'    => 'publish',
 				'paged'          => $paged,
-				'posts_per_page' => 10,
+				'posts_per_page' => 11,
 				'meta_key'       => 'event_date',
 				'orderby'        => 'meta_value',
 				'order'          => 'ASC',
@@ -38,9 +39,10 @@
 
 					$event_date   = get_field('event_date', $event_id);
 					$doors_time   = get_field('doors_time', $event_id);
-					$event_link   = get_field('link', $event_id);
+					$event_link	  = get_permalink($event_id);
 					$ticket_link  = get_field('ticket_link', $event_id);
 					$tour         = get_field('tour', $event_id);
+					$lineup		  = get_field('lineup', $event_id);
 					$opening_acts = get_field('opening_acts', $event_id);
 					$venue        = get_field('venue_post', $event_id);
 
@@ -48,8 +50,21 @@
 
 					if ($venue) {
 						$venue_name    = get_the_title($venue->ID);
-						$venue_city    = get_field('venue_city', $venue->ID);
 						$venue_address = get_field('venue_address', $venue->ID);
+
+						$venue_city_value = get_field('venue_city', $venue->ID);
+						if ($venue_city_value) {
+							if (is_array($venue_city_value) && isset($venue_city_value['name'])) {
+								$venue_city = $venue_city_value['name'];
+							} elseif (is_object($venue_city_value) && isset($venue_city_value->name)) {
+								$venue_city = $venue_city_value->name;
+							} elseif (is_numeric($venue_city_value)) {
+								$term = get_term($venue_city_value);
+								if (!is_wp_error($term) && $term) {
+									$venue_city = $term->name;
+								}
+							}
+						}
 					}
 
 					$formatted_date = $event_date ? date_i18n('d/m', strtotime($event_date)) : '';
@@ -76,23 +91,26 @@
 										} ?>
 									</a>
 								</h3>
-
 								<?php if (!empty($venue_city)) { ?>
 									<h4><?php echo esc_html($venue_city); ?></h4>
 								<?php } ?>
 							</header>
 
 							<div class="entry-meta">
+								<?php if (!empty($lineup)) { ?>
+									<span class="posted-on"><strong>Com:</strong> <?php echo esc_html($lineup); ?></span><br />
+								<?php } ?>
+
 								<?php if (!empty($opening_acts)) { ?>
-									<p><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></p>
+									<span class="posted-on"><strong>Abertura com:</strong> <?php echo esc_html($opening_acts); ?></span><br />
 								<?php } ?>
 
 								<?php if ($formatted_date) { ?>
-									<span class="posted-on"><strong>Data:</strong> <?php echo esc_html($formatted_date); ?></span><br>
+									<span class="posted-on"><strong>Data:</strong> <?php echo esc_html($formatted_date); ?></span><br />
 								<?php } ?>
 
 								<?php if ($doors_time) { ?>
-									<span class="posted-on"><strong>Abertura das Portas:</strong> <?php echo esc_html($doors_time); ?></span><br>
+									<span class="posted-on"><strong>Abertura das Portas:</strong> <?php echo esc_html($doors_time); ?></span><br />
 								<?php } ?>
 
 								<?php if ($venue_name || $venue_address || $venue_city) { ?>

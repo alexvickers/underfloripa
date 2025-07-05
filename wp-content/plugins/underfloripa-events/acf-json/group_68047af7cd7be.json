@@ -57,8 +57,12 @@
                     "id": ""
                 },
                 "relevanssi_exclude": 0,
-                "post_type": "",
-                "post_status": "",
+                "post_type": [
+                    "venue"
+                ],
+                "post_status": [
+                    "publish"
+                ],
                 "taxonomy": "",
                 "return_format": "object",
                 "multiple": 0,
@@ -91,11 +95,167 @@
                 "append": ""
             },
             {
+                "key": "field_68295cefe955e",
+                "label": "Festival?",
+                "name": "is_festival",
+                "aria-label": "",
+                "type": "checkbox",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 0,
+                "choices": {
+                    "Yes": "Yes"
+                },
+                "default_value": [],
+                "return_format": "value",
+                "allow_custom": 0,
+                "allow_in_bindings": 0,
+                "layout": "vertical",
+                "toggle": 0,
+                "show_in_graphql": 1,
+                "graphql_description": "",
+                "graphql_field_name": "isFestival",
+                "graphql_non_null": 0,
+                "save_custom": 0,
+                "custom_choice_button_text": "Adicionar nova escolha"
+            },
+            {
+                "key": "field_68295c1dd4461",
+                "label": "Opening acts?",
+                "name": "show_opening",
+                "aria-label": "",
+                "type": "checkbox",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 0,
+                "choices": {
+                    "Yes": "Yes"
+                },
+                "default_value": [],
+                "return_format": "value",
+                "allow_custom": 0,
+                "allow_in_bindings": 0,
+                "layout": "vertical",
+                "toggle": 0,
+                "show_in_graphql": 1,
+                "graphql_description": "",
+                "graphql_field_name": "showExtraInfo",
+                "graphql_non_null": 0,
+                "save_custom": 0,
+                "custom_choice_button_text": "Adicionar nova escolha"
+            },
+            {
+                "key": "field_68295d2ff395a",
+                "label": "Lineup",
+                "name": "lineup",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_68295cefe955e",
+                            "operator": "==",
+                            "value": "Yes"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 0,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "show_in_graphql": 1,
+                "graphql_description": "",
+                "graphql_field_name": "lineup",
+                "graphql_non_null": 0
+            },
+            {
+                "key": "field_68296160b0db2",
+                "label": "Opening Acts",
+                "name": "opening_acts",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_68295c1dd4461",
+                            "operator": "==",
+                            "value": "Yes"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 0,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "show_in_graphql": 1,
+                "graphql_description": "",
+                "graphql_field_name": "openingActs",
+                "graphql_non_null": 0
+            },
+            {
+                "key": "field_681e7873d5ac2",
+                "label": "Tour",
+                "name": "tour",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "relevanssi_exclude": 0,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "show_in_graphql": 1,
+                "graphql_description": "",
+                "graphql_field_name": "tour",
+                "graphql_non_null": 0
+            },
+            {
                 "key": "field_68047b7dc9d08",
                 "label": "Link",
                 "name": "link",
                 "aria-label": "",
-                "type": "page_link",
+                "type": "post_object",
                 "instructions": "Link do post sobre o Evento",
                 "required": 0,
                 "conditional_logic": 0,
@@ -109,15 +269,23 @@
                     "post"
                 ],
                 "post_status": [
-                    "publish"
+                    "publish",
+                    "future"
                 ],
                 "taxonomy": [
                     "category:musica"
                 ],
-                "allow_archives": 0,
+                "return_format": "object",
                 "multiple": 0,
                 "allow_null": 0,
-                "allow_in_bindings": 1
+                "allow_in_bindings": 1,
+                "bidirectional": 0,
+                "show_in_graphql": 1,
+                "graphql_description": "",
+                "graphql_field_name": "link",
+                "graphql_connection_type": "one_to_many",
+                "ui": 1,
+                "bidirectional_target": []
             },
             {
                 "key": "field_68056c2385809",
@@ -146,13 +314,6 @@
                     "operator": "==",
                     "value": "event"
                 }
-            ],
-            [
-                {
-                    "param": "block",
-                    "operator": "==",
-                    "value": "acf\/event-details"
-                }
             ]
         ],
         "menu_order": 0,
@@ -163,74 +324,33 @@
         "hide_on_screen": "",
         "active": true,
         "description": "",
-        "show_in_rest": 0
-    },
-    {
-        "key": "group_68059ad8988c9",
-        "title": "Venue",
-        "fields": [
-            {
-                "key": "field_68059ad9177c8",
-                "label": "Endereço",
-                "name": "venue_address",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_68059af6177c9",
-                "label": "Cidade\/Estado",
-                "name": "venue_city",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "default_value": "Florianópolis\/SC",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            }
-        ],
-        "location": [
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "venue"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": "",
-        "show_in_rest": 0
+        "show_in_rest": 0,
+        "show_in_graphql": 1,
+        "graphql_field_name": "underfloripaEvents",
+        "map_graphql_types_from_location_rules": 1,
+        "graphql_types": [
+            "ContentNode",
+            "ActionMonitorAction",
+            "GraphqlDocument",
+            "MediaItem",
+            "Page",
+            "Post",
+            "TermNode",
+            "Category",
+            "GraphqlDocumentGroup",
+            "PostFormat",
+            "Tag",
+            "ContentTemplate",
+            "ContactPageTemplate",
+            "DefaultTemplate",
+            "MagazineTemplate",
+            "Template_GutenbergBlockPageBuilderColorMag",
+            "AcfOptionsPage",
+            "SiteSettings",
+            "Comment",
+            "Menu",
+            "MenuItem",
+            "User"
+        ]
     }
 ]
