@@ -30,11 +30,19 @@
   }
 
   .mzb-post-categories a {
-    font-size: 13px;
+    font-size: 16px;
     color: #fff;
     background-color: #207daf;
     border-radius: 0;
-    text-shadow: 1px 1px 5px #000;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400 !important;
+    font-style: normal;
+    padding: 4px 12px 2px;
+    letter-spacing: 0.5px;
+
+    &:hover {
+      color: #fff;
+    }
   }
 
   .mzb-post-author img {
