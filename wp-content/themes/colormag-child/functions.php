@@ -15,16 +15,6 @@ function colormag_child_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'colormag_child_enqueue_styles');
 
-function underfloripa_child_enqueue_styles() {
-	wp_enqueue_style(
-		'underfloripa-child-style',
-		get_stylesheet_directory_uri() . '/style-dist.css',
-		[],
-		filemtime(get_stylesheet_directory() . '/style-dist.css')
-	);
-}
-add_action('wp_enqueue_scripts', 'underfloripa_child_enqueue_styles');
-
 // Force loading SCSS generated styles
 function underfloripa_child_enqueue_styles() {
 	wp_enqueue_style(
@@ -215,3 +205,27 @@ function underfloripa_remove_resenha_prefix_script() {
 	}
 }
 add_action('wp_enqueue_scripts', 'underfloripa_remove_resenha_prefix_script');
+
+// Front-Page Slider
+function underfloripa_enqueue_slider() {
+	if (is_front_page()) {
+		wp_enqueue_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css');
+		wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', [], null, true);
+		wp_add_inline_script('swiper', "
+      const swiper = new Swiper('#homepageSwiper', {
+        speed: 2500,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        slidesPerView: 1,
+        loop: true,
+      });
+    ");
+	}
+}
+add_action('wp_enqueue_scripts', 'underfloripa_enqueue_slider');
