@@ -9,37 +9,56 @@ foreach (glob(get_stylesheet_directory() . '/inc/*.php') as $file) {
 	require_once $file;
 }
 
-// Enqueue Parent and Child Styles
+// Enqueue Parent Theme Styles
 function colormag_child_enqueue_styles() {
-	wp_enqueue_style('colormag-parent-style', get_template_directory_uri() . '/style.css');
+	wp_enqueue_style(
+		'colormag-parent-style',
+		get_template_directory_uri() . '/style.css'
+	);
 }
-add_action('wp_enqueue_scripts', 'colormag_child_enqueue_styles');
+add_action( 'wp_enqueue_scripts', 'colormag_child_enqueue_styles' );
 
-// Enqueue custom child stylesheet with cache-busting
+// Enqueue Child Theme Stylesheet with cache busting
 function underfloripa_child_enqueue_styles() {
 	wp_enqueue_style(
 		'underfloripa-child-style',
 		get_stylesheet_directory_uri() . '/style-dist.css',
 		[],
-		filemtime(get_stylesheet_directory() . '/style-dist.css')
+		filemtime( get_stylesheet_directory() . '/style-dist.css' )
 	);
 }
-add_action('wp_enqueue_scripts', 'underfloripa_child_enqueue_styles');
+add_action( 'wp_enqueue_scripts', 'underfloripa_child_enqueue_styles' );
 
-// Dequeue unwanted Google Fonts from parent theme
-function underfloripa_dequeue_unused_styles() {
-	// Remove Open Sans from parent theme
+// Dequeue unused styles and scripts from parent theme
+function underfloripa_dequeue_unused_assets() {
+	// Remove Open Sans font
 	wp_dequeue_style( 'colormag-editor-googlefonts' );
 	wp_deregister_style( 'colormag-editor-googlefonts' );
 
-	// Remove Font Awesome (possible handles)
+	// Remove Font Awesome (try both handles)
 	wp_dequeue_style( 'font-awesome-all' );
 	wp_deregister_style( 'font-awesome-all' );
 
 	wp_dequeue_style( 'fontawesome' );
 	wp_deregister_style( 'fontawesome' );
+
+	// Remove ColorMag News Ticker script
+	wp_dequeue_script( 'colormag-news-ticker' );
+	wp_deregister_script( 'colormag-news-ticker' );
 }
-add_action( 'wp_enqueue_scripts', 'underfloripa_dequeue_unused_styles', 20 );
+add_action( 'wp_enqueue_scripts', 'underfloripa_dequeue_unused_assets', 20 );
+
+function underfloripa_remove_jquery_migrate( $scripts ) {
+	if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
+		$jquery_dep = &$scripts->registered['jquery'];
+
+		// Remove jquery-migrate from jquery dependencies
+		if ( $jquery_dep->deps ) {
+			$jquery_dep->deps = array_diff( $jquery_dep->deps, array( 'jquery-migrate' ) );
+		}
+	}
+}
+add_action( 'wp_default_scripts', 'underfloripa_remove_jquery_migrate' );
 
 // Custom Footer Scripts (via ACF option)
 function my_custom_footer_scripts() {
