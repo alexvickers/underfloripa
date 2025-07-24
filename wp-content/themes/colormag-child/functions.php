@@ -15,6 +15,7 @@ function colormag_child_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'colormag_child_enqueue_styles');
 
+// Enqueue custom child stylesheet with cache-busting
 function underfloripa_child_enqueue_styles() {
 	wp_enqueue_style(
 		'underfloripa-child-style',
@@ -24,6 +25,21 @@ function underfloripa_child_enqueue_styles() {
 	);
 }
 add_action('wp_enqueue_scripts', 'underfloripa_child_enqueue_styles');
+
+// Dequeue unwanted Google Fonts from parent theme
+function underfloripa_dequeue_unused_styles() {
+	// Remove Open Sans from parent theme
+	wp_dequeue_style( 'colormag-editor-googlefonts' );
+	wp_deregister_style( 'colormag-editor-googlefonts' );
+
+	// Remove Font Awesome (possible handles)
+	wp_dequeue_style( 'font-awesome-all' );
+	wp_deregister_style( 'font-awesome-all' );
+
+	wp_dequeue_style( 'fontawesome' );
+	wp_deregister_style( 'fontawesome' );
+}
+add_action( 'wp_enqueue_scripts', 'underfloripa_dequeue_unused_styles', 20 );
 
 // Custom Footer Scripts (via ACF option)
 function my_custom_footer_scripts() {
