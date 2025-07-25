@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
-<main id="site-main">
+<div class="content-area">
+  <main class="main-content">
 	<?php
 	if ( have_posts() ) :
 		while ( have_posts() ) : the_post();
@@ -11,6 +12,10 @@
 		echo '<p>No content found.</p>';
 	endif;
 	?>
-</main>
+  </main>
+  <aside class="sidebar">
+    <!-- Widgets, etc. -->
+  </aside>
+</div>
 
 <?php get_footer(); ?>

@@ -11,6 +11,8 @@
 	<p>&copy; <?php echo date('Y'); ?> Underfloripa</p>
 </footer>
 
+<button id="back-to-top" title="Voltar ao topo">↑</button>
+
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		const toggle = document.getElementById('menu-toggle');
@@ -24,7 +26,9 @@
 	});
 </script>
 
-<?php wp_footer(); ?>
+<!-- footer.php -->
+  </div><!-- /.site-container -->
+  <?php wp_footer(); ?>
 </body>
 
 </html>

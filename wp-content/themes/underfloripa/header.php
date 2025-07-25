@@ -61,4 +61,7 @@
 			?>
 		</nav>
 	</header>
-	
+
+	<!-- header.php -->
+<body <?php body_class(); ?>>
+  <div class="site-container">
