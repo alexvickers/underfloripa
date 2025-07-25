@@ -33,6 +33,9 @@ function underfloripa_dequeue_unused_assets() {
 	wp_dequeue_style( 'colormag-editor-googlefonts' );
 	wp_deregister_style( 'colormag-editor-googlefonts' );
 
+	wp_dequeue_style( 'colormag_google_fonts' );
+	wp_deregister_style( 'colormag_google_fonts' );
+
 	// Remove Font Awesome variants
 	$font_awesome_handles = array(
 		'font-awesome-4',
@@ -41,6 +44,10 @@ function underfloripa_dequeue_unused_assets() {
 		'font-awesome-regular',
 		'font-awesome-brands',
 		'fontawesome',
+		'fa',
+		'font-awesome',
+		'elementor-icons-fa',
+		'colormag-font-awesome-6',
 	);
 
 	foreach ( $font_awesome_handles as $handle ) {
