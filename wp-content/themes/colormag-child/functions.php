@@ -9,22 +9,69 @@ foreach (glob(get_stylesheet_directory() . '/inc/*.php') as $file) {
 	require_once $file;
 }
 
-// Enqueue Parent and Child Styles
-function colormag_child_enqueue_styles() {
-	wp_enqueue_style('colormag-parent-style', get_template_directory_uri() . '/style.css');
-}
-add_action('wp_enqueue_scripts', 'colormag_child_enqueue_styles');
+// Enqueue Parent and Child Styles with correct order and cache busting
+function underfloripa_enqueue_styles() {
+	// Enqueue parent theme stylesheet
+	wp_enqueue_style(
+		'colormag-parent-style',
+		get_template_directory_uri() . '/style.css'
+	);
 
-// Force loading SCSS generated styles
-function underfloripa_child_enqueue_styles() {
+	// Enqueue child theme stylesheet and make it depend on the parent
 	wp_enqueue_style(
 		'underfloripa-child-style',
-		get_stylesheet_directory_uri() . '/css/style.css',
-		array('colormag-style'),
-		wp_get_theme()->get('Version')
+		get_stylesheet_directory_uri() . '/style-dist.css',
+		[ 'colormag-parent-style' ],
+		filemtime( get_stylesheet_directory() . '/style-dist.css' )
 	);
 }
-add_action('wp_enqueue_scripts', 'underfloripa_child_enqueue_styles');
+add_action( 'wp_enqueue_scripts', 'underfloripa_enqueue_styles' );
+
+// Dequeue unused styles and scripts from parent theme
+function underfloripa_dequeue_unused_assets() {
+	// Remove Open Sans font
+	wp_dequeue_style( 'colormag-editor-googlefonts' );
+	wp_deregister_style( 'colormag-editor-googlefonts' );
+
+	wp_dequeue_style( 'colormag_google_fonts' );
+	wp_deregister_style( 'colormag_google_fonts' );
+
+	// Remove Font Awesome variants
+	$font_awesome_handles = array(
+		'font-awesome-4',
+		'font-awesome-all',
+		'font-awesome-solid',
+		'font-awesome-regular',
+		'font-awesome-brands',
+		'fontawesome',
+		'fa',
+		'font-awesome',
+		'elementor-icons-fa',
+		'colormag-font-awesome-6',
+	);
+
+	foreach ( $font_awesome_handles as $handle ) {
+		wp_dequeue_style( $handle );
+		wp_deregister_style( $handle );
+	}
+
+	// Remove ColorMag News Ticker script
+	wp_dequeue_script( 'colormag-news-ticker' );
+	wp_deregister_script( 'colormag-news-ticker' );
+}
+add_action( 'wp_enqueue_scripts', 'underfloripa_dequeue_unused_assets', 20 );
+
+function underfloripa_remove_jquery_migrate( $scripts ) {
+	if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
+		$jquery_dep = &$scripts->registered['jquery'];
+
+		// Remove jquery-migrate from jquery dependencies
+		if ( $jquery_dep->deps ) {
+			$jquery_dep->deps = array_diff( $jquery_dep->deps, array( 'jquery-migrate' ) );
+		}
+	}
+}
+add_action( 'wp_default_scripts', 'underfloripa_remove_jquery_migrate' );
 
 // Custom Footer Scripts (via ACF option)
 function my_custom_footer_scripts() {
@@ -161,28 +208,38 @@ add_action('wp_ajax_nopriv_load_more_posts', 'my_ajax_load_more_posts');
 
 // AJAX Script Localizer
 function colormag_child_enqueue_scripts() {
-	$category_id  = is_category() ? get_queried_object_id() : 0;
-	$search_query = is_search() ? get_search_query() : '';
-	$author_id    = is_author() ? get_queried_object_id() : 0;
+	// Only load on archive-type pages
+	if (
+		is_archive() ||
+		is_search() ||
+		is_tag() ||
+		is_category() ||
+		is_author() ||
+		is_post_type_archive()
+	) {
+		$category_id  = is_category() ? get_queried_object_id() : 0;
+		$search_query = is_search() ? get_search_query() : '';
+		$author_id    = is_author() ? get_queried_object_id() : 0;
 
-	wp_enqueue_script(
-		'load-more',
-		get_stylesheet_directory_uri() . '/assets/js/load-more.js',
-		[],
-		null,
-		true
-	);
+		wp_enqueue_script(
+			'load-more',
+			get_stylesheet_directory_uri() . '/assets/js/load-more.js',
+			[],
+			null,
+			true
+		);
 
-	wp_localize_script('load-more', 'my_ajax_obj', [
-		'ajax_url'     => admin_url('admin-ajax.php'),
-		'nonce'        => wp_create_nonce('load_more_nonce'),
-		'category_id'  => $category_id,
-		'search_query' => $search_query,
-		'author_id'    => $author_id,
-		'post_type'    => get_post_type() ?: 'post',
-	]);
+		wp_localize_script( 'load-more', 'my_ajax_obj', [
+			'ajax_url'     => admin_url( 'admin-ajax.php' ),
+			'nonce'        => wp_create_nonce( 'load_more_nonce' ),
+			'category_id'  => $category_id,
+			'search_query' => $search_query,
+			'author_id'    => $author_id,
+			'post_type'    => get_post_type() ?: 'post',
+		] );
+	}
 }
-add_action('wp_enqueue_scripts', 'colormag_child_enqueue_scripts');
+add_action( 'wp_enqueue_scripts', 'colormag_child_enqueue_scripts' );
 
 // Title Clean Up on Front Page
 function underfloripa_remove_resenha_prefix_script() {
