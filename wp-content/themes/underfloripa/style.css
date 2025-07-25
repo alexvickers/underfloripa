@@ -9,3 +9,167 @@ License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: underfloripa
 */
+
+body {
+	font-family: 'Heebo', sans-serif;
+	font-weight: 300;
+	color: #111;
+	background: #fff;
+	line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6,
+.site-title {
+	font-family: 'Bebas Neue', Impact, sans-serif;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	font-weight: normal;
+	margin: 0;
+}
+
+.site-title {
+	font-size: 2.5rem;
+	color: #000;
+}
+
+.site-description {
+	font-style: italic;
+	opacity: 0.85;
+}
+
+.section-heading,
+.button--bold,
+.nav-item {
+	font-family: 'Bebas Neue', sans-serif;
+	text-transform: uppercase;
+}
+
+/* Base layout for the header */
+#site-header {
+	padding: 1rem;
+	background-color: #fff;
+	border-bottom: 1px solid #ddd;
+}
+
+.header-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.header-left {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	flex: 1;
+}
+
+.site-logo img {
+	max-height: 80px;
+	height: auto;
+	width: auto;
+}
+
+.site-title {
+	font-size: 1.8rem;
+	margin: 0;
+	line-height: 1.1;
+}
+
+.site-description {
+	font-size: 1rem;
+	color: #555;
+	margin: 0.2rem 0 0;
+}
+
+.header-right {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 0.5rem;
+}
+
+.header-socials a {
+	margin-left: 0.5rem;
+	font-size: 1.2rem;
+	text-decoration: none;
+}
+
+.header-banner img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+/* === Navigation === */
+.main-navigation {
+	border-top: 1px solid #ccc;
+	margin-top: 1rem;
+	padding-top: 0.5rem;
+}
+
+.main-navigation ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.main-navigation a {
+	text-decoration: none;
+	font-family: 'Bebas Neue', sans-serif;
+	font-size: 1.1rem;
+	color: #111;
+	text-transform: uppercase;
+}
+
+#menu-toggle {
+	display: none;
+	font-size: 1.2rem;
+	background: none;
+	border: none;
+	cursor: pointer;
+	margin-bottom: 0.5rem;
+}
+
+/* Responsive nav toggle */
+@media (max-width: 768px) {
+	#menu-toggle {
+		display: inline-block;
+	}
+
+	#primary-menu {
+		display: none;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	#primary-menu.open {
+		display: flex;
+	}
+}
+
+/* Footer Menu */
+.footer-menu {
+	margin-top: 2rem;
+	text-align: center;
+}
+
+.footer-menu ul {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.footer-menu a {
+	text-decoration: none;
+	color: #666;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+}
