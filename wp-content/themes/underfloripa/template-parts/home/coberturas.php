@@ -1,3 +1,10 @@
+<?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+	exit;
+}
+?>
+
 <section class="home-section coverages">
 	<h2>Coberturas</h2>
 

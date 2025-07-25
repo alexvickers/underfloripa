@@ -1,3 +1,10 @@
+<?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+	exit;
+}
+?>
+
 <footer id="site-footer">
 	<nav class="footer-menu">
 		<?php

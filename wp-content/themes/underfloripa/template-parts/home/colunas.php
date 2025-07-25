@@ -1,3 +1,10 @@
+<?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+	exit;
+}
+?>
+
 <section class="home-section colunas-grid">
 	<h2>Colunas</h2>
 

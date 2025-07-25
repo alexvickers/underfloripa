@@ -4,7 +4,6 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-$media_type = get_field('media_type');
 $album_name = get_field('album_name');
 $artist_name = get_field('artist_name');
 $record_label = get_field('record_label');
@@ -15,22 +14,6 @@ if (!$album_name) {
     echo '<p>Missing album name.</p>';
     return;
 }
-
-$media_icon = match ($media_type) {
-    'Movie' => '🎬',
-    'Book' => '📖',
-    default => '🎵',
-};
-
-if (is_admin()) {
-    echo '<p><strong>' . esc_html($media_icon . ' ' . $media_type . ' Review') . '</strong></p>';
-}
-
-$label_title = match ($media_type) {
-    'Movie' => 'Estúdio',
-    'Book' => 'Editora',
-    default => 'Gravadora',
-};
 
 $formatted_mark = ($mark == 10 || $mark == 0) ? (string) intval($mark) : number_format((float) $mark, 1);
 $class_suffix = is_string($media_type) ? strtolower($media_type) : 'unknown';

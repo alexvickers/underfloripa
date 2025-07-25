@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+	exit;
+}
+
+get_header(); ?>
 
 <div class="cm-row">
 	<?php do_action('colormag_before_body_content'); ?>

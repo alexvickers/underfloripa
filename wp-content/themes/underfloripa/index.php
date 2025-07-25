@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+	exit;
+}
+
+get_header(); ?>
 
 <div class="content-area">
 	<main class="main-content">
