@@ -27,8 +27,8 @@
 </script>
 
 <!-- footer.php -->
-  </div><!-- /.site-container -->
-  <?php wp_footer(); ?>
+</div><!-- /.site-container -->
+<?php wp_footer(); ?>
 </body>
 
 </html>

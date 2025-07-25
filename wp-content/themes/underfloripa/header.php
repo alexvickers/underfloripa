@@ -63,5 +63,6 @@
 	</header>
 
 	<!-- header.php -->
-<body <?php body_class(); ?>>
-  <div class="site-container">
+
+	<body <?php body_class(); ?>>
+		<div class="site-container">
