@@ -61,17 +61,44 @@ function underfloripa_dequeue_unused_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'underfloripa_dequeue_unused_assets', 20 );
 
+function underfloripa_move_jquery_to_footer() {
+    if (!is_admin()) {
+        wp_deregister_script('jquery');
+        wp_register_script('jquery', includes_url('/js/jquery/jquery.min.js'), [], null, true);
+        wp_enqueue_script('jquery');
+    }
+}
+add_action('wp_enqueue_scripts', 'underfloripa_move_jquery_to_footer');
+
+function underfloripa_defer_jquery($tag, $handle, $src) {
+    if ($handle === 'jquery') {
+        return '<script src="' . $src . '" defer></script>';
+    }
+    return $tag;
+}
+add_filter('script_loader_tag', 'underfloripa_defer_jquery', 10, 3);
+
 function underfloripa_remove_jquery_migrate( $scripts ) {
 	if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
 		$jquery_dep = &$scripts->registered['jquery'];
 
-		// Remove jquery-migrate from jquery dependencies
 		if ( $jquery_dep->deps ) {
 			$jquery_dep->deps = array_diff( $jquery_dep->deps, array( 'jquery-migrate' ) );
 		}
 	}
 }
 add_action( 'wp_default_scripts', 'underfloripa_remove_jquery_migrate' );
+
+function underfloripa_dequeue_unused_colormag_scripts() {
+    // Dequeue and deregister bxSlider
+    wp_dequeue_script('colormag-bxslider');
+    wp_deregister_script('colormag-bxslider');
+
+    // Dequeue and deregister skip link fix
+    wp_dequeue_script('colormag-skip-link-focus-fix');
+    wp_deregister_script('colormag-skip-link-focus-fix');
+}
+add_action('wp_enqueue_scripts', 'underfloripa_dequeue_unused_colormag_scripts', 20);
 
 // Custom Footer Scripts (via ACF option)
 function my_custom_footer_scripts() {
@@ -83,39 +110,6 @@ function my_custom_footer_scripts() {
 	}
 }
 add_action('wp_footer', 'my_custom_footer_scripts', 100);
-
-// Front Page Scripts (Slick carousel + custom)
-function enqueue_custom_home_assets() {
-	if ( is_front_page() ) {
-		wp_enqueue_style( 'slick-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' );
-		wp_enqueue_style( 'slick-theme-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css' );
-		wp_enqueue_script( 'slick-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', [ 'jquery' ], null, true );
-		wp_enqueue_script( 'custom-home-js', get_stylesheet_directory_uri() . '/assets/js/custom-home.js', [ 'slick-js' ], null, true );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'enqueue_custom_home_assets' );
-
-function add_defer_to_specific_scripts($tag, $handle, $src) {
-	$defer_scripts = ['slick-js', 'custom-home-js'];
-
-	if (in_array($handle, $defer_scripts)) {
-		return '<script src="' . esc_url($src) . '" defer></script>' . "\n";
-	}
-	return $tag;
-}
-add_filter('script_loader_tag', 'add_defer_to_specific_scripts', 10, 3);
-
-// Admin: Enqueue ACF Script for Album Reviews
-function enqueue_admin_review_labels_script() {
-	wp_enqueue_script(
-		'custom-review-labels',
-		get_stylesheet_directory_uri() . '/assets/js/admin-review-labels.js',
-		['acf-input'],
-		filemtime(get_stylesheet_directory() . '/assets/js/admin-review-labels.js'),
-		true
-	);
-}
-add_action('acf/input/admin_enqueue_scripts', 'enqueue_admin_review_labels_script');
 
 // SEO: Custom Meta Description for Album Review Posts (via Rank Math)
 function filter_rankmath_meta_description($content) {
