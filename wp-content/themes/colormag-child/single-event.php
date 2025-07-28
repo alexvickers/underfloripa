@@ -11,21 +11,30 @@ get_header();
                     <div class="cm-content-wrapper cm-row">
 
                         <div class="cm-col-4">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <div class="cm-featured-image">
+                            <div class="cm-featured-image">
+                                <?php if (has_post_thumbnail()) : ?>
                                     <?php the_post_thumbnail('large'); ?>
-                                </div>
-                            <?php endif; ?>
+                                <?php else : ?>
+                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/placeholder-poster.png" alt="Placeholder image" />
+                                <?php endif; ?>
+                            </div>
                         </div>
 
                         <div class="cm-col-8">
                             <header class="entry-header">
                                 <h1 class="entry-title">
-                                    <?php the_title(); ?>
-                                    <?php $venue = get_field('venue_post');
+                                    <?php
+                                    the_title();
+                                    $venue = get_field('venue_post');
                                     if ($venue) {
-                                        echo ' - ' . esc_html(get_the_title($venue));
-                                    } ?>
+                                        $venue_name = get_the_title($venue);
+                                        $venue_city = get_field('venue_city', $venue);
+                                        echo ' - ' . esc_html($venue_name);
+                                        if ($venue_city) {
+                                            echo ', ' . esc_html($venue_city);
+                                        }
+                                    }
+                                    ?>
                                 </h1>
                                 <?php if (get_post_status() === 'past_event') : ?>
                                     <div class="notice notice-warning">Este evento já aconteceu.</div>
