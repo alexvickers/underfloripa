@@ -1,7 +1,7 @@
 <?php
 // Exit if accessed directly.
 if (! defined('ABSPATH')) {
-	exit;
+    exit;
 }
 
 get_header(); ?>
@@ -14,8 +14,7 @@ get_header(); ?>
         <?php get_template_part('template-parts/home/colunas'); ?>
     </main>
     <aside class="sidebar">
-        <!-- Widgets, etc. -->
-    </aside>
+        <?php get_sidebar(); ?> </aside>
 </div>
 
 <?php get_footer();

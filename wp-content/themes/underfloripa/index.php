@@ -20,8 +20,7 @@ get_header(); ?>
 		?>
 	</main>
 	<aside class="sidebar">
-		<!-- Widgets, etc. -->
-	</aside>
+		<?php get_sidebar(); ?> </aside>
 </div>
 
 <?php get_footer();
