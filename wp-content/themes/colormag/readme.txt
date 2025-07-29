@@ -2,11 +2,11 @@
 
 Contributors: themegrill
 Author: ThemeGrill
-Version: 4.0.13
+Version: 4.0.19
 Tested up to: 6.8
 Requires PHP: 7.4
 Requires at least: 4.7
-Stable tag: 4.0.13
+Stable tag: 4.0.19
 
 License: GNU General Public License, version 3 (GPLv3)
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
@@ -35,7 +35,58 @@ Resources packed within the theme.
 * Font Awesome by Dave Gandy http://fortawesome.github.io/Font-Awesome/
   SIL OFL 1.1 http://scripts.sil.org/OFL.
 * Images used in the screenshot are licensed under Creative Commons Zero (CC0):
-
+  
+  https://pxhere.com/en/photo/1368697
+  https://pxhere.com/en/photo/99223
+  https://pxhere.com/en/photo/1364216
+  https://pxhere.com/en/photo/1587555
+  https://pxhere.com/en/photo/1653207
+  https://pxhere.com/en/photo/1412380
+  https://pxhere.com/en/photo/1630679
+  https://pxhere.com/en/photo/844347
+  https://pxhere.com/en/photo/1161323
+  https://pxhere.com/en/photo/1150331
+  https://pxhere.com/en/photo/1419843
+  https://pxhere.com/en/photo/1515553
+  https://pxhere.com/en/photo/826138
+  https://pxhere.com/en/photo/1349041
+  https://stocksnap.io/photo/lake-blue-6WS2NTFGOM
+  https://pxhere.com/en/photo/1637556
+  https://pxhere.com/en/photo/1629588
+  https://stocksnap.io/photo/lake-blue-TV2PJUJEL6
+  https://pxhere.com/en/photo/1659530
+  https://pxhere.com/en/photo/948574
+  https://pxhere.com/en/photo/867615
+  https://pxhere.com/en/photo/775986
+  https://pxhere.com/en/photo/1629858
+  https://pxhere.com/en/photo/1622676
+  https://pxhere.com/en/photo/1630672
+  https://pxhere.com/en/photo/1622692
+  https://stocksnap.io/photo/sneakers-weights-DAVLOF8C3R
+  https://pxhere.com/en/photo/1260422
+  https://pxhere.com/en/photo/1633649
+  https://pxhere.com/en/photo/702665
+  https://pxhere.com/en/photo/1628484
+  https://pxhere.com/en/photo/1620892
+  https://pxhere.com/en/photo/1629578
+  https://pxhere.com/en/photo/701015
+  https://pxhere.com/en/photo/810678
+  https://pxhere.com/en/photo/1389031
+  https://pxhere.com/en/photo/1662748
+  https://pxhere.com/en/photo/414652
+  https://pxhere.com/en/photo/836008
+  https://pxhere.com/en/photo/1633648
+  https://stocksnap.io/photo/lake-blue-75DON567CQ
+  https://pxhere.com/en/photo/1629572
+  https://pxhere.com/en/photo/1633156
+  https://pxhere.com/en/photo/1396022
+  https://stocksnap.io/photo/lake-blue-YPMFUHYQKV
+  https://pxhere.com/en/photo/1626697
+  https://stocksnap.io/photo/lake-blue-AJU8ODUJSV
+  https://stocksnap.io/photo/lake-blue-0MRSBYLPNM
+  https://stocksnap.io/photo/lake-blue-FJIZ474BGQ
+  https://stocksnap.io/photo/lake-blue-TDAU1ERCD4
+ 
   https://pxhere.com/en/photo/613031
   https://pxhere.com/en/photo/1558211
   https://pxhere.com/en/photo/1333828
@@ -69,6 +120,36 @@ If you've translated this theme into your language, feel free to send the transl
 and we will include it within the theme from next version update.
 
 == Changelog ==
+= Version 4.0.19 - 2025-07-09 =
+* Fix       - PHP error.
+
+= Version 4.0.18 - 2025-07-07 =
+* Added       - Option to set site title and tagline visibility.
+* Added       - New font families in editor typography.
+
+= Version 4.0.17 - 2025-06-09 =
+* Fix         - Typography slide issue.
+* Fix         - Fontawesome 6 issue.
+
+= Version 4.0.16 - 2025-06-03 =
+* Added       - Option to select widgets post by tags and author.
+* Added       - Option to logo size on responsive device.
+* Update      - Translation ready for all theme strings.
+
+= Version 4.0.15 - 2025-05-21 =
+* Fix         - Starter Template issue.
+
+= Version 4.0.14 - 2025-05-21 =
+* Added       - New ColorMag Main demo (https://themegrilldemos.com/colormag/).
+* Added       - Option to change full width search width, border width, border color and border radius.
+* Added       - Option to change full width search placeholder color.
+* Added       - Option to change NewsTicker label in header builder.
+* Added       - Option to change NewsTicker link typography in header builder.
+* Added       - Option to change Social icon color and style in header builder.
+* Added       - Option to enable/disable page header.
+* Added       - Option change NewsTicker width in header builder.
+* Fix         - Toggle menu issue on customizer.
+
 = Version 4.0.13 - 2025-05-05 =
 * Added - Icon size option in random component of header builder.
 * Added - Option to change header builder primary menu active background color.

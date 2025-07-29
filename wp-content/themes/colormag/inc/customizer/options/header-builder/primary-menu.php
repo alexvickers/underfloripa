@@ -40,6 +40,13 @@ $options = array(
 							'transport' => 'postMessage',
 							'section'   => 'colormag_header_builder_primary_menu',
 						),
+						'colormag_header_primary_menu_active_text_color' => array(
+							'default'   => '',
+							'type'      => 'customind-color',
+							'title'     => esc_html__( 'Active', 'colormag' ),
+							'transport' => 'postMessage',
+							'section'   => 'colormag_header_builder_primary_menu',
+						),
 					),
 				),
 
@@ -67,9 +74,9 @@ $options = array(
 
 				'colormag_header_primary_menu_typography' => array(
 					'default'   => array(
-						'font-family' => 'default',
-						'font-weight' => '600',
-						'font-size'   => array(
+						'font-family'    => 'default',
+						'font-weight'    => '600',
+						'font-size'      => array(
 							'desktop' => array(
 								'size' => '14',
 								'unit' => 'px',
@@ -83,6 +90,22 @@ $options = array(
 								'unit' => '',
 							),
 						),
+						'line-height'    => array(
+							'desktop' => array(
+								'size' => '',
+								'unit' => '-',
+							),
+							'tablet'  => array(
+								'size' => '',
+								'unit' => '-',
+							),
+							'mobile'  => array(
+								'size' => '',
+								'unit' => '-',
+							),
+						),
+						'font-style'     => 'normal',
+						'text-transform' => 'none',
 					),
 					'type'      => 'customind-typography',
 					'title'     => esc_html__( 'Typography', 'colormag' ),

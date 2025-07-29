@@ -7,6 +7,7 @@ namespace Customind\Core;
 
 use Customind\Core\Factories\TypeFactory;
 use Customind\Core\Traits\Hook;
+use Customind\Core\Types\UpgradeSection;
 use Customind\Core\Types\UpsellSection;
 
 class Customind {
@@ -102,16 +103,33 @@ class Customind {
 	 * @return void
 	 */
 	public function init_hooks() {
-		add_action( 'customize_controls_enqueue_scripts', [ $this, 'enqueue_scripts' ], PHP_INT_MAX );
-		add_action( 'customize_register', [ $this, 'register' ], PHP_INT_MAX );
-		add_action( 'customize_preview_init', [ $this, 'enqueue_preview_scripts' ], PHP_INT_MAX );
+		add_action( 'customize_controls_enqueue_scripts', [ $this, 'enqueue_scripts' ], 999 );
+		add_action( 'customize_register', [ $this, 'register' ], 999 );
+		add_action( 'customize_preview_init', [ $this, 'enqueue_preview_scripts' ], 999 );
 		add_action( 'customize_save_after', [ $this, 'on_save' ] );
+		add_action( 'wp_head', [ $this, 'enqueue_custom_fonts' ] );
 
 		$this->add_action( 'register:control', [ $this, 'process_settings' ], 10, 3 );
 		$this->add_action( 'register:control', [ $this, 'process_builder_panels' ], 10, 3 );
 		$this->add_action( 'customize:save', [ $this, 'update_google_fonts_url' ] );
 	}
 
+	/**
+	 * Enqueue custom fonts.
+	 *
+	 * This function retrieves custom fonts CSS, registers a new style for local fonts,
+	 * enqueues the style, and adds the CSS inline if it is not empty.
+	 *
+	 * @return void
+	 */
+	public function enqueue_custom_fonts() {
+		$css = get_custom_fonts_css();
+		if ( ! empty( $css ) ) {
+			wp_register_style( 'customind-local-fonts', false );
+			wp_enqueue_style( 'customind-local-fonts' );
+			wp_add_inline_style( 'customind-local-fonts', $css );
+		}
+	}
 
 	/**
 	 * On save.
@@ -196,6 +214,7 @@ class Customind {
 		$this->register_items( $wp_customize, 'section' );
 		$this->register_items( $wp_customize, 'control' );
 		$wp_customize->register_section_type( UpsellSection::class );
+		$wp_customize->register_section_type( UpgradeSection::class );
 		$this->process_typography_controls();
 	}
 
@@ -218,6 +237,9 @@ class Customind {
 			} elseif ( 'upsell-section' === ( $args['type'] ?? '' ) ) {
 				$_type        = 'customind-upsell-section';
 				$args['type'] = 'customind-upsell-section';
+			} elseif ( 'upgrade-section' === ( $args['type'] ?? '' ) ) {
+				$_type        = 'customind-upgrade-section';
+				$args['type'] = 'customind-upgrade-section';
 			} else {
 				$_type = $args['type'] ?? "customind-$type";
 			}
@@ -314,7 +336,7 @@ class Customind {
 	 */
 	private function add_items( array $args, $type ) {
 		foreach ( $args as $key => $arg ) {
-			if ( isset( $arg['type'] ) && 'upsell-section' === $arg['type'] ) {
+			if ( isset( $arg['type'] ) && ( 'upgrade-section' === $arg['type'] || 'upsell-section' === $arg['type'] ) ) {
 				$this->sections[ $key ] = $arg;
 				continue;
 			}
@@ -358,6 +380,8 @@ class Customind {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
+
+		$custom_fonts     = [];
 		$asset            = $this->get_asset( 'customind' );
 		$fontawesome_path = $this->get_asset_url( 'all.min.css', "assets/fontawesome/{$this->get_fontawesome_version()}/css", false );
 
@@ -365,24 +389,33 @@ class Customind {
 		wp_enqueue_style( 'customind', $this->get_asset_url( 'customind.css' ), [ 'wp-components' ], $asset['version'] );
 		// Support RTL.
 		wp_style_add_data( 'customind', 'rtl', 'replace' );
-		wp_enqueue_script( 'customind', $this->get_asset_url( 'customind.js' ), array_merge( $asset['dependencies'], [ 'customize-preview' ] ), $asset['version'], true );
+		wp_enqueue_script( 'customind', $this->get_asset_url( 'customind.js' ), array_merge( $asset['dependencies'] ), $asset['version'], true );
 
 		if ( ! empty( $this->i18n_data['domain'] ) && ! empty( $this->i18n_data['path'] ) ) {
 			wp_set_script_translations( 'customind', $this->i18n_data['domain'], $this->i18n_data['path'] );
 		}
 
+		// Custom fonts from Magazine Blocks Pro.
+		if ( function_exists( 'magazine_blocks_pro_get_fonts' ) ) {
+			$custom_fonts = magazine_blocks_pro_get_fonts();
+		}
+
 		wp_localize_script(
 			'customind',
 			'__CUSTOMIND__',
-			[
-				'googleFonts'           => $this->get_google_fonts(),
-				'fontawesome'           => $this->get_fontawesome(),
-				'condition'             => $this->get_condition(),
-				'conditions'            => $this->get_conditions(),
-				'builderPanels'         => $this->get_builder_panels(),
-				'cssVarPrefix'          => $this->get_css_var_prefix(),
-				'colorPaletteControlId' => $this->get_color_palette_control_id(),
-			]
+			apply_filters(
+				'customind_setting_data',
+				[
+					'googleFonts'           => $this->get_google_fonts(),
+					'customFonts'           => $custom_fonts,
+					'fontawesome'           => $this->get_fontawesome(),
+					'condition'             => $this->get_condition(),
+					'conditions'            => $this->get_conditions(),
+					'builderPanels'         => $this->get_builder_panels(),
+					'cssVarPrefix'          => $this->get_css_var_prefix(),
+					'colorPaletteControlId' => $this->get_color_palette_control_id(),
+				]
+			)
 		);
 	}
 

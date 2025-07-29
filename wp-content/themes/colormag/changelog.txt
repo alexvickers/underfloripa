@@ -1,5 +1,35 @@
 == Changelog ==
-= 4.0.13 - 2025-05-05 =
+= 4.0.19 - 2025-07-09 =
+* Fix       - PHP error.
+
+= 4.0.18 - 2025-07-07 =
+* Added       - Option to set site title and tagline visibility.
+* Added       - New font families in editor typography.
+
+= 4.0.17 - 2025-06-09 =
+* Fix         - Typography slide issue.
+* Fix         - Fontawesome 6 issue.
+
+= 4.0.16 - 2025-06-03 =
+* Added       - Option to select widgets post by tags and author.
+* Added       - Option to logo size on responsive device.
+* Update      - Translation ready for all theme strings.
+
+= 4.0.15 - 2025-05-21 =
+* Fix         - Starter Template issue.
+
+= 4.0.14 - 2025-05-21 =
+* Added       - New ColorMag Main demo (https://themegrilldemos.com/colormag/).
+* Added       - Option to change full width search width, border width, border color and border radius.
+* Added       - Option to change full width search placeholder color.
+* Added       - Option to change NewsTicker label in header builder.
+* Added       - Option to change NewsTicker link typography in header builder.
+* Added       - Option to change Social icon color and style in header builder.
+* Added       - Option to enable/disable page header.
+* Added       - Option change NewsTicker width in header builder.
+* Fix         - Toggle menu issue on customizer.
+
+= 4.0.13 - 2025-05-21 =
 * Added - Icon size option in random component of header builder.
 * Added - Option to change header builder primary menu active background color.
 * Fix   - Header builder random component icon hover color issue.

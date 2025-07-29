@@ -37,7 +37,7 @@ require get_template_directory() . '/inc/admin/class-colormag-changelog-parser.p
 
 
 ///** ColorMag setup file, hooked for `after_setup_theme`. */
-//require COLORMAG_INCLUDES_DIR . '/colormag-setup.php';
+require COLORMAG_INCLUDES_DIR . '/colormag-setup.php';
 
 /**
  * Base.
@@ -84,12 +84,17 @@ $customind->set_i18n_data(
 		'domain' => 'colormag',
 	]
 );
-$customind->set_section_i18n(
-	[
-		/* Translators: 1: Panel Title. */
-		'customizing-action' => __( 'Customizing &#9656; %s', 'colormag' ),
-		'customizing'        => __( 'Customizing', 'colormag' ),
-	]
+add_action(
+	'after_setup_theme',
+	function () use ( $customind ) {
+		$customind->set_section_i18n(
+			[
+				/* Translators: 1: Panel Title. */
+				'customizing-action' => __( 'Customizing ▶ %s', 'colormag' ),
+				'customizing'        => __( 'Customizing', 'colormag' ),
+			]
+		);
+	}
 );
 
 /**
@@ -156,6 +161,7 @@ require COLORMAG_INCLUDES_DIR . '/colormag-wp-query.php';
 
 /** Breadcrumb class. */
 require_once COLORMAG_INCLUDES_DIR . '/class-breadcrumb-trail.php';
+require_once COLORMAG_INCLUDES_DIR . '/class-colormag-starter-content.php';
 
 /** Load functions */
 require_once COLORMAG_INCLUDES_DIR . '/ajax.php';
@@ -383,3 +389,20 @@ function cm_customize_preview_js() {
 	);
 }
 add_action( 'customize_preview_init', 'cm_customize_preview_js' );
+
+add_action(
+	'customize_controls_enqueue_scripts',
+	function () {
+		add_filter(
+			'customind_setting_data',
+			function ( $data ) {
+				$data['upgrade_notice']      = true;
+				$data['upgrade_notice_text'] = __( 'Upgrade to ColorMag Pro for more features and customization options.', 'colormag' );
+				$data['upgrade_notice_link'] = 'https://themegrill.com/pricing/?utm_medium=customizer-upsell&utm_source=colormag-theme&utm_campaign=upsell-button&utm_content=more-feature-in-pro';
+
+				return $data;
+			}
+		);
+	},
+	11
+);

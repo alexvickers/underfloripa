@@ -90,7 +90,7 @@ if ( ! class_exists( 'ColorMag_Enqueue_Scripts' ) ) {
 			$inline_style_handle = ( 'white' === $skin_color ) ? 'colormag_style' : 'colormag_dark_style';
 
 			// Loads our main css.
-			wp_enqueue_style( 'colormag_style', get_stylesheet_uri(), array(), COLORMAG_THEME_VERSION );
+			wp_enqueue_style( 'colormag_style', get_stylesheet_uri(), array(), time() );
 			wp_style_add_data( 'colormag_style', 'rtl', 'replace' );
 
 			// Load dark css.
@@ -182,6 +182,9 @@ if ( ! class_exists( 'ColorMag_Enqueue_Scripts' ) ) {
 				wp_enqueue_script( 'comment-reply' );
 			}
 
+			// Theme custom JS.
+			wp_enqueue_script( 'colormag-custom', COLORMAG_JS_URL . '/colormag-custom' . $suffix . '.js', array( 'jquery' ), COLORMAG_THEME_VERSION, true );
+
 			// BxSlider JS.
 			wp_enqueue_script( 'colormag-bxslider', COLORMAG_JS_URL . '/jquery.bxslider' . $suffix . '.js', array( 'jquery' ), COLORMAG_THEME_VERSION, true );
 
@@ -221,26 +224,6 @@ if ( ! class_exists( 'ColorMag_Enqueue_Scripts' ) ) {
 					'file'    => '/library/font-awesome/css/v4-shims',
 					'version' => '4.7.0',
 				),
-				array(
-					'handle'  => 'font-awesome-all',
-					'file'    => '/library/font-awesome/css/all',
-					'version' => '6.2.4',
-				),
-				array(
-					'handle'  => 'font-awesome-solid',
-					'file'    => '/library/font-awesome/css/solid',
-					'version' => '6.2.4',
-				),
-				array(
-					'handle'  => 'font-awesome-solid',
-					'file'    => '/library/font-awesome/css/regular',
-					'version' => '6.2.4',
-				),
-				array(
-					'handle'  => 'font-awesome-solid',
-					'file'    => '/library/font-awesome/css/brands',
-					'version' => '6.2.4',
-				),
 			);
 
 			foreach ( $font_awesome_styles as $style ) {
@@ -252,6 +235,8 @@ if ( ! class_exists( 'ColorMag_Enqueue_Scripts' ) ) {
 				);
 				wp_enqueue_style( $style['handle'] );
 			}
+
+			wp_enqueue_style( 'colormag-font-awesome-6', get_template_directory_uri() . '/inc/customizer/customind/assets/fontawesome/v6/css/all.min.css', array(), '6.2.4' );
 
 			// Weather Icons.
 			wp_register_style( 'owfont', get_template_directory_uri() . '/assets/css/owfont-regular' . $suffix . '.css', array(), COLORMAG_THEME_VERSION );
@@ -269,8 +254,6 @@ if ( ! class_exists( 'ColorMag_Enqueue_Scripts' ) ) {
 			// Skip link focus fix JS enqueue.
 			wp_enqueue_script( 'colormag-skip-link-focus-fix', COLORMAG_JS_URL . '/skip-link-focus-fix' . $suffix . '.js', array(), COLORMAG_THEME_VERSION, true );
 
-			// Theme custom JS.
-			wp_enqueue_script( 'colormag-custom', COLORMAG_JS_URL . '/colormag-custom' . $suffix . '.js', array( 'jquery' ), COLORMAG_THEME_VERSION, true );
 		}
 
 		public function customize_js() {
@@ -375,6 +358,53 @@ if ( ! class_exists( 'ColorMag_Enqueue_Scripts' ) ) {
 				padding: 10px 30px 11px 14px;
 				display: block;
 				}
+
+				#accordion-panel-nav_menus {
+				margin-top:10px;
+				}
+
+				#accordion-section-colormag_customize_fb_section {
+				display: flex;
+				    justify-content: center;
+				}
+
+			#customize-theme-controls #accordion-section-colormag_customize_fb_section .accordion-section-title {
+             background: transparent !important;
+		    width: 220px;
+		    border: 1px solid #1877F2;
+		    border-radius: 4px;
+		    margin: 21px;
+		    position: relative;
+		    text-align: right;
+		}
+
+		#customize-theme-controls #accordion-section-colormag_customize_fb_section .accordion-section-title:hover {
+		    background: #F7F7F7 !important;
+			}
+
+		#accordion-section-colormag_customize_fb_section .accordion-section-title::before {
+		        content: "\f09a";
+			    font-family: "Font Awesome 6 Brands";
+			    position: absolute;
+			    right: 195px;
+			    top: 48%;
+			    transform: translateY(-50%);
+			    color: #1877F2;
+			    font-size: 15px;
+			    display: block;
+					}
+
+		#customize-theme-controls #accordion-section-colormag_customize_fb_section .accordion-section-title a {
+		       color: #1877F2 !important;
+		    padding: 10px 10px 10px 11px;
+		    display:block;
+
+		}
+
+		#customize-theme-controls #accordion-section-colormag_customize_fb_section .accordion-section-title a:focus {
+		       box-shadow: 0 0 0 0 #2271b1;
+            outline: 0 solid transparent;
+		}
 		    '
 			);
 		}
@@ -979,13 +1009,48 @@ if ( ! function_exists( 'colormag_parse_slider_css' ) ) :
 
 		$parse_css = '';
 
-		if ( isset( $output_value['size'] ) ) {
+		if ( isset( $output_value['desktop']['size'] ) || isset( $output_value['tablet']['size'] ) || isset( $output_value['mobile']['size'] ) ) {
+			$parse_css = '';
 
-			$parse_css = $selector . '{';
+			// Desktop styling
+			if ( isset( $output_value['desktop']['size'] ) ) {
+				$unit = isset( $output_value['desktop']['unit'] ) ? $output_value['desktop']['unit'] :
+					( isset( $default_value['desktop']['unit'] ) ? $default_value['desktop']['unit'] : 'px' );
 
-			$unit       = isset( $output_value['unit'] ) ? $output_value['unit'] : ( isset( $default_value['unit'] ) ? $default_value['unit'] : 'px' );
+				$parse_css .= $selector . '{';
+				$parse_css .= $property . ':' . $output_value['desktop']['size'] . $unit . ';';
+				$parse_css .= '}';
+			}
+
+			// Tablet styling
+			if ( isset( $output_value['tablet']['size'] ) && ! empty( $output_value['tablet']['size'] ) ) {
+				$tablet_unit = isset( $output_value['tablet']['unit'] ) ? $output_value['tablet']['unit'] :
+					( isset( $default_value['tablet']['unit'] ) ? $default_value['tablet']['unit'] : 'px' );
+
+				$parse_css .= '@media(max-width: 768px){';
+				$parse_css .= $selector . '{';
+				$parse_css .= $property . ':' . $output_value['tablet']['size'] . $tablet_unit . ';';
+				$parse_css .= '}';
+				$parse_css .= '}';
+			}
+
+			// Mobile styling
+			if ( isset( $output_value['mobile']['size'] ) && ! empty( $output_value['mobile']['size'] ) ) {
+				$mobile_unit = isset( $output_value['mobile']['unit'] ) ? $output_value['mobile']['unit'] :
+					( isset( $default_value['mobile']['unit'] ) ? $default_value['mobile']['unit'] : 'px' );
+
+				$parse_css .= '@media(max-width: 600px){';
+				$parse_css .= $selector . '{';
+				$parse_css .= $property . ':' . $output_value['mobile']['size'] . $mobile_unit . ';';
+				$parse_css .= '}';
+				$parse_css .= '}';
+			}
+		} elseif ( isset( $output_value['size'] ) ) {
+			// Handle legacy format (non-responsive)
+			$parse_css  = $selector . '{';
+			$unit       = isset( $output_value['unit'] ) ? $output_value['unit'] :
+				( isset( $default_value['unit'] ) ? $default_value['unit'] : 'px' );
 			$parse_css .= $property . ':' . $output_value['size'] . $unit . ';';
-
 			$parse_css .= '}';
 		}
 

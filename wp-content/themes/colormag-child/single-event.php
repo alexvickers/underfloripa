@@ -28,10 +28,13 @@ get_header();
                                     $venue = get_field('venue_post');
                                     if ($venue) {
                                         $venue_name = get_the_title($venue);
-                                        $venue_city = get_field('venue_city', $venue);
                                         echo ' - ' . esc_html($venue_name);
-                                        if ($venue_city) {
-                                            echo ', ' . esc_html($venue_city);
+
+                                        $city_terms = get_the_terms($venue, 'venue_city');
+
+                                        if (!is_wp_error($city_terms) && !empty($city_terms)) {
+                                            $city = $city_terms[0];
+                                            echo ', ' . esc_html($city->name);
                                         }
                                     }
                                     ?>

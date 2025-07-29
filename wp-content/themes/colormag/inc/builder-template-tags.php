@@ -14,53 +14,57 @@ if ( ! function_exists( 'colormag_header_default_builder' ) ) {
 	 * @since 4.0.0
 	 */
 	function colormag_header_default_builder() {
-		return array(
-			'desktop' => array(
-				'top'    => array(
-					'left'   => array(),
-					'center' => array(),
-					'right'  => array(),
-				),
-				'main'   => array(
-					'left'   => array(
-						'logo',
+		$header_builder_default = apply_filters(
+			'colormag_header_builder_default_options',
+			array(
+				'desktop' => array(
+					'top'    => array(
+						'left'   => array(),
+						'center' => array(),
+						'right'  => array(),
 					),
-					'center' => array(),
-					'right'  => array(),
-				),
-				'bottom' => array(
-					'left'   => array(
-						'primary-menu',
+					'main'   => array(
+						'left'   => array(
+							'logo',
+						),
+						'center' => array(),
+						'right'  => array(),
 					),
-					'center' => array(),
-					'right'  => array(),
-				),
-			),
-			'mobile'  => array(
-				'top'    => array(
-					'left'   => array(),
-					'center' => array(),
-					'right'  => array(),
-				),
-				'main'   => array(
-					'left'   => array(),
-					'center' => array(
-						'logo',
+					'bottom' => array(
+						'left'   => array(
+							'primary-menu',
+						),
+						'center' => array(),
+						'right'  => array(),
 					),
-					'right'  => array(),
 				),
-				'bottom' => array(
-					'left'   => array(
-						'toggle-button',
+				'mobile'  => array(
+					'top'    => array(
+						'left'   => array(),
+						'center' => array(),
+						'right'  => array(),
 					),
-					'center' => array(),
-					'right'  => array(),
+					'main'   => array(
+						'left'   => array(),
+						'center' => array(
+							'logo',
+						),
+						'right'  => array(),
+					),
+					'bottom' => array(
+						'left'   => array(
+							'toggle-button',
+						),
+						'center' => array(),
+						'right'  => array(),
+					),
 				),
-			),
-			'offset'  => array(
-				'mobile-menu',
-			),
+				'offset'  => array(
+					'mobile-menu',
+				),
+			)
 		);
+		return $header_builder_default;
 	}
 }
 
@@ -289,34 +293,38 @@ if ( ! function_exists( 'colormag_footer_builder_default' ) ) {
 	 * @since 4.0.0
 	 */
 	function colormag_footer_builder_default() {
-		return array(
-			'desktop' => array(
-				'top'    => array(
-					'top-1' => array(),
-					'top-2' => array(),
-					'top-3' => array(),
-					'top-4' => array(),
-					'top-5' => array(),
+		$colormag_footer_builder_default = apply_filters(
+			'colormag_footer_builder_default_options',
+			array(
+				'desktop' => array(
+					'top'    => array(
+						'top-1' => array(),
+						'top-2' => array(),
+						'top-3' => array(),
+						'top-4' => array(),
+						'top-5' => array(),
+					),
+					'main'   => array(
+						'main-1' => array(),
+						'main-2' => array(),
+						'main-3' => array(),
+						'main-4' => array(),
+						'main-5' => array(),
+					),
+					'bottom' => array(
+						'bottom-1' => array( 'copyright' ),
+						'bottom-2' => array(),
+						'bottom-3' => array(),
+						'bottom-4' => array(),
+						'bottom-5' => array(),
+					),
 				),
-				'main'   => array(
-					'main-1' => array(),
-					'main-2' => array(),
-					'main-3' => array(),
-					'main-4' => array(),
-					'main-5' => array(),
+				'offset'  => array(
+					'mobile-menu',
 				),
-				'bottom' => array(
-					'bottom-1' => array( 'copyright' ),
-					'bottom-2' => array(),
-					'bottom-3' => array(),
-					'bottom-4' => array(),
-					'bottom-5' => array(),
-				),
-			),
-			'offset'  => array(
-				'mobile-menu',
-			),
+			)
 		);
+		return  $colormag_footer_builder_default;
 	}
 }
 
