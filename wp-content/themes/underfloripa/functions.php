@@ -75,6 +75,20 @@ function my_custom_footer_scripts() {
 }
 add_action('wp_footer', 'my_custom_footer_scripts', 100);
 
+// Added sidebar
+function underfloripa_register_sidebars() {
+	register_sidebar([
+		'name'          => 'Primary Sidebar',
+		'id'            => 'primary-sidebar',
+		'description'   => 'Main sidebar on the right side',
+		'before_widget' => '<div class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	]);
+}
+add_action('widgets_init', 'underfloripa_register_sidebars');
+
 // AJAX: Load More Posts
 function my_ajax_load_more_posts() {
 	if (! isset($_GET['nonce']) || ! wp_verify_nonce($_GET['nonce'], 'load_more_nonce')) {

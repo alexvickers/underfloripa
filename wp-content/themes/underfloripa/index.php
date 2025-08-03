@@ -19,8 +19,11 @@ get_header(); ?>
 		endif;
 		?>
 	</main>
-	<aside class="sidebar">
-		<?php get_sidebar(); ?> </aside>
+	<?php if (is_active_sidebar('primary-sidebar')) : ?>
+		<aside class="sidebar">
+			<?php dynamic_sidebar('primary-sidebar'); ?>
+		</aside>
+	<?php endif; ?>
 </div>
 
 <?php get_footer();
