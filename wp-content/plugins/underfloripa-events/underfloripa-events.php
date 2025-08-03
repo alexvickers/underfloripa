@@ -142,6 +142,21 @@ function uf_order_venues_alphabetically_admin($query) {
 	}
 }
 
+add_action('pre_get_posts', 'uf_exclude_past_events_from_admin_list');
+function uf_exclude_past_events_from_admin_list($query) {
+	if (!is_admin() || !$query->is_main_query()) {
+		return;
+	}
+
+	$screen = get_current_screen();
+	if ($screen && $screen->post_type === 'event') {
+		// Only modify list view, not search or filters
+		if (!isset($_GET['post_status'])) {
+			$query->set('post_status', ['publish']);
+		}
+	}
+}
+
 // Past Event Archives
 add_action('init', 'uf_register_past_event_status');
 function uf_register_past_event_status() {

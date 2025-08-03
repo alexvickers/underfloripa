@@ -119,7 +119,15 @@ $is_multiple = count($events) > 1;
                 <li><strong>Abertura das Portas:</strong> <?php echo esc_html($doors_time); ?></li>
                 <li><strong>Censura:</strong> <?php echo esc_html($min_age); ?></li>
 
-                <?php if (!empty($tickets_link)) { ?>
+                <?php
+                $free_event = get_field('free_event');
+                $ticket_office = get_field('ticket_office');
+
+                if ($free_event) { ?>
+                    <li><strong>Evento Gratuito</strong></li>
+                <?php } elseif ($ticket_office) { ?>
+                    <li><strong>Ingressos apenas na bilheteria na hora do evento.</strong></li>
+                <?php } elseif (!empty($tickets_link)) { ?>
                     <li>
                         <a href="<?php echo esc_url($tickets_link); ?>" target="_blank" rel="noopener">
                             Garanta seu Ingresso

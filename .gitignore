@@ -28,9 +28,11 @@ wp-content/plugins/*
 # But keep custom plugins
 !wp-content/plugins/underfloripa-events/
 
-# Example themes
-/wp-content/themes/index.php
-/wp-content/themes/twenty*/
+# Ignore all themes
+/wp-content/themes/*
+
+# Except custom themes
+!wp-content/themes/underfloripa/
 
 # Example plugin
 /wp-content/plugins/hello.php
