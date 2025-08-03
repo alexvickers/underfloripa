@@ -7,6 +7,7 @@ if (! defined('ABSPATH')) {
 
 <section class="home-section colunas-grid">
 	<h2>Colunas</h2>
+	<a href="<?php echo get_category_link(get_category_by_slug('colunas')->term_id); ?>" class="see-all-link">Ver todas as resenhas →</a>
 
 	<?php
 	$colunas = new WP_Query([
@@ -45,5 +46,4 @@ if (! defined('ABSPATH')) {
 	<?php else : ?>
 		<p>Nenhuma coluna encontrada.</p>
 	<?php endif; ?>
-	<?php echo get_category_link(get_category_by_slug('colunas')->term_id); ?>
 </section>

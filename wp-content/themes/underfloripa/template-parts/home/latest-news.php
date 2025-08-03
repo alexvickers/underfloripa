@@ -7,6 +7,7 @@ if (! defined('ABSPATH')) {
 
 <section class="home-section latest-news">
 	<h2>Últimas Notícias</h2>
+	<a href="<?php echo get_post_type_archive_link('post'); ?>?filter=news" class="see-all-link">Ver todas as notícias →</a>
 
 	<?php
 	$latest_news = new WP_Query([
@@ -80,5 +81,4 @@ if (! defined('ABSPATH')) {
 			<?php else: ?>
 				<p>Nenhuma notícia encontrada.</p>
 			<?php endif; ?>
-			<a href="<?php echo get_post_type_archive_link('post'); ?>?filter=news" class="see-all-link">Ver todas as notícias →</a>
 </section>
