@@ -10,6 +10,12 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: underfloripa
 */
 
+html, body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 body {
   font-family: "Heebo", sans-serif;
   font-weight: 300;
@@ -34,8 +40,9 @@ h6,
 }
 
 .site-title {
-  font-size: 2.5rem;
-  color: #000;
+  font-size: 48px;
+  line-height: 1;
+  margin: 0;
 }
 
 .site-description {
@@ -57,6 +64,7 @@ h6,
 }
 
 .content-area {
+  padding: 0 15px;
   display: flex;
   gap: 2rem;
 }
@@ -82,9 +90,14 @@ h6,
 
 /* Base layout for the header */
 #site-header {
-  padding: 1rem;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
+  padding: 0 15px;
+  background: linear-gradient(to bottom, #111, #1a1a1a);
+  color: #fff;
+  border-bottom: none;
+}
+
+.site-title {
+  color: #fff;
 }
 
 .header-container {
@@ -101,22 +114,22 @@ h6,
   flex: 1;
 }
 
-.site-logo img {
-  max-height: 80px;
+.site-logo {
+  max-height: 60px;
   height: auto;
   width: auto;
 }
 
-.site-title {
-  font-size: 1.8rem;
-  margin: 0;
-  line-height: 1.1;
+.site-description {
+  font-size: 18px;
+  line-height: 1;
+  margin: -1px 0 0 0;
 }
 
-.site-description {
-  font-size: 1rem;
-  color: #555;
-  margin: 0.2rem 0 0;
+.header-top {
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }
 
 .header-right {
@@ -126,23 +139,30 @@ h6,
   gap: 0.5rem;
 }
 
+.header-socials {
+  display: flex;
+}
+
 .header-socials a {
-  margin-left: 0.5rem;
-  font-size: 1.2rem;
+  display: inline-block;
+  height: 32px;
   text-decoration: none;
 }
 
-.header-banner img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+.header-socials svg {
+  height: 32px;
+}
+
+.header-socials svg path {
+  fill: #ffffff;
 }
 
 /* === Navigation === */
 .main-navigation {
-  border-top: 1px solid #ccc;
-  margin-top: 1rem;
-  padding-top: 0.5rem;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main-navigation ul {
@@ -156,10 +176,10 @@ h6,
 
 .main-navigation a {
   text-decoration: none;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 1.1rem;
-  color: #111;
+  color: #fff;
   text-transform: uppercase;
+  font-weight: 500;
+  font-size: 15px;
 }
 
 #menu-toggle {
@@ -212,13 +232,13 @@ h6,
 
 /* === Últimas Notícias Section === */
 .latest-news {
-  padding: 2rem 1rem;
+  padding: 2rem 0;
   border-bottom: 1px solid #eee;
 }
 
 .latest-news h2 {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  line-height: 2rem;
   font-family: "Bebas Neue", sans-serif;
 }
 
@@ -560,4 +580,11 @@ h6,
   .colunas-cards {
     grid-template-columns: 1fr !important;
   }
+}
+
+.home-section .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }

@@ -6,8 +6,10 @@ if (! defined('ABSPATH')) {
 ?>
 
 <section class="home-section colunas-grid">
-	<h2>Colunas</h2>
-	<a href="<?php echo get_category_link(get_category_by_slug('colunas')->term_id); ?>" class="see-all-link">Ver todas as resenhas →</a>
+	<div class="title">
+		<h2>Colunas</h2>
+		<a href="<?php echo get_category_link(get_category_by_slug('colunas')->term_id); ?>" class="see-all-link">Ver todas as colunas</a>
+	</div>
 
 	<?php
 	$colunas = new WP_Query([
@@ -47,3 +49,18 @@ if (! defined('ABSPATH')) {
 		<p>Nenhuma coluna encontrada.</p>
 	<?php endif; ?>
 </section>
+
+<div class="homepage-ad">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+		crossorigin="anonymous"></script>
+	<!-- Underfloripa - Colunas -->
+	<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-2855642712528671"
+		data-ad-slot="8767918142"
+		data-ad-format="auto"
+		data-full-width-responsive="true"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>

@@ -6,8 +6,10 @@ if (! defined('ABSPATH')) {
 ?>
 
 <section class="home-section coverages">
-	<h2>Coberturas</h2>
-	<a href="<?php echo get_category_link(get_category_by_slug('coberturas')->term_id); ?>" class="see-all-link">Ver todas as resenhas →</a>
+	<div class="title">
+		<h2>Coberturas</h2>
+		<a href="<?php echo get_category_link(get_category_by_slug('coberturas')->term_id); ?>" class="see-all-link">Ver todas as coberturas</a>
+	</div>
 
 	<?php
 	$coberturas = new WP_Query([
@@ -47,3 +49,18 @@ if (! defined('ABSPATH')) {
 		<p>Nenhuma cobertura encontrada.</p>
 	<?php endif; ?>
 </section>
+
+<div class="homepage-ad">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+		crossorigin="anonymous"></script>
+	<!-- Underfloripa - Coberturas -->
+	<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-2855642712528671"
+		data-ad-slot="6034777744"
+		data-ad-format="auto"
+		data-full-width-responsive="true"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>

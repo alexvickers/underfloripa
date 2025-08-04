@@ -6,8 +6,10 @@ if (! defined('ABSPATH')) {
 ?>
 
 <section class="home-section latest-news">
-	<h2>Últimas Notícias</h2>
-	<a href="<?php echo get_post_type_archive_link('post'); ?>?filter=news" class="see-all-link">Ver todas as notícias →</a>
+	<div class="title">
+		<h2>Últimas Notícias</h2>
+		<a href="<?php echo get_post_type_archive_link('post'); ?>?filter=news" class="see-all-link">Ver todas as notícias</a>
+	</div>
 
 	<?php
 	$latest_news = new WP_Query([
@@ -82,3 +84,18 @@ if (! defined('ABSPATH')) {
 				<p>Nenhuma notícia encontrada.</p>
 			<?php endif; ?>
 </section>
+
+<div class="homepage-ad">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+		crossorigin="anonymous"></script>
+	<!-- Underfloripa - Homepage -->
+	<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-2855642712528671"
+		data-ad-slot="8781032206"
+		data-ad-format="auto"
+		data-full-width-responsive="true"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>

@@ -6,8 +6,10 @@ if (! defined('ABSPATH')) {
 ?>
 
 <section class="home-section review-grid">
-	<h2>Resenhas</h2>
-	<a href="<?php echo get_category_link(get_category_by_slug('resenhas')->term_id); ?>" class="see-all-link">Ver todas as resenhas →</a>
+	<div class="title">
+		<h2>Resenhas</h2>
+		<a href="<?php echo get_category_link(get_category_by_slug('resenhas')->term_id); ?>" class="see-all-link">Ver todas as resenhas</a>
+	</div>
 
 	<?php
 	$reviews = new WP_Query([
@@ -42,3 +44,18 @@ if (! defined('ABSPATH')) {
 		<p>Nenhuma resenha encontrada.</p>
 	<?php endif; ?>
 </section>
+
+<div class="homepage-ad">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+		crossorigin="anonymous"></script>
+	<!-- Under Floripa - Resenhas -->
+	<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-2855642712528671"
+		data-ad-slot="9564972160"
+		data-ad-format="auto"
+		data-full-width-responsive="true"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
