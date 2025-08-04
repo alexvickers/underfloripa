@@ -39,7 +39,7 @@ $excluded_cat_ids = array_map(function ($slug) {
 						<?php the_author(); ?> – <?php echo get_the_date(); ?>
 					</div>
 					<div class="post-excerpt"><?php the_excerpt(); ?></div>
-					<a href="<?php the_permalink(); ?>" class="read-more">Leia mais →</a>
+					<a href="<?php the_permalink(); ?>" class="read-more">Leia mais</a>
 				</div>
 			</article>
 	<?php endwhile;

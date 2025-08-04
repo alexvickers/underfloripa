@@ -46,16 +46,5 @@ if (! defined('ABSPATH')) {
 </section>
 
 <div class="homepage-ad">
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
-		crossorigin="anonymous"></script>
-	<!-- Under Floripa - Resenhas -->
-	<ins class="adsbygoogle"
-		style="display:block"
-		data-ad-client="ca-pub-2855642712528671"
-		data-ad-slot="9564972160"
-		data-ad-format="auto"
-		data-full-width-responsive="true"></ins>
-	<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>
+	<img src="https://placehold.co/768x90" />
 </div>

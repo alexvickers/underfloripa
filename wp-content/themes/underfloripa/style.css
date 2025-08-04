@@ -10,7 +10,8 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: underfloripa
 */
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   border: 0;
@@ -41,7 +42,7 @@ h6,
 
 .site-title {
   font-size: 48px;
-  line-height: 1;
+  line-height: 32px;
   margin: 0;
 }
 
@@ -90,8 +91,7 @@ h6,
 
 /* Base layout for the header */
 #site-header {
-  padding: 0 15px;
-  background: linear-gradient(to bottom, #111, #1a1a1a);
+  background: #111;
   color: #fff;
   border-bottom: none;
 }
@@ -105,6 +105,9 @@ h6,
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  padding: 10px 15px;
+  max-width: 1388px;
+  margin: auto;
 }
 
 .header-left {
@@ -120,10 +123,17 @@ h6,
   width: auto;
 }
 
-.site-description {
-  font-size: 18px;
-  line-height: 1;
-  margin: -1px 0 0 0;
+.logo-svg {
+  display: inline-block;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
 }
 
 .header-top {
@@ -141,6 +151,7 @@ h6,
 
 .header-socials {
   display: flex;
+  padding-right: 15px;
 }
 
 .header-socials a {
@@ -155,23 +166,36 @@ h6,
 
 .header-socials svg path {
   fill: #ffffff;
+  transition: fill 0.3s ease;
+}
+
+.header-socials a:hover svg path {
+  fill: #e60073;
 }
 
 /* === Navigation === */
 .main-navigation {
-  padding: 15px 0;
+  padding: 5px 0;
+  background: #222;
+  border-top: 3px solid #e60073;
+}
+
+.nav-container {
+  max-width: 1388px;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 15px;
 }
 
 .main-navigation ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 15px;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 15px;
 }
 
 .main-navigation a {
@@ -180,6 +204,11 @@ h6,
   text-transform: uppercase;
   font-weight: 500;
   font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.main-navigation a:hover {
+  color: #e60073;
 }
 
 #menu-toggle {
