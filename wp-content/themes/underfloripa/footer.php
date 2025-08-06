@@ -2,18 +2,15 @@
 // Exit if accessed directly.
 if (! defined('ABSPATH')) {
 	exit;
-}
-?>
+} ?>
 
 <footer id="site-footer">
 	<nav class="footer-menu">
-		<?php
-		wp_nav_menu([
+		<?php wp_nav_menu([
 			'theme_location' => 'footer_menu',
 			'menu_id'        => 'footer-menu',
 			'container'      => false,
-		]);
-		?>
+		]); ?>
 	</nav>
 	<p>&copy; <?php echo date('Y'); ?> Underfloripa</p>
 </footer>
@@ -33,9 +30,29 @@ if (! defined('ABSPATH')) {
 	});
 </script>
 
-<!-- footer.php -->
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const header = document.getElementById('site-header');
+		let lastScroll = window.scrollY;
+
+		window.addEventListener('scroll', () => {
+			const currentScroll = window.scrollY;
+
+			if (currentScroll > 80) {
+				header.classList.add('shrink');
+			} else {
+				header.classList.remove('shrink');
+			}
+
+			lastScroll = currentScroll;
+		});
+	});
+</script>
+
 </div><!-- /.site-container -->
+
 <?php wp_footer(); ?>
+
 </body>
 
 </html>
