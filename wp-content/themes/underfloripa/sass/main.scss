@@ -1,0 +1,32 @@
+// Variables and mixins first
+@use "base/variables" as *;
+@use "base/mixins";
+@use "base/reset";
+@use "base/typography";
+
+// Layout structure
+@use "layout/header";
+@use "layout/navigation";
+@use "layout/footer";
+@use "layout/sidebar";
+
+// Components
+@use "components/buttons";
+@use "components/socials";
+@use "components/backtotop";
+
+// Page sections
+@use "sections/news";
+@use "sections/resenhas";
+@use "sections/coberturas";
+@use "sections/colunas";
+
+// Pages
+@use "pages/home";
+@use "pages/single";
+@use "pages/archive";
+
+// Utilities
+@use "utilities/helpers";
+@use "utilities/animations";
+@use "utilities/responsive";

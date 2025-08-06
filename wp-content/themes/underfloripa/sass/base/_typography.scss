@@ -1,0 +1,24 @@
+@use "../base/variables" as *;
+
+body {
+	font-family: $font-body;
+	font-weight: 300;
+	color: $color-dark;
+	background: #fff;
+	font-size: 16px;
+	line-height: 1.6;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	.site-title {
+		font-family: $font-headings;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		font-weight: normal;
+		margin: 0;
+	}
+}

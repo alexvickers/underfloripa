@@ -36,7 +36,7 @@ if (! defined('ABSPATH')) {
 						<div class="post-excerpt">
 							<?php the_excerpt(); ?>
 						</div>
-						<a href="<?php the_permalink(); ?>" class="read-more">Leia mais →</a>
+						<a href="<?php the_permalink(); ?>" class="read-more">Leia mais</a>
 					</div>
 
 					<?php if (has_post_thumbnail()) : ?>
@@ -53,7 +53,7 @@ if (! defined('ABSPATH')) {
 					<article class="latest-news-item">
 						<?php if (has_post_thumbnail()) : ?>
 							<div class="post-image">
-								<?php the_post_thumbnail('medium'); ?>
+								<?php the_post_thumbnail('medium_large'); ?>
 							</div>
 						<?php endif; ?>
 
@@ -69,7 +69,7 @@ if (! defined('ABSPATH')) {
 							<div class="post-excerpt">
 								<?php the_excerpt(); ?>
 							</div>
-							<a href="<?php the_permalink(); ?>" class="read-more">Leia mais →</a>
+							<a href="<?php the_permalink(); ?>" class="read-more">Leia mais</a>
 						</div>
 					</article>
 			<?php

@@ -1,0 +1,24 @@
+# Node dependencies (if local to theme)
+node_modules/
+
+# Sass cache
+.sass-cache/
+*.css.map
+
+# Compiled CSS
+css/
+
+# Build outputs (if any)
+dist/
+build/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+.vscode/
+*.log
+
+# Local env
+.env

@@ -1,0 +1,61 @@
+/* === Submenu Styling === */
+
+.main-navigation ul ul {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background-color: #222;
+	min-width: 200px;
+	padding: 0.5rem 0;
+	z-index: 9999;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px);
+	transition: all 0.2s ease;
+	border: 1px solid #333;
+}
+
+.main-navigation li {
+	position: relative;
+}
+
+.main-navigation li:hover>.sub-menu,
+.main-navigation li:focus-within>.sub-menu {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.main-navigation .sub-menu li a {
+	display: block;
+	padding: 0.5rem 1rem;
+	color: #fff;
+	font-size: 0.9rem;
+	text-transform: none;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.main-navigation .sub-menu li a:hover {
+	background-color: #333;
+	color: var(--accent-color);
+}
+
+.main-navigation li.menu-item-has-children>a {
+	position: relative;
+}
+
+.menu-chevron {
+	width: 12px;
+	height: 8px;
+	margin-left: 0.4rem;
+	transition: transform 0.3s ease, color 0.3s ease;
+	transform-origin: center;
+	color: #fff;
+}
+
+.menu-item-has-children:hover .menu-chevron,
+.menu-item-has-children:focus-within .menu-chevron {
+	transform: rotate(180deg);
+	color: var(--accent-color);
+}

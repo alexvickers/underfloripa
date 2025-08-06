@@ -68,6 +68,7 @@ if (! defined('ABSPATH')) {
 						'theme_location' => 'main_menu',
 						'menu_id'        => 'primary-menu',
 						'container'      => false,
+						'walker'         => new Underfloripa_Walker_Nav_Menu()
 					]); ?>
 				</div>
 				<div class="nav-right">

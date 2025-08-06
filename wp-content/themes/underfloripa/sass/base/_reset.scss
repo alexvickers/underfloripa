@@ -1,0 +1,14 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.admin-bar #site-header {
+	top: 32px;
+
+	@media screen and (max-width: 782px) {
+		top: 46px;
+	}
+}
