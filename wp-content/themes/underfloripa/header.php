@@ -31,33 +31,32 @@ if (! defined('ABSPATH')) {
 <body <?php body_class(); ?>>
 
 	<header id="site-header">
-		<div class="site-container">
-			<div class="header-container">
-				<a class="header-left" href="<?php echo home_url(); ?>" target="_self">
-					<?php if (is_front_page()) { ?>
-						<h1 class="site-title">
-							<span class="logo-svg" aria-hidden="true">
-								<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo-underfloripa.svg" alt="" role="presentation" />
-							</span>
-							<span class="visually-hidden">Under Floripa</span>
-						</h1>
-					<?php } else { ?>
-						<p class="site-title">
-							<span class="logo-svg" aria-hidden="true">
-								<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo-underfloripa.svg" alt="" role="presentation" />
-							</span>
-							<span class="visually-hidden">Under Floripa</span>
-						</p>
-					<?php } ?>
-				</a>
+		<div class="header-container">
+			<a class="header-left" href="<?php echo home_url(); ?>" target="_self">
+				<?php if (is_front_page()) { ?>
+					<h1 class="site-title">
+						<span class="logo-svg" aria-hidden="true">
+							<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo-underfloripa.svg" alt="" role="presentation" />
+						</span>
+						<span class="visually-hidden">Under Floripa</span>
+					</h1>
+				<?php } else { ?>
+					<p class="site-title">
+						<span class="logo-svg" aria-hidden="true">
+							<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo-underfloripa.svg" alt="" role="presentation" />
+						</span>
+						<span class="visually-hidden">Under Floripa</span>
+					</p>
+				<?php } ?>
+			</a>
 
-				<div class="header-right">
-					<div class="header-banner">
-						<img src="https://placehold.co/768x90" />
-					</div>
+			<div class="header-right">
+				<div class="header-banner">
+					<img src="https://placehold.co/768x90" />
 				</div>
 			</div>
 		</div>
+		<div class="site-accent-bar"></div>
 		<nav id="site-navigation" class="main-navigation">
 			<div class="nav-container">
 				<div class="nav-left">
@@ -104,4 +103,3 @@ if (! defined('ABSPATH')) {
 	<!-- header.php -->
 
 	<body <?php body_class(); ?>>
-		<div class="site-container">

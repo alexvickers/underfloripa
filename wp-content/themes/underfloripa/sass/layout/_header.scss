@@ -1,1 +1,45 @@
 /* Header styles here */
+
+.site-accent-bar {
+	height: 6px;
+	width: 100%;
+	background: linear-gradient(90deg,
+			#e60073,
+			#8e00e6,
+			#0073e6,
+			#e65400,
+			#e60073);
+}
+
+@keyframes accentShimmer {
+	0% {
+		background-position: 0 0;
+	}
+
+	100% {
+		background-position: 300% 0;
+	}
+}
+
+.site-pride-bar {
+	height: 6px;
+	width: 100%;
+	background: linear-gradient(90deg,
+			#ff0000 0%,
+			/* Red */
+			#ff8c00 16.6%,
+			/* Orange */
+			#ffff00 33.3%,
+			/* Yellow */
+			#008000 50%,
+			/* Green */
+			#0000ff 66.6%,
+			/* Blue */
+			#8b00ff 83.3%,
+			/* Violet */
+			#ff0000 100%
+			/* Loop back to red */
+		);
+	background-size: 300% 100%;
+	animation: accentShimmer 8s linear infinite;
+}

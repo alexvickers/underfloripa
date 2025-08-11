@@ -6,8 +6,11 @@ if (! defined('ABSPATH')) {
 
 get_header(); ?>
 
-<div class="content-area">
+<?php get_template_part('template-parts/home/top-stories'); ?>
+
+<div class="content-area site-container">
     <main class="main-content" id="site-main">
+        <img src="https://placehold.co/970x250" />
         <?php get_template_part('template-parts/home/latest-news'); ?>
         <?php get_template_part('template-parts/home/reviews'); ?>
         <?php get_template_part('template-parts/home/coberturas'); ?>
