@@ -18,12 +18,15 @@ if ($top_stories->have_posts()) : ?>
 			<div class="top-stories-grid">
 				<?php while ($top_stories->have_posts()) : $top_stories->the_post(); ?>
 					<article class="top-story">
+						<div class="post-categories">
+							<?php the_category(' '); ?>
+						</div>
 						<a href="<?php the_permalink(); ?>">
 							<div class="top-story-img">
 								<?php the_post_thumbnail('medium_large'); ?>
 							</div>
-							<h3 class="top-story-title"><?php the_title(); ?></h3>
 							<span class="top-story-date"><?php echo get_the_date(); ?></span>
+							<h3 class="top-story-title"><?php the_title(); ?></h3>
 						</a>
 					</article>
 				<?php endwhile; ?>

@@ -67,7 +67,6 @@
 	padding: 1.5rem 0;
 	max-width: $max-width;
 	margin: 0 auto;
-	max-width: 1388px;
 }
 
 .header-left {
@@ -211,7 +210,7 @@
 .mini-logo {
 	display: none;
 	height: 24px;
-	margin-left: 15px;
+	margin-right: 15px;
 }
 
 .mini-logo img {
@@ -219,8 +218,14 @@
 	width: auto;
 }
 
-#site-header.shrink .mini-logo {
-	display: block;
+#site-header.shrink {
+	.header-container {
+		padding: 0;
+	}
+
+	.mini-logo {
+		display: block;
+	}
 }
 
 .nav-left {
@@ -566,11 +571,13 @@
 	color: #fff;
 	margin-bottom: 2rem;
 
+
+
 	h2 {
-		font-family: 'Bebas Neue', sans-serif;
+		font-family: $font-headings;
 		font-size: 2rem;
-		margin-bottom: 1.5rem;
-		margin-right: 15px;
+		line-height: 1;
+		margin-bottom: 1rem;
 	}
 }
 
@@ -589,13 +596,36 @@
 }
 
 .top-story {
+	position: relative;
 	background: #222;
 	border-radius: 4px;
 	overflow: hidden;
 	transition: transform 0.3s ease;
 
+	.post-categories {
+		position: absolute;
+		top: 0.75rem;
+		left: 0.75rem;
+		z-index: 100;
+
+		a {
+			display: inline-block;
+			padding: 6px 12px;
+			background-color: $color-accent;
+			border-radius: 4px;
+			font-size: 14px;
+			line-height: 14px;
+
+			&:hover {
+				background-color: $color-purple;
+			}
+		}
+	}
+
 	&:hover {
-		transform: translateY(-4px);
+		img {
+			transform: scale(1.05);
+		}
 	}
 
 	a {
@@ -605,22 +635,28 @@
 		height: 100%;
 	}
 
-	.top-story-img img {
-		width: 100%;
-		height: auto;
-		display: block;
+	.top-story-img {
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: auto;
+			display: block;
+			transition: transform 0.4s ease;
+		}
 	}
 
 	.top-story-title {
-		font-family: 'Bebas Neue', sans-serif;
+		font-family: $font-headings;
 		font-size: 1.2rem;
+		line-height: 1.4rem;
 		margin: 0.8rem;
 	}
 
 	.top-story-date {
 		font-size: 0.8rem;
 		opacity: 0.7;
-		margin: 0 0.8rem 0.8rem;
+		margin: 0.8rem 0.8rem 0;
 		display: block;
 	}
 }
