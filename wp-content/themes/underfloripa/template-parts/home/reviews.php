@@ -14,7 +14,7 @@ if (! defined('ABSPATH')) {
 	<?php
 	$reviews = new WP_Query([
 		'post_type'      => 'post',
-		'posts_per_page' => 6,
+		'posts_per_page' => 8,
 		'category_name'  => 'resenhas',
 	]);
 
@@ -32,9 +32,10 @@ if (! defined('ABSPATH')) {
 						<h3 class="review-title">
 							<?php echo preg_replace('/^Resenha:\s*/i', '', get_the_title()); ?>
 						</h3>
-						<p class="review-info">
-							<?php echo get_the_author(); ?> – <?php echo get_the_date(); ?>
-						</p>
+						<div class="review-info">
+							<?php echo get_the_author(); ?><br />
+							<?php echo get_the_date(); ?>
+						</div>
 					</div>
 				</a>
 			<?php endwhile;

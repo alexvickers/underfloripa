@@ -273,225 +273,6 @@
 	text-transform: uppercase;
 }
 
-/* === Resenhas Grid === */
-.review-grid {
-	padding: 2rem 1rem;
-	border-bottom: 1px solid #eee;
-}
-
-.review-grid h2 {
-	font-family: $font-headings;
-	font-size: 2rem;
-	margin-bottom: 1.5rem;
-}
-
-.review-cards {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	gap: 2rem;
-}
-
-.review-card {
-	display: flex;
-	flex-direction: column;
-	text-decoration: none;
-	color: inherit;
-	border: 1px solid #ddd;
-	padding: 1rem;
-	transition: box-shadow 0.2s ease;
-}
-
-.review-card:hover {
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.review-image {
-	width: 100%;
-	aspect-ratio: 1 / 1;
-	overflow: hidden;
-}
-
-.review-title {
-	font-family: $font-headings;
-	font-size: 1.25rem;
-	margin: 0.75rem 0 0.25rem;
-}
-
-.review-info {
-	font-size: 0.9rem;
-	color: #666;
-}
-
-/* === Coberturas Section === */
-.coverages {
-	padding: 2rem 1rem;
-	border-bottom: 1px solid #eee;
-}
-
-.coverages h2 {
-	font-size: 2rem;
-	font-family: $font-headings;
-	margin-bottom: 1.5rem;
-}
-
-.coverage-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-	gap: 2rem;
-}
-
-.coverage-item {
-	display: flex;
-	gap: 1rem;
-}
-
-.coverage-item .post-image {
-	flex: 0 0 25%;
-}
-
-.coverage-item .post-image img {
-	width: 100%;
-	height: auto;
-	object-fit: cover;
-}
-
-.coverage-item .post-meta {
-	flex: 1;
-}
-
-.coverage-item .post-title {
-	font-size: 1.1rem;
-	margin: 0.2rem 0;
-}
-
-.coverage-item .post-info {
-	font-size: 0.8rem;
-	color: #666;
-}
-
-.coverage-item .post-categories a {
-	font-size: 0.75rem;
-	text-transform: uppercase;
-	color: #999;
-	margin-right: 0.5rem;
-}
-
-.coverage-item .post-excerpt {
-	margin: 0.5rem 0;
-}
-
-.coverage-item .read-more {
-	font-size: 0.85rem;
-	color: #000;
-	text-decoration: underline;
-}
-
-/* === Colunas Section === */
-.colunas-grid {
-	padding: 2rem 1rem;
-}
-
-.colunas-grid h2 {
-	font-family: $font-headings;
-	font-size: 2rem;
-	margin-bottom: 1.5rem;
-}
-
-.colunas-cards {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 2rem;
-}
-
-.coluna-card {
-	display: block;
-	position: relative;
-	overflow: hidden;
-	text-decoration: none;
-	color: #fff;
-	min-height: 360px;
-	border-radius: 6px;
-	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-.coluna-bg {
-	width: 100%;
-	height: 100%;
-	background-size: cover;
-	background-position: center;
-	position: relative;
-}
-
-.coluna-overlay {
-	position: absolute;
-	inset: 0;
-	background: linear-gradient(180deg,
-			rgba(0, 0, 0, 0.4) 0%,
-			rgba(0, 0, 0, 0.7) 100%);
-	/* You can replace the background here with any gradient from your list */
-	mix-blend-mode: multiply;
-}
-
-.coluna-content {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	padding: 1rem;
-	z-index: 2;
-}
-
-.coluna-content .post-categories a {
-	background: rgba(255, 255, 255, 0.2);
-	padding: 2px 6px;
-	margin-right: 4px;
-	font-size: 0.75rem;
-	color: #fff;
-	text-transform: uppercase;
-	border-radius: 2px;
-}
-
-.coluna-content .post-title {
-	font-size: 1.4rem;
-	margin: 0.5rem 0 0.25rem;
-	font-family: $font-headings;
-}
-
-.coluna-content .post-info {
-	font-size: 0.85rem;
-	opacity: 0.85;
-	margin-bottom: 0.5rem;
-}
-
-.coluna-content .post-excerpt {
-	font-size: 0.9rem;
-	line-height: 1.4;
-	opacity: 0.95;
-}
-
-#back-to-top {
-	position: fixed;
-	bottom: 1.5rem;
-	right: 1.5rem;
-	z-index: 999;
-	background: #000;
-	color: #fff;
-	font-size: 1.5rem;
-	padding: 0.5rem 1rem;
-	border: none;
-	border-radius: 100px;
-	cursor: pointer;
-	opacity: 0.75;
-	transition: opacity 0.3s ease;
-}
-
-#back-to-top:hover {
-	opacity: 1;
-}
-
-#back-to-top.hidden {
-	display: none;
-}
 
 @media (max-width: 600px) {
 	body {
@@ -528,11 +309,33 @@
 	}
 }
 
-.home-section .title {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 1.5rem;
+.home-section {
+	.see-all-link {
+		display: inline-block;
+		text-decoration: none;
+		color: #fff;
+		background-color: $color-accent;
+		padding: 4px 12px;
+		border-radius: 4px;
+	}
+
+	.title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1.5rem;
+
+		h2 {
+			margin: 0;
+			line-height: 1;
+		}
+	}
+}
+
+.homepage-ad {
+	width: 768px;
+	height: 90px;
+	margin: auto;
 }
 
 @media (max-width: 768px) {
@@ -562,101 +365,5 @@
 
 	.mini-logo {
 		height: 32px;
-	}
-}
-
-.top-stories {
-	padding: 1.5rem 0;
-	background: #111;
-	color: #fff;
-	margin-bottom: 2rem;
-
-
-
-	h2 {
-		font-family: $font-headings;
-		font-size: 2rem;
-		line-height: 1;
-		margin-bottom: 1rem;
-	}
-}
-
-.top-stories-grid {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 1.5rem;
-
-	@media (max-width: 900px) {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	@media (max-width: 500px) {
-		grid-template-columns: 1fr;
-	}
-}
-
-.top-story {
-	position: relative;
-	background: #222;
-	border-radius: 4px;
-	overflow: hidden;
-	transition: transform 0.3s ease;
-
-	.post-categories {
-		position: absolute;
-		top: 0.75rem;
-		left: 0.75rem;
-		z-index: 100;
-
-		a {
-			display: inline-block;
-			padding: 6px 12px;
-			background-color: $color-accent;
-			border-radius: 4px;
-			font-size: 14px;
-			line-height: 14px;
-
-			&:hover {
-				background-color: $color-purple;
-			}
-		}
-	}
-
-	&:hover {
-		img {
-			transform: scale(1.05);
-		}
-	}
-
-	a {
-		color: inherit;
-		text-decoration: none;
-		display: block;
-		height: 100%;
-	}
-
-	.top-story-img {
-		overflow: hidden;
-
-		img {
-			width: 100%;
-			height: auto;
-			display: block;
-			transition: transform 0.4s ease;
-		}
-	}
-
-	.top-story-title {
-		font-family: $font-headings;
-		font-size: 1.2rem;
-		line-height: 1.4rem;
-		margin: 0.8rem;
-	}
-
-	.top-story-date {
-		font-size: 0.8rem;
-		opacity: 0.7;
-		margin: 0.8rem 0.8rem 0;
-		display: block;
 	}
 }

@@ -1,1 +1,59 @@
-/* Coberturas section */
+@use "../base/variables" as *;
+
+/* === Coberturas Section === */
+.coverages {
+    padding: 2rem 1rem;
+
+    h2 {
+        font-size: 2rem;
+        font-family: $font-headings;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.coverage-item {
+    display: flex;
+    gap: 1rem;
+
+    .post-image {
+        flex: 0 0 25%;
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+
+    .post-meta {
+        flex: 1;
+    }
+
+    .post-title {
+        font-size: 1.1rem;
+        margin: 0.2rem 0;
+    }
+
+    .post-info {
+        font-size: 0.8rem;
+        color: #666;
+    }
+
+
+    .post-categories a {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: #999;
+        margin-right: 0.5rem;
+    }
+
+    .post-excerpt {
+        margin: 0.5rem 0;
+    }
+}

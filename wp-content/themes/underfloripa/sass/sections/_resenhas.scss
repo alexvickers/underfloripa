@@ -1,1 +1,58 @@
-/* Resenhas section */
+@use "../base/variables" as *;
+
+/* === Resenhas Grid === */
+.review-grid {
+	padding: 2rem 1rem;
+}
+
+.review-grid h2 {
+	font-family: $font-headings;
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+}
+
+.review-cards {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, auto);
+	gap: 2rem;
+}
+
+.review-card {
+	display: flex;
+	flex-direction: column;
+	text-decoration: none;
+	color: inherit;
+}
+
+.review-image {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+
+	img {
+		transition: transform 0.4s ease;
+	}
+
+	&:hover {
+		img {
+			transform: scale(1.05);
+		}
+	}
+}
+
+.review-title {
+	font-family: $font-headings;
+	font-size: 1.25rem;
+	line-height: 1.1;
+	margin: 0.75rem 0 0.25rem;
+	text-align: center;
+}
+
+.review-info {
+	font-size: 0.8rem;
+	line-height: 1.2;
+	text-align: center;
+	color: #666;
+	padding: 0.5rem;
+}

@@ -21,27 +21,26 @@ if (! defined('ABSPATH')) {
 	if ($colunas->have_posts()) : ?>
 		<div class="colunas-cards">
 			<?php while ($colunas->have_posts()) : $colunas->the_post(); ?>
-				<a href="<?php the_permalink(); ?>" class="coluna-card">
-					<?php if (has_post_thumbnail()) :
-						$thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
-					endif; ?>
+				<div class="coluna-card">
+					<a href="<?php the_permalink(); ?>">
+						<?php if (has_post_thumbnail()) :
+							$thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+						endif; ?>
 
-					<div class="coluna-bg" style="background-image: url('<?php echo esc_url($thumb_url); ?>');">
-						<div class="coluna-overlay"></div>
-						<div class="coluna-content">
-							<div class="post-categories">
-								<?php the_category(' '); ?>
-							</div>
-							<h3 class="post-title"><?php the_title(); ?></h3>
-							<div class="post-info">
-								<?php the_author(); ?> – <?php the_date(); ?>
-							</div>
-							<div class="post-excerpt">
-								<?php the_excerpt(); ?>
+						<div class="coluna-bg" style="background-image: url('<?php echo esc_url($thumb_url); ?>');">
+							<div class="coluna-overlay"></div>
+							<div class="coluna-content">
+								<div class="post-categories">
+									<?php the_category(' '); ?>
+								</div>
+								<h3 class="post-title"><?php the_title(); ?></h3>
+								<div class="post-info">
+									<?php the_author(); ?> – <?php the_date(); ?>
+								</div>
 							</div>
 						</div>
-					</div>
-				</a>
+					</a>
+				</div>
 			<?php endwhile;
 			wp_reset_postdata(); ?>
 		</div>
@@ -49,7 +48,3 @@ if (! defined('ABSPATH')) {
 		<p>Nenhuma coluna encontrada.</p>
 	<?php endif; ?>
 </section>
-
-<div class="homepage-ad">
-	<img src="https://placehold.co/768x90" />
-</div>

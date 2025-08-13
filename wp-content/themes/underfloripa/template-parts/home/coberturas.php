@@ -14,7 +14,7 @@ if (! defined('ABSPATH')) {
 	<?php
 	$coberturas = new WP_Query([
 		'post_type'      => 'post',
-		'posts_per_page' => 6,
+		'posts_per_page' => 4,
 		'category_name'  => 'coberturas',
 	]);
 
@@ -29,17 +29,19 @@ if (! defined('ABSPATH')) {
 					<?php endif; ?>
 
 					<div class="post-meta">
-						<div class="post-categories">
-							<?php the_category(' '); ?>
-						</div>
-						<h3 class="post-title"><?php the_title(); ?></h3>
+						<a href="<?php the_permalink(); ?>">
+							<h3 class="post-title">
+								<?php the_title(); ?>
+							</h3>
+						</a>
 						<div class="post-info">
 							<span class="post-date"><?php echo get_the_date(); ?></span> – <span class="post-author"><?php the_author(); ?></span>
 						</div>
 						<div class="post-excerpt">
-							<?php the_excerpt(); ?>
+							<a href="<?php the_permalink(); ?>">
+								<?php the_excerpt(); ?>
+							</a>
 						</div>
-						<a href="<?php the_permalink(); ?>" class="read-more">Leia mais</a>
 					</div>
 				</article>
 			<?php endwhile;
