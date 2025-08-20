@@ -1,7 +1,7 @@
 @use "../base/variables" as *;
 
 .latest-news {
-	padding: 2rem 0;
+	padding: 2.5rem 0;
 
 	h2 {
 		font-size: 2rem;
@@ -11,7 +11,7 @@
 
 	.latest-news-featured {
 		position: relative;
-		margin-bottom: 2rem;
+		margin-bottom: 2.5rem;
 
 		.post-meta {
 			position: absolute;
@@ -74,7 +74,7 @@
 			img {
 				display: block;
 				width: 100%;
-				height: 400px;
+				height: 350px;
 				object-fit: cover;
 				transition: transform 0.4s ease;
 			}
@@ -109,12 +109,12 @@
 		position: relative;
 
 		.post-image {
-			height: 250px;
+			height: 200px;
 			overflow: hidden;
 
 			img {
 				width: 100%;
-				height: 250px;
+				height: 200px;
 				object-fit: cover;
 				transition: transform 0.4s ease;
 				border-radius: 4px;
@@ -148,7 +148,7 @@
 			margin-top: 1rem;
 
 			.post-title {
-				font-size: 1.1rem;
+				font-size: 1.2rem;
 				line-height: 1.2;
 
 				a {

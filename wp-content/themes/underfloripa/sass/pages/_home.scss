@@ -50,7 +50,7 @@
 
 /* Base layout for the header */
 #site-header {
-	background: $color-dark;
+	background: $color-text;
 	color: $color-offwhite;
 	border-bottom: none;
 }
@@ -323,7 +323,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: 1.5rem;
+		margin-bottom: 2rem;
 
 		h2 {
 			margin: 0;
