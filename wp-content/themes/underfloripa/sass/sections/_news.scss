@@ -18,12 +18,12 @@
 			padding: 1.5rem;
 			bottom: 0;
 			z-index: 10;
-			color: #fff;
+			color: $color-offwhite;
 		}
 
 		.post-categories a {
 			display: inline-block;
-			color: #fff;
+			color: $color-offwhite;
 			text-decoration: none;
 			padding: 6px 12px;
 			background-color: $color-accent;
@@ -36,13 +36,13 @@
 			font-family: $font-headings;
 			font-size: 1.5rem;
 			margin: 0.25rem 0;
-			color: #fff;
+			color: $color-offwhite;
 			text-decoration: none;
 		}
 
 		.post-info {
 			font-size: 0.85rem;
-			color: #fff;
+			color: $color-offwhite;
 			margin-bottom: 0.5rem;
 		}
 
@@ -51,7 +51,7 @@
 			line-height: 1.2rem;
 
 			a {
-				color: #fff;
+				color: $color-offwhite;
 				text-decoration: none;
 			}
 
@@ -63,7 +63,7 @@
 		.read-more {
 			text-decoration: none;
 			font-weight: bold;
-			color: #000;
+			color: $color-dark;
 		}
 
 		.post-image {
@@ -134,7 +134,7 @@
 
 			a {
 				display: inline-block;
-				color: #fff;
+				color: $color-offwhite;
 				text-decoration: none;
 				padding: 6px 12px;
 				background-color: $color-accent;
@@ -152,7 +152,7 @@
 				line-height: 1.2;
 
 				a {
-					color: #000;
+					color: $color-text;
 					text-decoration: none;
 				}
 			}

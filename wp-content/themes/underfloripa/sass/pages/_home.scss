@@ -51,12 +51,12 @@
 /* Base layout for the header */
 #site-header {
 	background: $color-dark;
-	color: #fff;
+	color: $color-offwhite;
 	border-bottom: none;
 }
 
 .site-title {
-	color: #fff;
+	color: $color-offwhite;
 }
 
 .header-container {
@@ -120,7 +120,7 @@
 }
 
 .header-socials svg path {
-	fill: #ffffff;
+	fill: $color-offwhite;
 	transition: fill 0.3s ease;
 }
 
@@ -131,7 +131,7 @@
 /* === Navigation === */
 .main-navigation {
 	padding: 10px 0;
-	background: #222;
+	background: $color-dark;
 	transition: all 0.3s ease;
 	gap: 1rem;
 }
@@ -156,7 +156,7 @@
 
 .main-navigation ul a {
 	text-decoration: none;
-	color: #fff;
+	color: $color-offwhite;
 	text-transform: uppercase;
 	font-weight: 500;
 	font-size: 15px;
@@ -313,7 +313,7 @@
 	.see-all-link {
 		display: inline-block;
 		text-decoration: none;
-		color: #fff;
+		color: $color-offwhite;
 		background-color: $color-accent;
 		padding: 4px 12px;
 		border-radius: 4px;

@@ -2,8 +2,8 @@
 
 .top-stories {
 	padding: 1.5rem 0;
-	background: #111;
-	color: #fff;
+	background: $color-dark;
+	color: $color-offwhite;
 	margin-bottom: 2rem;
 
 
@@ -32,7 +32,7 @@
 
 .top-story {
 	position: relative;
-	background: #222;
+	background: $color-text;
 	border-radius: 4px;
 	overflow: hidden;
 	transition: transform 0.3s ease;

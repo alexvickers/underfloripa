@@ -1,11 +1,21 @@
-$color-dark: #111;
-$color-darker: #222;
+$color-offwhite: #f7f6f5;
+$color-dark: #1e1a17;
+$color-text: #222;
+
+// Accents
 $color-accent: #e60073;
 $color-purple: #8e00e6;
 $color-blue: #0073e6;
 $color-orange: #e65400;
 
+$color-gradient: linear-gradient(90deg,
+        $color-accent,
+        $color-purple,
+        $color-blue,
+        $color-orange,
+        $color-accent);
+
 $font-body: 'Heebo', sans-serif;
-$font-headings: 'Bebas Neue', sans-serif;
+$font-headings: 'Bebas Neue', Impact, sans-serif;
 
 $max-width: 1388px;
