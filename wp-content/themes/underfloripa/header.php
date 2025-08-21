@@ -31,7 +31,7 @@ if (! defined('ABSPATH')) {
 <body <?php body_class(); ?>>
 
 	<header id="site-header">
-		<div class="header-container">
+		<div class="site-container flex">
 			<a class="header-left" href="<?php echo home_url(); ?>" target="_self">
 				<?php if (is_front_page()) { ?>
 					<h1 class="site-title">
@@ -58,7 +58,7 @@ if (! defined('ABSPATH')) {
 		</div>
 		<div class="site-accent-bar"></div>
 		<nav id="site-navigation" class="main-navigation">
-			<div class="nav-container">
+			<div class="nav-container site-container">
 				<div class="nav-left">
 					<a class="mini-logo" href="<?php echo home_url(); ?>" target="_self">
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-uf.svg" alt="Underfloripa logo icon" />
@@ -71,7 +71,6 @@ if (! defined('ABSPATH')) {
 					]); ?>
 				</div>
 				<div class="nav-right">
-					<button id="menu-toggle" aria-controls="primary-menu" aria-expanded="false">☰</button>
 					<div class="header-socials">
 						<a href="#" aria-label="Instagram" target="_blank">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
@@ -99,7 +98,5 @@ if (! defined('ABSPATH')) {
 		</nav>
 
 	</header>
-
-	<!-- header.php -->
 
 	<body <?php body_class(); ?>>

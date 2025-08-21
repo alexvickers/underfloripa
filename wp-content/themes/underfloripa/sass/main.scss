@@ -5,6 +5,7 @@
 @use "base/typography";
 
 // Layout structure
+@use "layout/general";
 @use "layout/header";
 @use "layout/navigation";
 @use "layout/footer";
@@ -12,7 +13,6 @@
 
 // Components
 @use "components/buttons";
-@use "components/socials";
 @use "components/backtotop";
 
 // Page sections

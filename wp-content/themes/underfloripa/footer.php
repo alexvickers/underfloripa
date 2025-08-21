@@ -5,51 +5,56 @@ if (! defined('ABSPATH')) {
 } ?>
 
 <footer id="site-footer">
-	<nav class="footer-menu">
+	<nav class="footer-menu site-container">
 		<?php wp_nav_menu([
 			'theme_location' => 'footer_menu',
 			'menu_id'        => 'footer-menu',
 			'container'      => false,
 		]); ?>
 	</nav>
-	<p>&copy; <?php echo date('Y'); ?> Underfloripa</p>
+	<div class="site-container">
+		<p>Under Floripa (2004 - <?php echo date('Y'); ?>). Todos os Direitos Reservados. O maior site de resenhas do Sul do Brasil! Indo na contramão desde 2004.</p>
+	</div>
 </footer>
 
 <button id="back-to-top" title="Voltar ao topo">↑</button>
 
 <script>
-	document.addEventListener('DOMContentLoaded', function() {
-		const toggle = document.getElementById('menu-toggle');
-		const menu = document.getElementById('primary-menu');
-
-		toggle.addEventListener('click', function() {
-			const expanded = this.getAttribute('aria-expanded') === 'true';
-			this.setAttribute('aria-expanded', !expanded);
-			menu.classList.toggle('open');
-		});
-	});
-</script>
-
-<script>
-	document.addEventListener('DOMContentLoaded', () => {
+	(() => {
 		const header = document.getElementById('site-header');
-		let lastScroll = window.scrollY;
+		if (!header) return;
 
-		window.addEventListener('scroll', () => {
-			const currentScroll = window.scrollY;
+		const miniLogo = header.querySelector('.mini-logo');
+		const shrinkThreshold = 180; // pixels to scroll before shrinking
 
-			if (currentScroll > 80) {
+		// Detect scrollable container
+		let scrollContainer = window;
+		const testScroll = document.documentElement.scrollHeight > window.innerHeight;
+		if (!testScroll) {
+			// Try body or main wrapper
+			const container = document.querySelector('body');
+			if (container) scrollContainer = container;
+		}
+
+		const handleScroll = () => {
+			const scrollY = scrollContainer === window ? window.scrollY : scrollContainer.scrollTop;
+
+			if (scrollY > shrinkThreshold) {
 				header.classList.add('shrink');
+				if (miniLogo) miniLogo.style.opacity = 1;
 			} else {
 				header.classList.remove('shrink');
+				if (miniLogo) miniLogo.style.opacity = 0;
 			}
+		};
 
-			lastScroll = currentScroll;
-		});
-	});
+		// Attach listener
+		scrollContainer.addEventListener('scroll', handleScroll);
+
+		// Run once in case page is already scrolled
+		handleScroll();
+	})();
 </script>
-
-</div><!-- /.site-container -->
 
 <?php wp_footer(); ?>
 

@@ -1,1 +1,33 @@
-/* Footer styles here */
+@use "../base/variables" as *;
+
+footer {
+	margin-top: 4rem;
+	color: $color-offwhite;
+	background-color: $color-dark;
+
+	p {
+		font-size: 14px;
+		padding-bottom: 1rem;
+	}
+}
+
+.footer-menu {
+	text-align: center;
+	padding: 1.5rem;
+
+	ul {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
+
+		a {
+			text-decoration: none;
+			color: $color-offwhite;
+			font-size: 0.9rem;
+			text-transform: uppercase;
+		}
+	}
+}

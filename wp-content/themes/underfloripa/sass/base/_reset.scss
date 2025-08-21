@@ -1,8 +1,36 @@
-html,
+@use "../base/variables" as *;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
 body {
-	margin: 0;
-	padding: 0;
-	border: 0;
+  line-height: 1.5;
+  font-family: $font-body;
+  background-color: $color-offwhite;
+  color: $color-text;
 }
 
 .admin-bar #site-header {

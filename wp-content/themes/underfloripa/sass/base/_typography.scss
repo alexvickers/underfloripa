@@ -21,4 +21,18 @@ body {
 		font-weight: normal;
 		margin: 0;
 	}
+
+	.site-title {
+		font-size: 48px;
+		line-height: 32px;
+		margin: 0;
+		color: $color-offwhite;
+	}
+
+	.section-heading,
+	.button--bold,
+	.nav-item {
+		font-family: $font-headings;
+		text-transform: uppercase;
+	}
 }
