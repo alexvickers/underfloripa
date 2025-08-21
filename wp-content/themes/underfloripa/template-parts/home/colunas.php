@@ -20,8 +20,16 @@ if (! defined('ABSPATH')) {
 
 	if ($colunas->have_posts()) : ?>
 		<div class="colunas-cards">
-			<?php while ($colunas->have_posts()) : $colunas->the_post(); ?>
-				<div class="coluna-card">
+			<?php while ($colunas->have_posts()) : $colunas->the_post();
+				$categories = get_the_category();
+				$category_classes = '';
+				if (! empty($categories)) {
+					foreach ($categories as $cat) {
+						$category_classes .= ' category-' . esc_attr($cat->slug);
+					}
+				}
+			?>
+				<div class="coluna-card<?php echo $category_classes; ?>">
 					<a href="<?php the_permalink(); ?>">
 						<?php if (has_post_thumbnail()) :
 							$thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
@@ -42,6 +50,7 @@ if (! defined('ABSPATH')) {
 					</a>
 				</div>
 			<?php endwhile;
+
 			wp_reset_postdata(); ?>
 		</div>
 	<?php else : ?>

@@ -13,7 +13,8 @@
 
 .colunas-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
     gap: 2rem;
 }
 
@@ -23,9 +24,36 @@
     overflow: hidden;
     text-decoration: none;
     color: $color-offwhite;
-    min-height: 360px;
-    border-radius: 6px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.4;
+        transition: opacity 0.3s ease;
+        z-index: 2;
+    }
+
+    &.category-incendio-cultural {
+        &::before {
+            background-color: $color-orange;
+        }
+    }
+
+    &.category-voce-precisa-conhecer {
+        &::before {
+            background-color: $color-blue;
+        }
+    }
+
+    &:hover {
+        &::before {
+            opacity: 0.6;
+        }
+    }
 }
 
 .coluna-bg {
