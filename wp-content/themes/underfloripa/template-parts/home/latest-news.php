@@ -15,6 +15,14 @@ if (! defined('ABSPATH')) {
 	$latest_news = new WP_Query([
 		'post_type'      => 'post',
 		'posts_per_page' => 7,
+		'tax_query'      => [
+			[
+				'taxonomy' => 'category',
+				'field'    => 'slug',
+				'terms'    => ['resenhas', 'colunas', 'coberturas'],
+				'operator' => 'NOT IN',
+			],
+		],
 	]);
 
 	if ($latest_news->have_posts()) :

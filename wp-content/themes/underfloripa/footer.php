@@ -17,21 +17,17 @@ if (! defined('ABSPATH')) {
 	</div>
 </footer>
 
-<button id="back-to-top" title="Voltar ao topo">↑</button>
-
 <script>
 	(() => {
 		const header = document.getElementById('site-header');
 		if (!header) return;
 
 		const miniLogo = header.querySelector('.mini-logo');
-		const shrinkThreshold = 180; // pixels to scroll before shrinking
+		const shrinkThreshold = 180;
 
-		// Detect scrollable container
 		let scrollContainer = window;
 		const testScroll = document.documentElement.scrollHeight > window.innerHeight;
 		if (!testScroll) {
-			// Try body or main wrapper
 			const container = document.querySelector('body');
 			if (container) scrollContainer = container;
 		}
@@ -48,10 +44,7 @@ if (! defined('ABSPATH')) {
 			}
 		};
 
-		// Attach listener
 		scrollContainer.addEventListener('scroll', handleScroll);
-
-		// Run once in case page is already scrolled
 		handleScroll();
 	})();
 </script>
