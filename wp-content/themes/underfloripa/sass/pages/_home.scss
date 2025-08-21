@@ -50,7 +50,7 @@
 
 /* Base layout for the header */
 #site-header {
-	background: $color-text;
+	background: $color-dark;
 	color: $color-offwhite;
 	border-bottom: none;
 }
@@ -131,7 +131,7 @@
 /* === Navigation === */
 .main-navigation {
 	padding: 10px 0;
-	background: $color-dark;
+	background: $color-text;
 	transition: all 0.3s ease;
 	gap: 1rem;
 }

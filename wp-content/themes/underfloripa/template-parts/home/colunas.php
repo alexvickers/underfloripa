@@ -30,17 +30,16 @@ if (! defined('ABSPATH')) {
 				}
 			?>
 				<div class="coluna-card<?php echo $category_classes; ?>">
+					<div class="post-categories">
+						<?php the_category(' '); ?>
+					</div>
 					<a href="<?php the_permalink(); ?>">
 						<?php if (has_post_thumbnail()) :
 							$thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
 						endif; ?>
 
 						<div class="coluna-bg" style="background-image: url('<?php echo esc_url($thumb_url); ?>');">
-							<div class="coluna-overlay"></div>
 							<div class="coluna-content">
-								<div class="post-categories">
-									<?php the_category(' '); ?>
-								</div>
 								<h3 class="post-title"><?php the_title(); ?></h3>
 								<div class="post-info">
 									<?php the_author(); ?> – <?php the_date(); ?>

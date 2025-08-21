@@ -2,101 +2,118 @@
 
 /* === Colunas Section === */
 .colunas-grid {
-    padding: 2rem 1rem;
+	padding: 2rem 1rem;
 
-    h2 {
-        font-family: $font-headings;
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-    }
+	h2 {
+		font-family: $font-headings;
+		font-size: 2rem;
+		margin-bottom: 1.5rem;
+	}
 }
 
 .colunas-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 2rem;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, auto);
+	gap: 2rem;
 }
 
 .coluna-card {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    color: $color-offwhite;
-    border-radius: 4px;
-    aspect-ratio: 1 / 1;
-    width: 100%;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	text-decoration: none;
+	color: $color-offwhite;
+	border-radius: 4px;
+	aspect-ratio: 1 / 1;
+	width: 100%;
 
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        opacity: 0.4;
-        transition: opacity 0.3s ease;
-        z-index: 2;
-    }
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		opacity: 0.4;
+		transition: opacity 0.3s ease;
+		z-index: 2;
+	}
 
-    &.category-incendio-cultural {
-        &::before {
-            background-color: $color-orange;
-        }
-    }
+	&.category-incendio-cultural {
+		&::before {
+			background-color: $color-orange;
+		}
+	}
 
-    &.category-voce-precisa-conhecer {
-        &::before {
-            background-color: $color-blue;
-        }
-    }
+	&.category-voce-precisa-conhecer {
+		&::before {
+			background-color: $color-blue;
+		}
+	}
 
-    &:hover {
-        &::before {
-            opacity: 0.6;
-        }
-    }
+	&:hover {
+		&::before {
+			opacity: 0.6;
+		}
+	}
+
+	a {
+		color: $color-offwhite;
+	}
+
+	.post-categories {
+		position: absolute;
+		top: 16px;
+		left: 16px;
+		z-index: 10;
+
+		a {
+			display: inline-block;
+			color: $color-offwhite;
+			text-decoration: none;
+			padding: 6px 12px;
+			background-color: $color-dark;
+			border-radius: 4px;
+			font-size: 0.75rem;
+			line-height: 1.1;
+
+			&:hover {
+				background-color: $color-text;
+			}
+		}
+	}
 }
 
 .coluna-bg {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    position: relative;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	position: relative;
 }
 
 .coluna-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem;
-    z-index: 2;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 1rem;
+	z-index: 2;
 
-    .post-categories a {
-        background: rgba(255, 255, 255, 0.2);
-        padding: 2px 6px;
-        margin-right: 4px;
-        font-size: 0.75rem;
-        color: $color-offwhite;
-        text-transform: uppercase;
-        border-radius: 2px;
-    }
+	.post-title {
+		font-size: 1.4rem;
+		margin: 0.5rem 0 0.25rem;
+		font-family: $font-headings;
+		line-height: 1.2;
+	}
 
-    .post-title {
-        font-size: 1.4rem;
-        margin: 0.5rem 0 0.25rem;
-        font-family: $font-headings;
-    }
+	.post-info {
+		font-size: 0.85rem;
+		opacity: 0.85;
+		margin-bottom: 0;
+	}
 
-    .post-info {
-        font-size: 0.85rem;
-        opacity: 0.85;
-        margin-bottom: 0.5rem;
-    }
-
-    .post-excerpt {
-        font-size: 0.9rem;
-        line-height: 1.4;
-        opacity: 0.95;
-    }
+	.post-excerpt {
+		font-size: 0.9rem;
+		line-height: 1.4;
+		opacity: 0.95;
+	}
 }
