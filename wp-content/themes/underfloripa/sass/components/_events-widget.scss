@@ -1,0 +1,37 @@
+@use "../base/variables" as *;
+
+.widget_uf_upcoming_events_widget {
+	.widget-title {
+		font-size: 1.75rem;
+	}
+
+	.uf-widget-events {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+
+		li.event {
+			margin-bottom: 0.8em;
+			padding: 0 0 0 6px;
+			font-size: 1rem;
+		}
+
+		a {
+			color: $color-text;
+			text-decoration: none;
+		}
+
+		h4 {
+			font-size: 1.45rem;
+			line-height: 1;
+			margin: 0;
+			text-transform: uppercase;
+		}
+	}
+
+	.uf-event-filter {
+		border-radius: 4px;
+		padding: 12px;
+		margin-bottom: 0.75rem;
+	}
+}

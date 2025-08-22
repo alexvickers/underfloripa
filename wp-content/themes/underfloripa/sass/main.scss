@@ -13,6 +13,9 @@
 
 // Components
 @use "components/buttons";
+@use "components/search";
+@use "components/select";
+@use "components/events-widget";
 
 // Page sections
 @use "sections/news";
@@ -25,6 +28,8 @@
 @use "pages/home";
 @use "pages/single";
 @use "pages/archive";
+@use "pages/agenda";
+@use "pages/event";
 
 // Utilities
 @use "utilities/helpers";
