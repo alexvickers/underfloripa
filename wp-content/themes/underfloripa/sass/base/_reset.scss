@@ -31,11 +31,3 @@ body {
   background-color: $color-offwhite;
   color: $color-text;
 }
-
-.admin-bar #site-header {
-	top: 32px;
-
-	@media screen and (max-width: 782px) {
-		top: 46px;
-	}
-}
