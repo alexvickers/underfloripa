@@ -24,7 +24,7 @@ if (! defined('ABSPATH')) {
 				<article class="coverage-item">
 					<?php if (has_post_thumbnail()) : ?>
 						<div class="post-image">
-							<?php the_post_thumbnail('medium'); ?>
+							<?php the_post_thumbnail('medium_larg'); ?>
 						</div>
 					<?php endif; ?>
 

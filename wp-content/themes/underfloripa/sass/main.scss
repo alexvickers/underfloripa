@@ -33,7 +33,8 @@
 @use "pages/single";
 @use "pages/archive";
 @use "pages/agenda";
-@use "pages/event";
+@use "pages/events";
+@use "pages/event-single";
 
 // Utilities
 @use "utilities/helpers";

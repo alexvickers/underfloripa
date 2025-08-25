@@ -1,0 +1,23 @@
+.event-single {
+	display: flex;
+	margin-top: 3rem;
+
+	article {
+		display: flex;
+		gap: 2rem;
+
+		.featured-image {
+			flex: 0 0 30%;
+
+			img {
+				width: 100%;
+				height: auto;
+				object-fit: contain;
+			}
+		}
+
+		h1 {
+			line-height: 1;
+		}
+	}
+}

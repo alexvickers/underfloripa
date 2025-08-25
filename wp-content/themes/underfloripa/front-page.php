@@ -18,6 +18,7 @@ get_header(); ?>
         <?php get_template_part('template-parts/home/coberturas'); ?>
         <?php get_template_part('template-parts/home/colunas'); ?>
     </main>
+
     <?php if (is_active_sidebar('primary-sidebar')) : ?>
         <aside class="sidebar">
             <?php dynamic_sidebar('primary-sidebar'); ?>
