@@ -3,7 +3,7 @@
 <div class="site-container content">
 
 	<!-- Main post content -->
-	<main class="content-area">
+	<main>
 
 		<?php
 		if (have_posts()) :
@@ -41,9 +41,10 @@
 					<!-- Author box (reusable component) -->
 					<?php get_template_part('template-parts/author-bio', 'box'); ?>
 
-					<!-- Related posts (reusable component) -->
-					<?php get_template_part( 'template-parts/related-posts-block' ); ?>
 				</article>
+
+									<?php echo get_related_posts_block(get_post()); ?>
+
 
 		<?php endwhile;
 		endif; ?>
@@ -52,7 +53,7 @@
 
 	<!-- Sidebar -->
 	<aside class="sidebar">
-		<?php get_sidebar(); ?>
+		<?php dynamic_sidebar('primary-sidebar'); ?>
 	</aside>
 
 </div><!-- /.site-container -->

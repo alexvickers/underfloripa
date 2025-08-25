@@ -33,7 +33,7 @@ $author_posts_url = get_author_posts_url($author_id);
             <p><?php echo esc_html($author_bio); ?></p>
         <?php endif; ?>
 
-        <a href="<?php echo esc_url($author_posts_url); ?>" class="author-link">
+        <a href="<?php echo esc_url($author_posts_url); ?>" class="author-link button">
             Outras matérias deste autor
         </a>
     </div>

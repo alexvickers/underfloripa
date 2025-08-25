@@ -1,26 +1,46 @@
+@use "../base/variables" as *;
+
 .single {
 	.content {
 		display: flex;
 		margin-top: 3rem;
 		gap: 2rem;
 
-		main.content-area {
+		main {
 			flex: 0 1 70%;
-		}
+			background-color: $color-offwhite-bright;
 
-		.sidebar {
-			flex: 0 1 30%;
-		}
+			article {
+				border-bottom: 1px solid $color-accent-light;
+				padding-bottom: 2rem;
+			}
 
-		.ratio-16-9 {
-			aspect-ratio: 16 / 9;
-			overflow: hidden;
-		}
+			h2,
+			p {
+				margin-bottom: 1.5rem;
+			}
 
-		.ratio-16-9 img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
+			strong,
+			b {
+				font-weight: 600;
+			}
 		}
+	}
+
+	.sidebar {
+		flex: 0 1 30%;
+	}
+
+	.ratio-16-9 {
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		margin-bottom: 1.5rem;
+		border-radius: 4px;
+	}
+
+	.ratio-16-9 img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 }

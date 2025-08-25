@@ -34,4 +34,14 @@ body {
 		font-family: $font-headings;
 		text-transform: uppercase;
 	}
+
+	a {
+		color: $color-accent;
+		text-decoration: none;
+
+		&:hover {
+			color: $color-purple;
+		}
+	}
+
 }

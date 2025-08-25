@@ -4,10 +4,13 @@ if (! defined('ABSPATH')) {
 	exit;
 }
 
+// Load PHP files from /inc
+foreach (glob(get_stylesheet_directory() . '/inc/*.php') as $file) {
+	require_once $file;
+}
+
 // Theme setup
-function underfloripa_setup()
-{
-	add_theme_support('title-tag');
+function underfloripa_setup() {
 	add_theme_support('post-thumbnails');
 	add_theme_support('html5', ['search-form', 'gallery', 'caption']);
 
@@ -19,22 +22,12 @@ function underfloripa_setup()
 add_action('after_setup_theme', 'underfloripa_setup');
 
 // Enqueue styles and scripts
-function underfloripa_assets()
-{
+function underfloripa_assets() {
 	wp_enqueue_style('underfloripa-style', get_stylesheet_uri(), [], '1.0');
 }
 add_action('wp_enqueue_scripts', 'underfloripa_assets');
 
-// Logo support
-add_theme_support('custom-logo', [
-	'height'      => 100,
-	'width'       => 100,
-	'flex-height' => true,
-	'flex-width'  => true,
-]);
-
-function underfloripa_optimize_jquery()
-{
+function underfloripa_optimize_jquery() {
 	if (is_admin()) return;
 
 	// Deregister the default jQuery
@@ -56,8 +49,7 @@ function underfloripa_optimize_jquery()
 }
 add_action('wp_enqueue_scripts', 'underfloripa_optimize_jquery');
 
-function underfloripa_remove_jquery_migrate($scripts)
-{
+function underfloripa_remove_jquery_migrate($scripts) {
 	if (! is_admin() && isset($scripts->registered['jquery'])) {
 		$jquery_dep = &$scripts->registered['jquery'];
 
@@ -81,8 +73,7 @@ function my_custom_footer_scripts()
 add_action('wp_footer', 'my_custom_footer_scripts', 100);
 
 // Added sidebar
-function underfloripa_register_sidebars()
-{
+function underfloripa_register_sidebars() {
 	register_sidebar([
 		'name'          => 'Primary Sidebar',
 		'id'            => 'primary-sidebar',
@@ -96,8 +87,7 @@ function underfloripa_register_sidebars()
 add_action('widgets_init', 'underfloripa_register_sidebars');
 
 // AJAX: Load More Posts
-function my_ajax_load_more_posts()
-{
+function my_ajax_load_more_posts() {
 	if (! isset($_GET['nonce']) || ! wp_verify_nonce($_GET['nonce'], 'load_more_nonce')) {
 		wp_send_json_error('Invalid nonce');
 		wp_die();
@@ -156,8 +146,7 @@ add_action('wp_ajax_load_more_posts', 'my_ajax_load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'my_ajax_load_more_posts');
 
 // AJAX Script Localizer
-function colormag_child_enqueue_scripts()
-{
+function colormag_child_enqueue_scripts() {
 	// Only load on archive-type pages
 	if (
 		is_archive() ||
@@ -191,10 +180,8 @@ function colormag_child_enqueue_scripts()
 }
 add_action('wp_enqueue_scripts', 'colormag_child_enqueue_scripts');
 
-class Underfloripa_Walker_Nav_Menu extends Walker_Nav_Menu
-{
-	public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
-	{
+class Underfloripa_Walker_Nav_Menu extends Walker_Nav_Menu {
+	public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0) {
 		$classes = empty($item->classes) ? [] : (array) $item->classes;
 		$class_names = join(' ', array_filter($classes));
 		$class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';

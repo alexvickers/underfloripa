@@ -1,4 +1,5 @@
 $color-offwhite: #f7f6f5;
+$color-offwhite-bright: #fdfdfc;
 $color-dark: #3a2f29;
 $color-text: #222;
 
@@ -7,13 +8,24 @@ $color-accent: #e60073;
 $color-purple: #8e00e6;
 $color-blue: #0073e6;
 $color-orange: #e65400;
+$color-accent-light: #e0dbd6;
 
 $color-gradient: linear-gradient(90deg,
-        $color-accent,
-        $color-purple,
-        $color-blue,
-        $color-orange,
-        $color-accent);
+                $color-accent,
+                $color-purple,
+                $color-blue,
+                $color-orange,
+                $color-accent);
+
+$gradient-warm: linear-gradient(45deg,
+                #e65400 0%,
+                #e60073 50%,
+                #b00052 100%);
+
+$gradient-cool: linear-gradient(45deg,
+                #0073e6 0%,
+                #8e00e6 50%,
+                #4a0099 100%);
 
 $font-body: 'Heebo', sans-serif;
 $font-headings: 'Bebas Neue', Impact, sans-serif;

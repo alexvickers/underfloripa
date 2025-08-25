@@ -129,7 +129,7 @@ $is_multiple = count($events) > 1;
                     <li><strong>Ingressos apenas na bilheteria na hora do evento.</strong></li>
                 <?php } elseif (!empty($tickets_link)) { ?>
                     <li>
-                        <a href="<?php echo esc_url($tickets_link); ?>" target="_blank" rel="noopener">
+                        <a href="<?php echo esc_url($tickets_link); ?>" target="_blank" rel="noopener" class="button">
                             Garanta seu Ingresso
                         </a>
                     </li>
