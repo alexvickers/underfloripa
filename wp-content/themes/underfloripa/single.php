@@ -33,25 +33,26 @@
 						</div>
 					<?php endif; ?>
 
+					<div class="homepage-ad">
+						<img src="https://placehold.co/970x250" />
+					</div>
+
 					<!-- Content -->
 					<div class="entry-content">
 						<?php the_content(); ?>
 					</div>
 
-					<!-- Author box (reusable component) -->
 					<?php get_template_part('template-parts/author-bio', 'box'); ?>
 
 				</article>
 
-									<?php echo get_related_posts_block(get_post()); ?>
-
+				<?php echo get_related_posts_block(get_post()); ?>
 
 		<?php endwhile;
 		endif; ?>
 
 	</main>
 
-	<!-- Sidebar -->
 	<aside class="sidebar">
 		<?php dynamic_sidebar('primary-sidebar'); ?>
 	</aside>

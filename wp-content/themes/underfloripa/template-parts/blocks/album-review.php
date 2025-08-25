@@ -16,10 +16,9 @@ if (!$album_name) {
 }
 
 $formatted_mark = ($mark == 10 || $mark == 0) ? (string) intval($mark) : number_format((float) $mark, 1);
-$class_suffix = is_string($media_type) ? strtolower($media_type) : 'unknown';
 ?>
 
-<div class="album-review-block <?= esc_attr($class_suffix) ?>">
+<div class="album-review-block">
     <div class="mark"><span><?php echo $formatted_mark; ?></span></div>
     <div>
         <h3>
@@ -28,7 +27,7 @@ $class_suffix = is_string($media_type) ? strtolower($media_type) : 'unknown';
                 - <?php echo esc_html($artist_name);
             } ?>
         </h3>
-        <p><strong><?php echo esc_html($label_title); ?>:</strong> <?php echo esc_html($record_label); ?></p>
+        <p><strong>Gravadora:</strong> <?php echo esc_html($record_label); ?></p>
         <p class="description"><?php echo esc_html($description); ?></p>
     </div>
 </div>

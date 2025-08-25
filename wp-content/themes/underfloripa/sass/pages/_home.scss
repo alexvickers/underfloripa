@@ -15,9 +15,10 @@
 }
 
 .homepage-ad {
-	width: 768px;
-	height: 90px;
-	margin: auto;
+	img {
+		display: block;
+		margin: auto;
+	}
 }
 
 @media (max-width: 600px) {

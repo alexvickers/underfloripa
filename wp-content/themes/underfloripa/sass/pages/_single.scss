@@ -1,23 +1,31 @@
 @use "../base/variables" as *;
 
 .single {
+	background-color: $color-offwhite-bright;
+
 	.content {
 		display: flex;
 		margin-top: 3rem;
 		gap: 2rem;
 
 		main {
-			flex: 0 1 70%;
-			background-color: $color-offwhite-bright;
+			flex: 0 1 75%;
 
 			article {
 				border-bottom: 1px solid $color-accent-light;
 				padding-bottom: 2rem;
-			}
 
-			h2,
-			p {
-				margin-bottom: 1.5rem;
+				.entry-content {
+
+					h2,
+					p {
+						margin-bottom: 1.5rem;
+
+						&:first-child {
+							margin-top: 2rem;
+						}
+					}
+				}
 			}
 
 			strong,
@@ -28,7 +36,7 @@
 	}
 
 	.sidebar {
-		flex: 0 1 30%;
+		flex: 0 1 25%;
 	}
 
 	.ratio-16-9 {
