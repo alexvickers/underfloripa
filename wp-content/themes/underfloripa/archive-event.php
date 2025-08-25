@@ -6,11 +6,10 @@ if (! defined('ABSPATH')) {
 
 get_header(); ?>
 
-<div class="cm-row">
-	<?php do_action('colormag_before_body_content'); ?>
+<div class="site-container events">
 
-	<div id="cm-primary" class="cm-primary">
-		<div id="posts-container" class="cm-posts <?php echo esc_attr('cm-' . $grid_layout . ' ' . $style . ' ' . $col); ?>">
+	<main>
+		<div id="posts-container">
 
 			<header class="page-header">
 				<h1><?php the_archive_title(); ?></h1>
@@ -76,7 +75,7 @@ get_header(); ?>
 					$formatted_date = $event_date ? date_i18n('d/m', strtotime($event_date)) : '';
 			?>
 
-					<article id="post-<?php the_ID(); ?>" <?php post_class('cm-post'); ?>>
+					<article id="post-<?php the_ID(); ?>">
 						<div class="event-thumbnail">
 							<a href="<?php echo esc_url($event_link); ?>">
 								<?php if (has_post_thumbnail()) {
@@ -87,9 +86,9 @@ get_header(); ?>
 							</a>
 						</div>
 
-						<div class="event-details cm-post-content">
+						<div class="event-details">
 							<header class="entry-header">
-								<h3 class="cm-entry-title">
+								<h3>
 									<a href="<?php echo esc_url($event_link); ?>">
 										<?php the_title(); ?>
 										<?php if (!empty($tour)) {
@@ -136,14 +135,14 @@ get_header(); ?>
 
 							<div class="event-buttons">
 								<?php if ($event_link) { ?>
-									<a class="cm-entry-button" title="<?php the_title_attribute(); ?>" href="<?php echo esc_url($event_link); ?>">
-										<span><?php esc_html_e('Leia Mais', 'colormag'); ?></span>
+									<a class="button" title="<?php the_title_attribute(); ?>" href="<?php echo esc_url($event_link); ?>">
+										<span><?php esc_html_e('Leia Mais'); ?></span>
 									</a>
 								<?php } ?>
 
 								<?php if ($ticket_link) { ?>
-									<a class="cm-entry-button" title="<?php the_title_attribute(); ?>" href="<?php echo esc_url($ticket_link); ?>">
-										<span><?php esc_html_e('Ingressos', 'colormag'); ?></span>
+									<a class="button" title="<?php the_title_attribute(); ?>" href="<?php echo esc_url($ticket_link); ?>">
+										<span><?php esc_html_e('Ingressos'); ?></span>
 									</a>
 								<?php } ?>
 							</div>
@@ -153,16 +152,29 @@ get_header(); ?>
 				<?php }
 				wp_reset_postdata();
 			} else { ?>
-				<p><?php esc_html_e('No upcoming events found.', 'colormag-child'); ?></p>
+				<p><?php esc_html_e('No upcoming events found.'); ?></p>
 			<?php } ?>
 		</div><!-- #posts-container -->
 
-		<div id="load-more-spinner" style="display:none; text-align:center; padding:1em;">
-			<span class="spinner"></span>
-		</div>
-	</div><!-- #cm-primary -->
+            <?php if ($wp_query->max_num_pages > 1) : ?>
+                <div id="load-more-spinner" style="height: 80px; visibility: hidden; text-align:center; margin:2rem 0;">
+                    <div class="lds-spinner">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            <?php endif; ?>
+	</main>
 
-	<?php get_sidebar(); ?>
-</div><!-- .cm-row -->
+    <aside class="sidebar">
+        <?php dynamic_sidebar('primary-sidebar'); ?>
+    </aside>
+</div>
 
 <?php get_footer();

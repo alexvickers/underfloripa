@@ -146,7 +146,7 @@ add_action('wp_ajax_load_more_posts', 'my_ajax_load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'my_ajax_load_more_posts');
 
 // AJAX Script Localizer
-function colormag_child_enqueue_scripts() {
+function uf_enqueue_scripts() {
 	// Only load on archive-type pages
 	if (
 		is_archive() ||
@@ -178,7 +178,7 @@ function colormag_child_enqueue_scripts() {
 		]);
 	}
 }
-add_action('wp_enqueue_scripts', 'colormag_child_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'uf_enqueue_scripts');
 
 class Underfloripa_Walker_Nav_Menu extends Walker_Nav_Menu {
 	public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0) {

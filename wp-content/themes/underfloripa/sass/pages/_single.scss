@@ -3,6 +3,10 @@
 .single {
 	background-color: $color-offwhite-bright;
 
+	.entry-meta {
+		margin-bottom: 1rem;
+	}
+
 	.content {
 		display: flex;
 		margin-top: 3rem;

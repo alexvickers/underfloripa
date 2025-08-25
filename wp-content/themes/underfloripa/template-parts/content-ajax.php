@@ -8,7 +8,7 @@ if (! defined('ABSPATH')) {
 
     <?php if (has_post_thumbnail()) : ?>
         <a href="<?php the_permalink(); ?>" class="archive-post-thumbnail">
-            <?php the_post_thumbnail('medium'); ?>
+            <?php the_post_thumbnail('medium_large'); ?>
         </a>
     <?php endif; ?>
 
