@@ -1,15 +1,68 @@
-@mixin flex-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+// =========================================
+// Breakpoints
+// =========================================
+$breakpoints: (
+  "xs": 480px,
+  "sm": 640px,
+  "md": 768px,
+  "lg": 1024px,
+  "xl": 1280px,
+  "xxl": 1536px
+);
+
+// =========================================
+// Mixin: respond-to
+// Usage:
+//   @include respond-to(md) {
+//     font-size: 1rem;
+//   }
+// =========================================
+@mixin respond-to($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media (max-width: map-get($breakpoints, $size)) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "No breakpoint defined for `#{$size}`. Available: #{map-keys($breakpoints)}.";
+  }
 }
 
-@mixin respond($breakpoint) {
-  @if $breakpoint == small {
-    @media (max-width: 600px) { @content; }
-  } @else if $breakpoint == medium {
-    @media (max-width: 768px) { @content; }
-  } @else if $breakpoint == large {
-    @media (max-width: 1024px) { @content; }
+// =========================================
+// Mixin: respond-from
+// Usage:
+//   @include respond-from(lg) {
+//     display: flex;
+//   }
+// =========================================
+@mixin respond-from($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media (min-width: map-get($breakpoints, $size)) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "No breakpoint defined for `#{$size}`. Available: #{map-keys($breakpoints)}.";
+  }
+}
+
+// =========================================
+// Mixin: respond-between
+// Usage:
+//   @include respond-between(sm, md) {
+//     padding: 1rem;
+//   }
+// =========================================
+@mixin respond-between($min, $max) {
+  @if (map-has-key($breakpoints, $min) and map-has-key($breakpoints, $max)) {
+    @media (min-width: map-get($breakpoints, $min)) and (max-width: map-get($breakpoints, $max)) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Check breakpoint keys: #{$min}, #{$max}";
   }
 }
