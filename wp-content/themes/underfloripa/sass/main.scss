@@ -18,6 +18,8 @@
 @use "components/select";
 @use "components/events-widget";
 @use "components/album-review";
+@use "components/related";
+@use "components/spinner";
 
 // Page sections
 @use "sections/news";

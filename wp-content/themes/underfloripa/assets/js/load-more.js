@@ -2,10 +2,20 @@ let page = 2;
 let loading = false;
 let allPostsLoaded = false;
 
+const spinner = document.getElementById("load-more-spinner");
+const postsContainer = document.getElementById("posts-container");
+
+if (!spinner || !postsContainer) {
+  console.warn("Spinner or posts container not found.");
+}
+
+// Function to load more posts via AJAX
 const loadMorePosts = () => {
-  if (loading) return;
+  if (loading || allPostsLoaded) return;
   loading = true;
-  document.getElementById("load-more-spinner").style.display = "block";
+
+  // Show spinner
+  spinner.style.visibility = "visible";
 
   const params = new URLSearchParams({
     action: "load_more_posts",
@@ -22,12 +32,20 @@ const loadMorePosts = () => {
     .then((data) => {
       if (data.includes("no-more-posts")) {
         allPostsLoaded = true;
+        spinner.style.visibility = "hidden";
         return;
       }
 
-      document
-        .getElementById("posts-container")
-        .insertAdjacentHTML("beforeend", data);
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = data;
+
+      const newPosts = tempDiv.querySelectorAll(".archive-post");
+      newPosts.forEach((post, index) => {
+        post.classList.add("post-fade-in");
+        post.style.animationDelay = `${index * 0.1}s`;
+        postsContainer.appendChild(post);
+      });
+
       page++;
     })
     .catch((error) => {
@@ -35,17 +53,26 @@ const loadMorePosts = () => {
     })
     .finally(() => {
       loading = false;
-      document.getElementById("load-more-spinner").style.display = "none";
+      spinner.style.visibility = "hidden";
     });
 };
 
-window.addEventListener("scroll", () => {
-  if (loading || allPostsLoaded) return;
-
-  const scrollPosition = window.scrollY + window.innerHeight;
-  const bottom = document.documentElement.offsetHeight;
-
-  if (scrollPosition >= bottom - 100) {
-    loadMorePosts();
+// IntersectionObserver to autoload posts when spinner enters viewport
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        loadMorePosts();
+      }
+    });
+  },
+  {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0,
   }
-});
+);
+
+if (spinner) {
+  observer.observe(spinner);
+}
