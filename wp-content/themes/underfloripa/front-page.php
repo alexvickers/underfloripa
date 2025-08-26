@@ -10,9 +10,6 @@ get_header(); ?>
 
 <div class="content-area site-container">
     <main class="main-content" id="site-main">
-        <div class="homepage-ad">
-            <img src="https://placehold.co/970x250" />
-        </div>
         <?php get_template_part('template-parts/home/latest-news'); ?>
         <?php get_template_part('template-parts/home/reviews'); ?>
         <?php get_template_part('template-parts/home/coberturas'); ?>

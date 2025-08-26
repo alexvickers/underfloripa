@@ -33,10 +33,6 @@
 						</div>
 					<?php endif; ?>
 
-					<div class="homepage-ad">
-						<img src="https://placehold.co/970x250" />
-					</div>
-
 					<!-- Content -->
 					<div class="entry-content">
 						<?php the_content(); ?>

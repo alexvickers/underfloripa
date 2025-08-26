@@ -45,7 +45,3 @@ if (! defined('ABSPATH')) {
 		<p>Nenhuma resenha encontrada.</p>
 	<?php endif; ?>
 </section>
-
-<div class="homepage-ad">
-	<img src="https://placehold.co/768x90" />
-</div>

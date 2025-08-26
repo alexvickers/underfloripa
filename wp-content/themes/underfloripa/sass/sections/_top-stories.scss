@@ -5,6 +5,11 @@
 	background: $color-dark;
 	color: $color-offwhite;
 	margin-bottom: 4rem;
+	margin-top: 180px;
+
+	@media (max-width: 768px) {
+		margin-top: 212px;
+	}
 
 	h2 {
 		font-family: $font-headings;
@@ -18,16 +23,14 @@
 		grid-template-columns: repeat(4, 1fr);
 		gap: 1.5rem;
 
-		@media (max-width: 900px) {
+		@media (max-width: 768px) {
 			grid-template-columns: repeat(2, 1fr);
 		}
 
-		@media (max-width: 500px) {
+		@media (max-width: 640px) {
 			grid-template-columns: 1fr;
 		}
 
-
-		/* === Individual Top Story Card === */
 		.top-story {
 			position: relative;
 			background: $color-text;

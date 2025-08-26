@@ -1,68 +1,64 @@
+@use "sass:map";
+
 // =========================================
 // Breakpoints
 // =========================================
 $breakpoints: (
-  "xs": 480px,
-  "sm": 640px,
-  "md": 768px,
-  "lg": 1024px,
-  "xl": 1280px,
-  "xxl": 1536px
+  xs: 480px,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1536px
 );
 
 // =========================================
-// Mixin: respond-to
+// Mixin: respond-to (max-width)
 // Usage:
 //   @include respond-to(md) {
 //     font-size: 1rem;
 //   }
 // =========================================
 @mixin respond-to($size) {
-  @if map-has-key($breakpoints, $size) {
-    @media (max-width: map-get($breakpoints, $size)) {
+  @if map.has-key($breakpoints, $size) {
+    @media (max-width: map.get($breakpoints, $size)) {
       @content;
     }
-  }
-
-  @else {
-    @warn "No breakpoint defined for `#{$size}`. Available: #{map-keys($breakpoints)}.";
+  } @else {
+    @warn "No breakpoint defined for `#{$size}`. Available: #{map.keys($breakpoints)}.";
   }
 }
 
 // =========================================
-// Mixin: respond-from
+// Mixin: respond-from (min-width)
 // Usage:
 //   @include respond-from(lg) {
 //     display: flex;
 //   }
 // =========================================
 @mixin respond-from($size) {
-  @if map-has-key($breakpoints, $size) {
-    @media (min-width: map-get($breakpoints, $size)) {
+  @if map.has-key($breakpoints, $size) {
+    @media (min-width: map.get($breakpoints, $size)) {
       @content;
     }
-  }
-
-  @else {
-    @warn "No breakpoint defined for `#{$size}`. Available: #{map-keys($breakpoints)}.";
+  } @else {
+    @warn "No breakpoint defined for `#{$size}`. Available: #{map.keys($breakpoints)}.";
   }
 }
 
 // =========================================
-// Mixin: respond-between
+// Mixin: respond-between (range)
 // Usage:
 //   @include respond-between(sm, md) {
 //     padding: 1rem;
 //   }
 // =========================================
 @mixin respond-between($min, $max) {
-  @if (map-has-key($breakpoints, $min) and map-has-key($breakpoints, $max)) {
-    @media (min-width: map-get($breakpoints, $min)) and (max-width: map-get($breakpoints, $max)) {
+  @if (map.has-key($breakpoints, $min) and map.has-key($breakpoints, $max)) {
+    @media (min-width: map.get($breakpoints, $min)) and (max-width: map.get($breakpoints, $max)) {
       @content;
     }
-  }
-
-  @else {
-    @warn "Check breakpoint keys: #{$min}, #{$max}";
+  } @else {
+    @warn "Check breakpoint keys: #{$min}, #{$max}. Available: #{map.keys($breakpoints)}.";
   }
 }

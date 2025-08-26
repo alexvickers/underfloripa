@@ -52,7 +52,6 @@ if (! defined('ABSPATH')) {
 
 			<div class="header-right">
 				<div class="header-banner">
-					<img src="https://placehold.co/768x90" />
 				</div>
 			</div>
 		</div>
@@ -71,6 +70,10 @@ if (! defined('ABSPATH')) {
 					]); ?>
 				</div>
 				<div class="nav-right">
+					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+						<span class="hamburger"></span>
+						<span class="visually-hidden">Menu</span>
+					</button>
 					<div class="header-socials">
 						<a href="#" aria-label="Instagram" target="_blank">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">

@@ -17,38 +17,6 @@ if (! defined('ABSPATH')) {
 	</div>
 </footer>
 
-<script>
-	(() => {
-		const header = document.getElementById('site-header');
-		if (!header) return;
-
-		const miniLogo = header.querySelector('.mini-logo');
-		const shrinkThreshold = 180;
-
-		let scrollContainer = window;
-		const testScroll = document.documentElement.scrollHeight > window.innerHeight;
-		if (!testScroll) {
-			const container = document.querySelector('body');
-			if (container) scrollContainer = container;
-		}
-
-		const handleScroll = () => {
-			const scrollY = scrollContainer === window ? window.scrollY : scrollContainer.scrollTop;
-
-			if (scrollY > shrinkThreshold) {
-				header.classList.add('shrink');
-				if (miniLogo) miniLogo.style.opacity = 1;
-			} else {
-				header.classList.remove('shrink');
-				if (miniLogo) miniLogo.style.opacity = 0;
-			}
-		};
-
-		scrollContainer.addEventListener('scroll', handleScroll);
-		handleScroll();
-	})();
-</script>
-
 <?php wp_footer(); ?>
 
 </body>
