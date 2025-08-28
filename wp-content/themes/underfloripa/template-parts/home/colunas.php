@@ -5,6 +5,21 @@ if (! defined('ABSPATH')) {
 }
 ?>
 
+<div class="ad">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+		crossorigin="anonymous"></script>
+	<!-- Under Floripa 2025 - Colunas -->
+	<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-2855642712528671"
+		data-ad-slot="8767918142"
+		data-ad-format="auto"
+		data-full-width-responsive="true"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+
 <section class="home-section colunas-grid">
 	<div class="title">
 		<h2>Colunas</h2>

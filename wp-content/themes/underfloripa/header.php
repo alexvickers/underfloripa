@@ -50,9 +50,17 @@ if (! defined('ABSPATH')) {
 				<?php } ?>
 			</a>
 
-			<div class="header-right">
-				<div class="header-banner">
-				</div>
+			<div class="header-right ad">
+				<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+					crossorigin="anonymous"></script>
+				<!-- Under Floripa 2025 - Header -->
+				<ins class="adsbygoogle"
+					style="display:inline-block;width:728px;height:90px"
+					data-ad-client="ca-pub-2855642712528671"
+					data-ad-slot="5367126541"></ins>
+				<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
 			</div>
 		</div>
 		<div class="site-accent-bar"></div>

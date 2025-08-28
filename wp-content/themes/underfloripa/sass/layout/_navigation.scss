@@ -55,28 +55,50 @@
         }
 
         >.sub-menu {
-          position: static;
+          position: absolute;
+          top: 100%;
+          left: 0;
           background-color: $color-text;
           padding: 0.5rem 0;
-          opacity: 1;
-          visibility: visible;
+          min-width: 180px;
           display: none;
 
-          li {
-            a {
-              display: block;
-              padding: 0.5rem 1rem;
-              color: $color-offwhite;
-              font-size: 0.9rem;
-              text-transform: none;
-              text-decoration: none;
-              white-space: nowrap;
+          li a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: $color-offwhite;
+            font-size: 0.9rem;
+            text-transform: none;
+            text-decoration: none;
+            white-space: nowrap;
 
-              &:hover {
-                background-color: $color-dark;
-                color: $color-accent;
-              }
+            &:hover {
+              background-color: $color-dark;
+              color: $color-accent;
             }
+          }
+        }
+
+        // Desktop hover/focus
+        @media (min-width: 769px) {
+
+          &:hover>.sub-menu,
+          &:focus-within>.sub-menu {
+            display: block;
+          }
+        }
+
+        @media (max-width: 768px) {
+          >.sub-menu {
+            position: static;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            display: block;
+          }
+
+          &:focus-within>.sub-menu {
+            max-height: 500px;
           }
         }
       }
@@ -116,16 +138,7 @@
       display: flex;
       gap: 0.5rem;
       margin-right: 1rem;
-
-      @media (max-width: 768px) {
-        margin: 0 auto 1rem;
-      }
     }
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: stretch;
   }
 }
 
@@ -162,62 +175,67 @@
 // Hamburger animation
 .menu-toggle {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   width: 24px;
   height: 18px;
   cursor: pointer;
   background: none;
   border: none;
   padding: 0;
+  position: relative;
   z-index: 10000;
 
   .hamburger,
   .hamburger::before,
   .hamburger::after {
-    content: '';
-    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
     height: 3px;
-    background: $color-offwhite;
     border-radius: 2px;
     transition: all 0.3s ease;
+    content: '';
   }
 
-  .hamburger::before {
-    transform: translateY(-6px);
-  }
-
-  .hamburger::after {
-    transform: translateY(3px);
-  }
-
-  &.is-active .hamburger {
-    background: transparent;
+  .hamburger {
+    top: 50%;
+    transform: translateY(-50%);
+    background: $color-offwhite;
 
     &::before {
-      transform: rotate(45deg) translate(5px, 5px);
+      top: -10px;
+      background: $color-offwhite;
     }
 
     &::after {
-      transform: rotate(-45deg) translate(5px, -5px);
+      bottom: -10px;
+      background: $color-offwhite;
+    }
+  }
+
+  &.is-active {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    .hamburger {
+      background: transparent;
+
+      &::before {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      &::after {
+        bottom: auto;
+        top: 50%;
+        transform: translateY(-50%) rotate(-45deg);
+      }
     }
   }
 
   @media (min-width: 1025px) {
     display: none;
-  }
-}
-
-// Fixed header
-#site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  transition: all 0.3s ease;
-
-  &.shrink {
-    padding: 5px 0;
   }
 }

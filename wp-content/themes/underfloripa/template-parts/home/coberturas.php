@@ -5,6 +5,21 @@ if (! defined('ABSPATH')) {
 }
 ?>
 
+<div class="ad">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+		crossorigin="anonymous"></script>
+	<!-- Under Floripa 2025 - Coberturas -->
+	<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-2855642712528671"
+		data-ad-slot="9564972160"
+		data-ad-format="auto"
+		data-full-width-responsive="true"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+
 <section class="home-section coverages">
 	<div class="title">
 		<h2>Coberturas</h2>
@@ -24,7 +39,7 @@ if (! defined('ABSPATH')) {
 				<article class="coverage-item">
 					<?php if (has_post_thumbnail()) : ?>
 						<div class="post-image">
-							<?php the_post_thumbnail('medium_larg'); ?>
+							<?php the_post_thumbnail('medium_large'); ?>
 						</div>
 					<?php endif; ?>
 

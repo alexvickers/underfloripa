@@ -1,6 +1,11 @@
 .event-single {
 	display: flex;
-	margin-top: 3rem;
+	padding-top: 3rem;
+	margin-top: 180px;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 
 	article {
 		display: flex;
@@ -18,6 +23,16 @@
 
 		h1 {
 			line-height: 1;
+		}
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+			gap: 1.5rem;
+
+			.featured-image {
+				flex: none;
+				max-width: 100%;
+			}
 		}
 	}
 }
