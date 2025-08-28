@@ -1,0 +1,35 @@
+// Global Select Styling
+select {
+	appearance: none; // removes default arrow (cross-browser)
+	-webkit-appearance: none;
+	-moz-appearance: none;
+
+	display: inline-block;
+	width: 100%;
+	max-width: 100%;
+	padding: 0.75rem 2.5rem 0.75rem 1rem;
+	font-size: 1rem;
+	line-height: 1.4;
+	color: #222;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+	&:focus {
+		outline: none;
+		border-color: #222;
+		box-shadow: 0 0 0 2px rgba(#222, 0.2);
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23222' stroke-width='2' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 1rem center;
+	background-size: 12px 8px;
+}

@@ -1,0 +1,52 @@
+@use "../base/variables" as *;
+
+.site-container {
+	max-width: $max-width;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.content-area {
+	display: flex;
+	gap: 2rem;
+	padding: 0 15px;
+
+	.main-content {
+		flex: 0 1 75%;
+	}
+
+	.sidebar {
+		flex: 0 1 25%;
+	}
+
+	@media (max-width: 900px) {
+		flex-direction: column;
+
+		.main-content,
+		.sidebar {
+			flex: 1 1 100%;
+		}
+	}
+}
+
+body {
+	&.post-type-archive-event {
+		.widget_uf_upcoming_events_widget {
+			display: none;
+		}
+	}
+}
+
+.header-ad {
+	width: 728px;
+	height: 90px;
+	position: relative;
+	overflow: hidden;
+}
+
+.responsive-ad {
+	width: 100%;
+	min-height: 250px;
+	position: relative;
+	overflow: hidden;
+}

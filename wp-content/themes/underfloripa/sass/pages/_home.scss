@@ -1,0 +1,50 @@
+@use "../base/variables" as *;
+
+.home-section {
+	.title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 2rem;
+
+		h2 {
+			margin: 0;
+			line-height: 1;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	body {
+		font-size: 15px;
+		line-height: 1.5;
+	}
+
+	h2 {
+		font-size: 1.6rem;
+	}
+
+	.post-title {
+		font-size: 1.1rem !important;
+	}
+
+	.post-excerpt {
+		font-size: 0.95rem;
+	}
+
+	.latest-news-item,
+	.coverage-item {
+		flex-direction: column;
+	}
+
+	.latest-news-item .post-image,
+	.coverage-item .post-image {
+		width: 100%;
+		flex: 0 0 auto;
+	}
+
+	.review-cards,
+	.colunas-cards {
+		grid-template-columns: 1fr !important;
+	}
+}

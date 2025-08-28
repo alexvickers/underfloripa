@@ -1,0 +1,156 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.site-accent-bar,
+.site-pride-bar {
+	height: 6px;
+	width: 100%;
+}
+
+.site-accent-bar {
+	background: linear-gradient(90deg,
+			$color-accent,
+			$color-purple,
+			$color-blue,
+			$color-orange,
+			$color-accent );
+}
+
+.site-pride-bar {
+	background: linear-gradient(90deg,
+			#ff0000 0%,
+			#ff8c00 16.6%,
+			#ffff00 33.3%,
+			#008000 50%,
+			#0000ff 66.6%,
+			#8b00ff 83.3%,
+			#ff0000 100%);
+	background-size: 300% 100%;
+	animation: accentShimmer 8s linear infinite;
+}
+
+@keyframes accentShimmer {
+	0% {
+		background-position: 0 0;
+	}
+
+	100% {
+		background-position: 300% 0;
+	}
+}
+
+#site-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: $color-dark;
+	color: $color-offwhite;
+	border-bottom: none;
+	transition: all 0.3s ease;
+	width: 100%;
+	z-index: 9999;
+
+	.flex {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+		overflow: hidden;
+		opacity: 1;
+	}
+
+
+	.mini-logo {
+		position: absolute;
+		top: 50%;
+		height: 24px;
+		transform: translateY(-50%);
+		display: block;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.4s ease;
+		z-index: 10;
+
+		img {
+			height: 100%;
+			width: auto;
+		}
+	}
+
+	&.shrink {
+		.flex {
+			max-height: 0;
+			opacity: 0;
+			padding: 0;
+		}
+
+		.mini-logo {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		#primary-menu {
+			margin-left: 3rem;
+		}
+	}
+}
+
+.logo-svg {
+	display: inline-block;
+}
+
+.visually-hidden {
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	white-space: nowrap;
+}
+
+.header-top {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.header-right {
+	height: 90px;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+
+	&.ad {
+		@media (max-width: 768px) {
+			display: none;
+		}
+	}
+}
+
+.header-socials {
+	display: flex;
+
+	a {
+		display: inline-block;
+		height: 32px;
+		text-decoration: none;
+
+		svg {
+			height: 32px;
+
+			path {
+				fill: $color-offwhite;
+				transition: fill 0.3s ease;
+			}
+		}
+
+		&:hover svg path {
+			fill: $color-accent;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.mini-logo {
+		height: 32px;
+	}
+}

@@ -284,13 +284,6 @@ function uf_register_event_details_block() {
 // Enqueue Styles and Scripts for Event Widget + City Filter
 function uf_enqueue_event_assets() {
 	if (!is_admin()) {
-		wp_enqueue_style(
-			'underfloripa-events-css',
-			plugin_dir_url(__FILE__) . 'css/underfloripa-events.min.css',
-			[],
-			'1.0'
-		);
-
 		wp_enqueue_script(
 			'uf-events-script',
 			plugins_url('js/underfloripa-events.js', __FILE__),

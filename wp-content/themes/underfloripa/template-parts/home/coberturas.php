@@ -1,0 +1,70 @@
+<?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+	exit;
+}
+?>
+
+<div class="lazy-google-ad responsive-ad"
+	data-ad-client="ca-pub-2855642712528671"
+	data-ad-slot="1234567890">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+		crossorigin="anonymous"></script>
+	<!-- Under Floripa 2025 - Coberturas -->
+	<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-2855642712528671"
+		data-ad-slot="9564972160"
+		data-ad-format="auto"
+		data-full-width-responsive="true"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+
+<section class="home-section coverages">
+	<div class="title">
+		<h2>Coberturas</h2>
+		<a href="<?php echo get_category_link(get_category_by_slug('coberturas')->term_id); ?>" class="button">Ver todas as coberturas</a>
+	</div>
+
+	<?php
+	$coberturas = new WP_Query([
+		'post_type'      => 'post',
+		'posts_per_page' => 4,
+		'category_name'  => 'coberturas',
+	]);
+
+	if ($coberturas->have_posts()) : ?>
+		<div class="coverage-grid">
+			<?php while ($coberturas->have_posts()) : $coberturas->the_post(); ?>
+				<article class="coverage-item">
+					<?php if (has_post_thumbnail()) : ?>
+						<div class="post-image">
+							<?php the_post_thumbnail('medium_large', ['alt' => get_the_title()]); ?>
+						</div>
+					<?php endif; ?>
+
+					<div class="post-meta">
+						<a href="<?php the_permalink(); ?>">
+							<h3 class="post-title">
+								<?php the_title(); ?>
+							</h3>
+						</a>
+						<div class="post-info">
+							<span class="post-date"><?php echo get_the_date(); ?></span> – <span class="post-author"><?php the_author(); ?></span>
+						</div>
+						<div class="post-excerpt">
+							<a href="<?php the_permalink(); ?>">
+								<?php the_excerpt(); ?>
+							</a>
+						</div>
+					</div>
+				</article>
+			<?php endwhile;
+			wp_reset_postdata(); ?>
+		</div>
+	<?php else : ?>
+		<p>Nenhuma cobertura encontrada.</p>
+	<?php endif; ?>
+</section>

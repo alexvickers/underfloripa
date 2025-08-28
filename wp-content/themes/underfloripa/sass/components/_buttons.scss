@@ -1,0 +1,17 @@
+@use "../base/variables" as *;
+
+.button {
+	display: inline-block;
+	text-decoration: none;
+	color: $color-offwhite;
+	background-color: $color-accent;
+	padding: 0.25rem 1.25rem;
+	border-radius: 4px;
+	font-weight: 600;
+	transition: background-color 0.3s ease, color 0.3s ease;
+
+	&:hover {
+		background-color: $color-purple;
+		color: $color-offwhite;
+	}
+}

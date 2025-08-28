@@ -1,0 +1,47 @@
+@use "../base/variables" as *;
+
+.widget_uf_upcoming_events_widget {
+	margin-bottom: 2rem;
+
+	.widget-title {
+		font-size: 1.5rem;
+	}
+
+	.uf-widget-events {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+
+		li.event {
+			margin-bottom: 1rem;
+			padding: 0 0 0.5rem 0.5rem;
+			font-size: 1rem;
+			border-bottom: 1px solid $color-accent-light;
+
+			&:last-child {
+				border-bottom: 0;
+			}
+		}
+
+		a {
+			color: $color-text;
+
+			&:hover {
+				color: $color-orange;
+			}
+		}
+
+		h4 {
+			font-size: 1.3rem;
+			line-height: 1;
+			margin: 0;
+			text-transform: uppercase;
+		}
+	}
+
+	.uf-event-filter {
+		border-radius: 4px;
+		padding: 12px;
+		margin-bottom: 1rem;
+	}
+}

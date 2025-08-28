@@ -32,7 +32,7 @@ wp-content/plugins/*
 /wp-content/themes/*
 
 # Except custom themes
-!wp-content/themes/colormag-child/
+!wp-content/themes/underfloripa/
 
 # Example plugin
 /wp-content/plugins/hello.php

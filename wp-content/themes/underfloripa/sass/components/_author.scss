@@ -1,0 +1,27 @@
+@use "../base/variables" as *;
+
+.author-bio {
+	display: flex;
+	gap: 1rem;
+	margin-top: 2rem;
+	padding-top: 2rem;
+	border-top: 1px solid $color-accent-light;
+
+	.author-avatar {
+		flex: 0 0 120px;
+
+		img {
+			border: 3px solid $color-accent;
+			border-radius: 50%;
+		}
+	}
+
+	h3 {
+		font-size: 1.25rem;
+	}
+
+	p {
+		margin-bottom: 0.5rem;
+		font-size: 0.9rem;
+	}
+}
