@@ -36,3 +36,17 @@ body {
 		}
 	}
 }
+
+.header-ad {
+	width: 728px;
+	height: 90px;
+	position: relative;
+	overflow: hidden;
+}
+
+.responsive-ad {
+	width: 100%;
+	min-height: 250px;
+	position: relative;
+	overflow: hidden;
+}

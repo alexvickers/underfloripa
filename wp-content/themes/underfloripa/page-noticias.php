@@ -1,12 +1,22 @@
 <?php
-/* Template Name: Notícias */
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
 
+/* Template Name: Notícias */
 get_header(); ?>
 
 <main id="site-content" role="main" class="site-container archive">
     <div class="content-with-sidebar">
         <div id="posts-column">
             <header class="archive-header">
+                <?php if (function_exists('rank_math_the_breadcrumbs')) : ?>
+                    <nav class="breadcrumbs">
+                        <?php rank_math_the_breadcrumbs(); ?>
+                    </nav>
+                <?php endif; ?>
+
                 <h1 class="archive-title">Notícias</h1>
             </header>
 

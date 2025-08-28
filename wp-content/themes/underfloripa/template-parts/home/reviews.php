@@ -5,7 +5,9 @@ if (! defined('ABSPATH')) {
 }
 ?>
 
-<div class="ad">
+<div class="lazy-google-ad responsive-ad"
+	data-ad-client="ca-pub-2855642712528671"
+	data-ad-slot="1234567890">
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
 		crossorigin="anonymous"></script>
 	<!-- Under Floripa 2025 - Resenhas -->

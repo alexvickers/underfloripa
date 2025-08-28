@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
+
+get_header(); ?>
 
 <div class="site-container content">
 
@@ -29,7 +35,7 @@
 					<!-- Featured image -->
 					<?php if (has_post_thumbnail()) : ?>
 						<div class="entry-thumbnail ratio-16-9">
-							<?php the_post_thumbnail('large'); ?>
+							<?php the_post_thumbnail('large', ['alt' => get_the_title()]); ?>
 						</div>
 					<?php endif; ?>
 
@@ -55,4 +61,4 @@
 
 </div><!-- /.site-container -->
 
-<?php get_footer(); ?>
+<?php get_footer();

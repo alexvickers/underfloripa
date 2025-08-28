@@ -1,1 +1,76 @@
 @use "../base/variables" as *;
+
+.archive-post.event-post {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    background-color: $color-offwhite-bright;
+    border: 1px solid $color-accent-light;
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-thumbnail {
+        flex: 0 0 25%;
+        height: 600px;
+        border-radius: 4px;
+        overflow: hidden;
+
+        a,
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.05);
+        }
+    }
+
+    .event-details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        header.entry-header h3,
+        h4 {
+            margin: 0;
+        }
+
+        .entry-meta {
+            font-size: 0.875rem;
+            margin: 0.5rem 0;
+
+            span {
+                display: block;
+            }
+        }
+
+        .event-buttons {
+            margin-top: auto;
+
+            a.button {
+                margin-right: 0.5rem;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+
+        .event-thumbnail {
+            flex: 0 0 auto;
+            width: 100%;
+            height: auto;
+        }
+    }
+}

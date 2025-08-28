@@ -52,7 +52,7 @@ if (! defined('ABSPATH')) {
 
 			<?php if (has_post_thumbnail()) : ?>
 				<div class="post-image">
-					<?php the_post_thumbnail('large'); ?>
+					<?php the_post_thumbnail('large', ['alt' => get_the_title()]); ?>
 				</div>
 			<?php endif; ?>
 		</article>
@@ -62,7 +62,7 @@ if (! defined('ABSPATH')) {
 				<article class="latest-news-item">
 					<?php if (has_post_thumbnail()) : ?>
 						<div class="post-image">
-							<?php the_post_thumbnail('medium_large'); ?>
+							<?php the_post_thumbnail('medium_large', ['alt' => get_the_title()]); ?>
 						</div>
 					<?php endif; ?>
 

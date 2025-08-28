@@ -5,7 +5,9 @@ if (! defined('ABSPATH')) {
 }
 ?>
 
-<div class="ad">
+<div class="lazy-google-ad responsive-ad"
+	data-ad-client="ca-pub-2855642712528671"
+	data-ad-slot="1234567890">
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
 		crossorigin="anonymous"></script>
 	<!-- Under Floripa 2025 - Colunas -->
@@ -50,7 +52,7 @@ if (! defined('ABSPATH')) {
 					</div>
 					<a href="<?php the_permalink(); ?>">
 						<?php if (has_post_thumbnail()) :
-							$thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+							$thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'large', ['alt' => get_the_title()]);
 						endif; ?>
 
 						<div class="coluna-bg" style="background-image: url('<?php echo esc_url($thumb_url); ?>');">

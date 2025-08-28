@@ -10,7 +10,9 @@ get_header(); ?>
 
 <div class="content-area site-container">
     <main class="main-content" id="site-main">
-        <div class="ad">
+        <div class="lazy-google-ad responsive-ad"
+            data-ad-client="ca-pub-2855642712528671"
+            data-ad-slot="1234567890">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
                 crossorigin="anonymous"></script>
             <!-- Under Floripa 2025 - Homepage Top -->
@@ -30,7 +32,9 @@ get_header(); ?>
         <?php get_template_part('template-parts/home/coberturas'); ?>
         <?php get_template_part('template-parts/home/colunas'); ?>
 
-        <div class="ad">
+        <div class="lazy-google-ad responsive-ad"
+            data-ad-client="ca-pub-2855642712528671"
+            data-ad-slot="1234567890">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
                 crossorigin="anonymous"></script>
             <ins class="adsbygoogle"

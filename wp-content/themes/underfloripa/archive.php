@@ -4,6 +4,11 @@
     <div class="content-with-sidebar">
         <div id="posts-column">
             <header class="archive-header">
+                <?php if (function_exists('rank_math_the_breadcrumbs')) : ?>
+                    <nav class="breadcrumbs">
+                        <?php rank_math_the_breadcrumbs(); ?>
+                    </nav>
+                <?php endif; ?>
                 <?php
                 the_archive_title('<h1 class="archive-title">', '</h1>');
                 the_archive_description('<div class="archive-description">', '</div>');
