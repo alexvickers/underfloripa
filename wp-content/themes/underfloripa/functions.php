@@ -10,10 +10,10 @@ foreach (glob(get_stylesheet_directory() . '/inc/*.php') as $file) {
 }
 
 // Theme setup
-function underfloripa_setup()
-{
+function underfloripa_setup(){
 	add_theme_support('post-thumbnails');
 	add_theme_support('html5', ['search-form', 'gallery', 'caption']);
+	add_theme_support( 'title-tag' );
 
 	register_nav_menus([
 		'main_menu'   => 'Main Menu',

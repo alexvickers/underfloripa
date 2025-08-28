@@ -8,7 +8,7 @@ if (! defined('ABSPATH')) {
 <section class="home-section latest-news">
 	<div class="title">
 		<h2>Últimas Notícias</h2>
-		<a href="<?php echo get_post_type_archive_link('post'); ?>?filter=news" class="button">Ver todas as notícias</a>
+		<a href="<?php echo get_permalink( get_page_by_path('noticias') ); ?>" class="button">Ver todas as notícias</a>
 	</div>
 
 	<?php
