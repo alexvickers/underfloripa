@@ -23,8 +23,12 @@ if ($top_stories->have_posts()) : ?>
 						</div>
 						<a href="<?php the_permalink(); ?>">
 							<div class="top-story-img">
-								<?php the_post_thumbnail('medium_large', ['alt' => get_the_title()]); ?>
-							</div>
+								<?php the_post_thumbnail('medium_large', [
+									'alt'           => get_the_title(),
+									'fetchpriority' => 'high',
+									'loading'       => 'eager',
+									'decoding'      => 'async',
+								]); ?> </div>
 							<span class="top-story-date"><?php echo get_the_date(); ?></span>
 							<h3 class="top-story-title"><?php the_title(); ?></h3>
 						</a>
