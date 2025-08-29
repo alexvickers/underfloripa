@@ -101,7 +101,7 @@ $is_multiple = count($events) > 1;
                             echo ' - ' . esc_html($tour);
                         } ?>
                     </h3>
-                    <h6><?php echo esc_html($venue_city); ?></h6>
+                    <h4><?php echo esc_html($venue_city); ?></h4>
                 </li>
 
                 <?php if (!empty($lineup)) { ?>
