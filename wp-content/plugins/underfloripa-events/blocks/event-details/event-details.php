@@ -95,7 +95,7 @@ $is_multiple = count($events) > 1;
         <div class="event-details__item">
             <ul>
                 <li>
-                    <h3 style="font-weight: 700;">
+                    <h3>
                         <?php echo esc_html($event_name); ?>
                         <?php if (!empty($tour)) {
                             echo ' - ' . esc_html($tour);

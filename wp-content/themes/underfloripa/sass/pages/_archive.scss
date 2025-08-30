@@ -1,8 +1,7 @@
 @use "../base/variables" as *;
 
 .site-container {
-	&.archive,
-	&.search-results {
+	&.archive {
 		padding-top: 3rem;
 		display: flex;
 		gap: 2rem;
@@ -26,7 +25,7 @@
 				font-size: clamp(1.75rem, 5vw, 2.25rem);
 			}
 
-			.listing-description {
+			.archive-description {
 				margin-bottom: 1rem;
 				font-size: clamp(0.9rem, 2.5vw, 1rem);
 			}
@@ -45,7 +44,7 @@
 						gap: 1.5rem;
 					}
 
-					article.listing-post {
+					article.archive-post {
 						background-color: $color-offwhite-bright;
 						border: 1px solid $color-accent-light;
 						border-radius: 6px;
@@ -60,7 +59,7 @@
 							box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 						}
 
-						.listing-post-thumbnail {
+						.archive-post-thumbnail {
 							display: block;
 							margin-bottom: 1rem;
 							border-radius: 4px;
@@ -79,8 +78,8 @@
 							}
 						}
 
-						.listing-post-content {
-							h2.listing-post-title {
+						.archive-post-content {
+							h2.archive-post-title {
 								font-size: clamp(1.25rem, 4vw, 1.5rem);
 								margin-bottom: 0.75rem;
 								line-height: 1.2;
@@ -95,7 +94,7 @@
 								}
 							}
 
-							.listing-meta {
+							.archive-meta {
 								font-size: 0.875rem;
 								color: $color-dark;
 								margin-bottom: 1rem;
@@ -106,7 +105,7 @@
 								}
 							}
 
-							.listing-excerpt {
+							.archive-excerpt {
 								p {
 									margin-bottom: 1.25rem;
 								}

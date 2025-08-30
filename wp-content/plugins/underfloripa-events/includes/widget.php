@@ -185,7 +185,7 @@ class UF_Upcoming_Events_Widget extends WP_Widget
 				$link_to_use = !empty($link) ? $link : $ticket_link;
 
 				echo '<li class="event">';
-				echo '<a href="' . esc_url($link_to_use) . '" target="_blank">';
+				echo '<a href="' . esc_url($link_to_use) . '">';
 				echo '<h4>' . esc_html($title) . ' - ' . esc_html($venue_city) . '</h4>';
 				echo '</a>';
 				echo '<small>' . esc_html($formatted_date) . '</small></br>';
