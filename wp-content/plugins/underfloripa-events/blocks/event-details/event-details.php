@@ -27,7 +27,7 @@ $is_multiple = count($events) > 1;
 ?>
 
 <div class="event-details">
-    <h3 style="font-weight: 500; text-decoration: underline;">
+    <h3>
         <?php echo $is_multiple ? 'Serviços' : 'Serviço'; ?>:
     </h3>
 
