@@ -28,6 +28,16 @@
 
 		.related-excerpt {
 			margin-bottom: 2rem;
+
+			h2 {
+				margin-bottom: 1rem;
+				line-height: 1.2;
+			}
+
+			a {
+				display: block;
+				margin-bottom: erem;;
+			}
 		}
 
 		@media (max-width: 768px) {
