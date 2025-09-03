@@ -27,15 +27,19 @@ get_header(); ?>
 
 						<h1 class="entry-title"><?php the_title(); ?></h1>
 						<div class="entry-meta">
-							<span class="entry-date"><?php echo get_the_time('F j, Y \a\t H:i'); ?></span> |
-							<span class="entry-author"><?php the_author_posts_link(); ?></span>
+							<span class="entry-author">
+								<?php the_author_posts_link(); ?>
+							</span>
+							<span class="entry-date">
+								Publicado em <?php echo get_the_time('j \d\e F \d\e Y \à\s H\hi'); ?>
+							</span>
 							<?php
 							$published_time = get_the_time('U');
 							$modified_time  = get_the_modified_time('U');
 
 							if ($modified_time > $published_time) : ?>
-								| <span class="entry-updated">
-									Atualizado em: <?php echo get_the_modified_time('F j, Y \a\t H:i'); ?>
+								<span class="entry-updated">
+									Última atualização em <?php echo get_the_modified_time('j \d\e F \d\e Y \à\s H\hi'); ?>
 								</span>
 							<?php endif; ?>
 						</div>

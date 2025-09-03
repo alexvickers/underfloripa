@@ -33,7 +33,7 @@ if (! defined('ABSPATH')) {
 
 		<article class="latest-news-featured">
 			<div class="post-meta">
-				<div class="post-categories">
+				<div class="post-categories ">
 					<?php the_category(' '); ?>
 				</div>
 				<a href="<?php the_permalink(); ?>" class="post-title">

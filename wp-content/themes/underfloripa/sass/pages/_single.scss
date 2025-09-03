@@ -7,8 +7,13 @@
 	.entry-meta {
 		margin-bottom: 1rem;
 
-		.entry-updated {
+		span {
 			display: block;
+
+			&.entry-date,
+			&.entry-updated {
+				font-size: 14px;
+			}
 		}
 	}
 

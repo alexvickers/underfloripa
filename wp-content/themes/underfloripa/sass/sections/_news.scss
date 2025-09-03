@@ -52,17 +52,24 @@
 			z-index: 10;
 			color: $color-offwhite;
 
-			.post-categories a {
-				display: inline-block;
-				color: $color-offwhite;
-				padding: 6px 12px;
-				background-color: $color-accent;
-				border-radius: 4px;
-				font-size: 0.75rem;
-				line-height: 1.1;
+			.post-categories {
+				display: flex;
+				gap: 0.5rem;
 
-				&:hover {
-					background-color: $color-purple;
+				a {
+					display: inline-block;
+					text-decoration: none;
+					color: $color-offwhite;
+					background-color: $color-accent;
+					padding: 0.25rem 1.25rem;
+					border-radius: 4px;
+					font-weight: 600;
+					transition: background-color 0.3s ease, color 0.3s ease;
+
+					&:hover {
+						background-color: $color-purple;
+						color: $color-offwhite;
+					}
 				}
 			}
 
@@ -160,7 +167,7 @@
 				a {
 					color: $color-text;
 
-					&:hover{
+					&:hover {
 						color: $color-orange
 					}
 				}
