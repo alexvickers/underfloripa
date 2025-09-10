@@ -1,5 +1,13 @@
 @use "../base/variables" as *;
 
+main {
+    flex: 0 1 75%;
+}
+
+aside {
+    flex: 0 1 25%;
+}
+
 .archive-post.event-post {
     display: flex;
     flex-direction: row;

@@ -99,9 +99,8 @@
 								color: $color-dark;
 								margin-bottom: 1rem;
 
-								span+span::before {
-									content: "•";
-									margin: 0 0.5rem;
+								.archive-author {
+									display: block;
 								}
 							}
 
