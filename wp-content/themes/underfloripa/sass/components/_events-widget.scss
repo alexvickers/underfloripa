@@ -1,11 +1,19 @@
 @use "../base/variables" as *;
 
 .widget_uf_upcoming_events_widget {
+	background-color: $color-offwhite-bright;
+	border: 1px solid $color-accent-light;
+	border-radius: 6px;
+	padding: 1rem;
 	margin-bottom: 2rem;
 
-	.widget-title {
-		font-size: 1.5rem;
-	}
+    .widget-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid $color-accent;
+        padding-bottom: 0.25rem;
+        color: $color-text;
+    }
 
 	.uf-widget-events {
 		list-style: none;
