@@ -12,7 +12,8 @@ if (! defined('ABSPATH')) {
  * @param WP_Post $post
  * @return string
  */
-function get_related_posts_block($post) {
+function get_related_posts_block($post)
+{
 	if (empty($post)) return '';
 
 	$cache_key   = 'related_posts_block_' . $post->ID;
@@ -62,6 +63,25 @@ function get_related_posts_block($post) {
 				],
 			],
 		];
+
+		$related_posts = get_posts($base_args);
+
+		if (count($related_posts) < $posts_to_show) {
+			$needed = $posts_to_show - count($related_posts);
+
+			$fallback_args = [
+				'category__in'        => $cultural_terms,
+				'posts_per_page'      => $needed,
+				'orderby'             => 'date',
+				'order'               => 'DESC',
+				'no_found_rows'       => true,
+				'ignore_sticky_posts' => true,
+			];
+
+			$fallback_posts = get_posts($fallback_args);
+
+			$related_posts = array_merge($related_posts, $fallback_posts);
+		}
 	}
 
 	if ($is_resenhas) {
