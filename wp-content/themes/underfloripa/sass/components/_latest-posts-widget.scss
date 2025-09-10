@@ -1,0 +1,85 @@
+@use "../base/variables" as *;
+
+.latest-posts-widget {
+    background-color: $color-offwhite-bright;
+    border: 1px solid $color-accent-light;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    .widget-heading {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        text-align: left;
+        border-bottom: 2px solid $color-accent;
+        padding-bottom: 0.25rem;
+        color: $color-text;
+    }
+
+    .latest-post-card {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid $color-accent-light;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .latest-post-thumb {
+            flex: 0 0 64px;
+            height: 64px;
+            margin-right: 0.75rem;
+            overflow: hidden;
+            border-radius: 4px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            &:hover img {
+                transform: scale(1.05);
+            }
+        }
+
+        .latest-post-content {
+            flex: 1;
+
+            .latest-post-category {
+                display: inline-block;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: $color-accent;
+                margin-bottom: 0.25rem;
+            }
+
+            .latest-post-title {
+                font-size: 1rem;
+                line-height: 1.2;
+                color: $color-text;
+                transition: color 0.2s ease;
+
+                a {
+                    color: inherit;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: $color-accent;
+                    }
+                }
+            }
+        }
+    }
+}
