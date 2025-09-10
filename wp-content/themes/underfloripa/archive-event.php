@@ -49,7 +49,7 @@ get_header(); ?>
         </div><!-- #posts-container -->
 
         <?php if ($events->max_num_pages > 1) : ?>
-            <div id="load-more-spinner" style="height: 80px; visibility: hidden; text-align:center; margin:2rem 0;">
+            <div id="load-more-spinner">
                 <div class="lds-spinner">
                     <div></div><div></div><div></div><div></div>
                     <div></div><div></div><div></div><div></div>

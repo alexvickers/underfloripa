@@ -24,10 +24,19 @@ function styles() {
     .pipe(gulp.dest(paths.css));
 }
 
+function stylesProd() {
+  return gulp.src(paths.main)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss([autoprefixer()]))
+    .pipe(cleanCSS({ level: 2 }))
+    .pipe(gulp.dest(paths.css));
+}
+
 function watch() {
   gulp.watch(paths.scss, styles);
 }
 
 exports.styles = styles;
+exports.stylesProd = stylesProd;
 exports.watch = watch;
 exports.default = gulp.series(styles, watch);

@@ -6,6 +6,15 @@
 
 	.entry-meta {
 		margin-bottom: 1rem;
+
+		span {
+			display: block;
+
+			&.entry-date,
+			&.entry-updated {
+				font-size: 14px;
+			}
+		}
 	}
 
 	.content {

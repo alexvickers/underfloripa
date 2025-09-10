@@ -27,7 +27,7 @@ $is_multiple = count($events) > 1;
 ?>
 
 <div class="event-details">
-    <h3 style="font-weight: 500; text-decoration: underline;">
+    <h3>
         <?php echo $is_multiple ? 'Serviços' : 'Serviço'; ?>:
     </h3>
 
@@ -95,13 +95,13 @@ $is_multiple = count($events) > 1;
         <div class="event-details__item">
             <ul>
                 <li>
-                    <h3 style="font-weight: 700;">
+                    <h3>
                         <?php echo esc_html($event_name); ?>
                         <?php if (!empty($tour)) {
                             echo ' - ' . esc_html($tour);
                         } ?>
                     </h3>
-                    <h6><?php echo esc_html($venue_city); ?></h6>
+                    <h4><?php echo esc_html($venue_city); ?></h4>
                 </li>
 
                 <?php if (!empty($lineup)) { ?>

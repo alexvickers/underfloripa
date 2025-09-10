@@ -71,7 +71,7 @@ get_header();
 
 							<h2><?php echo esc_html($h2); ?></h2>
 							<p><?php echo esc_html(get_the_excerpt($related_post)); ?></p>
-							<p><a href="<?php echo esc_url(get_permalink($related_post)); ?>" class="button">Leia mais</a></p>
+							<a href="<?php echo esc_url(get_permalink($related_post)); ?>" class="button">Leia mais</a>
 						</section>
 					<?php
 						wp_reset_postdata();
