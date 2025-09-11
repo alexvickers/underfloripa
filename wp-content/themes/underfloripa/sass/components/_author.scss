@@ -2,26 +2,73 @@
 
 .author-bio {
 	display: flex;
-	gap: 1rem;
-	margin-top: 2rem;
-	padding-top: 2rem;
-	border-top: 1px solid $color-accent-light;
+	align-items: flex-start;
+	gap: 1.5rem;
+
+	background-color: $color-offwhite-bright;
+	border: 1px solid $color-accent-light;
+	border-radius: 6px;
+	padding: 1.5rem;
+	margin: 2rem 0;
 
 	.author-avatar {
-		flex: 0 0 120px;
+		flex: 0 0 100px;
 
 		img {
 			border: 3px solid $color-accent;
 			border-radius: 50%;
+			display: block;
+			width: 100px;
+			height: 100px;
+			object-fit: cover;
 		}
 	}
 
-	h3 {
-		font-size: 1.25rem;
-	}
+	.author-info {
+		flex: 1;
 
-	p {
-		margin-bottom: 0.5rem;
-		font-size: 0.9rem;
+		h3 {
+			font-size: 1.25rem;
+			margin: 0 0 0.5rem;
+			color: $color-dark;
+		}
+
+		p {
+			margin: 0 0 1rem;
+			font-size: 0.9rem;
+			line-height: 1.4;
+			color: $color-text;
+		}
+
+		.buttons {
+			display: flex;
+			gap: 1rem;
+
+			a.button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				font-size: 0.85rem;
+				font-weight: 600;
+				padding: 0.4rem 0.75rem;
+				border-radius: 4px;
+
+				&.author-instagram {
+					color: #e4405f;
+					border: 1px solid #e4405f;
+					background: transparent;
+
+					&:hover {
+						background: #e4405f;
+						color: #fff;
+					}
+
+					svg {
+						width: 16px;
+						height: 16px;
+					}
+				}
+			}
+		}
 	}
 }
