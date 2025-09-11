@@ -42,6 +42,10 @@ body {
 	height: 90px;
 	position: relative;
 	overflow: hidden;
+
+	@media (max-width: 900px) {
+		display: none;
+	}
 }
 
 .responsive-ad {

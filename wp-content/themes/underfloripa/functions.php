@@ -159,6 +159,45 @@ function my_ajax_load_more_posts() {
 add_action('wp_ajax_load_more_posts', 'my_ajax_load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'my_ajax_load_more_posts');
 
+// AJAX: Load More Search Results (Relevanssi)
+function my_ajax_load_more_search() {
+    if (! isset($_GET['nonce']) || ! wp_verify_nonce($_GET['nonce'], 'load_more_nonce')) {
+        wp_send_json_error('Invalid nonce');
+        wp_die();
+    }
+
+    $paged        = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $search_query = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
+
+    $args = [
+        'post_type'   => ['post', 'event'], // include both
+        'post_status' => 'publish',
+        'paged'       => $paged,
+        's'           => $search_query,
+    ];
+
+    // Let Relevanssi handle ordering & relevance
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+
+            if (get_post_type() === 'event') {
+                get_template_part('template-parts/content', 'event');
+            } else {
+                get_template_part('template-parts/content', 'ajax');
+            }
+        }
+    } else {
+        echo 'no-more-posts';
+    }
+
+    wp_die();
+}
+add_action('wp_ajax_load_more_search', 'my_ajax_load_more_search');
+add_action('wp_ajax_nopriv_load_more_search', 'my_ajax_load_more_search');
+
 // AJAX Script Localizer
 function uf_enqueue_scripts() {
 	if (
