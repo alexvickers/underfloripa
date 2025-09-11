@@ -31,9 +31,18 @@ const loadMorePosts = () => {
     post_type: my_ajax_obj.post_type,
   });
 
-  // Only add search_query if we’re on search
   if (ajaxAction === "load_more_search" && my_ajax_obj.search_query) {
     params.append("s", my_ajax_obj.search_query);
+  }
+
+  if (my_ajax_obj.excluded_ids) {
+    if (Array.isArray(my_ajax_obj.excluded_ids)) {
+      my_ajax_obj.excluded_ids.forEach((id) =>
+        params.append("excluded_ids[]", id)
+      );
+    } else {
+      params.append("excluded_ids[]", my_ajax_obj.excluded_ids);
+    }
   }
 
   fetch(`${my_ajax_obj.ajax_url}?${params.toString()}`)
