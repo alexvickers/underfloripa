@@ -9,6 +9,11 @@ if (!spinner || !postsContainer) {
   console.warn("Spinner or posts container not found.");
 }
 
+// Decide which AJAX action to use
+const ajaxAction = my_ajax_obj.search_query
+  ? "load_more_search"
+  : "load_more_posts";
+
 // Function to load more posts via AJAX
 const loadMorePosts = () => {
   if (loading || allPostsLoaded) return;
@@ -18,14 +23,27 @@ const loadMorePosts = () => {
   spinner.style.visibility = "visible";
 
   const params = new URLSearchParams({
-    action: "load_more_posts",
+    action: ajaxAction,
     page: page,
     nonce: my_ajax_obj.nonce,
     category_id: my_ajax_obj.category_id,
-    search_query: my_ajax_obj.search_query,
     author_id: my_ajax_obj.author_id,
     post_type: my_ajax_obj.post_type,
   });
+
+  if (ajaxAction === "load_more_search" && my_ajax_obj.search_query) {
+    params.append("s", my_ajax_obj.search_query);
+  }
+
+  if (my_ajax_obj.excluded_ids) {
+    if (Array.isArray(my_ajax_obj.excluded_ids)) {
+      my_ajax_obj.excluded_ids.forEach((id) =>
+        params.append("excluded_ids[]", id)
+      );
+    } else {
+      params.append("excluded_ids[]", my_ajax_obj.excluded_ids);
+    }
+  }
 
   fetch(`${my_ajax_obj.ajax_url}?${params.toString()}`)
     .then((response) => response.text())

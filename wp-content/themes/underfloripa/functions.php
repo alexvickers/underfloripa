@@ -10,7 +10,8 @@ foreach (glob(get_stylesheet_directory() . '/inc/*.php') as $file) {
 }
 
 // Theme setup
-function underfloripa_setup() {
+function underfloripa_setup()
+{
 	add_theme_support('post-thumbnails');
 	add_theme_support('html5', ['search-form', 'gallery', 'caption']);
 	add_theme_support('title-tag');
@@ -23,7 +24,8 @@ function underfloripa_setup() {
 add_action('after_setup_theme', 'underfloripa_setup');
 
 // Enqueue styles and scripts
-function underfloripa_assets() {
+function underfloripa_assets()
+{
 	wp_enqueue_style('underfloripa-style', get_stylesheet_uri(), [], '1.0');
 	wp_enqueue_script(
 		'underfloripa-theme',
@@ -42,7 +44,8 @@ function underfloripa_assets() {
 }
 add_action('wp_enqueue_scripts', 'underfloripa_assets');
 
-function underfloripa_optimize_jquery() {
+function underfloripa_optimize_jquery()
+{
 	if (is_admin()) return;
 
 	// Deregister the default jQuery
@@ -64,7 +67,8 @@ function underfloripa_optimize_jquery() {
 }
 add_action('wp_enqueue_scripts', 'underfloripa_optimize_jquery');
 
-function underfloripa_remove_jquery_migrate($scripts) {
+function underfloripa_remove_jquery_migrate($scripts)
+{
 	if (! is_admin() && isset($scripts->registered['jquery'])) {
 		$jquery_dep = &$scripts->registered['jquery'];
 
@@ -76,7 +80,8 @@ function underfloripa_remove_jquery_migrate($scripts) {
 add_action('wp_default_scripts', 'underfloripa_remove_jquery_migrate');
 
 // Custom Footer Scripts (via ACF option)
-function my_custom_footer_scripts() {
+function my_custom_footer_scripts()
+{
 	if (function_exists('get_field')) {
 		$scripts = get_field('site_footer_scripts', 'option');
 		if ($scripts) {
@@ -87,7 +92,8 @@ function my_custom_footer_scripts() {
 add_action('wp_footer', 'my_custom_footer_scripts', 100);
 
 // Added sidebar
-function underfloripa_register_sidebars() {
+function underfloripa_register_sidebars()
+{
 	register_sidebar([
 		'name'          => 'Primary Sidebar',
 		'id'            => 'primary-sidebar',
@@ -102,9 +108,9 @@ add_action('widgets_init', 'underfloripa_register_sidebars');
 
 // AJAX: Load More Posts
 function my_ajax_load_more_posts() {
-	if (! isset($_GET['nonce']) || ! wp_verify_nonce($_GET['nonce'], 'load_more_nonce')) {
-		wp_send_json_error('Invalid nonce');
-		wp_die();
+	if (!empty($_GET['excluded_ids'])) {
+		$excluded_ids = array_map('intval', (array) $_GET['excluded_ids']);
+		$args['category__not_in'] = $excluded_ids;
 	}
 
 	$paged        = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -159,15 +165,56 @@ function my_ajax_load_more_posts() {
 add_action('wp_ajax_load_more_posts', 'my_ajax_load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'my_ajax_load_more_posts');
 
+// AJAX: Load More Search Results (Relevanssi)
+function my_ajax_load_more_search()
+{
+	if (! isset($_GET['nonce']) || ! wp_verify_nonce($_GET['nonce'], 'load_more_nonce')) {
+		wp_send_json_error('Invalid nonce');
+		wp_die();
+	}
+
+	$paged        = isset($_GET['page']) ? intval($_GET['page']) : 1;
+	$search_query = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
+
+	$args = [
+		'post_type'   => ['post', 'event'],
+		'post_status' => 'publish',
+		'paged'       => $paged,
+		's'           => $search_query,
+	];
+
+	$query = new WP_Query($args);
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+
+			if (get_post_type() === 'event') {
+				get_template_part('template-parts/content', 'event');
+			} else {
+				get_template_part('template-parts/content', 'ajax');
+			}
+		}
+	} else {
+		echo 'no-more-posts';
+	}
+
+	wp_die();
+}
+add_action('wp_ajax_load_more_search', 'my_ajax_load_more_search');
+add_action('wp_ajax_nopriv_load_more_search', 'my_ajax_load_more_search');
+
 // AJAX Script Localizer
-function uf_enqueue_scripts() {
+function uf_enqueue_scripts()
+{
 	if (
 		is_archive() ||
 		is_search() ||
 		is_tag() ||
 		is_category() ||
 		is_author() ||
-		is_post_type_archive()
+		is_post_type_archive() ||
+		is_page_template('page-noticias.php')
 	) {
 		$category_id  = is_category() ? get_queried_object_id() : 0;
 		$search_query = is_search() ? get_search_query() : '';
@@ -181,19 +228,28 @@ function uf_enqueue_scripts() {
 			true
 		);
 
+		// Exclude categories for Notícias
+		$excluded = ['resenhas', 'colunas', 'coberturas'];
+		$excluded_ids = array_map(function ($slug) {
+			$cat = get_category_by_slug($slug);
+			return $cat ? $cat->term_id : 0;
+		}, $excluded);
+
 		wp_localize_script('load-more', 'my_ajax_obj', [
 			'ajax_url'     => admin_url('admin-ajax.php'),
 			'nonce'        => wp_create_nonce('load_more_nonce'),
 			'category_id'  => $category_id,
 			'search_query' => $search_query,
 			'author_id'    => $author_id,
-			'post_type'    => get_post_type() ?: 'post',
+			'post_type'    => 'post',
+			'excluded_ids' => $excluded_ids,
 		]);
 	}
 }
 add_action('wp_enqueue_scripts', 'uf_enqueue_scripts');
 
-class Underfloripa_Walker_Nav_Menu extends Walker_Nav_Menu {
+class Underfloripa_Walker_Nav_Menu extends Walker_Nav_Menu
+{
 	public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
 	{
 		$classes = empty($item->classes) ? [] : (array) $item->classes;
