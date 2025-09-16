@@ -106,68 +106,75 @@ function underfloripa_register_sidebars()
 }
 add_action('widgets_init', 'underfloripa_register_sidebars');
 
-// AJAX: Load More Posts
-function my_ajax_load_more_posts() {
-	if (!empty($_GET['excluded_ids'])) {
-		$excluded_ids = array_map('intval', (array) $_GET['excluded_ids']);
-		$args['category__not_in'] = $excluded_ids;
-	}
+// AJAX: Load More Posts / CPTs
+function uf_ajax_load_more_posts() {
+    // Basic parameters
+    $paged        = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $post_type    = isset($_GET['post_type']) ? sanitize_key($_GET['post_type']) : 'post';
+    $category_id  = isset($_GET['category_id']) ? intval($_GET['category_id']) : 0;
+    $search_query = isset($_GET['search_query']) ? sanitize_text_field($_GET['search_query']) : '';
+    $author_id    = isset($_GET['author_id']) ? intval($_GET['author_id']) : 0;
+    $excluded_ids = !empty($_GET['excluded_ids']) ? array_map('intval', (array) $_GET['excluded_ids']) : [];
 
-	$paged        = isset($_GET['page']) ? intval($_GET['page']) : 1;
-	$category_id  = isset($_GET['category_id']) ? intval($_GET['category_id']) : 0;
-	$search_query = isset($_GET['search_query']) ? sanitize_text_field($_GET['search_query']) : '';
-	$author_id    = isset($_GET['author_id']) ? intval($_GET['author_id']) : 0;
+    // Base query
+    $args = [
+        'post_type'      => $post_type,
+        'post_status'    => 'publish',
+        'paged'          => $paged,
+        'posts_per_page' => 11,
+    ];
 
-	$post_type = isset($_GET['post_type']) ? sanitize_key($_GET['post_type']) : 'post';
+    // Exclusions
+    if (!empty($excluded_ids)) {
+        $args['category__not_in'] = $excluded_ids;
+    }
 
-	$args = [
-		'post_type'   => $post_type,
-		'post_status' => 'publish',
-		'paged'       => $paged,
-	];
+    // Category, author, search
+    if ($category_id)  $args['cat']    = $category_id;
+    if ($author_id)    $args['author'] = $author_id;
+    if ($search_query) $args['s']      = $search_query;
 
-	if ($post_type === 'event') {
-		$args['meta_key'] = 'event_date';
-		$args['orderby']  = 'meta_value';
-		$args['order']    = 'ASC';
-	}
+    // Special handling for events
+    if ($post_type === 'event') {
+        $today = date('Ymd'); // adjust if your meta is stored differently
+        $args['meta_key']  = 'event_date';
+        $args['orderby']   = 'meta_value';
+        $args['order']     = 'ASC';
+        $args['meta_query'] = [
+            [
+                'key'     => 'event_date',
+                'compare' => '>=',
+                'value'   => $today,
+                'type'    => 'NUMERIC', // or 'DATE' if your meta is 'YYYY-MM-DD'
+            ]
+        ];
+    }
 
-	if ($category_id) {
-		$args['cat'] = $category_id;
-	}
+    // Query
+    $query = new WP_Query($args);
 
-	if ($search_query) {
-		$args['s'] = $search_query;
-	}
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            // Load proper template
+            if (get_post_type() === 'event') {
+                get_template_part('template-parts/content', 'event');
+            } else {
+                get_template_part('template-parts/content', 'ajax');
+            }
+        }
+    } else {
+        echo 'no-more-posts';
+    }
 
-	if ($author_id) {
-		$args['author'] = $author_id;
-	}
-
-	$query = new WP_Query($args);
-
-	if ($query->have_posts()) {
-		while ($query->have_posts()) {
-			$query->the_post();
-
-			if (get_post_type() === 'event') {
-				get_template_part('template-parts/content', 'event');
-			} else {
-				get_template_part('template-parts/content', 'ajax');
-			}
-		}
-	} else {
-		echo 'no-more-posts';
-	}
-
-	wp_die();
+    wp_reset_postdata();
+    wp_die();
 }
-add_action('wp_ajax_load_more_posts', 'my_ajax_load_more_posts');
-add_action('wp_ajax_nopriv_load_more_posts', 'my_ajax_load_more_posts');
+add_action('wp_ajax_load_more_posts', 'uf_ajax_load_more_posts');
+add_action('wp_ajax_nopriv_load_more_posts', 'uf_ajax_load_more_posts');
 
 // AJAX: Load More Search Results (Relevanssi)
-function my_ajax_load_more_search()
-{
+function my_ajax_load_more_search() {
 	if (! isset($_GET['nonce']) || ! wp_verify_nonce($_GET['nonce'], 'load_more_nonce')) {
 		wp_send_json_error('Invalid nonce');
 		wp_die();
@@ -205,48 +212,51 @@ add_action('wp_ajax_load_more_search', 'my_ajax_load_more_search');
 add_action('wp_ajax_nopriv_load_more_search', 'my_ajax_load_more_search');
 
 // AJAX Script Localizer
-function uf_enqueue_scripts()
-{
-	if (
-		is_archive() ||
-		is_search() ||
-		is_tag() ||
-		is_category() ||
-		is_author() ||
-		is_post_type_archive() ||
-		is_page_template('page-noticias.php')
-	) {
-		$category_id  = is_category() ? get_queried_object_id() : 0;
-		$search_query = is_search() ? get_search_query() : '';
-		$author_id    = is_author() ? get_queried_object_id() : 0;
+function uf_enqueue_load_more_script() {
+    if (
+        is_archive() ||
+        is_search() ||
+        is_tag() ||
+        is_category() ||
+        is_author() ||
+        is_post_type_archive() ||
+        is_page_template('page-noticias.php')
+    ) {
+        wp_enqueue_script(
+            'load-more',
+            get_stylesheet_directory_uri() . '/assets/js/load-more.js',
+            ['jquery'],
+            null,
+            true
+        );
 
-		wp_enqueue_script(
-			'load-more',
-			get_stylesheet_directory_uri() . '/assets/js/load-more.js',
-			[],
-			null,
-			true
-		);
+        // Determine current post type dynamically
+        $post_type = 'post';
+        if (is_post_type_archive('event') || (is_singular('event'))) {
+            $post_type = 'event';
+        } elseif (is_archive() && get_post_type()) {
+            $post_type = get_post_type();
+        }
 
-		// Exclude categories for Notícias
-		$excluded = ['resenhas', 'colunas', 'coberturas'];
-		$excluded_ids = array_map(function ($slug) {
-			$cat = get_category_by_slug($slug);
-			return $cat ? $cat->term_id : 0;
-		}, $excluded);
+        // Exclude categories for Notícias
+        $excluded = ['resenhas', 'colunas', 'coberturas'];
+        $excluded_ids = array_map(function ($slug) {
+            $cat = get_category_by_slug($slug);
+            return $cat ? $cat->term_id : 0;
+        }, $excluded);
 
-		wp_localize_script('load-more', 'my_ajax_obj', [
-			'ajax_url'     => admin_url('admin-ajax.php'),
-			'nonce'        => wp_create_nonce('load_more_nonce'),
-			'category_id'  => $category_id,
-			'search_query' => $search_query,
-			'author_id'    => $author_id,
-			'post_type'    => 'post',
-			'excluded_ids' => $excluded_ids,
-		]);
-	}
+        wp_localize_script('load-more', 'my_ajax_obj', [
+            'ajax_url'     => admin_url('admin-ajax.php'),
+            'nonce'        => wp_create_nonce('load_more_nonce'),
+            'category_id'  => is_category() ? get_queried_object_id() : 0,
+            'search_query' => is_search() ? get_search_query() : '',
+            'author_id'    => is_author() ? get_queried_object_id() : 0,
+            'post_type'    => $post_type,
+            'excluded_ids' => $excluded_ids,
+        ]);
+    }
 }
-add_action('wp_enqueue_scripts', 'uf_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'uf_enqueue_load_more_script');
 
 class Underfloripa_Walker_Nav_Menu extends Walker_Nav_Menu
 {
