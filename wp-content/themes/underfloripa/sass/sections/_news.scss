@@ -1,6 +1,5 @@
 @use "../base/variables" as *;
 
-/* === Latest News Section === */
 .latest-news {
 	padding: 2.5rem 0;
 
@@ -10,7 +9,6 @@
 		line-height: 2rem;
 	}
 
-	/* === Featured News === */
 	.latest-news-featured {
 		position: relative;
 		margin-bottom: 2.5rem;
@@ -79,17 +77,20 @@
 				margin: 0.25rem 0;
 				color: $color-offwhite;
 				text-decoration: none;
+				text-shadow: 0px 0px 20px $color-text;
 			}
 
 			.post-info {
 				font-size: 0.85rem;
 				margin-bottom: 0.5rem;
 				font-weight: 400;
+				text-shadow: 0px 0px 10px $color-text;
 			}
 
 			.post-excerpt {
 				font-size: 0.9rem;
 				line-height: 1.2rem;
+				text-shadow: 0px 0px 10px $color-text;
 
 				a {
 					color: $color-offwhite;
@@ -109,7 +110,6 @@
 		}
 	}
 
-	/* === News Grid === */
 	.latest-news-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
