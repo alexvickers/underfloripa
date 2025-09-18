@@ -31,7 +31,7 @@ if (! defined('ABSPATH')) {
 <body <?php body_class(); ?>>
 
 	<header id="site-header" role="banner">
-		<div class="site-container flex">
+		<div class="site-container top">
 			<a class="header-left" href="<?php echo home_url(); ?>" target="_self">
 				<?php if (is_front_page()) { ?>
 					<h1 class="site-title">

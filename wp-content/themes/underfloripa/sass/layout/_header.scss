@@ -50,13 +50,19 @@
 	width: 100%;
 	z-index: 9999;
 
-	.flex {
+	.top {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
 		overflow: hidden;
 		opacity: 1;
+
+		.header-left {
+			min-height: 122px;
+			display: flex;
+			align-items: center;
+		}
 	}
 
 
@@ -78,7 +84,7 @@
 	}
 
 	&.shrink {
-		.flex {
+		.top {
 			max-height: 0;
 			opacity: 0;
 			padding: 0;
