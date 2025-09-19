@@ -2,6 +2,7 @@
 
 .latest-news {
 	padding: 2.5rem 0;
+	margin-bottom: 2rem;
 
 	h2 {
 		font-family: $font-headings;
@@ -168,7 +169,7 @@
 					color: $color-text;
 
 					&:hover {
-						color: $color-orange
+						color: $color-accent;
 					}
 				}
 			}

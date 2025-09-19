@@ -14,7 +14,7 @@ if (! defined('ABSPATH')) {
 	<?php
 	$latest_news = new WP_Query([
 		'post_type'      => 'post',
-		'posts_per_page' => 7,
+		'posts_per_page' => 10,
 		'tax_query'      => [
 			[
 				'taxonomy' => 'category',

@@ -54,12 +54,12 @@
 				border-radius: 4px;
 
 				&.author-instagram {
-					color: #e4405f;
-					border: 1px solid #e4405f;
+					color: $color-accent;
+					border: 1px solid $color-accent;
 					background: transparent;
 
 					&:hover {
-						background: #e4405f;
+						background: $color-accent;
 						color: #fff;
 					}
 
