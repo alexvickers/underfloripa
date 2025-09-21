@@ -22,9 +22,15 @@
   handleScroll();
 
   menuToggle.addEventListener("click", () => {
-    nav.classList.toggle("is-open");
+    const isOpen = nav.classList.toggle("is-open");
     menuToggle.classList.toggle("is-active");
     primaryMenu.classList.toggle("open");
+
+    if (isOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
   });
 
   document.addEventListener("keydown", (e) => {
@@ -32,6 +38,7 @@
       nav.classList.remove("is-open");
       menuToggle.classList.remove("is-active");
       primaryMenu.classList.remove("open");
+      document.body.classList.remove("no-scroll");
     }
   });
 })();

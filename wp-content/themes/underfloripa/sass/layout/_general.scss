@@ -35,6 +35,11 @@ body {
 			display: none;
 		}
 	}
+
+	&.no-scroll {
+		overflow: hidden;
+		height: 100vh;
+	}
 }
 
 .header-ad {

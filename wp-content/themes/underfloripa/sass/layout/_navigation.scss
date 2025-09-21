@@ -33,6 +33,12 @@
         &:hover {
           color: $color-accent;
         }
+
+        @media (max-width: 1024px) {
+          font-size: 1.2rem;
+          line-height: 1.6;
+          padding-bottom: 1rem;
+        }
       }
 
       &.menu-item-has-children {
@@ -79,7 +85,6 @@
           }
         }
 
-        // Desktop hover/focus
         @media (min-width: 769px) {
 
           &:hover>.sub-menu,
@@ -156,7 +161,8 @@
     top: 0;
     left: 0;
     height: 100vh;
-    padding-top: 100px;
+    margin-top: 128px;
+    padding-top: 2rem;
     z-index: 9998;
     overflow-y: auto;
     flex-direction: column;
@@ -214,9 +220,9 @@
   }
 
   &.is-active {
-    position: fixed;
-    top: 60px;
-    right: 20px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
 
     .hamburger {
       background: transparent;

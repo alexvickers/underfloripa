@@ -9,7 +9,7 @@
 		margin-top: 180px;
 
 		@media (max-width: 768px) {
-			margin-top: 166px;
+			margin-top: 180px;
 			flex-direction: column;
 			gap: 1.5rem;
 		}
@@ -131,11 +131,6 @@
 		display: flex;
 		gap: 2rem;
 		margin-top: 180px;
-
-		@media (max-width: 768px) {
-			margin-top: 166px;
-			flex-direction: column;
-		}
 
 		.archive-description {
 			margin-bottom: 2rem;
