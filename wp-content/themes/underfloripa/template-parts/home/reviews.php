@@ -25,7 +25,7 @@ if (! defined('ABSPATH')) {
 <section class="home-section review-grid">
 	<div class="title">
 		<h2>Resenhas</h2>
-		<a href="<?php echo get_category_link(get_category_by_slug('resenhas')->term_id); ?>" class="button">Ver todas as resenhas</a>
+		<a href="<?php echo get_category_link(get_category_by_slug('resenhas')->term_id); ?>" class="button">Todas as resenhas</a>
 	</div>
 
 	<?php

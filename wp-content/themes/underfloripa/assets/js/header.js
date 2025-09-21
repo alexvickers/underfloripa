@@ -8,7 +8,6 @@
 
   if (!header || !menuToggle || !primaryMenu || !nav) return;
 
-  // Header shrink on scroll
   const handleScroll = () => {
     const scrollY = window.scrollY;
     if (scrollY > shrinkThreshold) {
@@ -22,14 +21,12 @@
   window.addEventListener("scroll", handleScroll);
   handleScroll();
 
-  // Mobile menu toggle
   menuToggle.addEventListener("click", () => {
     nav.classList.toggle("is-open");
     menuToggle.classList.toggle("is-active");
     primaryMenu.classList.toggle("open");
   });
 
-  // Close menu with Escape
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && nav.classList.contains("is-open")) {
       nav.classList.remove("is-open");
@@ -38,3 +35,16 @@
     }
   });
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchToggle = document.querySelector(".search-toggle");
+  const searchForm = document.querySelector("#header-search");
+
+  if (searchToggle && searchForm) {
+    searchToggle.addEventListener("click", () => {
+      const expanded = searchToggle.getAttribute("aria-expanded") === "true";
+      searchToggle.setAttribute("aria-expanded", !expanded);
+      searchForm.classList.toggle("active");
+    });
+  }
+});

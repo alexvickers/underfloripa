@@ -81,10 +81,6 @@ if (! defined('ABSPATH')) {
 					]); ?>
 				</div>
 				<div class="nav-right">
-					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-						<span class="hamburger"></span>
-						<span class="visually-hidden">Menu</span>
-					</button>
 					<div class="header-socials">
 						<a href="https://www.instagram.com/underfloripa/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
@@ -107,9 +103,21 @@ if (! defined('ABSPATH')) {
 							</svg>
 						</a>
 					</div>
+					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+						<span class="hamburger"></span>
+						<span class="visually-hidden">Menu</span>
+					</button>
+
+					<button class="search-toggle" aria-controls="header-search" aria-expanded="false">
+						<span class="search-icon"></span>
+						<span class="visually-hidden">Search</span>
+					</button>
 				</div>
 			</div>
 		</nav>
+		<div id="header-search" class="header-search-form">
+			<?php get_search_form(); ?>
+		</div>
 
 	</header>
 

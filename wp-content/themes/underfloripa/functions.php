@@ -29,7 +29,7 @@ function underfloripa_assets()
 	wp_enqueue_style('underfloripa-style', get_stylesheet_uri(), [], '1.0');
 	wp_enqueue_script(
 		'underfloripa-theme',
-		get_stylesheet_directory_uri() . '/assets/js/mobile-menu.js',
+		get_stylesheet_directory_uri() . '/assets/js/header.js',
 		[],
 		null,
 		true

@@ -137,7 +137,6 @@
     .header-socials {
       display: flex;
       gap: 0.5rem;
-      margin-right: 1rem;
     }
   }
 }
@@ -215,9 +214,9 @@
   }
 
   &.is-active {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: fixed;
+    top: 60px;
+    right: 20px;
 
     .hamburger {
       background: transparent;
