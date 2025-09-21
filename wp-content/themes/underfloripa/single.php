@@ -50,6 +50,16 @@ get_header(); ?>
 						<div class="entry-thumbnail ratio-16-9">
 							<?php the_post_thumbnail('large', ['alt' => get_the_title()]); ?>
 						</div>
+						<?php
+						$thumbnail_id = get_post_thumbnail_id();
+						$caption = wp_get_attachment_caption($thumbnail_id);
+
+						if ($caption) {
+							echo '<p class="image-credit">' . esc_html($caption) . '</p>';
+						} else {
+							echo '<p class="image-credit">(Reprodução)</p>';
+						}
+						?>
 					<?php endif; ?>
 
 					<!-- Content -->

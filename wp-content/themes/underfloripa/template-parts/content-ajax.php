@@ -10,11 +10,23 @@ if (! defined('ABSPATH')) {
     itemscope
     itemtype="https://schema.org/Article">
 
-    <?php if (has_post_thumbnail()) : ?>
-        <a href="<?php the_permalink(); ?>" class="archive-post-thumbnail" itemprop="url">
-            <?php the_post_thumbnail('medium_large', ['itemprop' => 'image', 'alt' => get_the_title()]); ?>
-        </a>
-    <?php endif; ?>
+    <div class="featured-img">
+        <span class="archive-categories">
+            <?php
+            $categories = get_the_category();
+            if ($categories) {
+                foreach ($categories as $cat) {
+                    echo '<a class="button" href="' . esc_url(get_category_link($cat->term_id)) . '">' . esc_html($cat->name) . '</a> ';
+                }
+            }
+            ?>
+        </span>
+        <?php if (has_post_thumbnail()) : ?>
+            <a href="<?php the_permalink(); ?>" class="archive-post-thumbnail" itemprop="url">
+                <?php the_post_thumbnail('medium_large', ['itemprop' => 'image', 'alt' => get_the_title()]); ?>
+            </a>
+        <?php endif; ?>
+    </div>
 
     <div class="archive-post-content">
         <h2 class="archive-post-title" itemprop="headline">
