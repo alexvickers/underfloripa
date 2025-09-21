@@ -165,16 +165,23 @@
 	background: none;
 	border: none;
 	cursor: pointer;
-	display: flex;
+	display: block;
 	align-items: center;
 	justify-content: center;
+	width: 20px;
+	height: 20px;
 }
 
 .search-icon {
-	width: 20px;
-	height: 20px;
-	background: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M505 442.7L405.3 343c28.4-34.9 45.7-79.5 45.7-128.1C451 95.3 355.7 0 236 0S21 95.3 21 214.9 116.3 429.8 236 429.8c48.6 0 93.2-17.3 128.1-45.7L442.7 505c4.5 4.5 10.6 7 17 7s12.5-2.5 17-7c9.4-9.4 9.4-24.6 0-33.9zM236 367.8c-84.2 0-152.9-68.7-152.9-152.9S151.8 62 236 62s152.9 68.7 152.9 152.9S320.2 367.8 236 367.8z"/></svg>') no-repeat center center;
-	background-size: contain;
+	svg path {
+		fill: $color-offwhite;
+	}
+
+	&:hover {
+		svg path {
+			fill: $color-orange
+		}
+	}
 }
 
 .header-search-form {
@@ -183,7 +190,8 @@
 	left: 0;
 	width: 100%;
 	background: $color-dark;
-	padding: 1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 	z-index: 999;
 	overflow: hidden;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -201,6 +209,7 @@
 
 	.search-form {
 		display: flex;
+		justify-content: flex-end;
 		margin: 0;
 
 		label {
