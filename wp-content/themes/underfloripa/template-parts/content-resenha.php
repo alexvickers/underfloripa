@@ -38,7 +38,7 @@ $title = preg_replace('/^Resenha:\s*/i', '', get_the_title());
             <p class="resenha-label"><?php echo esc_html($record_label); ?></p>
         <?php endif; ?>
         <p class="resenha-meta">
-            <span class="resenha-author"><?php the_author(); ?></span> ·
+            <span class="resenha-author"><?php the_author(); ?></span><br />
             <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
         </p>
     </div>

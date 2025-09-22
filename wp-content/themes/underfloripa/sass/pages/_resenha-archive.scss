@@ -26,58 +26,73 @@
 			font-size: clamp(0.9rem, 2.5vw, 1rem);
 		}
 
-		.archive-post {
-			display: flex;
-			align-items: stretch;
-			background-color: #fdfdfc;
-			border: 1px solid #e0dbd6;
-			border-radius: 6px;
-			padding: 1rem;
-			margin-bottom: 2rem;
+		.archive-posts {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr); // two columns
+			gap: 2rem;
 
-			.resenha-cover {
-				margin-right: 2rem;
-				flex-shrink: 0;
-
-				img {
-					border-radius: 4px;
-					display: block;
-				}
+			@media (max-width: 1024px) {
+				grid-template-columns: 1fr; // stack on smaller screens
+				gap: 1.5rem;
 			}
 
-			.resenha-content {
+			.archive-post {
 				display: flex;
-				flex-direction: column;
-				flex: 1;
+				align-items: stretch;
+				background-color: #fdfdfc;
+				border: 1px solid #e0dbd6;
+				border-radius: 6px;
+				padding: 1rem;
+				gap: 1rem;
 
-				h3 {
-					font-size: 1.8rem;
-					line-height: 1.1;
+				.resenha-cover {
+					flex-shrink: 0;
+
+					img {
+						border-radius: 4px;
+						display: block;
+					}
 				}
 
-				.resenha-meta {
-					font-size: 0.9rem;
+				.resenha-content {
+					display: flex;
+					flex-direction: column;
+					flex: 1;
+
+					h3 {
+						font-size: 1.6rem;
+						line-height: 1.1;
+					}
+
+					.resenha-label {
+						font-size: 0.9rem;
+						margin-bottom: 1.5rem;
+					}
+
+					.resenha-meta {
+						font-size: 0.8rem;
+					}
 				}
-			}
 
-			.resenha-mark {
-				display: flex;
-				align-items: center;
-
-				.mark {
+				.resenha-mark {
 					display: flex;
 					align-items: center;
-					justify-content: center;
-					border: 5px solid $color-dark;
-					border-radius: 50%;
-					padding: 0.75rem;
-					aspect-ratio: 1/1;
 
-					span {
-						line-height: 1;
-						font-size: 2rem;
-						text-align: center;
-						font-weight: 700;
+					.mark {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						border: 5px solid $color-dark;
+						border-radius: 50%;
+						padding: 0.75rem;
+						aspect-ratio: 1/1;
+
+						span {
+							line-height: 1;
+							font-size: 2rem;
+							text-align: center;
+							font-weight: 700;
+						}
 					}
 				}
 			}

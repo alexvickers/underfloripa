@@ -32,7 +32,7 @@ get_header(); ?>
                 $paged = get_query_var('paged') ?: 1;
                 $args = [
                     'post_type'      => 'post',
-                    'posts_per_page' => 10,
+                    'posts_per_page' => 11,
                     'paged'          => $paged,
                     'category__not_in' => $excluded_ids,
                 ];

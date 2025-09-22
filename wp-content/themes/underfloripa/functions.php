@@ -118,7 +118,7 @@ function uf_ajax_load_more_posts()
 		'post_type'      => $post_type,
 		'post_status'    => 'publish',
 		'paged'          => $paged,
-		'posts_per_page' => 10, // match initial queries
+		'posts_per_page' => 11, // match initial queries
 	];
 
 	// Exclude categories only on Notícias

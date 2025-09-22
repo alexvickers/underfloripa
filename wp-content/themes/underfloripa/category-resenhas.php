@@ -21,7 +21,7 @@ get_header(); ?>
             ?>
         </header>
 
-        <div id="posts-container">
+        <div id="posts-container" class="archive-posts">
             <?php
             $paged = get_query_var('paged') ? get_query_var('paged') : 1;
             $args = [
