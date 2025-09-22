@@ -31,23 +31,26 @@ $title = preg_replace('/^Resenha:\s*/i', '', get_the_title());
     </div>
 
     <div class="resenha-content">
-        <h3 class="resenha-title">
-            <a href="<?php the_permalink(); ?>"><?php echo esc_html($title); ?></a>
-        </h3>
-        <?php if ($record_label) : ?>
-            <p class="resenha-label"><?php echo esc_html($record_label); ?></p>
-        <?php endif; ?>
-        <p class="resenha-meta">
-            <span class="resenha-author"><?php the_author(); ?></span><br />
-            <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
-        </p>
-    </div>
-
-    <?php if ($formatted_mark !== '') : ?>
-        <div class="resenha-mark">
-            <div class="mark">
-                <span><?php echo esc_html($formatted_mark); ?></span>
-            </div>
+        <div>
+            <h3 class="resenha-title">
+                <a href="<?php the_permalink(); ?>"><?php echo esc_html($title); ?></a>
+            </h3>
+            <?php if ($record_label) : ?>
+                <p class="resenha-label"><?php echo esc_html($record_label); ?></p>
+            <?php endif; ?>
         </div>
-    <?php endif; ?>
+        <div class="resenha-block">
+            <p class="resenha-meta">
+                <span class="resenha-author"><?php the_author(); ?></span><br />
+                <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
+            </p>
+            <?php if ($formatted_mark !== '') : ?>
+                <div class="resenha-mark">
+                    <div class="mark">
+                        <span><?php echo esc_html($formatted_mark); ?></span>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
 </article>

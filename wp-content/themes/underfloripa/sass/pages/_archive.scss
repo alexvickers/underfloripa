@@ -147,7 +147,7 @@
 			margin-bottom: 2rem;
 		}
 
-		article {
+		article.archive-post {
 			display: flex;
 			gap: 1rem;
 			margin-bottom: 2rem;
@@ -177,16 +177,6 @@
 
 				&:hover img {
 					transform: scale(1.05);
-				}
-			}
-
-			@media (max-width: 768px) {
-				flex-direction: column;
-
-				.event-thumbnail {
-					flex: 0 0 auto;
-					width: 100%;
-					aspect-ratio: 16 / 9;
 				}
 			}
 		}

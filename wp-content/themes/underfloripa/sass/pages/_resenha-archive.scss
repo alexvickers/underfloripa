@@ -50,6 +50,10 @@
 				padding: 1rem;
 				gap: 1rem;
 
+				@media (max-width: 768px) {
+					flex-direction: column;
+				}
+
 				.resenha-cover {
 					flex-shrink: 0;
 
@@ -71,7 +75,12 @@
 
 					.resenha-label {
 						font-size: 0.9rem;
-						margin-bottom: 1.5rem;
+					}
+
+					.resenha-block {
+						display: flex;
+						justify-content: space-between;
+						align-items: flex-end;
 					}
 
 					.resenha-meta {
