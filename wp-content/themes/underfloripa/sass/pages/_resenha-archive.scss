@@ -26,7 +26,7 @@
 			font-size: clamp(0.9rem, 2.5vw, 1rem);
 		}
 
-		.resenha-item {
+		.archive-post {
 			display: flex;
 			align-items: stretch;
 			background-color: #fdfdfc;
@@ -42,20 +42,20 @@
 				img {
 					border-radius: 4px;
 					display: block;
-					height: 127px;
-					width: 127px;
 				}
 			}
 
 			.resenha-content {
+				display: flex;
+				flex-direction: column;
 				flex: 1;
 
 				h3 {
 					font-size: 1.8rem;
+					line-height: 1.1;
 				}
 
 				.resenha-meta {
-					margin-top: 2rem;
 					font-size: 0.9rem;
 				}
 			}

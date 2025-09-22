@@ -16,24 +16,24 @@ get_header(); ?>
                         <?php rank_math_the_breadcrumbs(); ?>
                     </nav>
                 <?php endif; ?>
-
                 <h1 class="archive-title">Notícias</h1>
             </header>
 
             <div class="archive-posts" id="posts-container">
                 <?php
                 // Categories to exclude
-                $excluded = ['resenhas', 'colunas', 'coberturas'];
+                $excluded_slugs = ['resenhas', 'colunas', 'coberturas'];
                 $excluded_ids = array_map(function ($slug) {
                     $cat = get_category_by_slug($slug);
                     return $cat ? $cat->term_id : 0;
-                }, $excluded);
+                }, $excluded_slugs);
 
-                // Initial query
+                // Initial query for Notícias
+                $paged = get_query_var('paged') ?: 1;
                 $args = [
-                    'post_type' => 'post',
+                    'post_type'      => 'post',
                     'posts_per_page' => 10,
-                    'paged' => get_query_var('paged') ?: 1,
+                    'paged'          => $paged,
                     'category__not_in' => $excluded_ids,
                 ];
 
@@ -41,7 +41,7 @@ get_header(); ?>
 
                 if ($noticias_query->have_posts()) :
                     while ($noticias_query->have_posts()) : $noticias_query->the_post();
-                        get_template_part('template-parts/content', 'ajax');
+                        get_template_part('template-parts/content', 'ajax'); // matches AJAX
                     endwhile;
                 else :
                     echo '<p>' . esc_html__('No posts found.', 'underfloripa') . '</p>';
@@ -54,14 +54,8 @@ get_header(); ?>
             <?php if ($noticias_query->max_num_pages > 1) : ?>
                 <div id="load-more-spinner">
                     <div class="lds-spinner">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                        <div></div><div></div><div></div><div></div>
+                        <div></div><div></div><div></div><div></div>
                     </div>
                 </div>
             <?php endif; ?>
@@ -71,8 +65,6 @@ get_header(); ?>
     <aside class="sidebar">
         <?php dynamic_sidebar('primary-sidebar'); ?>
     </aside>
-    </div><!-- .content-with-sidebar -->
-
 </main>
 
 <?php get_footer();
