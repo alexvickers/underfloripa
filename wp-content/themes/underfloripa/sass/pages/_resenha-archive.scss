@@ -1,0 +1,124 @@
+@use "../base/variables" as *;
+
+.resenha-archive {
+	padding-top: 3rem;
+	display: flex;
+	gap: 2rem;
+	margin-top: 180px;
+
+	@media (max-width: 768px) {
+		margin-top: 180px;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.site-main {
+		flex: 0 1 75%;
+
+		h1 {
+			line-height: 1.1;
+			margin-bottom: 0.5rem;
+			font-size: clamp(1.75rem, 5vw, 2.25rem);
+		}
+
+		.archive-description {
+			margin-bottom: 2rem;
+			font-size: clamp(0.9rem, 2.5vw, 1rem);
+		}
+
+		.archive-posts {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 2rem;
+
+			@media (max-width: 1024px) {
+				grid-template-columns: 1fr;
+				gap: 1.5rem;
+			}
+
+			@media (max-width: 768px) {
+				grid-template-columns: 1fr;
+				gap: 1rem;
+			}
+
+			.archive-post {
+				display: flex;
+				align-items: stretch;
+				background-color: #fdfdfc;
+				border: 1px solid #e0dbd6;
+				border-radius: 6px;
+				padding: 1rem;
+				gap: 1rem;
+
+				@media (max-width: 768px) {
+					flex-direction: column;
+				}
+
+				.resenha-cover {
+					flex-shrink: 0;
+
+					img {
+						border-radius: 4px;
+						display: block;
+					}
+				}
+
+				.resenha-content {
+					display: flex;
+					flex-direction: column;
+					flex: 1;
+
+					h3 {
+						font-size: 1.6rem;
+						line-height: 1.1;
+					}
+
+					.resenha-label {
+						font-size: 0.9rem;
+					}
+
+					.resenha-block {
+						display: flex;
+						justify-content: space-between;
+						align-items: flex-end;
+					}
+
+					.resenha-meta {
+						font-size: 0.8rem;
+					}
+				}
+
+				.resenha-mark {
+					display: flex;
+					align-items: center;
+
+					.mark {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						border: 5px solid $color-dark;
+						border-radius: 50%;
+						padding: 0.75rem;
+						aspect-ratio: 1/1;
+
+						span {
+							line-height: 1;
+							font-size: 2rem;
+							text-align: center;
+							font-weight: 700;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.sidebar {
+		flex: 0 1 25%;
+
+		@media (max-width: 1024px) {
+			flex: 1 1 100%;
+			margin-top: 2rem;
+		}
+	}
+}

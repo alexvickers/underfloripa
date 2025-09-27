@@ -65,23 +65,22 @@ $formatted_date = $event_date ? date_i18n('d/m', strtotime($event_date)) : '';
         </header>
 
         <div class="entry-meta">
-            <?php if ($lineup) : ?><span><strong>Com:</strong> <?php echo esc_html($lineup); ?></span><br><?php endif; ?>
-            <?php if ($opening_acts) : ?><span><strong>Abertura:</strong> <?php echo esc_html($opening_acts); ?></span><br><?php endif; ?>
+            <?php if ($lineup) : ?><span><strong>Com:</strong> <?php echo esc_html($lineup); ?></span><?php endif; ?>
+            <?php if ($opening_acts) : ?><span><strong>Abertura:</strong> <?php echo esc_html($opening_acts); ?></span><?php endif; ?>
             <?php if ($formatted_date) : ?>
                 <span>
                     <strong>Data:</strong>
                     <time datetime="<?php echo esc_attr($event_date); ?>" itemprop="startDate">
                         <?php echo esc_html($formatted_date); ?>
                     </time>
-                </span><br>
+                </span>
             <?php endif; ?>
-            <?php if ($doors_time) : ?><span><strong>Portas:</strong> <?php echo esc_html($doors_time); ?></span><br><?php endif; ?>
+            <?php if ($doors_time) : ?><span><strong>Portas:</strong> <?php echo esc_html($doors_time); ?></span><?php endif; ?>
             <?php if ($venue_name || $venue_address || $venue_city) : ?>
                 <span itemprop="location" itemscope itemtype="https://schema.org/Place">
-                    <strong>Local:</strong>
-                    <span itemprop="name"><?php echo esc_html($venue_name); ?></span>
-                    <?php if ($venue_address) : ?> - <span itemprop="address"><?php echo esc_html($venue_address); ?></span><?php endif; ?>
-                    <?php if ($venue_city) : ?> - <span itemprop="addressLocality"><?php echo esc_html($venue_city); ?></span><?php endif; ?>
+                    <span itemprop="name"><strong>Local:</strong> <?php echo esc_html($venue_name); ?></span>
+                    <span itemprop="address"><?php echo esc_html($venue_address); ?></span>
+                    <span itemprop="addressLocality"><?php echo esc_html($venue_city); ?></span>
                 </span>
             <?php endif; ?>
         </div>

@@ -29,6 +29,7 @@ const loadMorePosts = () => {
     category_id: my_ajax_obj.category_id,
     author_id: my_ajax_obj.author_id,
     post_type: my_ajax_obj.post_type,
+    is_noticias: my_ajax_obj.is_noticias || 0,
   });
 
   if (ajaxAction === "load_more_search" && my_ajax_obj.search_query) {

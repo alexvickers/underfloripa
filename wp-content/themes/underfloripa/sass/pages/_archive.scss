@@ -9,7 +9,7 @@
 		margin-top: 180px;
 
 		@media (max-width: 768px) {
-			margin-top: 166px;
+			margin-top: 180px;
 			flex-direction: column;
 			gap: 1.5rem;
 		}
@@ -58,6 +58,17 @@
 						&:hover {
 							transform: translateY(-1px);
 							box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+						}
+
+						.featured-img {
+							position: relative;
+
+							.archive-categories {
+								position: absolute;
+								top: 16px;
+								left: 16px;
+								z-index: 99;
+							}
 						}
 
 						.archive-post-thumbnail {
@@ -132,16 +143,11 @@
 		gap: 2rem;
 		margin-top: 180px;
 
-		@media (max-width: 768px) {
-			margin-top: 166px;
-			flex-direction: column;
-		}
-
 		.archive-description {
 			margin-bottom: 2rem;
 		}
 
-		article {
+		article.archive-post {
 			display: flex;
 			gap: 1rem;
 			margin-bottom: 2rem;
@@ -171,16 +177,6 @@
 
 				&:hover img {
 					transform: scale(1.05);
-				}
-			}
-
-			@media (max-width: 768px) {
-				flex-direction: column;
-
-				.event-thumbnail {
-					flex: 0 0 auto;
-					width: 100%;
-					aspect-ratio: 16 / 9;
 				}
 			}
 		}

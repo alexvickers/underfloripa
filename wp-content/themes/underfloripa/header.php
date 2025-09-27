@@ -81,10 +81,6 @@ if (! defined('ABSPATH')) {
 					]); ?>
 				</div>
 				<div class="nav-right">
-					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-						<span class="hamburger"></span>
-						<span class="visually-hidden">Menu</span>
-					</button>
 					<div class="header-socials">
 						<a href="https://www.instagram.com/underfloripa/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
@@ -107,9 +103,27 @@ if (! defined('ABSPATH')) {
 							</svg>
 						</a>
 					</div>
+					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+						<span class="hamburger"></span>
+						<span class="visually-hidden">Menu</span>
+					</button>
+
+					<button class="search-toggle" aria-controls="header-search" aria-expanded="false">
+						<span class="search-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path d="M505 442.7L405.3 343c28.4-34.9 45.7-79.5 45.7-128.1C451 95.3 355.7 0 236 0S21 95.3 21 214.9 116.3 429.8 236 429.8c48.6 0 93.2-17.3 128.1-45.7L442.7 505c4.5 4.5 10.6 7 17 7s12.5-2.5 17-7c9.4-9.4 9.4-24.6 0-33.9zM236 367.8c-84.2 0-152.9-68.7-152.9-152.9S151.8 62 236 62s152.9 68.7 152.9 152.9S320.2 367.8 236 367.8z"/>
+							</svg>
+						</span>
+						<span class="visually-hidden">Search</span>
+					</button>
 				</div>
 			</div>
 		</nav>
+		<div id="header-search" class="header-search-form">
+			<div class="site-container">
+				<?php get_search_form(); ?>
+			</div>
+		</div>
 
 	</header>
 

@@ -8,13 +8,13 @@ if (! defined('ABSPATH')) {
 <section class="home-section latest-news">
 	<div class="title">
 		<h2>Últimas Notícias</h2>
-		<a href="<?php echo get_permalink( get_page_by_path('noticias') ); ?>" class="button">Ver todas as notícias</a>
+		<a href="<?php echo get_permalink( get_page_by_path('noticias') ); ?>" class="button">Todas as notícias</a>
 	</div>
 
 	<?php
 	$latest_news = new WP_Query([
 		'post_type'      => 'post',
-		'posts_per_page' => 7,
+		'posts_per_page' => 10,
 		'tax_query'      => [
 			[
 				'taxonomy' => 'category',

@@ -14,7 +14,7 @@ const paths = {
   css: 'css'
 };
 
-function styles() {
+function build() {
   return gulp.src(paths.main)
     .pipe(gulpIf(!isProd, sourcemaps.init()))
     .pipe(sass().on('error', sass.logError))
@@ -24,7 +24,7 @@ function styles() {
     .pipe(gulp.dest(paths.css));
 }
 
-function stylesProd() {
+function styles() {
   return gulp.src(paths.main)
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([autoprefixer()]))
@@ -33,10 +33,10 @@ function stylesProd() {
 }
 
 function watch() {
-  gulp.watch(paths.scss, styles);
+  gulp.watch(paths.scss, build);
 }
 
+exports.build = build;
 exports.styles = styles;
-exports.stylesProd = stylesProd;
 exports.watch = watch;
-exports.default = gulp.series(styles, watch);
+exports.default = gulp.series(build, watch);

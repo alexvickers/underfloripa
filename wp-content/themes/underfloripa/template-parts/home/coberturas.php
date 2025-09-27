@@ -25,7 +25,7 @@ if (! defined('ABSPATH')) {
 <section class="home-section coverages">
 	<div class="title">
 		<h2>Coberturas</h2>
-		<a href="<?php echo get_category_link(get_category_by_slug('coberturas')->term_id); ?>" class="button">Ver todas as coberturas</a>
+		<a href="<?php echo get_category_link(get_category_by_slug('coberturas')->term_id); ?>" class="button">Todas as Coberturas</a>
 	</div>
 
 	<?php

@@ -16,7 +16,7 @@
 	}
 
 	.sidebar {
-		flex: 0 1 25%;
+		flex: 0 0 25%;
 	}
 
 	@media (max-width: 900px) {
@@ -34,6 +34,11 @@ body {
 		.widget_uf_upcoming_events_widget {
 			display: none;
 		}
+	}
+
+	&.no-scroll {
+		overflow: hidden;
+		height: 100vh;
 	}
 }
 
