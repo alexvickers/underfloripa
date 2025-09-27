@@ -53,7 +53,7 @@ get_header(); ?>
         <?php endif; ?>
     </div>
 
-    <aside class="site-sidebar">
+    <aside class="sidebar">
         <?php dynamic_sidebar('primary-sidebar'); ?>
     </aside>
 </div>

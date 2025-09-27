@@ -4,21 +4,15 @@
 	margin-bottom: 30px;
 	clear: both;
 
-	&-thumbnail {
-		float: left;
-		max-width: 30%;
-		width: 240px;
-
-		img {
-			width: 100%;
-			height: auto;
-			object-fit: contain;
-		}
+	img {
+		width: 100%;
+		height: auto;
+		object-fit: contain;
 	}
 
 	&-details {
 		overflow: hidden;
-		margin-bottom: 2rem;;
+		margin-bottom: 2rem;
 
 		h3 {
 			font-size: 1.75rem;

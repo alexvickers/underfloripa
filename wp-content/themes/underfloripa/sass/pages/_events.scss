@@ -32,10 +32,11 @@
 .archive-post {
 	display: flex;
 	flex-direction: row;
-	gap: 1rem;
+	align-items: flex-start;
+	gap: 2rem;
 	background-color: $color-offwhite-bright;
 	border: 1px solid $color-accent-light;
-	border-radius: 6px;
+	border-radius: 4px;
 	overflow: hidden;
 	padding: 1rem;
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -47,7 +48,6 @@
 
 	.event-thumbnail {
 		flex: 0 0 25%;
-		height: 600px;
 		border-radius: 4px;
 		overflow: hidden;
 

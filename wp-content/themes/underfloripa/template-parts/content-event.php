@@ -78,10 +78,9 @@ $formatted_date = $event_date ? date_i18n('d/m', strtotime($event_date)) : '';
             <?php if ($doors_time) : ?><span><strong>Portas:</strong> <?php echo esc_html($doors_time); ?></span><?php endif; ?>
             <?php if ($venue_name || $venue_address || $venue_city) : ?>
                 <span itemprop="location" itemscope itemtype="https://schema.org/Place">
-                    <strong>Local:</strong>
-                    <span itemprop="name"><?php echo esc_html($venue_name); ?></span>
-                    <?php if ($venue_address) : ?> - <span itemprop="address"><?php echo esc_html($venue_address); ?></span><?php endif; ?>
-                    <?php if ($venue_city) : ?> - <span itemprop="addressLocality"><?php echo esc_html($venue_city); ?></span><?php endif; ?>
+                    <span itemprop="name"><strong>Local:</strong> <?php echo esc_html($venue_name); ?></span>
+                    <span itemprop="address"><?php echo esc_html($venue_address); ?></span>
+                    <span itemprop="addressLocality"><?php echo esc_html($venue_city); ?></span>
                 </span>
             <?php endif; ?>
         </div>
