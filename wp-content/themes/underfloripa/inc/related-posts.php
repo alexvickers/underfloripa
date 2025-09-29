@@ -12,8 +12,7 @@ if (! defined('ABSPATH')) {
  * @param WP_Post $post
  * @return string
  */
-function get_related_posts_block($post)
-{
+function get_related_posts_block($post) {
 	if (empty($post)) return '';
 
 	$cache_key   = 'related_posts_block_' . $post->ID;
@@ -31,11 +30,11 @@ function get_related_posts_block($post)
 	$is_voce_precisa_conhecer = in_array('voce-precisa-conhecer', $category_slugs);
 	$is_cultural    = array_intersect(['musica', 'cinema', 'literatura'], $category_slugs);
 
-	$posts_to_show = 4;
+	$posts_to_show = $is_resenhas ? 4 : 3;
 
 	$base_args = [
 		'category__in'        => $category_ids,
-		'posts_per_page'      => 6,
+		'posts_per_page'      => $posts_to_show,
 		'orderby'             => 'rand',
 		'no_found_rows'       => true,
 		'ignore_sticky_posts' => true,
@@ -79,8 +78,7 @@ function get_related_posts_block($post)
 			];
 
 			$fallback_posts = get_posts($fallback_args);
-
-			$related_posts = array_merge($related_posts, $fallback_posts);
+			$related_posts  = array_merge($related_posts, $fallback_posts);
 		}
 	}
 

@@ -11,9 +11,10 @@ if (!empty($filtered_posts)) : ?>
             <?php foreach ($filtered_posts as $post_item): ?>
                 <li>
                     <a href="<?php echo get_permalink($post_item->ID); ?>">
-                        <?php if (!empty($is_cultural)) : ?>
+                        <?php
+                        if (!$is_resenhas) : ?>
                             <span class="related-post-date">
-                                <?php echo get_the_date('d M Y', $post_item->ID); ?>
+                                <?php echo get_the_date('j \d\e F \d\e Y', $post_item->ID); ?>
                             </span>
                         <?php endif;
                         $thumb = get_the_post_thumbnail($post_item->ID, [300, 300]);

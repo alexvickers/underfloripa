@@ -4,6 +4,10 @@
 	margin-bottom: 30px;
 	clear: both;
 
+	&:first-of-type {
+		margin-top: 2rem;;
+	}
+
 	img {
 		width: 100%;
 		height: auto;
@@ -27,7 +31,7 @@
 		}
 
 		&__item {
-			margin-bottom: 1rem;
+			margin-bottom: 1.5rem;
 
 			ul {
 				list-style: none;
