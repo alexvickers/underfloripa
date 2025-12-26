@@ -63,13 +63,6 @@
 							height: 100%;
 						}
 					}
-
-					.image-credit,
-					.wp-element-caption {
-						text-align: center;
-						font-size: 0.9rem;
-						margin-bottom: 2rem;
-					}
 				}
 			}
 
@@ -102,6 +95,13 @@
 		}
 	}
 
+	.image-credit,
+	.wp-element-caption {
+		text-align: center;
+		font-size: 0.9rem;
+		margin-bottom: 2rem;
+	}
+
 	@include respond-to(lg) {
 		.content {
 			flex-direction: column;
@@ -119,6 +119,12 @@
 	@include respond-to(sm) {
 		.content {
 			gap: 1.25rem;
+		}
+	}
+
+	&.category-resenhas {
+		.related-post-thumb {
+			aspect-ratio: 1 / 1;
 		}
 	}
 }

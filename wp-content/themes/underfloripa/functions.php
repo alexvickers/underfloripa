@@ -10,8 +10,7 @@ foreach (glob(get_stylesheet_directory() . '/inc/*.php') as $file) {
 }
 
 // Theme setup
-function underfloripa_setup()
-{
+function underfloripa_setup() {
 	add_theme_support('post-thumbnails');
 	add_theme_support('html5', ['search-form', 'gallery', 'caption']);
 	add_theme_support('title-tag');
@@ -23,9 +22,23 @@ function underfloripa_setup()
 }
 add_action('after_setup_theme', 'underfloripa_setup');
 
+// Add category slug(s) to the body class on single posts.
+function my_add_category_slug_to_body_class( $classes ) {
+    if ( is_single() ) {
+        $categories = get_the_category();
+        if ( ! empty( $categories ) ) {
+            foreach ( $categories as $category ) {
+                $classes[] = 'category-' . sanitize_html_class( $category->slug );
+            }
+        }
+    }
+
+    return $classes;
+}
+add_filter( 'body_class', 'my_add_category_slug_to_body_class' );
+
 // Enqueue styles and scripts
-function underfloripa_assets()
-{
+function underfloripa_assets() {
 	wp_enqueue_style('underfloripa-style', get_stylesheet_uri(), [], '1.0');
 	wp_enqueue_script(
 		'underfloripa-theme',
@@ -44,20 +57,13 @@ function underfloripa_assets()
 }
 add_action('wp_enqueue_scripts', 'underfloripa_assets');
 
-function underfloripa_optimize_jquery()
-{
+function underfloripa_optimize_jquery() {
 	if (is_admin()) return;
 
-	// Deregister the default jQuery
 	wp_deregister_script('jquery');
-
-	// Re-register it in the footer
 	wp_register_script('jquery', includes_url('/js/jquery/jquery.min.js'), [], null, true);
-
-	// Enqueue the new jQuery
 	wp_enqueue_script('jquery');
 
-	// Filter to add defer
 	add_filter('script_loader_tag', function ($tag, $handle, $src) {
 		if ($handle === 'jquery') {
 			return '<script src="' . esc_url($src) . '" defer></script>';
@@ -67,8 +73,7 @@ function underfloripa_optimize_jquery()
 }
 add_action('wp_enqueue_scripts', 'underfloripa_optimize_jquery');
 
-function underfloripa_remove_jquery_migrate($scripts)
-{
+function underfloripa_remove_jquery_migrate($scripts) {
 	if (! is_admin() && isset($scripts->registered['jquery'])) {
 		$jquery_dep = &$scripts->registered['jquery'];
 
@@ -80,8 +85,7 @@ function underfloripa_remove_jquery_migrate($scripts)
 add_action('wp_default_scripts', 'underfloripa_remove_jquery_migrate');
 
 // Custom Footer Scripts (via ACF option)
-function my_custom_footer_scripts()
-{
+function my_custom_footer_scripts() {
 	if (function_exists('get_field')) {
 		$scripts = get_field('site_footer_scripts', 'option');
 		if ($scripts) {
@@ -92,8 +96,7 @@ function my_custom_footer_scripts()
 add_action('wp_footer', 'my_custom_footer_scripts', 100);
 
 // Added sidebar
-function underfloripa_register_sidebars()
-{
+function underfloripa_register_sidebars() {
 	register_sidebar([
 		'name'          => 'Primary Sidebar',
 		'id'            => 'primary-sidebar',
@@ -118,7 +121,7 @@ function uf_ajax_load_more_posts()
 		'post_type'      => $post_type,
 		'post_status'    => 'publish',
 		'paged'          => $paged,
-		'posts_per_page' => 11, // match initial queries
+		'posts_per_page' => 11,
 	];
 
 	// Exclude categories only on Notícias
@@ -162,7 +165,7 @@ function uf_ajax_load_more_posts()
 			} elseif (has_category('resenhas')) {
 				get_template_part('template-parts/content', 'resenha');
 			} else {
-				get_template_part('template-parts/content', 'ajax'); // default / Noticias
+				get_template_part('template-parts/content', 'ajax');
 			}
 		}
 	} else {
@@ -268,8 +271,74 @@ function uf_enqueue_load_more_script()
 }
 add_action('wp_enqueue_scripts', 'uf_enqueue_load_more_script');
 
-class Underfloripa_Walker_Nav_Menu extends Walker_Nav_Menu
-{
+// Clear related posts block cache when posts are saved or deleted,
+function my_clear_related_posts_cache( $post_id ) {
+    if ( wp_is_post_autosave( $post_id ) || wp_is_post_revision( $post_id ) ) {
+        return;
+    }
+
+    delete_transient( 'related_posts_block_' . $post_id );
+
+    $categories = wp_get_post_categories( $post_id );
+    if ( empty( $categories ) ) {
+        return;
+    }
+    $category_slugs = wp_list_pluck( get_the_category( $post_id ), 'slug' );
+    $cultural_slugs = ['musica', 'cinema', 'literatura'];
+    $groups = [];
+
+    if ( array_intersect( $category_slugs, $cultural_slugs ) ) {
+        $groups[] = 'cultural';
+    }
+    if ( in_array( 'colunas', $category_slugs ) ) {
+        $groups[] = 'colunas';
+    }
+    if ( in_array( 'coberturas', $category_slugs ) ) {
+        $groups[] = 'coberturas';
+    }
+    if ( in_array( 'resenhas', $category_slugs ) ) {
+        $groups[] = 'resenhas';
+    }
+
+    $args = [
+        'posts_per_page'      => -1,
+        'category__in'        => $categories,
+        'post_type'           => 'post',
+        'post_status'         => 'publish',
+        'fields'              => 'ids',
+        'ignore_sticky_posts' => true,
+    ];
+
+    $posts_to_clear = get_posts( $args );
+
+    if ( in_array( 'cultural', $groups ) ) {
+        $cultural_terms = get_terms([
+            'taxonomy'   => 'category',
+            'slug'       => $cultural_slugs,
+            'fields'     => 'ids',
+            'hide_empty' => false,
+        ]);
+
+        $cultural_posts = get_posts([
+            'posts_per_page'      => -1,
+            'category__in'        => $cultural_terms,
+            'post_type'           => 'post',
+            'post_status'         => 'publish',
+            'fields'              => 'ids',
+            'ignore_sticky_posts' => true,
+        ]);
+
+        $posts_to_clear = array_merge( $posts_to_clear, $cultural_posts );
+    }
+
+    foreach ( $posts_to_clear as $pid ) {
+        delete_transient( 'related_posts_block_' . $pid );
+    }
+}
+add_action( 'save_post', 'my_clear_related_posts_cache' );
+add_action( 'before_delete_post', 'my_clear_related_posts_cache' );
+
+class Underfloripa_Walker_Nav_Menu extends Walker_Nav_Menu {
 	public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
 	{
 		$classes = empty($item->classes) ? [] : (array) $item->classes;
