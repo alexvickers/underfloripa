@@ -71,7 +71,8 @@
 					line-height: 1;
 					transition: background-color 0.3s ease, color 0.3s ease;
 
-					&:hover {
+					&:hover,
+					&:focus-visible {
 						background-color: $color-purple;
 						color: $color-offwhite;
 					}
@@ -93,9 +94,11 @@
 				font-weight: 500;
 			}
 
-			&:hover {
-				img {
-					transform: scale(1.05);
+			@media (hover: hover) {
+				&:hover {
+					img {
+						transform: scale(1.05);
+					}
 				}
 
 				.post-categories a {

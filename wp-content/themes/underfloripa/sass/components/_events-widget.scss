@@ -34,7 +34,8 @@
 		a {
 			color: $color-text;
 
-			&:hover {
+			&:hover,
+			&:focus-visible {
 				color: $color-accent;
 			}
 		}
