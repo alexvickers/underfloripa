@@ -16,6 +16,24 @@ get_header(); ?>
                 <div class="archive-description"><?php the_archive_description(); ?></div>
             </header>
 
+            <div class="lazy-google-ad responsive-ad"
+                data-ad-client="ca-pub-2855642712528671"
+                data-ad-slot="8804085429">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+                    crossorigin="anonymous"></script>
+                <!-- Under Floripa 2025 - Eventos 1 -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-2855642712528671"
+                    data-ad-slot="8804085429"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+
             <?php
             $today = date('Ymd');
             $args = [
@@ -51,8 +69,14 @@ get_header(); ?>
         <?php if ($events->max_num_pages > 1) : ?>
             <div id="load-more-spinner">
                 <div class="lds-spinner">
-                    <div></div><div></div><div></div><div></div>
-                    <div></div><div></div><div></div><div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
             </div>
         <?php endif; ?>

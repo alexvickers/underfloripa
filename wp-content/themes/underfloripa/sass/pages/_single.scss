@@ -35,13 +35,32 @@
 
 				.entry-content {
 
-					h2,
-					p {
+					h2 {
 						margin-bottom: 1.5rem;
+						font-size: 1.6rem;
 
 						&:first-child {
 							margin-top: 2.2rem;
 							line-height: 1.3;
+						}
+					}
+
+					h3 {
+						font-size: 1.4rem;
+					}
+
+					p {
+						margin-bottom: 1.5rem;
+					}
+
+					.wp-block-embed__wrapper {
+						width: 100%;
+						height: auto;
+						aspect-ratio: 16 / 9;
+
+						iframe {
+							width: 100%;
+							height: 100%;
 						}
 					}
 				}
@@ -80,6 +99,7 @@
 	.wp-element-caption {
 		text-align: center;
 		font-size: 0.9rem;
+		margin-bottom: 2rem;
 	}
 
 	@include respond-to(lg) {
@@ -99,6 +119,12 @@
 	@include respond-to(sm) {
 		.content {
 			gap: 1.25rem;
+		}
+	}
+
+	&.category-resenhas {
+		.related-post-thumb {
+			aspect-ratio: 1 / 1;
 		}
 	}
 }
