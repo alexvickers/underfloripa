@@ -1,105 +1,105 @@
 [
-    {
-        "key": "group_68059ad8988c9",
-        "title": "Venue",
-        "fields": [
-            {
-                "key": "field_68059ad9177c8",
-                "label": "Endereço",
-                "name": "venue_address",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_68059af6177c9",
-                "label": "Cidade\/Estado",
-                "name": "venue_city",
-                "aria-label": "",
-                "type": "taxonomy",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "taxonomy": "venue_city",
-                "add_term": 1,
-                "save_terms": 1,
-                "load_terms": 1,
-                "return_format": "object",
-                "field_type": "select",
-                "allow_null": 0,
-                "allow_in_bindings": 1,
-                "bidirectional": 0,
-                "show_in_graphql": 1,
-                "graphql_description": "",
-                "graphql_field_name": "venueCity",
-                "multiple": 0,
-                "bidirectional_target": []
-            }
-        ],
-        "location": [
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "venue"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": "",
-        "show_in_rest": 0,
+  {
+    "key": "group_68059ad8988c9",
+    "title": "Venue",
+    "fields": [
+      {
+        "key": "field_68059ad9177c8",
+        "label": "Endereço",
+        "name": "venue_address",
+        "aria-label": "",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "default_value": "",
+        "maxlength": "",
+        "allow_in_bindings": 0,
+        "placeholder": "",
+        "prepend": "",
+        "append": ""
+      },
+      {
+        "key": "field_68059af6177c9",
+        "label": "Cidade/Estado",
+        "name": "venue_city",
+        "aria-label": "",
+        "type": "taxonomy",
+        "instructions": "",
+        "required": 1,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "taxonomy": "venue_city",
+        "add_term": 1,
+        "save_terms": 1,
+        "load_terms": 1,
+        "return_format": "object",
+        "field_type": "select",
+        "allow_null": 0,
+        "allow_in_bindings": 1,
+        "bidirectional": 0,
         "show_in_graphql": 1,
-        "graphql_field_name": "venue",
-        "map_graphql_types_from_location_rules": 1,
-        "graphql_types": [
-            "ContentNode",
-            "ActionMonitorAction",
-            "GraphqlDocument",
-            "MediaItem",
-            "Page",
-            "Post",
-            "TermNode",
-            "Category",
-            "GraphqlDocumentGroup",
-            "PostFormat",
-            "Tag",
-            "ContentTemplate",
-            "ContactPageTemplate",
-            "DefaultTemplate",
-            "MagazineTemplate",
-            "Template_GutenbergBlockPageBuilderColorMag",
-            "AcfOptionsPage",
-            "SiteSettings",
-            "Comment",
-            "Menu",
-            "MenuItem",
-            "User"
-        ]
-    }
+        "graphql_description": "",
+        "graphql_field_name": "venueCity",
+        "multiple": 0,
+        "bidirectional_target": []
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "venue"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "show_in_graphql": 1,
+    "graphql_field_name": "venue",
+    "map_graphql_types_from_location_rules": 1,
+    "graphql_types": [
+      "ContentNode",
+      "ActionMonitorAction",
+      "GraphqlDocument",
+      "MediaItem",
+      "Page",
+      "Post",
+      "TermNode",
+      "Category",
+      "GraphqlDocumentGroup",
+      "PostFormat",
+      "Tag",
+      "ContentTemplate",
+      "ContactPageTemplate",
+      "DefaultTemplate",
+      "MagazineTemplate",
+      "Template_GutenbergBlockPageBuilderColorMag",
+      "AcfOptionsPage",
+      "SiteSettings",
+      "Comment",
+      "Menu",
+      "MenuItem",
+      "User"
+    ]
+  }
 ]

@@ -1,356 +1,395 @@
 [
-    {
-        "key": "group_68047af7cd7be",
-        "title": "Underfloripa Events",
-        "fields": [
+  {
+    "key": "group_68047af7cd7be",
+    "title": "Underfloripa Events",
+    "fields": [
+      {
+        "key": "field_68047af8c9d04",
+        "label": "Data do Evento",
+        "name": "event_date",
+        "aria-label": "",
+        "type": "date_picker",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 1,
+        "display_format": "Y-m-d",
+        "return_format": "Y-m-d",
+        "first_day": 0,
+        "allow_in_bindings": 0
+      },
+      {
+        "key": "field_68047b2fc9d05",
+        "label": "Abertura das Portas",
+        "name": "doors_time",
+        "aria-label": "",
+        "type": "time_picker",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "display_format": "g:i a",
+        "return_format": "g:i a",
+        "allow_in_bindings": 0
+      },
+      {
+        "key": "field_68047b49c9d06",
+        "label": "Local",
+        "name": "venue_post",
+        "aria-label": "",
+        "type": "post_object",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "post_type": ["venue"],
+        "post_status": ["publish"],
+        "taxonomy": "",
+        "return_format": "object",
+        "multiple": 0,
+        "allow_null": 0,
+        "allow_in_bindings": 1,
+        "bidirectional": 0,
+        "ui": 1,
+        "bidirectional_target": []
+      },
+      {
+        "key": "field_68056bbc85808",
+        "label": "Censura",
+        "name": "min_age",
+        "aria-label": "",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "default_value": "18 Anos",
+        "maxlength": "",
+        "allow_in_bindings": 0,
+        "placeholder": "",
+        "prepend": "",
+        "append": ""
+      },
+      {
+        "key": "field_68295cefe955e",
+        "label": "Festival?",
+        "name": "is_festival",
+        "aria-label": "",
+        "type": "checkbox",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "choices": {
+          "Yes": "Yes"
+        },
+        "default_value": [],
+        "return_format": "value",
+        "allow_custom": 0,
+        "allow_in_bindings": 0,
+        "layout": "vertical",
+        "toggle": 0,
+        "save_custom": 0,
+        "custom_choice_button_text": "Adicionar nova escolha"
+      },
+      {
+        "key": "field_68295c1dd4461",
+        "label": "Opening acts?",
+        "name": "show_opening",
+        "aria-label": "",
+        "type": "checkbox",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "choices": {
+          "Yes": "Yes"
+        },
+        "default_value": [],
+        "return_format": "value",
+        "allow_custom": 0,
+        "allow_in_bindings": 0,
+        "layout": "vertical",
+        "toggle": 0,
+        "save_custom": 0,
+        "custom_choice_button_text": "Adicionar nova escolha"
+      },
+      {
+        "key": "field_6889457bae427",
+        "label": "Tour?",
+        "name": "show_tour",
+        "aria-label": "",
+        "type": "checkbox",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "choices": {
+          "Yes": "Yes"
+        },
+        "default_value": [],
+        "return_format": "value",
+        "allow_custom": 0,
+        "allow_in_bindings": 0,
+        "layout": "vertical",
+        "toggle": 0,
+        "save_custom": 0,
+        "custom_choice_button_text": "Adicionar nova escolha"
+      },
+      {
+        "key": "field_68295d2ff395a",
+        "label": "Lineup",
+        "name": "lineup",
+        "aria-label": "",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": [
+          [
             {
-                "key": "field_68047af8c9d04",
-                "label": "Data do Evento",
-                "name": "event_date",
-                "aria-label": "",
-                "type": "date_picker",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 1,
-                "display_format": "Y-m-d",
-                "return_format": "Y-m-d",
-                "first_day": 0,
-                "allow_in_bindings": 0
-            },
-            {
-                "key": "field_68047b2fc9d05",
-                "label": "Abertura das Portas",
-                "name": "doors_time",
-                "aria-label": "",
-                "type": "time_picker",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "display_format": "g:i a",
-                "return_format": "g:i a",
-                "allow_in_bindings": 0
-            },
-            {
-                "key": "field_68047b49c9d06",
-                "label": "Local",
-                "name": "venue_post",
-                "aria-label": "",
-                "type": "post_object",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "post_type": [
-                    "venue"
-                ],
-                "post_status": [
-                    "publish"
-                ],
-                "taxonomy": "",
-                "return_format": "object",
-                "multiple": 0,
-                "allow_null": 0,
-                "allow_in_bindings": 1,
-                "bidirectional": 0,
-                "ui": 1,
-                "bidirectional_target": []
-            },
-            {
-                "key": "field_68056bbc85808",
-                "label": "Censura",
-                "name": "min_age",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "default_value": "18 Anos",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_68295cefe955e",
-                "label": "Festival?",
-                "name": "is_festival",
-                "aria-label": "",
-                "type": "checkbox",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "choices": {
-                    "Yes": "Yes"
-                },
-                "default_value": [],
-                "return_format": "value",
-                "allow_custom": 0,
-                "allow_in_bindings": 0,
-                "layout": "vertical",
-                "toggle": 0,
-                "show_in_graphql": 1,
-                "graphql_description": "",
-                "graphql_field_name": "isFestival",
-                "graphql_non_null": 0,
-                "save_custom": 0,
-                "custom_choice_button_text": "Adicionar nova escolha"
-            },
-            {
-                "key": "field_68295c1dd4461",
-                "label": "Opening acts?",
-                "name": "show_opening",
-                "aria-label": "",
-                "type": "checkbox",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "choices": {
-                    "Yes": "Yes"
-                },
-                "default_value": [],
-                "return_format": "value",
-                "allow_custom": 0,
-                "allow_in_bindings": 0,
-                "layout": "vertical",
-                "toggle": 0,
-                "show_in_graphql": 1,
-                "graphql_description": "",
-                "graphql_field_name": "showExtraInfo",
-                "graphql_non_null": 0,
-                "save_custom": 0,
-                "custom_choice_button_text": "Adicionar nova escolha"
-            },
-            {
-                "key": "field_68295d2ff395a",
-                "label": "Lineup",
-                "name": "lineup",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": [
-                    [
-                        {
-                            "field": "field_68295cefe955e",
-                            "operator": "==",
-                            "value": "Yes"
-                        }
-                    ]
-                ],
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": "",
-                "show_in_graphql": 1,
-                "graphql_description": "",
-                "graphql_field_name": "lineup",
-                "graphql_non_null": 0
-            },
-            {
-                "key": "field_68296160b0db2",
-                "label": "Opening Acts",
-                "name": "opening_acts",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": [
-                    [
-                        {
-                            "field": "field_68295c1dd4461",
-                            "operator": "==",
-                            "value": "Yes"
-                        }
-                    ]
-                ],
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": "",
-                "show_in_graphql": 1,
-                "graphql_description": "",
-                "graphql_field_name": "openingActs",
-                "graphql_non_null": 0
-            },
-            {
-                "key": "field_681e7873d5ac2",
-                "label": "Tour",
-                "name": "tour",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": "",
-                "show_in_graphql": 1,
-                "graphql_description": "",
-                "graphql_field_name": "tour",
-                "graphql_non_null": 0
-            },
-            {
-                "key": "field_68047b7dc9d08",
-                "label": "Link",
-                "name": "link",
-                "aria-label": "",
-                "type": "post_object",
-                "instructions": "Link do post sobre o Evento",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 1,
-                "post_type": [
-                    "post"
-                ],
-                "post_status": [
-                    "publish",
-                    "future"
-                ],
-                "taxonomy": [
-                    "category:musica"
-                ],
-                "return_format": "object",
-                "multiple": 0,
-                "allow_null": 0,
-                "allow_in_bindings": 1,
-                "bidirectional": 0,
-                "show_in_graphql": 1,
-                "graphql_description": "",
-                "graphql_field_name": "link",
-                "graphql_connection_type": "one_to_many",
-                "ui": 1,
-                "bidirectional_target": []
-            },
-            {
-                "key": "field_68056c2385809",
-                "label": "Ingressos",
-                "name": "ticket_link",
-                "aria-label": "",
-                "type": "url",
-                "instructions": "Link do site de venda de Ingressos",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "relevanssi_exclude": 0,
-                "default_value": "",
-                "allow_in_bindings": 0,
-                "placeholder": ""
+              "field": "field_68295cefe955e",
+              "operator": "==",
+              "value": "Yes"
             }
+          ]
         ],
-        "location": [
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "event"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": "",
-        "show_in_rest": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "default_value": "",
+        "maxlength": "",
+        "allow_in_bindings": 0,
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
         "show_in_graphql": 1,
-        "graphql_field_name": "underfloripaEvents",
-        "map_graphql_types_from_location_rules": 1,
-        "graphql_types": [
-            "ContentNode",
-            "ActionMonitorAction",
-            "GraphqlDocument",
-            "MediaItem",
-            "Page",
-            "Post",
-            "TermNode",
-            "Category",
-            "GraphqlDocumentGroup",
-            "PostFormat",
-            "Tag",
-            "ContentTemplate",
-            "ContactPageTemplate",
-            "DefaultTemplate",
-            "MagazineTemplate",
-            "Template_GutenbergBlockPageBuilderColorMag",
-            "AcfOptionsPage",
-            "SiteSettings",
-            "Comment",
-            "Menu",
-            "MenuItem",
-            "User"
-        ]
-    }
+        "graphql_description": "",
+        "graphql_field_name": "lineup",
+        "graphql_non_null": 0
+      },
+      {
+        "key": "field_68296160b0db2",
+        "label": "Opening Acts",
+        "name": "opening_acts",
+        "aria-label": "",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_68295c1dd4461",
+              "operator": "==",
+              "value": "Yes"
+            }
+          ]
+        ],
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "default_value": "",
+        "maxlength": "",
+        "allow_in_bindings": 0,
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "show_in_graphql": 1,
+        "graphql_description": "",
+        "graphql_field_name": "openingActs",
+        "graphql_non_null": 0
+      },
+      {
+        "key": "field_681e7873d5ac2",
+        "label": "Tour",
+        "name": "tour",
+        "aria-label": "",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_6889457bae427",
+              "operator": "==",
+              "value": "Yes"
+            }
+          ]
+        ],
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "default_value": "",
+        "maxlength": "",
+        "allow_in_bindings": 0,
+        "placeholder": "",
+        "prepend": "",
+        "append": ""
+      },
+      {
+        "key": "field_68047b7dc9d08",
+        "label": "Link",
+        "name": "link",
+        "aria-label": "",
+        "type": "post_object",
+        "instructions": "Link do post sobre o Evento",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 1,
+        "post_type": ["post"],
+        "post_status": ["publish", "future"],
+        "taxonomy": ["category:musica"],
+        "return_format": "object",
+        "multiple": 0,
+        "allow_null": 0,
+        "allow_in_bindings": 1,
+        "bidirectional": 0,
+        "show_in_graphql": 1,
+        "graphql_description": "",
+        "graphql_field_name": "link",
+        "graphql_connection_type": "one_to_many",
+        "ui": 1,
+        "bidirectional_target": []
+      },
+      {
+        "key": "field_68056c2385809",
+        "label": "Ingressos",
+        "name": "ticket_link",
+        "aria-label": "",
+        "type": "url",
+        "instructions": "Link do site de venda de Ingressos",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "default_value": "",
+        "allow_in_bindings": 0,
+        "placeholder": ""
+      },
+      {
+        "key": "field_68880a65f6c28",
+        "label": "Free Event?",
+        "name": "free_event",
+        "aria-label": "",
+        "type": "checkbox",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "choices": {
+          "Yes": "Yes"
+        },
+        "default_value": [],
+        "return_format": "value",
+        "allow_custom": 0,
+        "allow_in_bindings": 0,
+        "layout": "vertical",
+        "toggle": 0,
+        "save_custom": 0,
+        "custom_choice_button_text": "Adicionar nova escolha"
+      },
+      {
+        "key": "field_68880b0ef6c29",
+        "label": "Tickets avaliable only at ticket office?",
+        "name": "ticket_office",
+        "aria-label": "",
+        "type": "checkbox",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "relevanssi_exclude": 0,
+        "choices": {
+          "Yes": "Yes"
+        },
+        "default_value": [],
+        "return_format": "value",
+        "allow_custom": 0,
+        "allow_in_bindings": 0,
+        "layout": "vertical",
+        "toggle": 0,
+        "save_custom": 0,
+        "custom_choice_button_text": "Adicionar nova escolha"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "event"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0
+  }
 ]
