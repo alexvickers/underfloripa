@@ -3,13 +3,12 @@
 .author-bio {
 	display: flex;
 	align-items: flex-start;
-	gap: 1.5rem;
-
+	gap: 2rem;
 	background-color: $color-offwhite-bright;
 	border: 1px solid $color-accent-light;
 	border-radius: 6px;
 	padding: 1.5rem;
-	margin: 2rem 0 3rem;
+	margin: 3rem auto;
 
 	.author-avatar {
 		flex: 0 0 100px;

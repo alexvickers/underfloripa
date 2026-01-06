@@ -25,6 +25,21 @@ get_header(); ?>
 							</nav>
 						<?php endif; ?>
 
+						<div class="lazy-google-ad responsive-ad"
+							data-ad-client="ca-pub-2855642712528671"
+							data-ad-slot="8848643347">
+							<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+								crossorigin="anonymous"></script>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-format="autorelaxed"
+								data-ad-client="ca-pub-2855642712528671"
+								data-ad-slot="8848643347"></ins>
+							<script>
+								(adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+						</div>
+
 						<h1 class="entry-title"><?php the_title(); ?></h1>
 						<div class="entry-meta">
 							<span class="entry-author">
