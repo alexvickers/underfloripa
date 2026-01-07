@@ -5,7 +5,7 @@
 	background-color: $color-offwhite-bright;
 
 	.entry-meta {
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 
 		span {
 			display: block;
@@ -31,6 +31,7 @@
 
 				h1 {
 					line-height: 1.2;
+					margin-bottom: 0.5rem;
 				}
 
 				.entry-content {
@@ -52,7 +53,7 @@
 					}
 
 					p {
-						margin-bottom: 1.5rem;
+						margin-bottom: 1.75rem;
 					}
 
 					.wp-block-embed__wrapper {
@@ -127,8 +128,13 @@
 	}
 
 	&.category-resenhas {
-		.related-post-thumb {
-			aspect-ratio: 1 / 1;
+		.related-posts ul li {
+			flex: 1 1 calc(25% - 1.5rem);
+
+			.related-post-thumb {
+				aspect-ratio: 1 / 1;
+			}
 		}
+
 	}
 }

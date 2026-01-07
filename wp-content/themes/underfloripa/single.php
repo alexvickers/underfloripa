@@ -30,11 +30,12 @@ get_header(); ?>
 							data-ad-slot="8848643347">
 							<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
 								crossorigin="anonymous"></script>
-							<ins class="adsbygoogle"
-								style="display:block"
-								data-ad-format="autorelaxed"
+							<ins class="adsbygoogle breadcrumb"
+								style="display:block;"
 								data-ad-client="ca-pub-2855642712528671"
-								data-ad-slot="8848643347"></ins>
+								data-ad-slot="8848643347"
+								data-ad-format="auto"
+								data-full-width-responsive="true"></ins>
 							<script>
 								(adsbygoogle = window.adsbygoogle || []).push({});
 							</script>
@@ -60,7 +61,6 @@ get_header(); ?>
 						</div>
 					</header>
 
-					<!-- Featured image -->
 					<?php if (has_post_thumbnail()) : ?>
 						<div class="entry-thumbnail ratio-16-9">
 							<?php the_post_thumbnail('large', ['alt' => get_the_title()]); ?>
@@ -77,7 +77,6 @@ get_header(); ?>
 						?>
 					<?php endif; ?>
 
-					<!-- Content -->
 					<div class="entry-content">
 						<?php the_content(); ?>
 					</div>
