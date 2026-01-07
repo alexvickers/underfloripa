@@ -25,6 +25,18 @@ get_header(); ?>
 							</nav>
 						<?php endif; ?>
 
+						<style>
+							.breadcrumb {
+								height: 100px;
+							}
+
+							@media (max-width: 1024px) {
+								.breadcrumb {
+									height: 90px;
+								}
+							}
+						</style>
+
 						<div class="lazy-google-ad responsive-ad"
 							data-ad-client="ca-pub-2855642712528671"
 							data-ad-slot="8848643347">
