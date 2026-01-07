@@ -25,24 +25,12 @@ get_header(); ?>
 							</nav>
 						<?php endif; ?>
 
-						<style>
-							.breadcrumb {
-								height: 100px;
-							}
-
-							@media (max-width: 1024px) {
-								.breadcrumb {
-									height: 90px;
-								}
-							}
-						</style>
-
 						<div class="lazy-google-ad responsive-ad"
 							data-ad-client="ca-pub-2855642712528671"
 							data-ad-slot="8848643347">
 							<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
 								crossorigin="anonymous"></script>
-							<ins class="adsbygoogle breadcrumb"
+							<ins class="adsbygoogle"
 								style="display:block;"
 								data-ad-client="ca-pub-2855642712528671"
 								data-ad-slot="8848643347"

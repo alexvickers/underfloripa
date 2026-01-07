@@ -60,12 +60,4 @@ body {
 	position: relative;
 	overflow: hidden;
 	margin-bottom: 2rem;
-
-	.breadcrumb {
-		height: 100px !important;
-
-		@include respond-to(lg) {
-			height: 90px !important;
-		}
-	}
 }
