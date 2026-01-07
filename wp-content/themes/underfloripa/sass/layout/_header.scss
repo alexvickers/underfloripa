@@ -149,8 +149,11 @@
 			}
 		}
 
-		&:hover svg path {
-			fill: $color-accent;
+		&:hover,
+		&:focus-visible {
+			svg path {
+				fill: $color-accent;
+			}
 		}
 	}
 }
@@ -177,7 +180,8 @@
 		fill: $color-offwhite;
 	}
 
-	&:hover {
+	&:hover,
+	&:focus-visible {
 		svg path {
 			fill: $color-orange
 		}
@@ -241,7 +245,8 @@
 			transition: background 0.2s ease;
 			margin-left: 0;
 
-			&:hover {
+			&:hover,
+			&:focus-visible {
 				background: $color-orange;
 			}
 		}

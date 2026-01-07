@@ -30,7 +30,8 @@
         align-items: center;
         gap: 0.4rem;
 
-        &:hover {
+        &:hover,
+        &:focus-visible {
           color: $color-accent;
         }
 
@@ -54,7 +55,13 @@
           color: $color-offwhite;
         }
 
-        &:hover .menu-chevron,
+        @media (hover: hover) {
+          &:hover .menu-chevron {
+            transform: rotate(180deg);
+            color: $color-accent;
+          }
+        }
+
         &:focus-within .menu-chevron {
           transform: rotate(180deg);
           color: $color-accent;
@@ -78,19 +85,22 @@
             text-decoration: none;
             white-space: nowrap;
 
-            &:hover {
+            &:hover,
+            &:focus-visible {
               background-color: $color-dark;
               color: $color-accent;
             }
           }
         }
 
-        @media (min-width: 769px) {
-
-          &:hover>.sub-menu,
-          &:focus-within>.sub-menu {
+        @media (hover: hover) and (min-width: 769px) {
+          &:hover>.sub-menu {
             display: block;
           }
+        }
+
+        &:focus-within>.sub-menu {
+          display: block;
         }
 
         @media (max-width: 768px) {

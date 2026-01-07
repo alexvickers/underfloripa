@@ -55,9 +55,11 @@
 						flex-direction: column;
 						transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-						&:hover {
-							transform: translateY(-1px);
-							box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+						@media (hover: hover) {
+							&:hover {
+								transform: translateY(-1px);
+								box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+							}
 						}
 
 						.featured-img {
@@ -85,8 +87,10 @@
 								transition: transform 0.3s ease;
 							}
 
-							&:hover img {
-								transform: scale(1.05);
+							@media (hover: hover) {
+								&:hover img {
+									transform: scale(1.05);
+								}
 							}
 						}
 
@@ -100,7 +104,8 @@
 									text-decoration: none;
 									color: $color-text;
 
-									&:hover {
+									&:hover,
+									&:focus-visible {
 										color: $color-accent;
 									}
 								}
@@ -150,7 +155,7 @@
 		article.archive-post {
 			display: flex;
 			gap: 1rem;
-			margin-bottom: 2rem;
+			margin-bottom: 3rem;
 			background-color: $color-offwhite-bright;
 			border: 1px solid $color-accent-light;
 			border-radius: 6px;
@@ -158,9 +163,11 @@
 			padding: 1rem;
 			transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-			&:hover {
-				transform: translateY(-1px);
-				box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+			@media (hover: hover) {
+				&:hover {
+					transform: translateY(-1px);
+					box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+				}
 			}
 
 			.event-thumbnail {
@@ -175,8 +182,10 @@
 					transition: transform 0.3s ease;
 				}
 
-				&:hover img {
-					transform: scale(1.05);
+				@media (hover: hover) {
+					&:hover img {
+						transform: scale(1.05);
+					}
 				}
 			}
 		}

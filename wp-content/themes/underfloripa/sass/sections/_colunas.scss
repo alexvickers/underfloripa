@@ -50,8 +50,10 @@
 			background: $gradient-cool;
 		}
 
-		&:hover::before {
-			opacity: 0.6;
+		@media (hover: hover) {
+			&:hover::before {
+				opacity: 0.6;
+			}
 		}
 
 		a {
@@ -74,7 +76,8 @@
 				transition: background-color 0.3s ease;
 				font-weight: 500;
 
-				&:hover {
+				&:hover,
+				&:focus-visible {
 					background-color: $color-text;
 				}
 			}

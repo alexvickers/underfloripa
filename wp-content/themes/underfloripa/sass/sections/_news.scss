@@ -27,8 +27,10 @@
 				transition: transform 0.4s ease;
 			}
 
-			&:hover img {
-				transform: scale(1.05);
+			@media (hover: hover) {
+				&:hover img {
+					transform: scale(1.05);
+				}
 			}
 
 			&::after {
@@ -64,8 +66,10 @@
 					border-radius: 4px;
 					font-weight: 600;
 					transition: background-color 0.3s ease, color 0.3s ease;
+					margin-bottom: 1rem;
 
-					&:hover {
+					&:hover,
+					&:focus-visible {
 						background-color: $color-purple;
 						color: $color-offwhite;
 					}
@@ -74,7 +78,8 @@
 
 			.post-title {
 				font-family: $font-headings;
-				font-size: 1.5rem;
+				font-size: 1.6rem;
+				line-height: 1.2;
 				margin: 0.25rem 0;
 				color: $color-offwhite;
 				text-decoration: none;
@@ -132,8 +137,10 @@
 				transition: transform 0.4s ease;
 			}
 
-			&:hover img {
-				transform: scale(1.05);
+			@media (hover: hover) {
+				&:hover img {
+					transform: scale(1.05);
+				}
 			}
 		}
 
@@ -152,7 +159,8 @@
 				line-height: 1;
 				font-weight: 500;
 
-				&:hover {
+				&:hover,
+				&:focus-visible {
 					background-color: $color-purple;
 				}
 			}
@@ -162,13 +170,14 @@
 			margin-top: 1rem;
 
 			.post-title {
-				font-size: 1.3rem;
+				font-size: 1.35rem;
 				line-height: 1.2;
 
 				a {
 					color: $color-text;
 
-					&:hover {
+					&:hover,
+					&:focus-visible {
 						color: $color-accent;
 					}
 				}

@@ -25,6 +25,34 @@ get_header(); ?>
 							</nav>
 						<?php endif; ?>
 
+						<style>
+							.breadcrumb {
+								height: 100px;
+							}
+
+							@media (max-width: 1024px) {
+								.breadcrumb {
+									height: 90px;
+								}
+							}
+						</style>
+
+						<div class="lazy-google-ad responsive-ad"
+							data-ad-client="ca-pub-2855642712528671"
+							data-ad-slot="8848643347">
+							<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+								crossorigin="anonymous"></script>
+							<ins class="adsbygoogle breadcrumb"
+								style="display:block;"
+								data-ad-client="ca-pub-2855642712528671"
+								data-ad-slot="8848643347"
+								data-ad-format="auto"
+								data-full-width-responsive="true"></ins>
+							<script>
+								(adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+						</div>
+
 						<h1 class="entry-title"><?php the_title(); ?></h1>
 						<div class="entry-meta">
 							<span class="entry-author">
@@ -45,7 +73,6 @@ get_header(); ?>
 						</div>
 					</header>
 
-					<!-- Featured image -->
 					<?php if (has_post_thumbnail()) : ?>
 						<div class="entry-thumbnail ratio-16-9">
 							<?php the_post_thumbnail('large', ['alt' => get_the_title()]); ?>
@@ -62,7 +89,6 @@ get_header(); ?>
 						?>
 					<?php endif; ?>
 
-					<!-- Content -->
 					<div class="entry-content">
 						<?php the_content(); ?>
 					</div>
