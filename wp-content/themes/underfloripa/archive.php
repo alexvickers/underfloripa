@@ -9,6 +9,23 @@
                         <?php rank_math_the_breadcrumbs(); ?>
                     </nav>
                 <?php endif; ?>
+
+                <div class="lazy-google-ad responsive-ad"
+                    data-ad-client="ca-pub-2855642712528671"
+                    data-ad-slot="8848643347">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+                        crossorigin="anonymous"></script>
+                    <ins class="adsbygoogle"
+                        style="display:block;"
+                        data-ad-client="ca-pub-2855642712528671"
+                        data-ad-slot="8848643347"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+
                 <?php
                 the_archive_title('<h1 class="archive-title">', '</h1>');
                 the_archive_description('<div class="archive-description">', '</div>');
