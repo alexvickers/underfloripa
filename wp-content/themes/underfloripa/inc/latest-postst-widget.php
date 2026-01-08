@@ -30,7 +30,7 @@ class Latest_Posts_Widget extends WP_Widget
             while ($query->have_posts()) {
                 $query->the_post();
 ?>
-                <article class="latest-post-card">
+                <div class="latest-post-card">
                     <a href="<?php the_permalink(); ?>" class="latest-post-thumb">
                         <?php if (has_post_thumbnail()) {
                             the_post_thumbnail('square');
@@ -49,7 +49,7 @@ class Latest_Posts_Widget extends WP_Widget
                             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                         </h4>
                     </div>
-                </article>
+                </div>
 <?php
             }
             echo '</div>';

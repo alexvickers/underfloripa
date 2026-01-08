@@ -5,7 +5,9 @@
 	clear: both;
 
 	&:first-of-type {
-		margin-top: 4rem;
+		&:not(li) {
+			margin-top: 4rem;
+		}
 	}
 
 	img {

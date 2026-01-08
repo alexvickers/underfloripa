@@ -40,9 +40,11 @@ if (! defined('ABSPATH')) {
 			<?php while ($coberturas->have_posts()) : $coberturas->the_post(); ?>
 				<article class="coverage-item">
 					<?php if (has_post_thumbnail()) : ?>
-						<div class="post-image">
-							<?php the_post_thumbnail('medium_large', ['alt' => get_the_title()]); ?>
-						</div>
+						<a href="<?php the_permalink(); ?>">
+							<div class="post-image">
+								<?php the_post_thumbnail('medium_large', ['alt' => get_the_title()]); ?>
+							</div>
+						</a>
 					<?php endif; ?>
 
 					<div class="post-meta">
