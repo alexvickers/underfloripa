@@ -33,7 +33,7 @@ class Latest_Posts_Widget extends WP_Widget
                 <div class="latest-post-card">
                     <a href="<?php the_permalink(); ?>" class="latest-post-thumb">
                         <?php if (has_post_thumbnail()) {
-                            the_post_thumbnail('square');
+                            the_post_thumbnail(64, 64);
                         } ?>
                     </a>
                     <div class="latest-post-content">

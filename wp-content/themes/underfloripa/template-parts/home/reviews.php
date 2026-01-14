@@ -41,7 +41,10 @@ if (! defined('ABSPATH')) {
 				<a href="<?php the_permalink(); ?>" class="review-card">
 					<?php if (has_post_thumbnail()) : ?>
 						<div class="review-image">
-							<?php the_post_thumbnail([280, 280], ['style' => 'width: 100%; height: auto; object-fit: cover;']); ?>
+							<?php the_post_thumbnail(
+								[220, 220],
+								['style' => 'width: 100%; height: auto; object-fit: cover;']
+							); ?>
 						</div>
 					<?php endif; ?>
 

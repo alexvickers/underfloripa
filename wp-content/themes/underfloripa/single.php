@@ -62,7 +62,13 @@ get_header(); ?>
 					</header>
 
 					<?php if (has_post_thumbnail()) : ?>
-						<div class="entry-thumbnail ratio-16-9">
+						<?php
+						$is_resenha = in_category('resenhas');
+						$is_mobile  = wp_is_mobile();
+
+						$ratio_class = ($is_resenha && $is_mobile) ? 'ratio-1-1' : 'ratio-16-9';
+						?>
+						<div class="entry-thumbnail <?php echo esc_attr($ratio_class); ?>">
 							<?php the_post_thumbnail('large', ['alt' => get_the_title()]); ?>
 						</div>
 						<?php
@@ -76,7 +82,6 @@ get_header(); ?>
 						}
 						?>
 					<?php endif; ?>
-
 					<div class="entry-content">
 						<?php the_content(); ?>
 					</div>

@@ -39,7 +39,13 @@ add_filter( 'body_class', 'my_add_category_slug_to_body_class' );
 
 // Enqueue styles and scripts
 function underfloripa_assets() {
-	wp_enqueue_style('underfloripa-style', get_stylesheet_uri(), [], '1.0');
+	wp_enqueue_style(
+		'underfloripa-main',
+		get_template_directory_uri() . '/css/main.css',
+		[],
+		filemtime(get_template_directory() . '/css/main.css')
+	);
+
 	wp_enqueue_script(
 		'underfloripa-theme',
 		get_stylesheet_directory_uri() . '/assets/js/header.js',
@@ -47,6 +53,7 @@ function underfloripa_assets() {
 		null,
 		true
 	);
+
 	wp_enqueue_script(
 		'lazy-ads',
 		get_stylesheet_directory_uri() . '/assets/js/lazy-ads.js',
@@ -56,6 +63,18 @@ function underfloripa_assets() {
 	);
 }
 add_action('wp_enqueue_scripts', 'underfloripa_assets');
+
+add_filter('style_loader_tag', function ($html, $handle) {
+	if ($handle !== 'underfloripa-main') {
+		return $html;
+	}
+
+	return str_replace(
+		"rel='stylesheet'",
+		"rel='stylesheet' media='print' onload=\"this.media='all'\"",
+		$html
+	);
+}, 10, 2);
 
 function underfloripa_optimize_jquery() {
 	if (is_admin()) return;
@@ -83,6 +102,14 @@ function underfloripa_remove_jquery_migrate($scripts) {
 	}
 }
 add_action('wp_default_scripts', 'underfloripa_remove_jquery_migrate');
+
+add_filter('wp_get_attachment_image_attributes', function ($attr, $attachment) {
+    if (!is_admin() && isset($attr['class']) && strpos($attr['class'], 'lcp') !== false) {
+        $attr['loading'] = 'eager';
+        $attr['fetchpriority'] = 'high';
+    }
+    return $attr;
+}, 10, 2);
 
 // Custom Footer Scripts (via ACF option)
 function my_custom_footer_scripts() {

@@ -42,7 +42,11 @@ if (! defined('ABSPATH')) {
 					<?php if (has_post_thumbnail()) : ?>
 						<a href="<?php the_permalink(); ?>">
 							<div class="post-image">
-								<?php the_post_thumbnail('medium_large', ['alt' => get_the_title()]); ?>
+								<?php
+								the_post_thumbnail(
+									[480, 250],
+									['alt' => get_the_title()]
+								);?>
 							</div>
 						</a>
 					<?php endif; ?>
