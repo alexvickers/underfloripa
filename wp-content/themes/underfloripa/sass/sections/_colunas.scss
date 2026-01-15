@@ -51,6 +51,10 @@
 			background: $gradient-cool;
 		}
 
+		&.category-singles-singulares::before {
+			background: $gradient-hybrid;
+		}
+
 		@media (hover: hover) {
 			&:hover::before {
 				opacity: 0.6;
