@@ -138,6 +138,15 @@
 		.related-posts ul li {
 			flex: 1 1 calc(25% - 1.5rem);
 
+			@media (max-width: 1024px) {
+				flex-basis: 50%;
+				margin: auto;
+			}
+
+			@media (max-width: 640px) {
+				flex-basis: 100%;
+			}
+
 			.related-post-thumb {
 				aspect-ratio: 1 / 1;
 			}

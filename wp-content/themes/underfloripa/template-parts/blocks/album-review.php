@@ -15,11 +15,19 @@ if (!$album_name) {
     return;
 }
 
-$formatted_mark = ($mark == 10 || $mark == 0) ? (string) intval($mark) : number_format((float) $mark, 1);
+$formatted_mark = ($mark === null || $mark === '')
+    ? ''
+    : (($mark == 10 || $mark == 0)
+        ? (string) $mark
+        : number_format((float) $mark, 1));
 ?>
 
 <div class="album-review-block">
-    <div class="mark"><span><?php echo $formatted_mark; ?></span></div>
+    <?php if ($formatted_mark !== '') : ?>
+        <div class="mark">
+            <span><?php echo $formatted_mark; ?></span>
+        </div>
+    <?php endif; ?>
     <div>
         <h3>
             <?php echo esc_html($album_name);
