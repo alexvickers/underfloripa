@@ -276,7 +276,10 @@ function uf_register_event_details_block() {
 			'icon'              => 'calendar-alt',
 			'keywords'          => ['event', 'concert', 'show'],
 			'mode'              => 'edit',
-			'supports'          => ['align' => true],
+			'supports'        	=> [
+				'align'            => true,
+				'customClassName' => true
+			],
 		]);
 	}
 }
