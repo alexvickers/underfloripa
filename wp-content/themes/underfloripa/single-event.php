@@ -10,23 +10,29 @@ get_header();
 <div class="site-container event-single">
 
 	<main>
+		<header class="entry-header">
+			<?php if (function_exists('rank_math_the_breadcrumbs')) : ?>
+				<nav class="breadcrumbs">
+					<?php rank_math_the_breadcrumbs(); ?>
+				</nav>
+			<?php endif; ?>
 
-		<div class="lazy-google-ad responsive-ad"
-			data-ad-client="ca-pub-2855642712528671"
-			data-ad-slot="8804085429">
-			<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
-				crossorigin="anonymous"></script>
-			<!-- Under Floripa 2025 - Eventos 1 -->
-			<ins class="adsbygoogle"
-				style="display:block"
+			<div class="lazy-google-ad responsive-ad"
 				data-ad-client="ca-pub-2855642712528671"
-				data-ad-slot="8804085429"
-				data-ad-format="auto"
-				data-full-width-responsive="true"></ins>
-			<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
-		</div>
+				data-ad-slot="8848643347">
+				<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+					crossorigin="anonymous"></script>
+				<ins class="adsbygoogle"
+					style="display:block;"
+					data-ad-client="ca-pub-2855642712528671"
+					data-ad-slot="8848643347"
+					data-ad-format="auto"
+					data-full-width-responsive="true"></ins>
+				<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+		</header>
 
 		<?php while (have_posts()) : the_post(); ?>
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

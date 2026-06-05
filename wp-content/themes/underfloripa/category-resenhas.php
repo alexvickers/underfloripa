@@ -15,10 +15,25 @@ get_header(); ?>
                     <?php rank_math_the_breadcrumbs(); ?>
                 </nav>
             <?php endif; ?>
-            <?php
-            the_archive_title('<h1 class="archive-title">', '</h1>');
-            the_archive_description('<div class="archive-description">', '</div>');
-            ?>
+
+            <div class="lazy-google-ad responsive-ad"
+                data-ad-client="ca-pub-2855642712528671"
+                data-ad-slot="8848643347">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
+                    crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                    style="display:block;"
+                    data-ad-client="ca-pub-2855642712528671"
+                    data-ad-slot="8848643347"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <h1 class="archive-title">Resenhas</h1>
+            <?php the_archive_description('<div class="archive-description">', '</div>'); ?>
         </header>
 
         <div id="posts-container" class="archive-posts">
@@ -46,8 +61,14 @@ get_header(); ?>
         <?php if ($query->max_num_pages > 1) : ?>
             <div id="load-more-spinner">
                 <div class="lds-spinner">
-                    <div></div><div></div><div></div><div></div>
-                    <div></div><div></div><div></div><div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
             </div>
         <?php endif; ?>

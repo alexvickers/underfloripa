@@ -52,7 +52,7 @@ if (! defined('ABSPATH')) {
 					</div>
 					<a href="<?php the_permalink(); ?>">
 						<?php if (has_post_thumbnail()) :
-							$thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'large', ['alt' => get_the_title()]);
+							$thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'medium', ['alt' => get_the_title()]);
 						endif; ?>
 
 						<div class="coluna-bg" style="background-image: url('<?php echo esc_url($thumb_url); ?>');">

@@ -61,9 +61,14 @@ if (! defined('ABSPATH')) {
 			<?php else: ?>
 				<article class="latest-news-item">
 					<?php if (has_post_thumbnail()) : ?>
-						<div class="post-image">
-							<?php the_post_thumbnail('medium_large', ['alt' => get_the_title()]); ?>
-						</div>
+						<a href="<?php the_permalink(); ?>">
+							<div class="post-image">
+								<?php the_post_thumbnail(
+									[310, 200],
+									['alt' => get_the_title()]
+								); ?>
+							</div>
+						</a>
 					<?php endif; ?>
 
 					<div class="post-categories">

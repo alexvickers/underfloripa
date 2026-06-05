@@ -25,24 +25,12 @@ get_header(); ?>
 							</nav>
 						<?php endif; ?>
 
-						<style>
-							.breadcrumb {
-								height: 100px;
-							}
-
-							@media (max-width: 1024px) {
-								.breadcrumb {
-									height: 90px;
-								}
-							}
-						</style>
-
 						<div class="lazy-google-ad responsive-ad"
 							data-ad-client="ca-pub-2855642712528671"
 							data-ad-slot="8848643347">
 							<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
 								crossorigin="anonymous"></script>
-							<ins class="adsbygoogle breadcrumb"
+							<ins class="adsbygoogle"
 								style="display:block;"
 								data-ad-client="ca-pub-2855642712528671"
 								data-ad-slot="8848643347"
@@ -74,19 +62,60 @@ get_header(); ?>
 					</header>
 
 					<?php if (has_post_thumbnail()) : ?>
-						<div class="entry-thumbnail ratio-16-9">
-							<?php the_post_thumbnail('large', ['alt' => get_the_title()]); ?>
-						</div>
 						<?php
-						$thumbnail_id = get_post_thumbnail_id();
-						$caption = wp_get_attachment_caption($thumbnail_id);
+						$is_resenha = in_category('resenhas');
+						$is_mobile  = wp_is_mobile();
 
-						if ($caption) {
-							echo '<p class="image-credit">' . esc_html($caption) . '</p>';
-						} else {
-							echo '<p class="image-credit">(Reprodução)</p>';
+						$ratio_class = ($is_resenha && $is_mobile) ? 'ratio-1-1' : 'ratio-16-9';
+
+						$alt = get_the_title();
+
+						if ($is_resenha) {
+							$album_name  = get_field('album_name');
+							$artist_name = get_field('artist_name');
+
+							if ($album_name && $artist_name) {
+								$alt = sprintf(
+									'Capa do álbum %s por %s',
+									$album_name,
+									$artist_name
+								);
+							}
 						}
+
+						$thumbnail_id = get_post_thumbnail_id();
+						$caption      = wp_get_attachment_caption($thumbnail_id);
 						?>
+
+						<?php if ($is_resenha) : ?>
+
+							<figure class="entry-thumbnail <?php echo esc_attr($ratio_class); ?>">
+								<?php the_post_thumbnail('large', ['alt' => $alt]); ?>
+
+								<figcaption class="image-credit">
+									<?php
+									echo $caption
+										? esc_html($caption)
+										: '(Reprodução)';
+									?>
+								</figcaption>
+							</figure>
+
+						<?php else : ?>
+
+							<div class="entry-thumbnail <?php echo esc_attr($ratio_class); ?>">
+								<?php the_post_thumbnail('large', ['alt' => $alt]); ?>
+							</div>
+
+							<p class="image-credit">
+								<?php
+								echo $caption
+									? esc_html($caption)
+									: '(Reprodução)';
+								?>
+							</p>
+
+						<?php endif; ?>
 					<?php endif; ?>
 
 					<div class="entry-content">

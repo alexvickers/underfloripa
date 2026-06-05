@@ -17,12 +17,24 @@ if (! defined('ABSPATH')) {
 		rel="preload"
 		href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Heebo:wght@100..900&display=swap"
 		as="style"
-		onload="this.onload=null;this.rel='stylesheet'" />
+		onload="this.onload=null;this.rel='stylesheet'"
+	/>
 	<noscript>
 		<link
 			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Heebo:wght@100..900&display=swap"
 			rel="stylesheet"
-			type="text/css" />
+			type="text/css"
+		/>
+	</noscript>
+
+	<link
+		href="<?php echo get_template_directory_uri(); ?>/css/main.css"
+		rel="stylesheet"
+		media="print"
+		onload="this.media='all'"
+	/>
+	<noscript>
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/main.css">
 	</noscript>
 
 	<?php wp_head(); ?>
@@ -66,7 +78,7 @@ if (! defined('ABSPATH')) {
 			</div>
 		</div>
 		</div>
-		<div class="site-accent-bar"></div>
+		<div class="site-pride-bar"></div>
 		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Main Menu">
 			<div class="nav-container site-container">
 				<div class="nav-left">

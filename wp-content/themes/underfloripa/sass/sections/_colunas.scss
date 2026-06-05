@@ -2,6 +2,7 @@
 
 .colunas-grid {
 	padding: 2.5rem 0;
+	margin-bottom: 2rem;
 
 	h2 {
 		font-family: $font-headings;
@@ -48,6 +49,10 @@
 
 		&.category-voce-precisa-conhecer::before {
 			background: $gradient-cool;
+		}
+
+		&.category-singles-singulares::before {
+			background: $gradient-hybrid;
 		}
 
 		@media (hover: hover) {

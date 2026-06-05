@@ -94,6 +94,7 @@
 				&:hover,
 				&:focus-visible {
 					color: $color-accent;
+					cursor: pointer;
 				}
 			}
 		}
