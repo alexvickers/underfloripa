@@ -67,21 +67,57 @@ get_header(); ?>
 						$is_mobile  = wp_is_mobile();
 
 						$ratio_class = ($is_resenha && $is_mobile) ? 'ratio-1-1' : 'ratio-16-9';
-						?>
-						<div class="entry-thumbnail <?php echo esc_attr($ratio_class); ?>">
-							<?php the_post_thumbnail('large', ['alt' => get_the_title()]); ?>
-						</div>
-						<?php
-						$thumbnail_id = get_post_thumbnail_id();
-						$caption = wp_get_attachment_caption($thumbnail_id);
 
-						if ($caption) {
-							echo '<p class="image-credit">' . esc_html($caption) . '</p>';
-						} else {
-							echo '<p class="image-credit">(Reprodução)</p>';
+						$alt = get_the_title();
+
+						if ($is_resenha) {
+							$album_name  = get_field('album_name');
+							$artist_name = get_field('artist_name');
+
+							if ($album_name && $artist_name) {
+								$alt = sprintf(
+									'Capa do álbum %s por %s',
+									$album_name,
+									$artist_name
+								);
+							}
 						}
+
+						$thumbnail_id = get_post_thumbnail_id();
+						$caption      = wp_get_attachment_caption($thumbnail_id);
 						?>
+
+						<?php if ($is_resenha) : ?>
+
+							<figure class="entry-thumbnail <?php echo esc_attr($ratio_class); ?>">
+								<?php the_post_thumbnail('large', ['alt' => $alt]); ?>
+
+								<figcaption class="image-credit">
+									<?php
+									echo $caption
+										? esc_html($caption)
+										: '(Reprodução)';
+									?>
+								</figcaption>
+							</figure>
+
+						<?php else : ?>
+
+							<div class="entry-thumbnail <?php echo esc_attr($ratio_class); ?>">
+								<?php the_post_thumbnail('large', ['alt' => $alt]); ?>
+							</div>
+
+							<p class="image-credit">
+								<?php
+								echo $caption
+									? esc_html($caption)
+									: '(Reprodução)';
+								?>
+							</p>
+
+						<?php endif; ?>
 					<?php endif; ?>
+
 					<div class="entry-content">
 						<?php the_content(); ?>
 					</div>
