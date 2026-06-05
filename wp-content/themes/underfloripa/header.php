@@ -78,7 +78,7 @@ if (! defined('ABSPATH')) {
 			</div>
 		</div>
 		</div>
-		<div class="site-accent-bar"></div>
+		<div class="site-pride-bar"></div>
 		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Main Menu">
 			<div class="nav-container site-container">
 				<div class="nav-left">
