@@ -19,7 +19,7 @@ class Latest_Posts_Widget extends WP_Widget
         echo $args['before_widget'];
 
         $query = new WP_Query([
-            'posts_per_page' => 10,
+            'posts_per_page' => 5,
             'ignore_sticky_posts' => true,
         ]);
 

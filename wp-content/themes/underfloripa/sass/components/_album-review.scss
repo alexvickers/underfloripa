@@ -11,6 +11,7 @@
 
 	.mark {
 		display: flex;
+		align-content: center;
 		justify-content: center;
 		border: 5px solid $color-dark;
 		border-radius: 50%;
@@ -18,7 +19,7 @@
 		aspect-ratio: 1 / 1;
 
 		span {
-			line-height: 1;
+			line-height: 3rem;
 			font-size: 2rem;
 			text-align: center;
 			font-weight: 700;

@@ -31,7 +31,7 @@ if (! defined('ABSPATH')) {
 	<?php
 	$coberturas = new WP_Query([
 		'post_type'      => 'post',
-		'posts_per_page' => 4,
+		'posts_per_page' => 2,
 		'category_name'  => 'coberturas',
 	]);
 

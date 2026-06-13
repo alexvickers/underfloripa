@@ -32,20 +32,6 @@ get_header(); ?>
         <?php get_template_part('template-parts/home/coberturas'); ?>
         <?php get_template_part('template-parts/home/colunas'); ?>
 
-        <div class="lazy-google-ad responsive-ad"
-            data-ad-client="ca-pub-2855642712528671"
-            data-ad-slot="1234567890">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855642712528671"
-                crossorigin="anonymous"></script>
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-format="autorelaxed"
-                data-ad-client="ca-pub-2855642712528671"
-                data-ad-slot="2638856769"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
     </main>
 
     <?php if (is_active_sidebar('primary-sidebar')) : ?>
