@@ -78,7 +78,7 @@ if (! defined('ABSPATH')) {
 			</div>
 		</div>
 		</div>
-		<div class="site-pride-bar"></div>
+		<div class="<?php echo (wp_date('n') == 6) ? 'site-pride-bar' : 'site-accent-bar'; ?>"></div>
 		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Main Menu">
 			<div class="nav-container site-container">
 				<div class="nav-left">
