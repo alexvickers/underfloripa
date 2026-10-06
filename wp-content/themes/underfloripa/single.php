@@ -89,8 +89,11 @@ get_header(); ?>
 
 						<?php if ($is_resenha) : ?>
 
-							<figure class="entry-thumbnail <?php echo esc_attr($ratio_class); ?>">
-								<?php the_post_thumbnail('large', ['alt' => $alt]); ?>
+							<figure class="entry-thumbnail">
+								<?php the_post_thumbnail('large', [
+									'alt'   => $alt,
+									'class' => $ratio_class,
+								]); ?>
 
 								<figcaption class="image-credit">
 									<?php
@@ -103,8 +106,11 @@ get_header(); ?>
 
 						<?php else : ?>
 
-							<div class="entry-thumbnail <?php echo esc_attr($ratio_class); ?>">
-								<?php the_post_thumbnail('large', ['alt' => $alt]); ?>
+							<div class="entry-thumbnail">
+								<?php the_post_thumbnail('large', [
+									'alt'   => $alt,
+									'class' => $ratio_class,
+								]); ?>
 							</div>
 
 							<p class="image-credit">
